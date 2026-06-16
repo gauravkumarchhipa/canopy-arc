@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.sahai.android",
+      "sha256_cert_fingerprints": [
+        "E7:6C:BF:13:17:74:23:0C:25:B2:E6:B9:60:C6:8F:54:09:23:99:9F:D9:C1:59:AE:CE:24:12:46:A1:D3:03:AC"
+      ]
+    }
+  }
+]

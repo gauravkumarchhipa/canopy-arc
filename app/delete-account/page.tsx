@@ -1,0 +1,34 @@
+import type { Metadata } from "next";
+import PageHero from "../components/PageHero";
+import DeleteAccountFormSection from "./sections/DeleteAccountFormSection";
+import ClosingSection from "./sections/ClosingSection";
+
+export const metadata: Metadata = {
+  title: "Delete account — SAHAI",
+  description:
+    "Request deletion of your SAHAI account and personal data. We process requests within two working days.",
+};
+
+export default function DeleteAccountPage() {
+  return (
+    <>
+      <PageHero
+        eyebrow="Delete account"
+        title={
+          <>
+            Close your account
+            <br />
+            with
+            <br />
+            <span className="gradient-text">clarity.</span>
+          </>
+        }
+        blurb="Submit your registered email, mobile number, and a short reason. We verify and process deletion within two working days."
+      />
+
+      <DeleteAccountFormSection />
+
+      <ClosingSection />
+    </>
+  );
+}
