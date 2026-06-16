@@ -31,11 +31,6 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
 
   return (
     <div className="hero-ecosystem relative mx-auto w-full max-w-[580px] aspect-square">
-      {/* ambient glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/2 top-[52%] -translate-x-1/2 -translate-y-1/2 h-[72%] w-[72%] rounded-full hero-ecosystem-ambient" />
-      </div>
-
       {/* wireframe sphere + interconnection lines */}
       <svg
         className="hero-ecosystem-svg absolute inset-0 w-full h-full pointer-events-none"
@@ -60,6 +55,91 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
             </feMerge>
           </filter>
         </defs>
+
+        {/* bottom platform — dark floor, rings, beam */}
+        <g className="hero-platform-graphic" aria-hidden>
+          <defs>
+            <radialGradient id="platform-floor-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(5, 11, 24, 0.95)" />
+              <stop offset="55%" stopColor="rgba(5, 11, 24, 0.72)" />
+              <stop offset="100%" stopColor="rgba(5, 11, 24, 0)" />
+            </radialGradient>
+            <radialGradient id="platform-core-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="#e0f7ff" />
+              <stop offset="35%" stopColor="#67e8f9" />
+              <stop offset="70%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+            </radialGradient>
+            <linearGradient id="platform-beam-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="rgba(103, 232, 249, 0)" />
+              <stop offset="45%" stopColor="rgba(103, 232, 249, 0.22)" />
+              <stop offset="78%" stopColor="rgba(59, 130, 246, 0.55)" />
+              <stop offset="100%" stopColor="rgba(103, 232, 249, 0.95)" />
+            </linearGradient>
+            <linearGradient id="platform-sweep-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(103, 232, 249, 0)" />
+              <stop offset="50%" stopColor="rgba(103, 232, 249, 0.45)" />
+              <stop offset="100%" stopColor="rgba(103, 232, 249, 0)" />
+            </linearGradient>
+          </defs>
+
+          <ellipse
+            cx="200"
+            cy="300"
+            rx="102"
+            ry="30"
+            fill="url(#platform-floor-grad)"
+            className="hero-platform-floor"
+          />
+
+          {[92, 74, 56, 40, 26].map((rx, i) => (
+            <ellipse
+              key={`platform-ring-${i}`}
+              cx="200"
+              cy="299"
+              rx={rx}
+              ry={roundSvgCoord(rx * 0.26)}
+              fill="none"
+              stroke="rgba(34, 211, 238, 0.35)"
+              strokeWidth={i === 0 ? 1 : 0.75}
+              className="hero-platform-svg-ring"
+              style={{ animationDelay: `${i * 0.5}s` }}
+            />
+          ))}
+
+          <line
+            x1="200"
+            y1="168"
+            x2="200"
+            y2="296"
+            stroke="url(#platform-beam-grad)"
+            strokeWidth="2"
+            className="hero-platform-beam"
+          />
+
+          {[0, 1].map((i) => (
+            <line
+              key={`sweep-${i}`}
+              x1={roundSvgCoord(138 + i * 10)}
+              y1={roundSvgCoord(296 - i * 3)}
+              x2={roundSvgCoord(262 - i * 10)}
+              y2={roundSvgCoord(296 - i * 3)}
+              stroke="url(#platform-sweep-grad)"
+              strokeWidth="0.8"
+              className="hero-platform-sweep"
+              style={{ animationDelay: `${i * 0.7}s` }}
+            />
+          ))}
+
+          <ellipse
+            cx="200"
+            cy="297"
+            rx="22"
+            ry="7"
+            fill="url(#platform-core-grad)"
+            className="hero-platform-svg-core"
+          />
+        </g>
 
         {/* sphere mesh lines */}
         {mesh.lines.map(([a, b], i) => (
@@ -110,15 +190,6 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
           );
         })}
       </svg>
-
-      {/* bottom glowing platform */}
-      <div className="hero-platform" aria-hidden>
-        <span className="hero-platform-ring hero-platform-ring--1" />
-        <span className="hero-platform-ring hero-platform-ring--2" />
-        <span className="hero-platform-ring hero-platform-ring--3" />
-        <span className="hero-platform-ring hero-platform-ring--4" />
-        <span className="hero-platform-core" />
-      </div>
 
       {/* central canopy mark */}
       <div className="hero-mark-wrap">

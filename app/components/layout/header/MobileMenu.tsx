@@ -63,7 +63,6 @@ export default function MobileMenu({ open, onClose }: Props) {
           <nav className="relative flex flex-col gap-1 flex-1">
             {NAV.map((item, i) => {
               const active = pathname === item.href;
-              const hasChildren = !!item.children?.length;
               return (
                 <div
                   key={item.href}
@@ -88,21 +87,6 @@ export default function MobileMenu({ open, onClose }: Props) {
                       0{i + 1}
                     </span>
                   </Link>
-
-                  {hasChildren && (
-                    <div className="pb-4 -mt-1 grid grid-cols-2 gap-2">
-                      {item.children!.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={onClose}
-                          className="rounded-xl border border-line bg-surface px-3 py-2 text-sm text-muted hover:text-foreground hover:bg-surface-strong transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </div>
               );
             })}

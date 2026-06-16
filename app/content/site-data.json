@@ -7,18 +7,7 @@
   "nav": {
     "items": [
       { "label": "Home", "href": "/" },
-      {
-        "label": "Services",
-        "href": "/services",
-        "children": [
-          { "label": "Web Development", "href": "/services#web-development" },
-          { "label": "Mobile Apps", "href": "/services#mobile-apps" },
-          { "label": "AI & Machine Learning", "href": "/services#ai-ml" },
-          { "label": "Cloud & DevOps", "href": "/services#cloud-devops" },
-          { "label": "UI/UX Design", "href": "/services#ui-ux" },
-          { "label": "Data Engineering", "href": "/services#data-engineering" }
-        ]
-      },
+      { "label": "Services", "href": "/services" },
       { "label": "Our Work", "href": "/work" },
       { "label": "Team", "href": "/team" },
       { "label": "About Us", "href": "/about" },

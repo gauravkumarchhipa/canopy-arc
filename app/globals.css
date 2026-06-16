@@ -1047,27 +1047,8 @@ html[data-theme="dark"] .btn-header-primary {
   isolation: isolate;
 }
 
-.hero-ambient-left {
-  background: radial-gradient(
-    circle at center,
-    var(--hero-ambient-a),
-    transparent 65%
-  );
-  opacity: 0.55;
-}
-
-.hero-ambient-right {
-  background: radial-gradient(
-    circle at center,
-    var(--hero-ambient-b),
-    transparent 65%
-  );
-  opacity: 0.5;
-}
-
-[data-theme="light"] .hero-ambient-left,
-[data-theme="light"] .hero-ambient-right {
-  opacity: 0.7;
+.hero-ambient-bottom {
+  display: none;
 }
 
 .hero-grid-overlay {
@@ -1110,77 +1091,80 @@ html[data-theme="dark"] .btn-header-primary {
   animation: hero-link-flow 3.5s ease-in-out infinite;
 }
 
-.hero-platform {
-  position: absolute;
-  left: 50%;
-  bottom: 18%;
-  width: 58%;
-  height: 22%;
-  transform: translateX(-50%);
+.hero-platform-graphic {
   pointer-events: none;
 }
 
-.hero-platform-ring {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  border-radius: 50%;
-  border: 1px solid rgba(34, 211, 238, 0.35);
-  transform: translate(-50%, -50%);
-  box-shadow:
-    0 0 18px rgba(59, 130, 246, 0.25),
-    inset 0 0 12px rgba(34, 211, 238, 0.08);
+.hero-platform-floor {
+  filter: blur(0.5px);
 }
 
-.hero-platform-ring--1 {
-  width: 100%;
-  height: 100%;
+.hero-platform-svg-ring {
+  opacity: 0.42;
+  animation: hero-platform-ring-glow 4.2s ease-in-out infinite;
+}
+
+.hero-platform-beam {
+  filter: drop-shadow(0 0 8px rgba(103, 232, 249, 0.65));
+  animation: hero-beam-pulse 3.5s ease-in-out infinite;
+}
+
+.hero-platform-sweep {
   opacity: 0.35;
-  animation: hero-ring-pulse 4s ease-in-out infinite;
+  animation: hero-sweep-pulse 3s ease-in-out infinite;
 }
 
-.hero-platform-ring--2 {
-  width: 72%;
-  height: 72%;
-  opacity: 0.5;
-  border-color: rgba(59, 130, 246, 0.45);
-  animation: hero-ring-pulse 4s ease-in-out 0.6s infinite;
-}
-
-.hero-platform-ring--3 {
-  width: 46%;
-  height: 46%;
-  opacity: 0.65;
-  border-color: rgba(34, 211, 238, 0.55);
-  animation: hero-ring-pulse 4s ease-in-out 1.2s infinite;
-}
-
-.hero-platform-ring--4 {
-  width: 24%;
-  height: 24%;
-  opacity: 0.8;
-  border-color: rgba(103, 232, 249, 0.7);
-  animation: hero-ring-pulse 4s ease-in-out 1.8s infinite;
-}
-
-.hero-platform-core {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 14%;
-  height: 14%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at center,
-    rgba(103, 232, 249, 0.95) 0%,
-    rgba(59, 130, 246, 0.6) 45%,
-    transparent 72%
-  );
-  box-shadow:
-    0 0 30px rgba(34, 211, 238, 0.7),
-    0 0 60px rgba(59, 130, 246, 0.45);
+.hero-platform-svg-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  filter: drop-shadow(0 0 14px rgba(103, 232, 249, 0.85))
+    drop-shadow(0 0 28px rgba(59, 130, 246, 0.55));
   animation: hero-core-glow 3s ease-in-out infinite;
+}
+
+html[data-theme="light"] .hero-platform-floor {
+  opacity: 0.55;
+}
+
+html[data-theme="light"] .hero-platform-svg-ring {
+  stroke: rgba(37, 99, 235, 0.35);
+  opacity: 0.65;
+}
+
+html[data-theme="light"] .hero-platform-beam {
+  opacity: 0.75;
+}
+
+@keyframes hero-platform-ring-glow {
+  0%,
+  100% {
+    opacity: 0.4;
+    stroke: rgba(34, 211, 238, 0.28);
+  }
+  50% {
+    opacity: 0.85;
+    stroke: rgba(103, 232, 249, 0.62);
+  }
+}
+
+@keyframes hero-beam-pulse {
+  0%,
+  100% {
+    opacity: 0.65;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-sweep-pulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.55;
+  }
 }
 
 .hero-mark-wrap {
@@ -1229,25 +1213,6 @@ html[data-theme="dark"] .btn-header-primary {
   border-color: rgba(37, 99, 235, 0.12);
 }
 
-[data-theme="light"] .hero-platform-ring {
-  border-color: rgba(37, 99, 235, 0.28);
-  box-shadow:
-    0 0 14px rgba(37, 99, 235, 0.12),
-    inset 0 0 10px rgba(6, 182, 212, 0.06);
-}
-
-[data-theme="light"] .hero-platform-core {
-  background: radial-gradient(
-    circle at center,
-    rgba(6, 182, 212, 0.85) 0%,
-    rgba(37, 99, 235, 0.45) 45%,
-    transparent 72%
-  );
-  box-shadow:
-    0 0 24px rgba(6, 182, 212, 0.45),
-    0 0 48px rgba(37, 99, 235, 0.25);
-}
-
 .hero-orbit-icon {
   display: grid;
   place-items: center;
@@ -1294,11 +1259,11 @@ html[data-theme="dark"] .btn-header-primary {
   0%,
   100% {
     opacity: 0.85;
-    transform: translate(-50%, -50%) scale(1);
+    transform: scale(1);
   }
   50% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1.12);
+    transform: scale(1.12);
   }
 }
 

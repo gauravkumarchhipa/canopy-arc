@@ -170,8 +170,6 @@ export default function HeroSection() {
       className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full blur-[90px] hero-ambient-left" />
-        <div className="absolute -bottom-52 -right-52 h-[620px] w-[620px] rounded-full blur-[100px] hero-ambient-right" />
         <div className="absolute inset-0 grid-bg mask-fade-bottom hero-grid-overlay" />
       </div>
 
