@@ -62,8 +62,8 @@ export default function HeaderShell({
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 will-change-transform ${
-          scrolled || open ? "py-3 backdrop-blur-xl" : "py-6"
+        className={`fixed top-0 inset-x-0 z-50 will-change-transform border-b border-transparent ${
+          scrolled || open ? "py-3 backdrop-blur-xl border-line" : "py-5"
         }`}
         style={{
           transform: hidden
@@ -78,39 +78,43 @@ export default function HeaderShell({
             : {}),
         }}
       >
-        <div className="mx-auto max-w-350 px-6 lg:px-10 flex items-center justify-between">
-          {logo}
-
-          {desktopNav}
-
-          <div className="hidden md:flex items-center gap-3">
-            {desktopActions}
+        <div className="mx-auto max-w-350 px-6 lg:px-10">
+          <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+            <div className="justify-self-start">{logo}</div>
+            <div className="justify-self-center">{desktopNav}</div>
+            <div className="justify-self-end flex items-center gap-3">
+              {desktopActions}
+            </div>
           </div>
 
-          <div className="md:hidden flex items-center gap-2">
-            {mobileActions}
-            <button
-              type="button"
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-              style={{ borderColor: "var(--line-strong)" }}
-              onClick={toggleMenu}
-            >
-              <span className="relative block h-3 w-4">
-                <span
-                  className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
-                    open ? "top-1.5 rotate-45" : "top-0"
-                  }`}
-                />
-                <span
-                  className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
-                    open ? "top-1.5 -rotate-45" : "top-3"
-                  }`}
-                />
-              </span>
-            </button>
+          <div className="md:hidden flex items-center justify-between">
+            {logo}
+
+            <div className="flex items-center gap-2">
+              {mobileActions}
+              <button
+                type="button"
+                aria-label={open ? "Close menu" : "Open menu"}
+                aria-expanded={open}
+                aria-controls="mobile-menu"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
+                style={{ borderColor: "var(--line-strong)" }}
+                onClick={toggleMenu}
+              >
+                <span className="relative block h-3 w-4">
+                  <span
+                    className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
+                      open ? "top-1.5 rotate-45" : "top-0"
+                    }`}
+                  />
+                  <span
+                    className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
+                      open ? "top-1.5 -rotate-45" : "top-3"
+                    }`}
+                  />
+                </span>
+              </button>
+            </div>
           </div>
         </div>
       </header>

@@ -62,7 +62,7 @@ export default function HomeLoader() {
         <div className="home-loader-mark">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/canopy-arc-mark.svg"
+            src="/canopy-arc-mark.png"
             alt="Canopy Arc"
             width={120}
             height={120}

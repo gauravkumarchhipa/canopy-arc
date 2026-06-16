@@ -8,7 +8,7 @@ export default function FooterBrand() {
         <span className="inline-flex h-16 w-16 items-center justify-center translate-y-1.5">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/canopy-arc-mark.svg"
+            src="/canopy-arc-mark.png"
             alt={siteData.brand.name}
             width={64}
             height={64}

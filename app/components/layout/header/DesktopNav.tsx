@@ -8,7 +8,7 @@ export default function DesktopNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden md:flex items-center gap-1">
+    <nav className="flex items-center gap-0.5">
       {NAV.map((item) => {
         const hasChildren = !!item.children?.length;
         const active =
@@ -20,15 +20,15 @@ export default function DesktopNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative px-4 py-2 text-sm tracking-tight transition-colors ${
+              className={`relative px-3.5 py-2 text-sm font-medium tracking-tight transition-colors ${
                 active
                   ? "text-foreground"
-                  : "text-muted hover:text-foreground"
+                  : "text-foreground/75 hover:text-foreground"
               }`}
             >
               {item.label}
               {active && (
-                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-px w-7 bg-linear-to-r from-[#22d3ee] via-[#3b82f6] to-[#8b5cf6]" />
+                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
               )}
             </Link>
           );
@@ -38,29 +38,29 @@ export default function DesktopNav() {
           <div key={item.href} className="relative group">
             <Link
               href={item.href}
-              className={`relative px-4 py-2 text-sm tracking-tight transition-colors inline-flex items-center gap-1 ${
-                active ? "text-foreground" : "text-muted hover:text-foreground"
+              className={`relative px-3.5 py-2 text-sm font-medium tracking-tight transition-colors inline-flex items-center gap-1 ${
+                active ? "text-foreground" : "text-foreground/75 hover:text-foreground"
               }`}
             >
               {item.label}
               <svg
-                width="12"
-                height="12"
+                width="11"
+                height="11"
                 viewBox="0 0 20 20"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="opacity-70 translate-y-[1px]"
+                className="opacity-60 translate-y-px"
               >
                 <path
                   d="M5 7.5L10 12.5L15 7.5"
                   stroke="currentColor"
-                  strokeWidth="1.6"
+                  strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
               </svg>
               {active && (
-                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-px w-7 bg-linear-to-r from-[#22d3ee] via-[#3b82f6] to-[#8b5cf6]" />
+                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
               )}
             </Link>
 

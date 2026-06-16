@@ -35,12 +35,12 @@
       "primaryCta": { "label": "Explore Our Services", "href": "/services" },
       "secondaryCta": { "label": "Watch Our Story", "href": "/about#story" },
       "highlights": [
-        { "label": "Projects Delivered", "value": "150+" },
-        { "label": "Expert Developers", "value": "24+" },
-        { "label": "Client Satisfaction", "value": "98%" },
-        { "label": "Services", "value": "15+" },
-        { "label": "Live Products", "value": "6" },
-        { "label": "Years of Excellence", "value": "8+" }
+        { "icon": "rocket", "value": "150+", "label": "Projects Delivered", "description": "Across 30+ industries" },
+        { "icon": "users", "value": "24+", "label": "Expert Developers", "description": "Experienced professionals" },
+        { "icon": "shield", "value": "98%", "label": "Client Satisfaction", "description": "Long-term client trust" },
+        { "icon": "globe", "value": "15+", "label": "Services", "description": "End-to-end solutions" },
+        { "icon": "chart", "value": "6", "label": "Live Products", "description": "Building & scaling" },
+        { "icon": "clock", "value": "8+", "label": "Years of Excellence", "description": "Driving innovation" }
       ],
       "orbitLabels": [
         { "id": "web", "label": "Web\nDevelopment" },

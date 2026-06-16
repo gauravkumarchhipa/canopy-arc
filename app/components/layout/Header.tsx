@@ -12,11 +12,10 @@ export default function Header() {
       desktopNav={<DesktopNav />}
       desktopActions={
         <>
-          <ThemeToggle />
-          <Button href={siteData.nav.ctaSecondary.href} variant="ghost" className="text-sm">
+          <Button href={siteData.nav.ctaSecondary.href} variant="ghost" className="text-sm px-5 py-2.5">
             {siteData.nav.ctaSecondary.label}
           </Button>
-          <Button href={siteData.nav.ctaPrimary.href} className="text-sm">
+          <Button href={siteData.nav.ctaPrimary.href} className="text-sm px-5 py-2.5">
             {siteData.nav.ctaPrimary.label} →
           </Button>
         </>
