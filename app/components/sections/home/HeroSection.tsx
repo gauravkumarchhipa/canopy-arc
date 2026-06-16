@@ -1,9 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
-import Button from "../../ui/Button";
 import { siteData } from "../../../content/site-data";
 import HeroEcosystem from "./HeroEcosystem";
 
@@ -212,19 +212,25 @@ export default function HeroSection() {
 
             <div
               data-hero-fade
-              className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-4"
+              className="mt-9 flex flex-col sm:flex-row items-start sm:items-center gap-3"
             >
-              <Button href={hero.primaryCta.href} className="text-sm">
+              <Link
+                href={hero.primaryCta.href}
+                className="btn-header btn-header-primary no-underline"
+              >
                 {hero.primaryCta.label} →
-              </Button>
-              <Button href={hero.secondaryCta.href} variant="ghost" className="text-sm gap-3">
-                <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-line-strong">
+              </Link>
+              <Link
+                href={hero.secondaryCta.href}
+                className="btn-header btn-header-ghost no-underline gap-2.5"
+              >
+                <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/30">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 ml-0.5">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 </span>
                 {hero.secondaryCta.label}
-              </Button>
+              </Link>
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,34 +9,39 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+const LenisContext = createContext<Lenis | null>(null);
+
+export function useLenis() {
+  return useContext(LenisContext);
+}
+
 export default function SmoothScroll({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
-    const lenis = new Lenis({
+    const instance = new Lenis({
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       touchMultiplier: 1.4,
     });
 
-    lenisRef.current = lenis;
+    lenisRef.current = instance;
+    setLenis(instance);
 
-    lenis.on("scroll", ScrollTrigger.update);
+    instance.on("scroll", ScrollTrigger.update);
 
     const raf = (time: number) => {
-      lenis.raf(time * 1000);
+      instance.raf(time * 1000);
     };
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    // Make sure all triggers compute their positions correctly after
-    // smooth-scroll is mounted. Refresh again once fonts are loaded
-    // (font swap can shift y-positions of every section).
     const refresh = () => ScrollTrigger.refresh();
     requestAnimationFrame(refresh);
     if (typeof document !== "undefined" && "fonts" in document) {
@@ -47,10 +52,12 @@ export default function SmoothScroll({
     return () => {
       window.removeEventListener("load", refresh);
       gsap.ticker.remove(raf);
-      lenis.destroy();
+      instance.destroy();
+      lenisRef.current = null;
+      setLenis(null);
       ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
-  return <>{children}</>;
+  return <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>;
 }

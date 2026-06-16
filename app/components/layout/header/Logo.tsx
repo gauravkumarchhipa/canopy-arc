@@ -5,24 +5,24 @@ export default function Logo() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3 group"
+      className="flex items-center gap-3.5 sm:gap-4 group"
       aria-label={`${siteData.brand.name} home`}
     >
-      <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center overflow-visible transition-transform group-hover:scale-105">
+      <span className="relative inline-flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center overflow-visible transition-transform group-hover:scale-105">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/canopy-arc-mark.png"
           alt=""
-          width={56}
-          height={56}
-          className=" h-[130%] w-[130%] max-w-none object-contain"
+          width={72}
+          height={72}
+          className="h-[130%] w-[130%] max-w-none object-contain"
         />
       </span>
-      <span className="flex flex-col gap-0.5">
-        <span className="font-sans text-base sm:text-lg font-semibold tracking-tight leading-none text-foreground">
+      <span className="flex flex-col gap-1.5 sm:gap-2">
+        <span className="font-sans text-lg sm:text-xl font-semibold tracking-tight leading-none text-foreground">
           {siteData.brand.name}
         </span>
-        <span className="text-[9px] sm:text-[10px] font-medium tracking-[0.18em] uppercase text-muted leading-none">
+        <span className="text-[10px] sm:text-[11px] font-medium tracking-[0.18em] uppercase text-muted leading-snug">
           {siteData.brand.tagline}
         </span>
       </span>

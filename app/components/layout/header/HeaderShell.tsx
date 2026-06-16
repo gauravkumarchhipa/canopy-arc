@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
+import { useLenis } from "../SmoothScroll";
 
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
 
-const TOP_THRESHOLD = 80;
-const HIDE_DELTA = 8;
+const TOP_THRESHOLD = 12;
+const HIDE_DELTA = 4;
 
 type Props = {
   logo: ReactNode;
@@ -21,36 +22,52 @@ export default function HeaderShell({
   desktopActions,
   mobileActions,
 }: Props) {
+  const lenis = useLenis();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
   const lastY = useRef(0);
+  const wasHidden = useRef(false);
 
   useEffect(() => {
-    lastY.current = window.scrollY;
-
-    const onScroll = () => {
-      const y = window.scrollY;
+    const update = (y: number) => {
       const diff = y - lastY.current;
+      const pastTop = y > TOP_THRESHOLD;
+      let nextHidden = wasHidden.current;
 
-      setScrolled(y > 24);
+      setScrolled(pastTop);
 
       if (open) {
-        setHidden(false);
-      } else if (y < TOP_THRESHOLD) {
-        setHidden(false);
-      } else if (Math.abs(diff) > HIDE_DELTA) {
-        setHidden(diff > 0);
+        nextHidden = false;
+      } else if (!pastTop) {
+        nextHidden = false;
+      } else if (Math.abs(diff) >= HIDE_DELTA) {
+        nextHidden = diff > 0;
       }
 
+      if (wasHidden.current && !nextHidden && pastTop) {
+        setScrolled(true);
+      }
+
+      setHidden(nextHidden);
+      wasHidden.current = nextHidden;
       lastY.current = y;
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [open]);
+    lastY.current = lenis?.scroll ?? window.scrollY;
+    update(lastY.current);
+
+    if (lenis) {
+      const onLenisScroll = () => update(lenis.scroll);
+      lenis.on("scroll", onLenisScroll);
+      return () => lenis.off("scroll", onLenisScroll);
+    }
+
+    const onWindowScroll = () => update(window.scrollY);
+    window.addEventListener("scroll", onWindowScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onWindowScroll);
+  }, [open, lenis]);
 
   const toggleMenu = () => {
     setHasOpened(true);
@@ -66,16 +83,7 @@ export default function HeaderShell({
       <header
         className={`header-shell fixed top-0 inset-x-0 z-50 will-change-transform ${
           isElevated ? "is-scrolled py-3" : "py-5"
-        }${open ? " is-open" : ""}`}
-        style={{
-          transform: hidden
-            ? "translate3d(0, -110%, 0)"
-            : "translate3d(0, 0, 0)",
-          opacity: hidden ? 0 : 1,
-          transition: hidden
-            ? "transform 360ms cubic-bezier(0.55, 0, 0.7, 0.2), opacity 240ms ease-out, padding 400ms ease, background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease"
-            : undefined,
-        }}
+        }${open ? " is-open" : ""}${hidden ? " is-hidden" : ""}`}
       >
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
