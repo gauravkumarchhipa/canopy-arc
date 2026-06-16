@@ -28,7 +28,7 @@ export default function DesktopNav() {
             >
               {item.label}
               {active && (
-                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
+                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-accent shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
               )}
             </Link>
           );
@@ -60,7 +60,7 @@ export default function DesktopNav() {
                 />
               </svg>
               {active && (
-                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-[#3b82f6] shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
+                <span className="absolute left-1/2 -bottom-0.5 -translate-x-1/2 h-0.5 w-6 rounded-full bg-accent shadow-[0_0_10px_rgba(59,130,246,0.6)]" />
               )}
             </Link>
 

@@ -8,14 +8,14 @@ export default function Logo() {
       className="flex items-center gap-3 group"
       aria-label={`${siteData.brand.name} home`}
     >
-      <span className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center transition-transform group-hover:scale-105">
+      <span className="relative inline-flex h-14 w-14 shrink-0 items-center justify-center overflow-visible transition-transform group-hover:scale-105">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/canopy-arc-mark.png"
           alt=""
-          width={40}
-          height={40}
-          className="h-full w-full object-contain drop-shadow-[0_8px_24px_rgba(59,130,246,0.4)]"
+          width={56}
+          height={56}
+          className=" h-[130%] w-[130%] max-w-none object-contain"
         />
       </span>
       <span className="flex flex-col gap-0.5">

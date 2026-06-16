@@ -59,23 +59,22 @@ export default function HeaderShell({
 
   const closeMenu = () => setOpen(false);
 
+  const isElevated = scrolled || open;
+
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-50 will-change-transform border-b border-transparent ${
-          scrolled || open ? "py-3 backdrop-blur-xl border-line" : "py-5"
-        }`}
+        className={`header-shell fixed top-0 inset-x-0 z-50 will-change-transform ${
+          isElevated ? "is-scrolled py-3" : "py-5"
+        }${open ? " is-open" : ""}`}
         style={{
           transform: hidden
             ? "translate3d(0, -110%, 0)"
             : "translate3d(0, 0, 0)",
           opacity: hidden ? 0 : 1,
           transition: hidden
-            ? "transform 360ms cubic-bezier(0.55, 0, 0.7, 0.2), opacity 240ms ease-out, padding 400ms ease, background-color 300ms ease, border-color 300ms ease"
-            : "transform 620ms cubic-bezier(0.22, 1, 0.36, 1), opacity 360ms ease-in, padding 400ms ease, background-color 300ms ease, border-color 300ms ease",
-          ...(scrolled || open
-            ? { background: "var(--header-bg)", borderColor: "var(--line)" }
-            : {}),
+            ? "transform 360ms cubic-bezier(0.55, 0, 0.7, 0.2), opacity 240ms ease-out, padding 400ms ease, background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease"
+            : undefined,
         }}
       >
         <div className="mx-auto max-w-350 px-6 lg:px-10">
@@ -97,18 +96,17 @@ export default function HeaderShell({
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
                 aria-controls="mobile-menu"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors"
-                style={{ borderColor: "var(--line-strong)" }}
+                className="header-icon-btn"
                 onClick={toggleMenu}
               >
                 <span className="relative block h-3 w-4">
                   <span
-                    className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
+                    className={`absolute left-0 right-0 h-px bg-current transition-transform duration-300 ${
                       open ? "top-1.5 rotate-45" : "top-0"
                     }`}
                   />
                   <span
-                    className={`absolute left-0 right-0 h-px bg-foreground transition-transform duration-300 ${
+                    className={`absolute left-0 right-0 h-px bg-current transition-transform duration-300 ${
                       open ? "top-1.5 -rotate-45" : "top-3"
                     }`}
                   />

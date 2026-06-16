@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
-import Button from "../../ui/Button";
 import Eyebrow from "../../ui/Eyebrow";
+import HeaderCtaButtons from "./HeaderCtaButtons";
 import { siteData } from "../../../content/site-data";
 
 type Props = {
@@ -118,19 +118,7 @@ export default function MobileMenu({ open, onClose }: Props) {
                 : "0ms",
             }}
           >
-            <Button
-              href={siteData.nav.ctaPrimary.href}
-              className="justify-center text-base"
-            >
-              {siteData.nav.ctaPrimary.label} →
-            </Button>
-            <Button
-              href={siteData.nav.ctaSecondary.href}
-              variant="ghost"
-              className="justify-center text-base"
-            >
-              {siteData.nav.ctaSecondary.label}
-            </Button>
+            <HeaderCtaButtons stacked className="[&_.btn-header]:w-full" />
             <a
               href={`mailto:${siteData.footer.contact.email}`}
               className="text-center text-sm text-muted hover:text-foreground transition-colors"

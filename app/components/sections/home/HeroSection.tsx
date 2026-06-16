@@ -170,9 +170,9 @@ export default function HeroSection() {
       className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full blur-[90px] opacity-55 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.55),transparent_65%)]" />
-        <div className="absolute -bottom-52 -right-52 h-[620px] w-[620px] rounded-full blur-[100px] opacity-50 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.40),transparent_65%)]" />
-        <div className="absolute inset-0 opacity-25 grid-bg mask-fade-bottom" />
+        <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full blur-[90px] hero-ambient-left" />
+        <div className="absolute -bottom-52 -right-52 h-[620px] w-[620px] rounded-full blur-[100px] hero-ambient-right" />
+        <div className="absolute inset-0 grid-bg mask-fade-bottom hero-grid-overlay" />
       </div>
 
       <div className="mx-auto max-w-350 px-6 lg:px-10">
@@ -187,7 +187,7 @@ export default function HeroSection() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1.5"
-                className="h-3.5 w-3.5 text-[#3b82f6] shrink-0"
+                className="h-3.5 w-3.5 text-accent shrink-0"
               >
                 <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.05-2.91a2.18 2.18 0 0 0-2.91-.05z" />
                 <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
@@ -242,9 +242,9 @@ export default function HeroSection() {
           {hero.highlights.map((h) => (
             <div
               key={h.label}
-              className="rounded-2xl border border-line bg-surface px-4 py-4 sm:px-5 sm:py-5 shadow-[0_24px_80px_-60px_rgba(2,6,23,0.6)]"
+              className="hero-stat-card rounded-2xl border border-line bg-surface px-4 py-4 sm:px-5 sm:py-5"
             >
-              <div className="text-[#3b82f6] mb-3">
+              <div className="text-accent mb-3">
                 {STAT_ICONS[h.icon]}
               </div>
               <p className="text-2xl sm:text-[1.65rem] font-semibold tracking-tight gradient-text leading-none">
