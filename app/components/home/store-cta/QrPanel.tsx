@@ -48,7 +48,7 @@ export default async function QrPanel() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/sahai-logo-theme.png"
+              src="/logo.png"
               alt="SAHAI"
               width={48}
               height={48}

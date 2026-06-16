@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ThemeAwareMark from "../ThemeAwareMark";
 
 /**
  * First-load animated overlay for the home page.
@@ -60,12 +61,11 @@ export default function HomeLoader() {
     >
       <div className="home-loader-inner">
         <div className="home-loader-mark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/canopy-arc-mark.svg"
+          <ThemeAwareMark
             alt="Canopy Arc"
             width={120}
             height={120}
+            className="object-contain"
           />
         </div>
         <div className="home-loader-bars" aria-hidden>

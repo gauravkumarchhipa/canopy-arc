@@ -1,41 +1,20 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useThemeControl } from "./ThemeProvider";
+import type { Theme } from "../../lib/theme";
 
-type Theme = "dark" | "light";
+type Props = {
+  initialTheme: Theme;
+};
 
-const STORAGE_KEY = "canopy-theme";
-
-function applyTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
-}
-
-function getInitialTheme(): Theme {
-  if (typeof window === "undefined") return "dark";
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY) as Theme | null;
-    if (saved === "light" || saved === "dark") return saved;
-  } catch {}
-  return "dark";
-}
-
-export default function ThemeToggle() {
-  const initial = useMemo(() => getInitialTheme(), []);
-  const [theme, setTheme] = useState<Theme>(initial);
-
-  useEffect(() => {
-    applyTheme(theme);
-    try {
-      localStorage.setItem(STORAGE_KEY, theme);
-    } catch {}
-  }, [theme]);
+export default function ThemeToggle({ initialTheme }: Props) {
+  const { theme, setTheme } = useThemeControl();
+  const activeTheme = theme ?? initialTheme;
+  const isDark = activeTheme === "dark";
 
   const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    setTheme(isDark ? "light" : "dark");
   };
-
-  const isDark = theme === "dark";
 
   return (
     <button
@@ -43,8 +22,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       title={`Switch to ${isDark ? "light" : "dark"} theme`}
-      className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors hover:bg-[var(--surface-strong)]"
-      style={{ borderColor: "var(--line-strong)" }}
+      className="header-icon-btn"
     >
       <span className="sr-only">Toggle theme</span>
       <svg
@@ -53,10 +31,10 @@ export default function ThemeToggle() {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.6"
+        strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
-        className={`transition-transform duration-500 ${
+        className={`opacity-100 transition-transform duration-500 ${
           isDark ? "rotate-0" : "rotate-180"
         }`}
       >

@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
-import Button from "../../ui/Button";
 import Eyebrow from "../../ui/Eyebrow";
+import HeaderCtaButtons from "./HeaderCtaButtons";
 import { siteData } from "../../../content/site-data";
 
 type Props = {
@@ -63,7 +63,6 @@ export default function MobileMenu({ open, onClose }: Props) {
           <nav className="relative flex flex-col gap-1 flex-1">
             {NAV.map((item, i) => {
               const active = pathname === item.href;
-              const hasChildren = !!item.children?.length;
               return (
                 <div
                   key={item.href}
@@ -88,21 +87,6 @@ export default function MobileMenu({ open, onClose }: Props) {
                       0{i + 1}
                     </span>
                   </Link>
-
-                  {hasChildren && (
-                    <div className="pb-4 -mt-1 grid grid-cols-2 gap-2">
-                      {item.children!.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={onClose}
-                          className="rounded-xl border border-line bg-surface px-3 py-2 text-sm text-muted hover:text-foreground hover:bg-surface-strong transition-colors"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </div>
               );
             })}
@@ -118,19 +102,7 @@ export default function MobileMenu({ open, onClose }: Props) {
                 : "0ms",
             }}
           >
-            <Button
-              href={siteData.nav.ctaPrimary.href}
-              className="justify-center text-base"
-            >
-              {siteData.nav.ctaPrimary.label} →
-            </Button>
-            <Button
-              href={siteData.nav.ctaSecondary.href}
-              variant="ghost"
-              className="justify-center text-base"
-            >
-              {siteData.nav.ctaSecondary.label}
-            </Button>
+            <HeaderCtaButtons stacked className="[&_.btn-header]:w-full" />
             <a
               href={`mailto:${siteData.footer.contact.email}`}
               className="text-center text-sm text-muted hover:text-foreground transition-colors"

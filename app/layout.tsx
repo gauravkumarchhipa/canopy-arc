@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/layout/SmoothScroll";
@@ -7,6 +8,8 @@ import RegisterSW from "./components/webworkers/RegisterSW";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HomeLoader from "./components/home/HomeLoader";
+import ThemeProvider from "./components/layout/ThemeProvider";
+import { resolveTheme, THEME_COOKIE } from "./lib/theme";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -40,45 +43,45 @@ export const metadata: Metadata = {
       "We build scalable, secure, and future-ready products: web, mobile, cloud, AI, and design.",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon-mark.png", type: "image/svg+xml" },
+      { url: "/favicon-mark.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/favicon-mark.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
-const THEME_INIT_SCRIPT = `
-try {
-  var t = localStorage.getItem('canopy-theme');
-  if (t === 'light' || t === 'dark') {
-    document.documentElement.dataset.theme = t;
-  } else {
-    document.documentElement.dataset.theme = 'dark';
-  }
-} catch (e) {
-  document.documentElement.dataset.theme = 'dark';
-}
-`;
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const theme = resolveTheme(cookieStore.get(THEME_COOKIE)?.value);
+
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme={theme}
       suppressHydrationWarning
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
-      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <RegisterSW />
-        <HomeLoader />
-        <SmoothScroll>
-          <CustomCursor />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <ThemeProvider initialTheme={theme}>
+          <RegisterSW />
+          <HomeLoader />
+          <SmoothScroll>
+            <CustomCursor />
+            <Header initialTheme={theme} />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
