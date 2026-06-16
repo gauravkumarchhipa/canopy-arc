@@ -8,6 +8,7 @@ import RegisterSW from "./components/webworkers/RegisterSW";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HomeLoader from "./components/home/HomeLoader";
+import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
 
 const fraunces = Fraunces({
@@ -60,14 +61,16 @@ export default async function RootLayout({
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <RegisterSW />
-        <HomeLoader />
-        <SmoothScroll>
-          <CustomCursor />
-          <Header initialTheme={theme} />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <ThemeProvider initialTheme={theme}>
+          <RegisterSW />
+          <HomeLoader />
+          <SmoothScroll>
+            <CustomCursor />
+            <Header initialTheme={theme} />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );

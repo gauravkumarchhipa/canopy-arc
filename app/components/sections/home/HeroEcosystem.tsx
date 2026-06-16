@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import ThemeAwareMark from "../../ThemeAwareMark";
 import type { ReactNode } from "react";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
 
@@ -193,13 +193,13 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
 
       {/* central canopy mark */}
       <div className="hero-mark-wrap">
-        <Image
-          src="/canopy-arc-mark.png"
+        <ThemeAwareMark
           alt="Canopy Arc"
           width={280}
           height={336}
           priority
           className="hero-mark"
+          useNextImage
         />
       </div>
 

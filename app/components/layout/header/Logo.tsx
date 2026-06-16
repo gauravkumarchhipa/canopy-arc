@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeAwareMark from "../../ThemeAwareMark";
 import { siteData } from "../../../content/site-data";
 
 export default function Logo() {
@@ -9,10 +10,8 @@ export default function Logo() {
       aria-label={`${siteData.brand.name} home`}
     >
       <span className="relative inline-flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center overflow-visible transition-transform group-hover:scale-105">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/canopy-arc-mark.png"
-          alt=""
+        <ThemeAwareMark
+          alt="Canopy Arc"
           width={72}
           height={72}
           className="h-[130%] w-[130%] max-w-none object-contain"

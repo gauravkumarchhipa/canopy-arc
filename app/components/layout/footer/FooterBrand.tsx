@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeAwareMark from "../../ThemeAwareMark";
 import { siteData } from "../../../content/site-data";
 
 export default function FooterBrand() {
@@ -6,9 +7,7 @@ export default function FooterBrand() {
     <div className="lg:col-span-5">
       <Link href="/" className="inline-flex items-center gap-3">
         <span className="inline-flex h-16 w-16 items-center justify-center translate-y-1.5">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/canopy-arc-mark.png"
+          <ThemeAwareMark
             alt={siteData.brand.name}
             width={64}
             height={64}
