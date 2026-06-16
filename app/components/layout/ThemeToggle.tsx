@@ -1,36 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useThemeControl } from "./ThemeProvider";
 import type { Theme } from "../../lib/theme";
-import { THEME_COOKIE } from "../../lib/theme";
-
-const STORAGE_KEY = THEME_COOKIE;
-
-function persistTheme(theme: Theme) {
-  document.documentElement.dataset.theme = theme;
-  document.cookie = `${STORAGE_KEY}=${theme};path=/;max-age=31536000;SameSite=Lax`;
-  try {
-    localStorage.setItem(STORAGE_KEY, theme);
-  } catch {}
-}
 
 type Props = {
   initialTheme: Theme;
 };
 
 export default function ThemeToggle({ initialTheme }: Props) {
-  const [theme, setTheme] = useState<Theme>(initialTheme);
-
-  useEffect(() => {
-    persistTheme(theme);
-  }, [theme]);
+  const { theme, setTheme } = useThemeControl();
+  const activeTheme = theme ?? initialTheme;
+  const isDark = activeTheme === "dark";
 
   const toggle = () => {
-    const next: Theme = theme === "dark" ? "light" : "dark";
-    setTheme(next);
+    setTheme(isDark ? "light" : "dark");
   };
-
-  const isDark = theme === "dark";
 
   return (
     <button

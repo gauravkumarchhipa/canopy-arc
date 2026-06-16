@@ -2,6 +2,7 @@
 
 import ThemeAwareMark from "../../ThemeAwareMark";
 import type { ReactNode } from "react";
+import { useTheme } from "../../layout/ThemeProvider";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
 
 export type EcosystemNode = {
@@ -24,6 +25,7 @@ function splitLines(s: string) {
 
 export default function HeroEcosystem({ nodes, icons }: Props) {
   const mesh = SPHERE_MESH;
+  const isLight = useTheme() === "light";
 
   const center = { x: 0.5, y: 0.54 };
   const sx = roundSvgCoord(center.x * VB);
@@ -40,12 +42,18 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
       >
         <defs>
           <linearGradient id="hero-line-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="rgba(34,211,238,0.55)" />
-            <stop offset="100%" stopColor="rgba(59,130,246,0.35)" />
+            <stop
+              offset="0%"
+              stopColor={isLight ? "rgba(37, 99, 235, 0.62)" : "rgba(34,211,238,0.55)"}
+            />
+            <stop
+              offset="100%"
+              stopColor={isLight ? "rgba(6, 182, 212, 0.42)" : "rgba(59,130,246,0.35)"}
+            />
           </linearGradient>
           <radialGradient id="hero-dot-grad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#67e8f9" />
-            <stop offset="100%" stopColor="#3b82f6" />
+            <stop offset="0%" stopColor={isLight ? "#2563eb" : "#67e8f9"} />
+            <stop offset="100%" stopColor={isLight ? "#06b6d4" : "#3b82f6"} />
           </radialGradient>
           <filter id="hero-glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="2" result="blur" />
@@ -60,25 +68,58 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
         <g className="hero-platform-graphic" aria-hidden>
           <defs>
             <radialGradient id="platform-floor-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="rgba(5, 11, 24, 0.95)" />
-              <stop offset="55%" stopColor="rgba(5, 11, 24, 0.72)" />
+              <stop
+                offset="0%"
+                stopColor={
+                  isLight ? "rgba(37, 99, 235, 0.1)" : "rgba(5, 11, 24, 0.95)"
+                }
+              />
+              <stop
+                offset="55%"
+                stopColor={
+                  isLight ? "rgba(37, 99, 235, 0.05)" : "rgba(5, 11, 24, 0.72)"
+                }
+              />
               <stop offset="100%" stopColor="rgba(5, 11, 24, 0)" />
             </radialGradient>
             <radialGradient id="platform-core-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#e0f7ff" />
-              <stop offset="35%" stopColor="#67e8f9" />
-              <stop offset="70%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+              <stop offset="0%" stopColor={isLight ? "#dbeafe" : "#e0f7ff"} />
+              <stop offset="35%" stopColor={isLight ? "#60a5fa" : "#67e8f9"} />
+              <stop offset="70%" stopColor={isLight ? "#2563eb" : "#3b82f6"} />
+              <stop
+                offset="100%"
+                stopColor={isLight ? "rgba(37, 99, 235, 0)" : "rgba(59, 130, 246, 0)"}
+              />
             </radialGradient>
             <linearGradient id="platform-beam-grad" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="0%" stopColor="rgba(103, 232, 249, 0)" />
-              <stop offset="45%" stopColor="rgba(103, 232, 249, 0.22)" />
-              <stop offset="78%" stopColor="rgba(59, 130, 246, 0.55)" />
-              <stop offset="100%" stopColor="rgba(103, 232, 249, 0.95)" />
+              <stop
+                offset="45%"
+                stopColor={
+                  isLight ? "rgba(37, 99, 235, 0.16)" : "rgba(103, 232, 249, 0.22)"
+                }
+              />
+              <stop
+                offset="78%"
+                stopColor={
+                  isLight ? "rgba(37, 99, 235, 0.42)" : "rgba(59, 130, 246, 0.55)"
+                }
+              />
+              <stop
+                offset="100%"
+                stopColor={
+                  isLight ? "rgba(6, 182, 212, 0.72)" : "rgba(103, 232, 249, 0.95)"
+                }
+              />
             </linearGradient>
             <linearGradient id="platform-sweep-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="rgba(103, 232, 249, 0)" />
-              <stop offset="50%" stopColor="rgba(103, 232, 249, 0.45)" />
+              <stop
+                offset="50%"
+                stopColor={
+                  isLight ? "rgba(37, 99, 235, 0.28)" : "rgba(103, 232, 249, 0.45)"
+                }
+              />
               <stop offset="100%" stopColor="rgba(103, 232, 249, 0)" />
             </linearGradient>
           </defs>
@@ -100,7 +141,7 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
               rx={rx}
               ry={roundSvgCoord(rx * 0.26)}
               fill="none"
-              stroke="rgba(34, 211, 238, 0.35)"
+              stroke={isLight ? "rgba(37, 99, 235, 0.38)" : "rgba(34, 211, 238, 0.35)"}
               strokeWidth={i === 0 ? 1 : 0.75}
               className="hero-platform-svg-ring"
               style={{ animationDelay: `${i * 0.5}s` }}

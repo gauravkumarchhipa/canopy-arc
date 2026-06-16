@@ -43,6 +43,17 @@ export const metadata: Metadata = {
       "We build scalable, secure, and future-ready products: web, mobile, cloud, AI, and design.",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: "/favicon-mark.png", type: "image/svg+xml" },
+      { url: "/favicon-mark.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-mark.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/favicon-mark.png", sizes: "180x180", type: "image/png" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default async function RootLayout({

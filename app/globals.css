@@ -59,6 +59,8 @@
   --hero-link-pulse-color: rgba(34, 211, 238, 0.45);
   --hero-card-shadow: rgba(2, 6, 23, 0.6);
   --hero-mark-blend: normal;
+  --hero-mark-filter: drop-shadow(0 0 22px rgba(34, 211, 238, 0.65))
+    drop-shadow(0 0 48px rgba(59, 130, 246, 0.4));
 
   --btn-on-grad: #ffffff;
   --btn-on-grad-shadow: 0 1px 2px rgba(5, 11, 24, 0.28);
@@ -121,7 +123,9 @@
   --hero-link-base: rgba(37, 99, 235, 0.28);
   --hero-link-pulse-color: rgba(6, 182, 212, 0.55);
   --hero-card-shadow: rgba(37, 99, 235, 0.14);
-  --hero-mark-blend: screen;
+  --hero-mark-blend: normal;
+  --hero-mark-filter: drop-shadow(0 0 14px rgba(37, 99, 235, 0.22))
+    drop-shadow(0 0 28px rgba(6, 182, 212, 0.14));
 
   --btn-on-grad: #ffffff;
   --btn-on-grad-shadow: 0 1px 3px rgba(11, 18, 32, 0.35);
@@ -1118,6 +1122,16 @@ html[data-theme="dark"] .btn-header-primary {
   animation: hero-beam-pulse 3.5s ease-in-out infinite;
 }
 
+html[data-theme="light"] .hero-platform-beam {
+  filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.22));
+  opacity: 0.62;
+}
+
+html[data-theme="dark"] .hero-platform-beam {
+  filter: drop-shadow(0 0 10px rgba(103, 232, 249, 0.75));
+  opacity: 0.88;
+}
+
 .hero-platform-sweep {
   opacity: 0.35;
   animation: hero-sweep-pulse 3s ease-in-out infinite;
@@ -1131,17 +1145,41 @@ html[data-theme="dark"] .btn-header-primary {
   animation: hero-core-glow 3s ease-in-out infinite;
 }
 
-html[data-theme="light"] .hero-platform-floor {
-  opacity: 0.55;
+html[data-theme="light"] .hero-platform-svg-core {
+  filter: drop-shadow(0 0 10px rgba(37, 99, 235, 0.32))
+    drop-shadow(0 0 18px rgba(6, 182, 212, 0.18));
+}
+
+html[data-theme="dark"] .hero-platform-svg-core {
+  filter: drop-shadow(0 0 14px rgba(103, 232, 249, 0.85))
+    drop-shadow(0 0 28px rgba(59, 130, 246, 0.55));
+}
+
+html[data-theme="light"] .hero-platform-floor,
+html[data-theme="dark"] .hero-platform-floor {
+  opacity: 1;
 }
 
 html[data-theme="light"] .hero-platform-svg-ring {
-  stroke: rgba(37, 99, 235, 0.35);
-  opacity: 0.65;
+  stroke: rgba(37, 99, 235, 0.34);
+  opacity: 0.72;
+  animation: hero-platform-ring-glow-light 4.2s ease-in-out infinite;
 }
 
-html[data-theme="light"] .hero-platform-beam {
-  opacity: 0.75;
+html[data-theme="dark"] .hero-platform-svg-ring {
+  opacity: 0.48;
+}
+
+@keyframes hero-platform-ring-glow-light {
+  0%,
+  100% {
+    opacity: 0.55;
+    stroke: rgba(37, 99, 235, 0.22);
+  }
+  50% {
+    opacity: 0.92;
+    stroke: rgba(37, 99, 235, 0.48);
+  }
 }
 
 @keyframes hero-platform-ring-glow {
@@ -1191,14 +1229,18 @@ html[data-theme="light"] .hero-platform-beam {
   height: auto;
   object-fit: contain;
   mix-blend-mode: var(--hero-mark-blend);
-  filter: drop-shadow(0 0 22px rgba(34, 211, 238, 0.65))
-    drop-shadow(0 0 48px rgba(59, 130, 246, 0.4));
+  filter: var(--hero-mark-filter);
   animation: hero-mark-float 5s ease-in-out infinite;
 }
 
-[data-theme="light"] .hero-mark {
-  filter: drop-shadow(0 0 18px rgba(37, 99, 235, 0.35))
-    drop-shadow(0 0 36px rgba(6, 182, 212, 0.25));
+html[data-theme="dark"] .hero-mark {
+  filter: drop-shadow(0 0 22px rgba(34, 211, 238, 0.65))
+    drop-shadow(0 0 48px rgba(59, 130, 246, 0.4));
+}
+
+html[data-theme="light"] .hero-mark {
+  filter: drop-shadow(0 0 14px rgba(37, 99, 235, 0.22))
+    drop-shadow(0 0 28px rgba(6, 182, 212, 0.14));
 }
 
 .logo-mark {

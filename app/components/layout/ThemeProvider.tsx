@@ -2,17 +2,39 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
-  useEffect,
+  useMemo,
   useState,
   type ReactNode,
 } from "react";
 import type { Theme } from "../../lib/theme";
+import { THEME_COOKIE } from "../../lib/theme";
 
-const ThemeContext = createContext<Theme>("dark");
+type ThemeContextValue = {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+};
+
+const ThemeContext = createContext<ThemeContextValue>({
+  theme: "dark",
+  setTheme: () => {},
+});
 
 export function useTheme() {
+  return useContext(ThemeContext).theme;
+}
+
+export function useThemeControl() {
   return useContext(ThemeContext);
+}
+
+function persistTheme(theme: Theme) {
+  document.documentElement.dataset.theme = theme;
+  document.cookie = `${THEME_COOKIE}=${theme};path=/;max-age=31536000;SameSite=Lax`;
+  try {
+    localStorage.setItem(THEME_COOKIE, theme);
+  } catch {}
 }
 
 type Props = {
@@ -21,32 +43,22 @@ type Props = {
 };
 
 export default function ThemeProvider({ initialTheme, children }: Props) {
-  const [theme, setTheme] = useState<Theme>(initialTheme);
+  const [theme, setThemeState] = useState<Theme>(initialTheme);
 
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      for (const mutation of mutations) {
-        if (
-          mutation.type === "attributes" &&
-          mutation.attributeName === "data-theme"
-        ) {
-          setTheme(
-            document.documentElement.dataset.theme === "light" ? "light" : "dark"
-          );
-          break;
-        }
-      }
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-theme"],
-    });
-
-    return () => observer.disconnect();
+  const setTheme = useCallback((next: Theme) => {
+    setThemeState(next);
+    persistTheme(next);
   }, []);
 
+  const value = useMemo(
+    () => ({
+      theme,
+      setTheme,
+    }),
+    [theme, setTheme]
+  );
+
   return (
-    <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 }
