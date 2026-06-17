@@ -1,63 +1,104 @@
 import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
 import { siteData } from "../../../content/site-data";
+import {
+  IconClock,
+  IconLocation,
+  IconMail,
+  IconPhone,
+  SocialIcon,
+} from "./FooterIcons";
+
+type SocialLink = (typeof siteData.footer.social)[number];
+
+function FooterSocialLinks({ social }: { social: SocialLink[] }) {
+  return (
+    <div className="footer-social-row">
+      {social.map((s) => (
+        <a
+          key={s.label}
+          href={s.href}
+          aria-label={s.label}
+          className="footer-social-btn"
+        >
+          <SocialIcon id={s.id} label={s.label} />
+        </a>
+      ))}
+    </div>
+  );
+}
 
 export default function FooterBrand() {
+  const contact = siteData.footer.contact;
+  const social = siteData.footer.social;
+
   return (
-    <div className="lg:col-span-5">
-      <Link href="/" className="inline-flex items-center gap-3">
-        <span className="inline-flex h-16 w-16 items-center justify-center translate-y-1.5">
+    <div className="footer-brand">
+      <Link href="/" className="footer-brand-identity group">
+        <span className="footer-brand-mark">
           <ThemeAwareMark
             alt={siteData.brand.name}
             width={64}
             height={64}
-            className="h-full w-full object-contain drop-shadow-[0_12px_34px_rgba(59,130,246,0.32)]"
+            className="footer-brand-mark-img"
           />
         </span>
-        <span className="font-display text-3xl tracking-tight">
-          {siteData.brand.name}
+        <span className="flex flex-col gap-2 sm:gap-2.5 min-w-0">
+          <span className="font-display text-[1.65rem] sm:text-[1.85rem] leading-none tracking-tight">
+            Canopy{" "}
+            <span className="gradient-text">Arc</span>
+          </span>
+          <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-muted">
+            {siteData.brand.tagline}
+          </span>
         </span>
       </Link>
-      <p className="mt-6 max-w-md text-muted leading-relaxed text-[15px]">
+
+      <p className="footer-brand-desc mt-5 max-w-sm text-sm text-muted leading-relaxed">
         {siteData.footer.description}
       </p>
 
-      <div className="mt-8 space-y-3 text-sm text-muted">
-        <div className="flex items-start gap-3">
-          <span className="mt-0.5 inline-flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface">
-            <span className="text-foreground/80">📍</span>
+      <div className="footer-social-block">
+        <p className="footer-social-label">Follow Us</p>
+        <FooterSocialLinks social={social} />
+      </div>
+
+      <div className="footer-contact-block mt-7 space-y-3.5">
+        <div className="footer-contact-row">
+          <span className="footer-contact-icon">
+            <IconLocation />
           </span>
-          <p className="leading-relaxed whitespace-pre-line">
-            {siteData.footer.contact.address}
+          <p className="text-sm text-muted leading-relaxed whitespace-pre-line">
+            {contact.address}
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface">
-            <span className="text-foreground/80">✉</span>
+        <div className="footer-contact-row">
+          <span className="footer-contact-icon">
+            <IconMail />
           </span>
           <a
-            className="hover:text-foreground transition-colors"
-            href={`mailto:${siteData.footer.contact.email}`}
+            href={`mailto:${contact.email}`}
+            className="text-sm text-muted hover:text-foreground transition-colors"
           >
-            {siteData.footer.contact.email}
+            {contact.email}
           </a>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface">
-            <span className="text-foreground/80">☎</span>
+        <div className="footer-contact-row">
+          <span className="footer-contact-icon">
+            <IconPhone />
           </span>
           <a
-            className="hover:text-foreground transition-colors"
-            href={`tel:${siteData.footer.contact.phone.replace(/[^+0-9]/g, "")}`}
+            href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
+            className="text-sm text-muted hover:text-foreground transition-colors"
           >
-            {siteData.footer.contact.phone}
+            {contact.phone}
           </a>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-line bg-surface">
-            <span className="text-foreground/80">⏱</span>
+        <div className="footer-contact-row">
+          <span className="footer-contact-icon">
+            <IconClock />
           </span>
-          <span>{siteData.footer.contact.hours}</span>
+          <span className="text-sm text-muted">{contact.hours}</span>
         </div>
       </div>
     </div>

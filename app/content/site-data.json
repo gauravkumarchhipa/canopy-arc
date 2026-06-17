@@ -440,11 +440,11 @@
       "hours": "Mon – Fri: 9:00 AM – 6:00 PM"
     },
     "social": [
-      { "label": "LinkedIn", "href": "#" },
-      { "label": "Twitter", "href": "#" },
-      { "label": "GitHub", "href": "#" },
-      { "label": "Dribbble", "href": "#" },
-      { "label": "YouTube", "href": "#" }
+      { "id": "linkedin", "label": "LinkedIn", "href": "#" },
+      { "id": "x", "label": "X", "href": "#" },
+      { "id": "github", "label": "GitHub", "href": "#" },
+      { "id": "instagram", "label": "Instagram", "href": "#" },
+      { "id": "youtube", "label": "YouTube", "href": "#" }
     ],
     "columns": [
       {

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
-import Eyebrow from "../../ui/Eyebrow";
 import HeaderCtaButtons from "./HeaderCtaButtons";
 import { siteData } from "../../../content/site-data";
 
@@ -54,11 +53,9 @@ export default function MobileMenu({ open, onClose }: Props) {
         }`}
         data-lenis-prevent
       >
-        <div className="relative min-h-full flex flex-col px-6 pt-28 pb-10">
+        <div className="relative min-h-full flex flex-col px-6 pt-24 pb-10">
           <div className="brand-orb brand-orb-warm -top-24 -right-24 h-72 w-72" />
           <div className="brand-orb brand-orb-trust -bottom-24 -left-24 h-72 w-72" />
-
-          <Eyebrow className="mb-6">Menu</Eyebrow>
 
           <nav className="relative flex flex-col gap-1 flex-1">
             {NAV.map((item, i) => {

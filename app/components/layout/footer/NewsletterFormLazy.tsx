@@ -4,10 +4,10 @@ import dynamic from "next/dynamic";
 
 const NewsletterForm = dynamic(() => import("../NewsletterForm"), {
   ssr: false,
-  loading: () => (
+      loading: () => (
     <div
       aria-hidden
-      className="mt-4 h-11 rounded-full border border-line-strong bg-surface"
+      className="footer-newsletter-form mt-5 h-11 rounded-xl border border-line bg-surface"
     />
   ),
 });

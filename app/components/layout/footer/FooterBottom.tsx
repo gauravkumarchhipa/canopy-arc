@@ -1,21 +1,36 @@
 import Link from "next/link";
+import ThemeAwareMark from "../../ThemeAwareMark";
 import { FOOTER_BOTTOM_LINKS } from "./footer-data";
 import { siteData } from "../../../content/site-data";
+import { IconShield } from "./FooterIcons";
 
 export default function FooterBottom() {
   return (
-    <div className="mt-10 sm:mt-16 pt-6 sm:pt-8 border-t border-line flex flex-col md:flex-row items-center md:items-center justify-between gap-4 text-xs text-muted text-center md:text-left">
-      <p>{siteData.footer.copyright}</p>
-      <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-6 gap-y-2">
-        {FOOTER_BOTTOM_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="hover:text-foreground transition-colors"
-          >
-            {link.label}
-          </Link>
-        ))}
+    <div className="footer-bottom mt-12 sm:mt-16">
+      <div className="footer-bottom-ornament" aria-hidden>
+        <span className="footer-bottom-dots footer-bottom-dots--left" />
+        <span className="footer-bottom-mark">
+          <ThemeAwareMark alt="" width={48} height={48} className="footer-bottom-mark-img" />
+        </span>
+        <span className="footer-bottom-dots footer-bottom-dots--right" />
+      </div>
+
+      <div className="footer-bottom-bar">
+        <p className="footer-copyright">
+          <IconShield className="h-3.5 w-3.5 shrink-0 text-accent" />
+          <span>{siteData.footer.copyright}</span>
+        </p>
+
+        <div className="footer-legal-links">
+          {FOOTER_BOTTOM_LINKS.map((link, i) => (
+            <span key={link.href} className="inline-flex items-center gap-3">
+              {i > 0 ? <span className="footer-legal-dot" aria-hidden /> : null}
+              <Link href={link.href} className="footer-legal-link">
+                {link.label}
+              </Link>
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );
