@@ -5,6 +5,8 @@ import { siteData } from "../../../content/site-data";
 import { IconShield } from "./FooterIcons";
 
 export default function FooterBottom() {
+  const year = new Date().getFullYear();
+
   return (
     <div className="footer-bottom mt-12 sm:mt-16">
       <div className="footer-bottom-ornament" aria-hidden>
@@ -18,7 +20,7 @@ export default function FooterBottom() {
       <div className="footer-bottom-bar">
         <p className="footer-copyright">
           <IconShield className="h-3.5 w-3.5 shrink-0 text-accent" />
-          <span>{siteData.footer.copyright}</span>
+          <span>© {year} {siteData.footer.copyright}</span>
         </p>
 
         <div className="footer-legal-links">
