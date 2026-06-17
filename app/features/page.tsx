@@ -19,7 +19,7 @@ export default function FeaturesPage() {
           <>
             Everything inside,
             <br />
-            <span className="gradient-text">designed to disappear</span>
+            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">designed to disappear</span>
             <br />
             into care.
           </>

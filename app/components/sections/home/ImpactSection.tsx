@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { siteData } from "../../../content/site-data";
+import { tw } from "../../../lib/tw";
 
 const ICONS: Record<string, ReactNode> = {
   rocket: (
@@ -93,6 +94,9 @@ const ICONS: Record<string, ReactNode> = {
   ),
 };
 
+const statCard =
+  "flex min-h-[9.5rem] flex-col rounded-2xl border border-[rgba(37,99,235,0.12)] bg-[rgba(255,255,255,0.92)] p-[1.15rem_1.1rem_1.25rem] shadow-[0_18px_50px_-32px_rgba(37,99,235,0.28)] backdrop-blur-[10px] [html[data-theme=dark]_&]:border-[rgba(248,250,252,0.1)] [html[data-theme=dark]_&]:bg-[rgba(248,250,252,0.04)] [html[data-theme=dark]_&]:shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)]";
+
 function ImpactIcon({ name, className }: { name: string; className?: string }) {
   return <span className={className}>{ICONS[name]}</span>;
 }
@@ -101,75 +105,106 @@ export default function ImpactSection() {
   const impact = siteData.home.impact;
 
   return (
-    <section className="impact-section relative min-h-svh flex flex-col justify-center overflow-hidden py-16 sm:py-20">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 grid-bg mask-fade-bottom impact-grid-overlay" />
-        <div className="impact-ambient impact-ambient--left" aria-hidden />
-        <div className="impact-ambient impact-ambient--right" aria-hidden />
+    <section className="relative flex min-h-svh flex-col justify-center overflow-hidden py-16 sm:py-20">
+      <div className="pointer-events-none absolute inset-0">
+        <div className={`absolute inset-0 opacity-45 ${tw.gridBg} ${tw.maskFadeBottom}`} />
+        <div
+          className="absolute top-1/2 -left-32 h-88 w-88 -translate-y-1/2 rounded-full bg-[rgba(37,99,235,0.18)] opacity-35 blur-[80px]"
+          aria-hidden
+        />
+        <div
+          className="absolute top-1/2 -right-32 h-88 w-88 -translate-y-1/2 rounded-full bg-[rgba(6,182,212,0.16)] opacity-35 blur-[80px]"
+          aria-hidden
+        />
       </div>
 
       <div className="relative mx-auto w-full max-w-350 px-6 lg:px-10">
-        <div className="impact-header text-center max-w-3xl mx-auto">
-          <p className="impact-badge">
-            <span className="impact-badge-dot" aria-hidden />
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="inline-flex items-center gap-2 rounded-full border border-[rgba(37,99,235,0.18)] bg-[rgba(37,99,235,0.06)] px-3.5 py-1.75 text-[0.6875rem] font-semibold tracking-[0.14em] text-accent uppercase">
+            <span
+              className="h-1.75 w-1.75 rounded-full bg-accent shadow-[0_0_10px_rgba(37,99,235,0.55)]"
+              aria-hidden
+            />
             {impact.eyebrow}
           </p>
           <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.08] tracking-tight">
             {impact.title}{" "}
-            <span className="gradient-text">{impact.titleAccent}</span>
+            <span className={tw.gradientText}>{impact.titleAccent}</span>
           </h2>
-          <p className="mt-5 text-base sm:text-lg text-muted leading-relaxed">
-            {impact.subtitle}
-          </p>
+          <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{impact.subtitle}</p>
         </div>
 
-        <div className="impact-grid mt-12 sm:mt-14 lg:mt-16">
-          <article className="impact-featured">
-            <div className="impact-featured-waves" aria-hidden />
-            <div className="impact-featured-icon">
+        <div className="mt-12 grid items-stretch gap-4 sm:mt-14 lg:mt-16 lg:grid-cols-[0.95fr_1.35fr] lg:gap-5">
+          <article className="relative flex min-h-72 flex-col justify-end overflow-hidden rounded-[1.25rem] bg-[linear-gradient(145deg,#1d4ed8_0%,#2563eb_42%,#1e40af_100%)] p-6 text-white shadow-[0_24px_60px_-28px_rgba(37,99,235,0.65)] lg:min-h-full lg:p-8">
+            <div
+              className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(255,255,255,0.14),transparent_42%),repeating-radial-gradient(circle_at_70%_60%,rgba(255,255,255,0.08)_0_1px,transparent_1px_18px)] opacity-90"
+              aria-hidden
+            />
+            <div className="relative z-1 mb-auto inline-flex h-13 w-13 items-center justify-center rounded-full border border-white/28 bg-white/12 shadow-[0_0_28px_rgba(255,255,255,0.18)] [&_svg]:h-5.5 [&_svg]:w-5.5">
               <ImpactIcon name={impact.featured.icon} />
             </div>
-            <p className="impact-featured-value">{impact.featured.value}</p>
-            <h3 className="impact-featured-label">{impact.featured.label}</h3>
-            <span className="impact-featured-line" aria-hidden />
-            <p className="impact-featured-desc">{impact.featured.description}</p>
+            <p className="relative z-1 mt-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-none font-semibold tracking-tight">
+              {impact.featured.value}
+            </p>
+            <h3 className="relative z-1 mt-2.5 text-lg leading-tight font-semibold">
+              {impact.featured.label}
+            </h3>
+            <span className="relative z-1 mt-4 mb-3 block h-0.5 w-10 rounded-full bg-white/55" aria-hidden />
+            <p className="relative z-1 m-0 max-w-64 text-[0.8125rem] leading-snug text-white/82">
+              {impact.featured.description}
+            </p>
           </article>
 
-          <div className="impact-stats-grid">
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
             {impact.stats.map((stat) => (
-              <article key={stat.label} className="impact-stat-card">
-                <div className="impact-stat-top">
-                  <span className="impact-stat-icon">
+              <article key={stat.label} className={statCard}>
+                <div className="flex items-start justify-between gap-3">
+                  <span className="inline-flex h-9.5 w-9.5 shrink-0 items-center justify-center rounded-[0.7rem] border border-[rgba(37,99,235,0.14)] bg-[rgba(37,99,235,0.08)] text-accent [&_svg]:h-4.5 [&_svg]:w-4.5">
                     <ImpactIcon name={stat.icon} />
                   </span>
-                  <p className="impact-stat-value">{stat.value}</p>
+                  <p className="m-0 text-[clamp(1.65rem,2.5vw,2rem)] leading-none font-semibold tracking-tight text-accent">
+                    {stat.value}
+                  </p>
                 </div>
-                <h3 className="impact-stat-label">{stat.label}</h3>
-                <span className="impact-stat-line" aria-hidden />
-                <p className="impact-stat-desc">{stat.description}</p>
+                <h3 className="mt-3.5 text-[0.9375rem] leading-snug font-semibold text-foreground">
+                  {stat.label}
+                </h3>
+                <span
+                  className="mt-2.5 mb-2 block h-0.5 w-8 rounded-full bg-[linear-gradient(90deg,var(--accent),rgba(6,182,212,0.65))]"
+                  aria-hidden
+                />
+                <p className="m-0 text-xs leading-snug text-muted">{stat.description}</p>
               </article>
             ))}
           </div>
         </div>
 
-        <article className="impact-commitment mt-8 sm:mt-10">
-          <div className="impact-commitment-intro">
-            <span className="impact-commitment-star">
+        <article
+          className={`mt-8 flex flex-col gap-6 rounded-[1.15rem] p-5 sm:mt-10 lg:flex-row lg:items-center lg:gap-8 lg:p-6 ${statCard}`}
+        >
+          <div className="flex min-w-0 items-start gap-4 lg:flex-[0_0_34%] lg:border-r lg:border-line lg:pr-6">
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.8rem] border border-[rgba(37,99,235,0.16)] bg-[rgba(37,99,235,0.08)] text-accent [&_svg]:h-5 [&_svg]:w-5">
               <ImpactIcon name="star" />
             </span>
             <div>
-              <h3 className="impact-commitment-title">{impact.commitment.title}</h3>
-              <p className="impact-commitment-desc">{impact.commitment.description}</p>
+              <h3 className="m-0 text-[1.05rem] font-semibold text-foreground">
+                {impact.commitment.title}
+              </h3>
+              <p className="mt-1.75 text-[0.8125rem] leading-snug text-muted">
+                {impact.commitment.description}
+              </p>
             </div>
           </div>
-          <div className="impact-pillars">
+          <div className="grid flex-1 grid-cols-2 gap-x-4 gap-y-5 md:grid-cols-4 md:gap-4">
             {impact.commitment.pillars.map((pillar) => (
-              <div key={pillar.title} className="impact-pillar">
-                <span className="impact-pillar-icon">
+              <div key={pillar.title} className="min-w-0">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-[0.65rem] border border-[rgba(37,99,235,0.14)] bg-[rgba(37,99,235,0.06)] text-accent [&_svg]:h-4 [&_svg]:w-4">
                   <ImpactIcon name={pillar.icon} />
                 </span>
-                <h4 className="impact-pillar-title">{pillar.title}</h4>
-                <p className="impact-pillar-desc">{pillar.description}</p>
+                <h4 className="mt-2.5 text-[0.8125rem] font-semibold text-foreground">
+                  {pillar.title}
+                </h4>
+                <p className="mt-1 text-[0.6875rem] leading-snug text-muted">{pillar.description}</p>
               </div>
             ))}
           </div>

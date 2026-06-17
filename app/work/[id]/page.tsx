@@ -24,7 +24,7 @@ export default async function WorkDetailPage({
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute -top-48 -right-48 h-[560px] w-[560px] rounded-full blur-[110px] opacity-40 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.35),transparent_65%)]" />
               <div className="absolute -bottom-56 -left-56 h-[620px] w-[620px] rounded-full blur-[120px] opacity-30 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_65%)]" />
-              <div className="absolute inset-0 opacity-20 grid-bg" />
+              <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px]" />
             </div>
 
             <div className="relative">

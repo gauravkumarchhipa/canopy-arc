@@ -26,7 +26,7 @@ export default function HowItWorksSection() {
                 data-cursor="hover"
               >
                 <div className="md:col-span-3 flex md:flex-col items-baseline gap-4">
-                  <span className="font-display text-5xl md:text-7xl leading-none tracking-tight gradient-text">
+                  <span className="font-display text-5xl md:text-7xl leading-none tracking-tight bg-[image:var(--grad)] bg-clip-text text-transparent">
                     {s.step}
                   </span>
                 </div>

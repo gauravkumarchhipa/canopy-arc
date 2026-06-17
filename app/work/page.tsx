@@ -9,7 +9,7 @@ export default function WorkPage() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-52 -right-52 h-[680px] w-[680px] rounded-full blur-[110px] opacity-38 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.28),transparent_65%)]" />
           <div className="absolute -bottom-60 -left-60 h-[720px] w-[720px] rounded-full blur-[120px] opacity-35 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.35),transparent_65%)]" />
-          <div className="absolute inset-0 opacity-18 grid-bg mask-fade-bottom" />
+          <div className="absolute inset-0 opacity-18 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]" />
         </div>
 
         <div className="mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14">

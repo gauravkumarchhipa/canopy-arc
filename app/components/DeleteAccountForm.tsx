@@ -59,7 +59,7 @@ export default function DeleteAccountForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="glass rounded-3xl p-6 sm:p-8 md:p-12 space-y-8"
+      className="border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 rounded-3xl p-6 sm:p-8 md:p-12 space-y-8"
     >
       <div className="grid md:grid-cols-2 gap-6">
         <Input

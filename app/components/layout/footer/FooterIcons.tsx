@@ -64,7 +64,8 @@ export function IconSend({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
-const SOCIAL_ICON_CLASS = "footer-social-icon";
+const SOCIAL_ICON_CLASS =
+  "block h-5 w-5 shrink-0 max-lg:h-[1.2rem] max-lg:w-[1.2rem]";
 
 const SOCIAL_SVGS: Record<string, ReactNode> = {
   linkedin: (

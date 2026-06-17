@@ -20,7 +20,7 @@ export default function PricingPage() {
           <>
             Free for the basics.
             <br />
-            <span className="gradient-text">Paid for everything</span>
+            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">Paid for everything</span>
             <br />
             else.
           </>

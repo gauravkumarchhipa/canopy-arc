@@ -20,7 +20,7 @@ export default function DeleteAccountPage() {
             <br />
             with
             <br />
-            <span className="gradient-text">clarity.</span>
+            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">clarity.</span>
           </>
         }
         blurb="Submit your registered email, mobile number, and a short reason. We verify and process deletion within two working days."

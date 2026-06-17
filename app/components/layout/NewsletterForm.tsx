@@ -8,7 +8,7 @@ export default function NewsletterForm() {
 
   return (
     <form
-      className="footer-newsletter-form mt-5"
+      className="mt-5 flex items-stretch overflow-hidden rounded-xl border border-line-strong bg-surface"
       onSubmit={(e) => {
         e.preventDefault();
         setDone(true);
@@ -20,9 +20,13 @@ export default function NewsletterForm() {
         required
         placeholder="Enter your email"
         aria-label="Your email"
-        className="footer-newsletter-input"
+        className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted"
       />
-      <button type="submit" className="footer-newsletter-submit" aria-label="Subscribe">
+      <button
+        type="submit"
+        className="inline-flex shrink-0 items-center justify-center border-0 bg-accent px-4 text-white transition-[filter,transform] duration-200 hover:brightness-110 active:scale-95"
+        aria-label="Subscribe"
+      >
         {done ? (
           <span className="text-[10px] font-semibold uppercase tracking-wider">OK</span>
         ) : (

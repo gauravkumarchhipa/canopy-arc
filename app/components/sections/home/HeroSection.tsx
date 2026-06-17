@@ -6,6 +6,7 @@ import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { siteData } from "../../../content/site-data";
 import HeroEcosystem from "./HeroEcosystem";
+import { tw } from "../../../lib/tw";
 
 type OrbitNode = {
   id: string;
@@ -126,7 +127,7 @@ export default function HeroSection() {
       className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 grid-bg mask-fade-bottom hero-grid-overlay" />
+        <div className={`absolute inset-0 opacity-[var(--hero-grid-opacity)] ${tw.gridBg} ${tw.maskFadeBottom}`} />
       </div>
 
       <div className="mx-auto max-w-350 px-6 lg:px-10">
@@ -156,7 +157,7 @@ export default function HeroSection() {
               {hero.titleLines[0]}
               <br />
               {hero.titleLines[1]}{" "}
-              <span className="gradient-text">{hero.titleLines[2]}</span>
+              <span className={tw.gradientText}>{hero.titleLines[2]}</span>
             </h1>
 
             <p
@@ -172,13 +173,13 @@ export default function HeroSection() {
             >
               <Link
                 href={hero.primaryCta.href}
-                className="btn-header btn-header-primary no-underline"
+                className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
               >
                 {hero.primaryCta.label} →
               </Link>
               <Link
                 href={hero.secondaryCta.href}
-                className="btn-header btn-header-ghost no-underline gap-2.5"
+                className={`${tw.headerBtnBase} ${tw.headerBtnGhost} gap-2.5`}
               >
                 <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current/30">
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3 w-3 ml-0.5">

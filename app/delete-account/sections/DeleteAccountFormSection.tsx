@@ -31,7 +31,7 @@ export default function DeleteAccountFormSection() {
             </Reveal>
 
             <Reveal>
-              <div className="mt-12 glass rounded-2xl p-8">
+              <div className="mt-12 border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 rounded-2xl p-8">
                 <p className="text-xs tracking-[0.25em] uppercase text-muted mb-4">
                   Need help instead?
                 </p>

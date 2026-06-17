@@ -95,7 +95,7 @@ export function VoiceVisual() {
 const EVENTS = [
   { t: "07:42", k: "symptom", v: "headache, mild" },
   { t: "08:01", k: "medicine", v: "BP — taken" },
-  { t: "10:15", k: "water", v: "+1 glass" },
+  { t: "10:15", k: "water", v: "+1 border border-line bg-surface backdrop-blur-xl backdrop-saturate-140" },
   { t: "12:30", k: "symptom", v: "dizzy briefly" },
   { t: "14:00", k: "appointment", v: "Dr. Mehta" },
   { t: "18:20", k: "medicine", v: "Sugar — taken" },
@@ -109,7 +109,7 @@ export function MemoryVisual() {
         <span>· today</span>
       </div>
       <div className="relative w-full h-56 overflow-hidden rounded-xl border border-line bg-surface">
-        <div className="absolute inset-0 grid-bg opacity-30" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] opacity-30" />
         <ul className="relative animate-scroll-up py-3">
           {[...EVENTS, ...EVENTS].map((e, i) => (
             <li

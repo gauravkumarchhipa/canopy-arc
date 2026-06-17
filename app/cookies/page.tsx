@@ -14,7 +14,7 @@ export default function CookiesPage() {
         </p>
         <h1 className="mt-5 font-display text-4xl sm:text-5xl tracking-tight">
           Cookies,{" "}
-          <span className="gradient-text">kept minimal</span>.
+          <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">kept minimal</span>.
         </h1>
         <div className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-7 text-sm text-muted leading-relaxed space-y-4">
           <p>

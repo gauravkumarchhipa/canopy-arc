@@ -37,7 +37,7 @@ export default function ComparisonStripSection() {
                 className="rounded-2xl border border-line p-6 bg-surface"
                 data-cursor="hover"
               >
-                <p className="font-display text-3xl md:text-4xl tracking-tight gradient-text">
+                <p className="font-display text-3xl md:text-4xl tracking-tight bg-[image:var(--grad)] bg-clip-text text-transparent">
                   {item.k}
                 </p>
                 <p className="mt-3 text-sm text-muted leading-relaxed">

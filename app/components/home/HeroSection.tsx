@@ -4,7 +4,7 @@ import Button from '../ui/Button'
 const HeroSection = () => {
     return (
         <section className="relative min-h-svh overflow-hidden text-foreground">
-            <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] opacity-30 pointer-events-none" />
 
             {/* gradient lets the persistent canvas show through on the right */}
             <div className="absolute inset-y-0 left-0 right-0 lg:right-[42%] bg-linear-to-r from-background via-background/85 to-transparent pointer-events-none" />

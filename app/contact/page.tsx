@@ -15,7 +15,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-56 -left-56 h-[760px] w-[760px] rounded-full blur-[130px] opacity-40 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.26),transparent_65%)]" />
           <div className="absolute -bottom-64 -right-64 h-[820px] w-[820px] rounded-full blur-[140px] opacity-32 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.32),transparent_65%)]" />
-          <div className="absolute inset-0 opacity-18 grid-bg mask-fade-bottom" />
+          <div className="absolute inset-0 opacity-18 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]" />
         </div>
 
         <div className="mx-auto max-w-350 px-6 lg:px-10">
@@ -24,7 +24,7 @@ export default function ContactPage() {
           </p>
           <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
             Let&apos;s build something{" "}
-            <span className="gradient-text">amazing</span> together.
+            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">amazing</span> together.
           </h1>
           <p className="mt-5 text-muted max-w-3xl leading-relaxed">
             Share a quick overview of your project. We’ll respond with next

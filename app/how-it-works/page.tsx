@@ -20,7 +20,7 @@ export default function HowItWorksPage() {
           <>
             From a sentence
             <br />
-            to <span className="gradient-text">a system</span>
+            to <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">a system</span>
             <br />
             that remembers.
           </>

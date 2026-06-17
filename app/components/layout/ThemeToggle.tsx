@@ -2,6 +2,7 @@
 
 import { useThemeControl } from "./ThemeProvider";
 import type { Theme } from "../../lib/theme";
+import { tw } from "../../lib/tw";
 
 type Props = {
   initialTheme: Theme;
@@ -22,7 +23,7 @@ export default function ThemeToggle({ initialTheme }: Props) {
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
       title={`Switch to ${isDark ? "light" : "dark"} theme`}
-      className="header-icon-btn"
+      className={tw.headerIconBtn}
     >
       <span className="sr-only">Toggle theme</span>
       <svg

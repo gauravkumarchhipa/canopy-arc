@@ -32,7 +32,7 @@ const PRINCIPLES = [
 const Principles = () => {
   return (
     <section className="relative py-12 sm:py-20 md:py-44">
-      <div className="absolute inset-0 grid-bg opacity-20 mask-fade-bottom" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] opacity-20 [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]" />
       <div className="hidden md:block absolute inset-y-0 left-1/4 right-0 bg-linear-to-l from-background from-45% via-background/95 to-transparent pointer-events-none" />
       <div className="relative z-10 mx-auto max-w-350 px-6 lg:px-10">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-20">

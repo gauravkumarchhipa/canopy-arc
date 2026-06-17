@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           <>
             Privacy here is
             <br />
-            <span className="gradient-text">absolute,</span>
+            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">absolute,</span>
             <br />
             not a setting.
           </>

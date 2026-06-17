@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import { useState } from "react";
 import { useTheme } from "../../layout/ThemeProvider";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
+import "./hero-ecosystem.css";
 
 export type EcosystemNode = {
   id: string;

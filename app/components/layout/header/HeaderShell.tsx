@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { useLenis } from "../SmoothScroll";
+import { headerShellClass, tw } from "../../../lib/tw";
 
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
 
@@ -81,9 +82,7 @@ export default function HeaderShell({
   return (
     <>
       <header
-        className={`header-shell fixed top-0 inset-x-0 z-50 will-change-transform ${
-          isElevated ? "is-scrolled py-3" : "py-5"
-        }${open ? " is-open" : ""}${hidden ? " is-hidden" : ""}`}
+        className={headerShellClass({ elevated: isElevated, hidden, open })}
       >
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
@@ -104,7 +103,7 @@ export default function HeaderShell({
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
                 aria-controls="mobile-menu"
-                className="header-icon-btn"
+                className={tw.headerIconBtn}
                 onClick={toggleMenu}
               >
                 <span className="relative block h-3 w-4">
