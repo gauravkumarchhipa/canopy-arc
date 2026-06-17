@@ -66,50 +66,6 @@ const ORBIT_ICONS: Record<string, ReactNode> = {
   ),
 };
 
-const STAT_ICONS: Record<string, ReactNode> = {
-  rocket: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.05-2.91a2.18 2.18 0 0 0-2.91-.05z" />
-      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
-      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
-    </svg>
-  ),
-  users: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  ),
-  shield: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  ),
-  globe: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-      <path d="M2 12h20" />
-    </svg>
-  ),
-  chart: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <path d="M3 3v18h18" />
-      <path d="m19 9-5 5-4-4-3 3" />
-    </svg>
-  ),
-  clock: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M12 6v6l4 2" />
-    </svg>
-  ),
-};
-
 export default function HeroSection() {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const nodes = useMemo<OrbitNode[]>(() => {
@@ -237,31 +193,6 @@ export default function HeroSection() {
           <div className="lg:col-span-6 relative">
             <HeroEcosystem nodes={nodes} icons={ORBIT_ICONS} />
           </div>
-        </div>
-
-        <div
-          data-hero-fade
-          className="mt-12 sm:mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
-        >
-          {hero.highlights.map((h) => (
-            <div
-              key={h.label}
-              className="hero-stat-card rounded-2xl border border-line bg-surface px-4 py-4 sm:px-5 sm:py-5"
-            >
-              <div className="text-accent mb-3">
-                {STAT_ICONS[h.icon]}
-              </div>
-              <p className="text-2xl sm:text-[1.65rem] font-semibold tracking-tight gradient-text leading-none">
-                {h.value}
-              </p>
-              <p className="mt-2 text-sm font-medium text-foreground leading-snug">
-                {h.label}
-              </p>
-              <p className="mt-1 text-[11px] sm:text-xs text-muted leading-snug">
-                {h.description}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>

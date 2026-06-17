@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/layout/SmoothScroll";
-import CustomCursor from "./components/layout/CustomCursor";
+// import CustomCursor from "./components/layout/CustomCursor";
 import RegisterSW from "./components/webworkers/RegisterSW";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -76,7 +76,7 @@ export default async function RootLayout({
           <RegisterSW />
           <HomeLoader />
           <SmoothScroll>
-            <CustomCursor />
+            {/* <CustomCursor /> */}
             <Header initialTheme={theme} />
             <main className="flex-1">{children}</main>
             <Footer />
