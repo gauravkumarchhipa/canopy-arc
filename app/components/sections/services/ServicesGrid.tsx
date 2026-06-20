@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { siteData } from "../../../content/site-data";
+import { servicesGrid } from "../../../content/pages/services/grid";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -34,12 +34,12 @@ function accentGlow(accent: string) {
 }
 
 export default function ServicesGrid() {
-  const filters = siteData.services.filters;
+  const filters = servicesGrid.filters;
   const [active, setActive] = useState(filters[0]);
 
   const cards = useMemo(() => {
-    if (active === filters[0]) return siteData.services.cards;
-    return siteData.services.cards.filter((c) => c.tag === active);
+    if (active === filters[0]) return servicesGrid.cards;
+    return servicesGrid.cards.filter((c) => c.tag === active);
   }, [active, filters]);
 
   return (

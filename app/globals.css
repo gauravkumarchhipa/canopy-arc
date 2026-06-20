@@ -637,3 +637,25 @@ html.lenis body {
 .live-pulse {
   animation: live-pulse 1.9s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+
+/* Hide page until loader finishes — set by inline script before paint */
+/* Hide page until client loader gate mounts — same on server and client */
+html:not([data-app-mounted]) [data-app-content] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html[data-loader="active"] [data-app-content] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html[data-loader="active"] body {
+  overflow: hidden;
+}
+
+[data-app-content] {
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}

@@ -1,11 +1,11 @@
-import { siteData } from "../../../content/site-data";
+import { homeImpact } from "../../../content/pages/home/impact";
 import { tw } from "../../../lib/tw";
 import ImpactCommitment from "./impact/ImpactCommitment";
 import ImpactFeaturedCard from "./impact/ImpactFeaturedCard";
 import ImpactStatsGrid from "./impact/ImpactStatsGrid";
 
 export default function ImpactSection() {
-  const impact = siteData.home.impact;
+  const impact = homeImpact;
 
   return (
     <section className="relative flex min-h-svh flex-col justify-center overflow-hidden py-16 sm:py-20">

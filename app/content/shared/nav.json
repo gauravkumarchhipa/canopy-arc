@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "label": "Home",
+      "href": "/"
+    },
+    {
+      "label": "Services",
+      "href": "/services"
+    },
+    {
+      "label": "Our Work",
+      "href": "/work"
+    },
+    {
+      "label": "Team",
+      "href": "/team"
+    },
+    {
+      "label": "About Us",
+      "href": "/about"
+    }
+  ],
+  "ctaPrimary": {
+    "label": "Contact Us",
+    "href": "/contact"
+  },
+  "ctaSecondary": {
+    "label": "Book a Call",
+    "href": "/contact#book"
+  }
+}

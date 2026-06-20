@@ -1,7 +1,7 @@
 import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
 import { FOOTER_BOTTOM_LINKS } from "./footer-data";
-import { siteData } from "../../../content/site-data";
+import { footer } from "../../../content/layout/footer";
 import { IconShield } from "./FooterIcons";
 
 export default function FooterBottom() {
@@ -29,7 +29,7 @@ export default function FooterBottom() {
         <p className="inline-flex items-center gap-[0.45rem] text-xs leading-snug text-muted">
           <IconShield className="h-3.5 w-3.5 shrink-0 text-accent" />
           <span>
-            © {year} {siteData.footer.copyright}
+            © {year} {footer.copyright}
           </span>
         </p>
 

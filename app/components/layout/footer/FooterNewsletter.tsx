@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteData } from "../../../content/site-data";
+import { nav } from "../../../content/shared/nav";
 import { IconHeadset } from "./FooterIcons";
 import NewsletterFormLazy from "./NewsletterFormLazy";
 
@@ -29,7 +29,7 @@ export default function FooterNewsletter() {
             We&apos;re here to help 24/7. Get in touch!
           </p>
           <Link
-            href={siteData.nav.ctaPrimary.href}
+            href={nav.ctaPrimary.href}
             className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-opacity hover:opacity-80"
           >
             Contact Support

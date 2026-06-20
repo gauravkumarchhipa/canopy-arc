@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { siteData } from "../../../content/site-data";
+import { workGrid } from "../../../content/pages/work/grid";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -13,12 +13,12 @@ function chipClass(active: boolean) {
 }
 
 export default function WorkGrid() {
-  const filters = siteData.work.filters;
+  const filters = workGrid.filters;
   const [active, setActive] = useState(filters[0]);
 
   const items = useMemo(() => {
-    if (active === filters[0]) return siteData.work.projects;
-    return siteData.work.projects.filter((p) => p.category === active);
+    if (active === filters[0]) return workGrid.projects;
+    return workGrid.projects.filter((p) => p.category === active);
   }, [active, filters]);
 
   return (

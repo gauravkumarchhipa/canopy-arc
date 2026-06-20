@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { siteData } from "../../../content/site-data";
+import { teamGrid } from "../../../content/pages/team/grid";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -13,12 +13,12 @@ function chipClass(active: boolean) {
 }
 
 export default function TeamGrid() {
-  const filters = siteData.team.filters;
+  const filters = teamGrid.filters;
   const [active, setActive] = useState(filters[0]);
 
   const members = useMemo(() => {
-    if (active === filters[0]) return siteData.team.members;
-    return siteData.team.members.filter((m) => m.group === active);
+    if (active === filters[0]) return teamGrid.members;
+    return teamGrid.members.filter((m) => m.group === active);
   }, [active, filters]);
 
   return (

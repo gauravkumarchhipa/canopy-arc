@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
-import { siteData } from "../../../content/site-data";
+import { brand } from "../../../content/shared/brand";
+import { footer } from "../../../content/layout/footer";
 import {
   IconClock,
   IconLocation,
@@ -9,7 +10,7 @@ import {
   SocialIcon,
 } from "./FooterIcons";
 
-type SocialLink = (typeof siteData.footer.social)[number];
+type SocialLink = (typeof footer.social)[number];
 
 function FooterSocialLinks({ social }: { social: SocialLink[] }) {
   return (
@@ -29,8 +30,8 @@ function FooterSocialLinks({ social }: { social: SocialLink[] }) {
 }
 
 export default function FooterBrand() {
-  const contact = siteData.footer.contact;
-  const social = siteData.footer.social;
+  const contact = footer.contact;
+  const social = footer.social;
 
   return (
     <div className="flex min-w-0 flex-col items-center text-center sm:col-span-2 lg:col-span-1 lg:items-start lg:text-left">
@@ -40,7 +41,7 @@ export default function FooterBrand() {
       >
         <span className="inline-flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden">
           <ThemeAwareMark
-            alt={siteData.brand.name}
+            alt={brand.name}
             width={64}
             height={64}
             className="h-[160%] w-[160%] max-w-none shrink-0 object-contain transition-transform duration-200 ease-out group-hover:scale-[1.04]"
@@ -54,13 +55,13 @@ export default function FooterBrand() {
             </span>
           </span>
           <span className="text-[10px] font-medium tracking-[0.18em] uppercase text-muted">
-            {siteData.brand.tagline}
+            {brand.tagline}
           </span>
         </span>
       </Link>
 
       <p className="order-2 mx-auto mt-5 max-w-sm text-center text-sm leading-relaxed text-muted lg:mx-0 lg:text-left">
-        {siteData.footer.description}
+        {footer.description}
       </p>
 
       <div className="order-3 mt-5 flex w-full flex-col items-center lg:order-5 lg:mt-8 lg:block lg:w-auto">

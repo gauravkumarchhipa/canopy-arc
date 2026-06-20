@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { siteData } from "../../content/site-data";
+import { workGrid } from "../../content/pages/work/grid";
 import Button from "../../components/ui/Button";
 
 export default async function WorkDetailPage({
@@ -9,7 +9,7 @@ export default async function WorkDetailPage({
   params: { id: string };
 }) {
   const id = params?.id;
-  const project = siteData.work.projects.find((p) => p.id === id);
+  const project = workGrid.projects.find((p) => p.id === id);
   if (!project) notFound();
 
   return (
@@ -68,8 +68,8 @@ export default async function WorkDetailPage({
             </h2>
             <p className="mt-4 text-sm text-muted leading-relaxed">
               This case study page is driven from the common JSON. Add richer
-              content (problem, approach, results, screenshots) to
-              `app/content/site-data.json` per project to match your final
+              content (problem, approach, results, screenshots) to the matching
+              project file under `app/content/pages/work/grid.json` to match your final
               portfolio content exactly.
             </p>
             <div className="mt-6 rounded-2xl border border-line bg-background/60 p-5">

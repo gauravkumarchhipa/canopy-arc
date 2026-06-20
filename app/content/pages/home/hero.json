@@ -1,0 +1,51 @@
+{
+  "eyebrow": "Enterprise-Grade Digital Solutions",
+  "titleLines": [
+    "We Build Digital",
+    "Experiences That",
+    "Connect & Protect."
+  ],
+  "subtitle": "From powerful web platforms to intelligent AI solutions, we architect scalable, secure, and future-ready products that drive real business impact.",
+  "primaryCta": {
+    "label": "Explore Our Services",
+    "href": "/services"
+  },
+  "secondaryCta": {
+    "label": "Watch Our Story",
+    "href": "/about#story"
+  },
+  "orbitLabels": [
+    {
+      "id": "web",
+      "label": "Web\nDevelopment"
+    },
+    {
+      "id": "mobile",
+      "label": "Mobile\nApps"
+    },
+    {
+      "id": "ai",
+      "label": "AI & Machine\nLearning"
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud &\nDevOps"
+    },
+    {
+      "id": "data",
+      "label": "Data\nEngineering"
+    },
+    {
+      "id": "ux",
+      "label": "UI/UX\nDesign"
+    },
+    {
+      "id": "ecom",
+      "label": "E-Commerce\nSolutions"
+    },
+    {
+      "id": "cyber",
+      "label": "Cybersecurity"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "description": "We build innovative, scalable and future-ready digital solutions that empower businesses to grow, adapt and succeed in the digital world.",
+  "contact": {
+    "address": "123 Innovation Drive,\nTech City, CA 94043, USA",
+    "email": "hello@canopyarc.com",
+    "phone": "+1 (415) 123-4567",
+    "hours": "Mon – Fri: 9:00 AM – 6:00 PM"
+  },
+  "social": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "href": "#"
+    },
+    {
+      "id": "x",
+      "label": "X",
+      "href": "#"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "href": "#"
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "href": "#"
+    },
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "href": "#"
+    }
+  ],
+  "columns": [
+    {
+      "heading": "Company",
+      "links": [
+        {
+          "label": "About Us",
+          "href": "/about"
+        },
+        {
+          "label": "Our Team",
+          "href": "/team"
+        },
+        {
+          "label": "Our Work",
+          "href": "/work"
+        },
+        {
+          "label": "Careers",
+          "href": "/careers"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/contact"
+        }
+      ]
+    },
+    {
+      "heading": "Services",
+      "links": [
+        {
+          "label": "Web Development",
+          "href": "/services#web-development"
+        },
+        {
+          "label": "Mobile Apps",
+          "href": "/services#mobile-apps"
+        },
+        {
+          "label": "AI & ML Solutions",
+          "href": "/services#ai-ml"
+        },
+        {
+          "label": "Cloud & DevOps",
+          "href": "/services#cloud-devops"
+        },
+        {
+          "label": "UI/UX Design",
+          "href": "/services#ui-ux"
+        },
+        {
+          "label": "QA & Automation",
+          "href": "/services#qa-testing"
+        }
+      ]
+    },
+    {
+      "heading": "Industries",
+      "links": [
+        {
+          "label": "Fintech",
+          "href": "/work?industry=fintech"
+        },
+        {
+          "label": "Healthcare",
+          "href": "/work?industry=healthcare"
+        },
+        {
+          "label": "E-Commerce",
+          "href": "/work?industry=ecommerce"
+        },
+        {
+          "label": "Education",
+          "href": "/work?industry=education"
+        },
+        {
+          "label": "Real Estate",
+          "href": "/work?industry=realestate"
+        },
+        {
+          "label": "Logistics",
+          "href": "/work?industry=logistics"
+        }
+      ]
+    },
+    {
+      "heading": "Resources",
+      "links": [
+        {
+          "label": "Case Studies",
+          "href": "/work"
+        },
+        {
+          "label": "Whitepapers",
+          "href": "/blog"
+        },
+        {
+          "label": "Documentation",
+          "href": "/docs"
+        },
+        {
+          "label": "Partners",
+          "href": "/partners"
+        },
+        {
+          "label": "FAQs",
+          "href": "/faq"
+        },
+        {
+          "label": "Support Center",
+          "href": "/support"
+        }
+      ]
+    }
+  ],
+  "bottomLinks": [
+    {
+      "label": "Privacy Policy",
+      "href": "/privacy"
+    },
+    {
+      "label": "Terms of Service",
+      "href": "/terms"
+    },
+    {
+      "label": "Cookie Policy",
+      "href": "/cookies"
+    }
+  ],
+  "copyright": "Canopy Arc. Enterprise-grade tech. World-class delivery."
+}

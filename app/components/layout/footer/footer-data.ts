@@ -1,4 +1,4 @@
-import { siteData } from "../../../content/site-data";
+import { footer } from "../../../content/layout/footer";
 
 export type FooterLink = {
   href: string;
@@ -10,5 +10,5 @@ export type FooterColumn = {
   links: FooterLink[];
 };
 
-export const FOOTER_COLUMNS: FooterColumn[] = siteData.footer.columns;
-export const FOOTER_BOTTOM_LINKS: FooterLink[] = siteData.footer.bottomLinks;
+export const FOOTER_COLUMNS: FooterColumn[] = footer.columns;
+export const FOOTER_BOTTOM_LINKS: FooterLink[] = footer.bottomLinks;
