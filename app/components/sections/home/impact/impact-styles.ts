@@ -34,6 +34,30 @@ export const impactStatAccentLine =
 export const impactStatDescription =
   "relative z-1 m-0 text-xs leading-snug text-muted transition-colors duration-[400ms] group-hover:text-white/82";
 
+export const impactCommitmentCard =
+  `group relative z-0 mt-8 overflow-hidden rounded-[1.15rem] border border-line bg-[var(--service-card-bg)] p-5 sm:mt-10 lg:p-6 ${impactCardHoverZoom} hover:border-transparent hover:shadow-[0_28px_64px_-24px_rgba(37,99,235,0.72)] flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-8`;
+
+export const impactCommitmentLeadIcon =
+  "relative z-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[0.8rem] border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent [&_svg]:h-5 [&_svg]:w-5 transition-[border-color,background-color,color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white";
+
+export const impactCommitmentTitle =
+  "relative z-1 m-0 text-[1.05rem] font-semibold text-foreground transition-colors duration-[400ms] group-hover:text-white";
+
+export const impactCommitmentDescription =
+  "relative z-1 mt-1.75 text-[0.8125rem] leading-snug text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+
+export const impactCommitmentLead =
+  "relative z-1 flex min-w-0 items-start gap-4 lg:flex-[0_0_34%] lg:border-r lg:border-line lg:pr-6 transition-[border-color] duration-[400ms] group-hover:border-white/20";
+
+export const impactCommitmentPillarIcon =
+  "relative z-1 inline-flex h-9 w-9 items-center justify-center rounded-[0.65rem] border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent [&_svg]:h-4 [&_svg]:w-4 transition-[border-color,background-color,color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white";
+
+export const impactCommitmentPillarTitle =
+  "relative z-1 mt-2.5 text-[0.8125rem] font-semibold text-foreground transition-colors duration-[400ms] group-hover:text-white";
+
+export const impactCommitmentPillarDescription =
+  "relative z-1 mt-1 text-[0.6875rem] leading-snug text-muted transition-colors duration-[400ms] group-hover:text-white/75";
+
 export const impactFeaturedCard =
   `group relative z-0 flex min-h-72 flex-col justify-end overflow-hidden rounded-[1.25rem] p-6 text-white ${impactCardGradient} ${impactCardGlow} ${impactCardHoverZoom} hover:shadow-[0_32px_72px_-22px_rgba(37,99,235,0.78)] lg:min-h-full lg:p-8`;
 

@@ -13,10 +13,12 @@ import {
   serviceCard,
   serviceCardArrow,
   serviceCardArrowIcon,
+  serviceCardGradient,
   serviceCardHeaderAction,
   serviceCardIndex,
   serviceCardMeta,
   serviceCardMetaLink,
+  serviceCardPattern,
   serviceCardSubtitle,
   serviceCardTag,
   serviceCardTitle,
@@ -94,10 +96,12 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cards.map((card) => (
           <Link key={card.id} href={`/services/${card.id}`} className={serviceCard}>
-            <div className="flex items-start justify-between gap-3">
+            <div className={serviceCardGradient} aria-hidden />
+            <div className={serviceCardPattern} aria-hidden />
+            <div className="relative z-1 flex items-start justify-between gap-3">
               <span className={serviceCardTag}>{card.tag}</span>
               <div className={serviceCardHeaderAction}>
                 <span className={serviceCardIndex}>
