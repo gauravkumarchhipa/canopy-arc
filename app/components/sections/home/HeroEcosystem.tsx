@@ -34,30 +34,8 @@ function splitLines(s: string) {
   return s.split("\n").map((t) => t.trim());
 }
 
-function buildZigzagPath(
-  x1: number,
-  y1: number,
-  x2: number,
-  y2: number,
-  zigCount = 6,
-  amplitude = 7
-) {
-  const dx = x2 - x1;
-  const dy = y2 - y1;
-  const len = Math.hypot(dx, dy) || 1;
-  const perpX = -dy / len;
-  const perpY = dx / len;
-
-  let d = `M ${x1} ${y1}`;
-  for (let i = 1; i <= zigCount; i++) {
-    const t = i / (zigCount + 1);
-    const bx = x1 + dx * t;
-    const by = y1 + dy * t;
-    const sign = i % 2 === 0 ? -1 : 1;
-    d += ` L ${roundSvgCoord(bx + perpX * amplitude * sign)} ${roundSvgCoord(by + perpY * amplitude * sign)}`;
-  }
-  d += ` L ${x2} ${y2}`;
-  return d;
+function linkPathLine(x1: number, y1: number, x2: number, y2: number) {
+  return `M ${roundSvgCoord(x1)} ${roundSvgCoord(y1)} L ${roundSvgCoord(x2)} ${roundSvgCoord(y2)}`;
 }
 
 export default function HeroEcosystem({ nodes, icons }: Props) {
@@ -250,34 +228,15 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
           const tx = roundSvgCoord(n.x * VB);
           const ty = roundSvgCoord(n.y * VB - LINE_ICON_OFFSET_Y);
           const isActive = activeId === n.id;
-          const zigPath = buildZigzagPath(sx, sy, tx, ty);
+          const path = linkPathLine(sx, sy, tx, ty);
           return (
             <g
               key={`link-${n.id}`}
               className={isActive ? "hero-link-group is-active" : "hero-link-group"}
             >
-              <line
-                x1={sx}
-                y1={sy}
-                x2={tx}
-                y2={ty}
-                className="hero-link-base"
-              />
-              <line
-                x1={sx}
-                y1={sy}
-                x2={tx}
-                y2={ty}
-                className="hero-link-glow"
-              />
-              <line
-                x1={sx}
-                y1={sy}
-                x2={tx}
-                y2={ty}
-                className="hero-link-beam"
-              />
-              <path d={zigPath} className="hero-link-zigzag" />
+              <line x1={sx} y1={sy} x2={tx} y2={ty} className="hero-link-base" />
+              <line x1={sx} y1={sy} x2={tx} y2={ty} className="hero-link-glow" />
+              <line x1={sx} y1={sy} x2={tx} y2={ty} className="hero-link-beam" />
               <line
                 x1={sx}
                 y1={sy}
@@ -286,16 +245,42 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
                 className="hero-link-pulse"
                 style={{ animationDelay: `${i * 0.45}s` }}
               />
-              <circle
-                r={isActive ? 3.8 : 0}
-                className="hero-link-dot"
-                fill="url(#hero-dot-grad)"
-                filter="url(#hero-link-glow-filter)"
-              >
-                {isActive ? (
-                  <animateMotion dur="0.85s" repeatCount="indefinite" path={zigPath} />
-                ) : null}
-              </circle>
+              {isActive && (
+                <>
+                  <circle
+                    cx={sx}
+                    cy={sy}
+                    r={2.8}
+                    className="hero-link-endpoint"
+                    fill="url(#hero-dot-grad)"
+                    filter="url(#hero-link-glow-filter)"
+                  />
+                  <circle
+                    cx={tx}
+                    cy={ty}
+                    r={2.8}
+                    className="hero-link-endpoint"
+                    fill="url(#hero-dot-grad)"
+                    filter="url(#hero-link-glow-filter)"
+                  />
+                  {[0, 0.35, 0.7].map((offset, di) => (
+                    <circle
+                      key={`dot-${di}`}
+                      r={di === 0 ? 3.6 : 2.6}
+                      className={`hero-link-dot hero-link-dot-trail hero-link-dot-trail--${di}`}
+                      fill="url(#hero-dot-grad)"
+                      filter="url(#hero-link-glow-filter)"
+                    >
+                      <animateMotion
+                        dur="1.15s"
+                        repeatCount="indefinite"
+                        path={path}
+                        begin={`${offset * 1.15}s`}
+                      />
+                    </circle>
+                  ))}
+                </>
+              )}
             </g>
           );
         })}

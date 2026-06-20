@@ -17,7 +17,7 @@ export default function Logo() {
           className="h-[130%] w-[130%] max-w-none object-contain"
         />
       </span>
-      <span className="flex flex-col gap-2 sm:gap-2.5">
+      <span className="flex flex-col gap-2 sm:gap-2.5 md:hidden lg:flex">
         <span className="font-sans text-lg sm:text-xl font-semibold tracking-tight leading-none text-foreground">
           {siteData.brand.name}
         </span>
