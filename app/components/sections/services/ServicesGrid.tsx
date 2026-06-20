@@ -16,6 +16,7 @@ import {
   serviceCardHeaderAction,
   serviceCardIndex,
   serviceCardMeta,
+  serviceCardMetaLink,
   serviceCardSubtitle,
   serviceCardTag,
   serviceCardTitle,
@@ -23,14 +24,6 @@ import {
 
 function formatCardIndex(index: number, total: number) {
   return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-}
-
-function chipClass(active: boolean) {
-  return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
-    active
-      ? "border-foreground/20 bg-surface text-foreground"
-      : "border-line bg-background text-muted hover:text-foreground hover:bg-surface"
-  }`;
 }
 
 function ServiceArrowIcon() {
@@ -92,7 +85,7 @@ export default function ServicesGrid() {
           <button
             key={f}
             type="button"
-            className={chipClass(active === f)}
+            className="service-filter-chip"
             onClick={() => setFilter(f)}
             aria-pressed={active === f}
           >
@@ -121,7 +114,7 @@ export default function ServicesGrid() {
 
             <div className={serviceCardMeta}>
               <span>{card.projects} Projects</span>
-              <span className="font-medium text-foreground/70 transition-colors duration-[350ms] group-hover:text-foreground">
+              <span className={serviceCardMetaLink}>
                 View service
               </span>
             </div>
