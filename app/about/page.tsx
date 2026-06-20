@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Button from "../components/ui/Button";
 import { brand } from "../content/shared/brand";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "About Us — Canopy Arc",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <p className="text-xs tracking-[0.3em] uppercase text-muted">

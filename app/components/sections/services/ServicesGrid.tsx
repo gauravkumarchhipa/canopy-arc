@@ -81,7 +81,7 @@ export default function ServicesGrid() {
   );
 
   return (
-    <section className="mx-auto max-w-350 px-6 lg:px-10 pb-18 sm:pb-24">
+    <section className="mx-auto max-w-350 px-6 lg:px-10">
       <div className="flex flex-wrap items-center gap-3">
         {filters.map((f) => (
           <button
@@ -96,7 +96,7 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 overflow-visible px-1 pb-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cards.map((card) => (
           <Link key={card.id} href={`/services/${card.id}`} className={serviceCard}>
             <div className={serviceCardGradient} aria-hidden />

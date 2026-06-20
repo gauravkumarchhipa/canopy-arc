@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PageHero from "../components/PageHero";
 import DeleteAccountFormSection from "./sections/DeleteAccountFormSection";
 import ClosingSection from "./sections/ClosingSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Delete account — SAHAI",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function DeleteAccountPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="Delete account"
         title={
@@ -29,6 +30,6 @@ export default function DeleteAccountPage() {
       <DeleteAccountFormSection />
 
       <ClosingSection />
-    </>
+    </div>
   );
 }

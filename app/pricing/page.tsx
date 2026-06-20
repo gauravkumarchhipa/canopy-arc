@@ -4,6 +4,7 @@ import PlanGridSection from "./sections/PlanGridSection";
 import ComparisonStripSection from "./sections/ComparisonStripSection";
 import MiniFaqSection from "./sections/MiniFaqSection";
 import CtaSection from "./sections/CtaSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Pricing — SAHAI",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PricingPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="Pricing"
         title={
@@ -31,6 +32,6 @@ export default function PricingPage() {
       <ComparisonStripSection />
       <MiniFaqSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

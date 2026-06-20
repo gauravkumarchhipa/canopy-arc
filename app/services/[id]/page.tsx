@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Button from "../../components/ui/Button";
 import { servicesGrid } from "../../content/pages/services/grid";
+import { tw } from "../../lib/tw";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -28,7 +29,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   );
 
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <Link href="/services" className="text-sm text-muted hover:text-foreground">
           ← Back to Services

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContactForm from "../components/sections/contact/ContactForm";
 import { footer } from "../content/layout/footer";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Contact Us — Canopy Arc",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <p className="text-xs tracking-[0.3em] uppercase text-muted">

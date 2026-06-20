@@ -4,6 +4,7 @@ import SummarySection from "./sections/SummarySection";
 import SectionsSection from "./sections/SectionsSection";
 import MetaSection from "./sections/MetaSection";
 import ClosingSection from "./sections/ClosingSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Privacy policy — SAHAI",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="Privacy policy"
         title={
@@ -37,6 +38,6 @@ export default function PrivacyPage() {
       <MetaSection />
 
       <ClosingSection />
-    </>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import FlowStepsSection from "./sections/FlowStepsSection";
 import ChannelsSection from "./sections/ChannelsSection";
 import ArchitectureSection from "./sections/ArchitectureSection";
 import CtaSection from "./sections/CtaSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "How it works — SAHAI",
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function HowItWorksPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="How it works"
         title={
@@ -31,6 +32,6 @@ export default function HowItWorksPage() {
       <ChannelsSection />
       <ArchitectureSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

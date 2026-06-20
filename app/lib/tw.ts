@@ -20,6 +20,11 @@ export const tw = {
     "bg-[radial-gradient(closest-side,rgba(242,153,74,0.55),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(255,176,104,0.5),transparent_70%)]",
   brandOrbTrust:
     "bg-[radial-gradient(closest-side,rgba(43,179,163,0.45),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(78,209,193,0.4),transparent_70%)]",
+  /** Clears fixed header (tall mobile logo + tagline + py-5). */
+  pageShell:
+    "pt-[10rem] sm:pt-36 md:pt-40 pb-24 sm:pb-28 [scroll-margin-top:10rem] md:[scroll-margin-top:9rem]",
+  pageIntro: "mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14",
+  pageShellBottom: "pb-24 sm:pb-28",
 } as const;
 
 export function headerShellClass({

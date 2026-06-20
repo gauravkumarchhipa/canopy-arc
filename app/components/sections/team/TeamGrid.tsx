@@ -22,7 +22,7 @@ export default function TeamGrid() {
   }, [active, filters]);
 
   return (
-    <section className="mx-auto max-w-350 px-6 lg:px-10 pb-18 sm:pb-24">
+    <section className="mx-auto max-w-350 px-6 lg:px-10">
       <div className="flex flex-wrap items-center gap-3">
         {filters.map((f) => (
           <button

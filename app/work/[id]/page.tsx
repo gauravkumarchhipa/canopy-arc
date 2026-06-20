@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { workGrid } from "../../content/pages/work/grid";
 import Button from "../../components/ui/Button";
+import { tw } from "../../lib/tw";
 
 export default async function WorkDetailPage({
   params
@@ -13,7 +14,7 @@ export default async function WorkDetailPage({
   if (!project) notFound();
 
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <Link href="/work" className="text-sm text-muted hover:text-foreground">
           ← Back to Our Work

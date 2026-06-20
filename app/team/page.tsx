@@ -1,35 +1,22 @@
-import { teamHero } from "../content/pages/team/hero";
+import PageIntro from "../components/layout/PageIntro";
 import TeamGrid from "../components/sections/team/TeamGrid";
+import { teamHero } from "../content/pages/team/hero";
+import { tw } from "../lib/tw";
 
 export default function TeamPage() {
   const t = teamHero;
   return (
-    <div className="pt-24 sm:pt-28">
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14">
-          <p className="text-xs tracking-[0.3em] uppercase text-muted">
-            {t.eyebrow}
-          </p>
-          <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight whitespace-pre-line">
-            {t.title}
-          </h1>
-          <p className="mt-5 text-muted max-w-3xl leading-relaxed">
-            {t.subtitle}
-          </p>
-
-          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {t.stats.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-line bg-surface px-5 py-4">
-                <p className="text-xl font-semibold tracking-tight text-foreground">
-                  {s.value}
-                </p>
-                <p className="mt-1 text-xs text-muted leading-snug">{s.label}</p>
-              </div>
-            ))}
-          </div>
+    <div className={tw.pageShell}>
+      <PageIntro eyebrow={t.eyebrow} title={t.title} subtitle={t.subtitle}>
+        <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {t.stats.map((s) => (
+            <div key={s.label} className="rounded-2xl border border-line bg-surface px-5 py-4">
+              <p className="text-xl font-semibold tracking-tight text-foreground">{s.value}</p>
+              <p className="mt-1 text-xs leading-snug text-muted">{s.label}</p>
+            </div>
+          ))}
         </div>
-      </section>
-
+      </PageIntro>
       <TeamGrid />
     </div>
   );
