@@ -8,12 +8,7 @@ import { useTheme } from "../../layout/ThemeProvider";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
 import "./hero-ecosystem.css";
 
-export type EcosystemNode = {
-  id: string;
-  label: string;
-  x: number;
-  y: number;
-};
+import type { EcosystemNode } from "./hero/ecosystem-types";
 
 type Props = {
   nodes: EcosystemNode[];

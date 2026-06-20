@@ -1,0 +1,2 @@
+export const impactStatCard =
+  "flex min-h-[9.5rem] flex-col rounded-2xl border border-[rgba(37,99,235,0.12)] bg-[rgba(255,255,255,0.92)] p-[1.15rem_1.1rem_1.25rem] shadow-[0_18px_50px_-32px_rgba(37,99,235,0.28)] backdrop-blur-[10px] [html[data-theme=dark]_&]:border-[rgba(248,250,252,0.1)] [html[data-theme=dark]_&]:bg-[rgba(248,250,252,0.04)] [html[data-theme=dark]_&]:shadow-[0_18px_50px_-32px_rgba(0,0,0,0.45)]";
