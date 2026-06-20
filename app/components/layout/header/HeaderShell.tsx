@@ -3,11 +3,12 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { useLenis } from "../SmoothScroll";
+import { headerShellClass, tw } from "../../../lib/tw";
 
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
 
-const TOP_THRESHOLD = 12;
-const HIDE_DELTA = 4;
+const TOP_ALWAYS_SHOW = 64;
+const SCROLL_DELTA = 6;
 
 type Props = {
   logo: ReactNode;
@@ -28,46 +29,44 @@ export default function HeaderShell({
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
   const lastY = useRef(0);
-  const wasHidden = useRef(false);
+  const openRef = useRef(open);
 
   useEffect(() => {
-    const update = (y: number) => {
-      const diff = y - lastY.current;
-      const pastTop = y > TOP_THRESHOLD;
-      let nextHidden = wasHidden.current;
+    openRef.current = open;
+    if (open) setHidden(false);
+  }, [open]);
 
-      setScrolled(pastTop);
+  useEffect(() => {
+    const applyScroll = (y: number) => {
+      const prevY = lastY.current;
+      const delta = y - prevY;
 
-      if (open) {
-        nextHidden = false;
-      } else if (!pastTop) {
-        nextHidden = false;
-      } else if (Math.abs(diff) >= HIDE_DELTA) {
-        nextHidden = diff > 0;
+      setScrolled(y > 12);
+
+      if (openRef.current || y <= TOP_ALWAYS_SHOW) {
+        setHidden(false);
+        lastY.current = y;
+        return;
       }
 
-      if (wasHidden.current && !nextHidden && pastTop) {
-        setScrolled(true);
+      if (delta > SCROLL_DELTA) {
+        setHidden(true);
+      } else if (delta < -SCROLL_DELTA) {
+        setHidden(false);
       }
 
-      setHidden(nextHidden);
-      wasHidden.current = nextHidden;
       lastY.current = y;
     };
 
-    lastY.current = lenis?.scroll ?? window.scrollY;
-    update(lastY.current);
+    if (!lenis) return;
 
-    if (lenis) {
-      const onLenisScroll = () => update(lenis.scroll);
-      lenis.on("scroll", onLenisScroll);
-      return () => lenis.off("scroll", onLenisScroll);
-    }
+    lastY.current = lenis.scroll;
+    applyScroll(lenis.scroll);
 
-    const onWindowScroll = () => update(window.scrollY);
-    window.addEventListener("scroll", onWindowScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onWindowScroll);
-  }, [open, lenis]);
+    const onLenisScroll = () => applyScroll(lenis.scroll);
+    lenis.on("scroll", onLenisScroll);
+    return () => lenis.off("scroll", onLenisScroll);
+  }, [lenis]);
 
   const toggleMenu = () => {
     setHasOpened(true);
@@ -81,9 +80,7 @@ export default function HeaderShell({
   return (
     <>
       <header
-        className={`header-shell fixed top-0 inset-x-0 z-50 will-change-transform ${
-          isElevated ? "is-scrolled py-3" : "py-5"
-        }${open ? " is-open" : ""}${hidden ? " is-hidden" : ""}`}
+        className={headerShellClass({ elevated: isElevated, hidden, open })}
       >
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
@@ -104,7 +101,7 @@ export default function HeaderShell({
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
                 aria-controls="mobile-menu"
-                className="header-icon-btn"
+                className={tw.headerIconBtn}
                 onClick={toggleMenu}
               >
                 <span className="relative block h-3 w-4">

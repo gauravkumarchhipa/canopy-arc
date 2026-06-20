@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { siteData } from "../../../content/site-data";
+import { tw } from "../../../lib/tw";
 
 type Props = {
   className?: string;
@@ -13,13 +14,13 @@ export default function HeaderCtaButtons({ className = "", stacked = false }: Pr
     >
       <Link
         href={siteData.nav.ctaSecondary.href}
-        className="btn-header btn-header-ghost no-underline"
+        className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
       >
         {siteData.nav.ctaSecondary.label}
       </Link>
       <Link
         href={siteData.nav.ctaPrimary.href}
-        className="btn-header btn-header-primary no-underline"
+        className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
       >
         {siteData.nav.ctaPrimary.label} →
       </Link>

@@ -3,11 +3,11 @@ import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/layout/SmoothScroll";
-import CustomCursor from "./components/layout/CustomCursor";
+// import CustomCursor from "./components/layout/CustomCursor";
 import RegisterSW from "./components/webworkers/RegisterSW";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import HomeLoader from "./components/home/HomeLoader";
+import HomeLoaderGate from "./components/home/HomeLoaderGate";
 import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
 
@@ -74,9 +74,9 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <ThemeProvider initialTheme={theme}>
           <RegisterSW />
-          <HomeLoader />
+          <HomeLoaderGate />
           <SmoothScroll>
-            <CustomCursor />
+            {/* <CustomCursor /> */}
             <Header initialTheme={theme} />
             <main className="flex-1">{children}</main>
             <Footer />

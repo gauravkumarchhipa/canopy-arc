@@ -34,7 +34,7 @@ export default function BlogPage() {
         <p className="text-xs tracking-[0.3em] uppercase text-muted">Blog</p>
         <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
           Updates, guides, and{" "}
-          <span className="gradient-text">practical insights</span>.
+          <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">practical insights</span>.
         </h1>
         <p className="mt-5 text-muted max-w-3xl leading-relaxed">
           Short, high-signal posts from the team — engineering, UX, cloud, and AI.

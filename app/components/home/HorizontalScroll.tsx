@@ -112,7 +112,7 @@ export default function HorizontalScroll() {
       <div className="relative px-6 lg:px-10 pt-16 sm:pt-24 md:pt-32 pb-8 sm:pb-12 md:pb-20">
         <Eyebrow className="mb-3">How SAHAI thinks</Eyebrow>
         <h2 className="font-display text-4xl md:text-6xl leading-[0.95] max-w-2xl">
-          Five quiet ideas <span className="gradient-text">behind</span>{" "}
+          Five quiet ideas <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">behind</span>{" "}
           one calm companion.
         </h2>
       </div>
@@ -124,7 +124,7 @@ export default function HorizontalScroll() {
         ref={pinRef}
         className="relative h-screen overflow-hidden bg-background"
       >
-        <div className="grid-bg absolute inset-0 opacity-40 pointer-events-none" />
+        <div className="bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] absolute inset-0 opacity-40 pointer-events-none" />
         <div className="noise pointer-events-none" />
 
         <p className="absolute top-6 right-6 md:top-8 md:right-8 z-10 text-xs uppercase tracking-[0.25em] text-muted pointer-events-none">
@@ -138,11 +138,11 @@ export default function HorizontalScroll() {
           {CARDS.map((card, i) => (
             <article
               key={i}
-              className="relative w-[82vw] sm:w-[60vw] md:w-[44vw] lg:w-[36vw] max-h-[82vh] aspect-3/4 glass rounded-3xl p-6 md:p-10 flex flex-col shrink-0 overflow-hidden"
+              className="relative w-[82vw] sm:w-[60vw] md:w-[44vw] lg:w-[36vw] max-h-[82vh] aspect-3/4 border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 rounded-3xl p-6 md:p-10 flex flex-col shrink-0 overflow-hidden"
               data-cursor="hover"
               data-lenis-prevent
             >
-              <div className="brand-orb brand-orb-warm -top-32 -right-32 h-72 w-72 pulse-soft" />
+              <div className="pointer-events-none absolute rounded-full blur-[80px] opacity-55 bg-[radial-gradient(closest-side,rgba(242,153,74,0.55),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(255,176,104,0.5),transparent_70%)] -top-32 -right-32 h-72 w-72 pulse-soft" />
 
               {/* header */}
               <div className="relative flex items-center justify-between">

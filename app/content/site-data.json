@@ -23,14 +23,6 @@
       "subtitle": "From powerful web platforms to intelligent AI solutions, we architect scalable, secure, and future-ready products that drive real business impact.",
       "primaryCta": { "label": "Explore Our Services", "href": "/services" },
       "secondaryCta": { "label": "Watch Our Story", "href": "/about#story" },
-      "highlights": [
-        { "icon": "rocket", "value": "150+", "label": "Projects Delivered", "description": "Across 30+ industries" },
-        { "icon": "users", "value": "24+", "label": "Expert Developers", "description": "Experienced professionals" },
-        { "icon": "shield", "value": "98%", "label": "Client Satisfaction", "description": "Long-term client trust" },
-        { "icon": "globe", "value": "15+", "label": "Services", "description": "End-to-end solutions" },
-        { "icon": "chart", "value": "6", "label": "Live Products", "description": "Building & scaling" },
-        { "icon": "clock", "value": "8+", "label": "Years of Excellence", "description": "Driving innovation" }
-      ],
       "orbitLabels": [
         { "id": "web", "label": "Web\nDevelopment" },
         { "id": "mobile", "label": "Mobile\nApps" },
@@ -41,6 +33,36 @@
         { "id": "ecom", "label": "E-Commerce\nSolutions" },
         { "id": "cyber", "label": "Cybersecurity" }
       ]
+    },
+    "impact": {
+      "eyebrow": "Our Impact in Numbers",
+      "title": "Delivering Results That",
+      "titleAccent": "Matter",
+      "subtitle": "Trusted by startups and enterprises worldwide to build, scale, and transform ideas into impactful digital solutions.",
+      "featured": {
+        "icon": "rocket",
+        "value": "150+",
+        "label": "Projects Delivered",
+        "description": "Successfully delivered across 30+ industries worldwide"
+      },
+      "stats": [
+        { "icon": "users", "value": "24+", "label": "Expert Developers", "description": "Experienced professionals" },
+        { "icon": "shield", "value": "98%", "label": "Client Satisfaction", "description": "Long-term client trust" },
+        { "icon": "globe", "value": "15+", "label": "Services Offered", "description": "End-to-end solutions" },
+        { "icon": "chart", "value": "6", "label": "Live Products", "description": "Building & scaling" },
+        { "icon": "clock", "value": "8+", "label": "Years of Excellence", "description": "Driving innovation" },
+        { "icon": "trophy", "value": "30+", "label": "Industries Served", "description": "Across global markets" }
+      ],
+      "commitment": {
+        "title": "Our Commitment",
+        "description": "We believe in building long-term partnerships with every client, delivering not just projects, but sustainable digital growth.",
+        "pillars": [
+          { "icon": "security", "title": "Security First", "description": "Enterprise-grade protection" },
+          { "icon": "performance", "title": "Performance Driven", "description": "Optimized for speed & scale" },
+          { "icon": "innovation", "title": "Innovation Focused", "description": "Cutting-edge technology" },
+          { "icon": "handshake", "title": "Client Success", "description": "Your goals are our mission" }
+        ]
+      }
     }
   },
   "services": {
@@ -440,11 +462,11 @@
       "hours": "Mon – Fri: 9:00 AM – 6:00 PM"
     },
     "social": [
-      { "label": "LinkedIn", "href": "#" },
-      { "label": "Twitter", "href": "#" },
-      { "label": "GitHub", "href": "#" },
-      { "label": "Dribbble", "href": "#" },
-      { "label": "YouTube", "href": "#" }
+      { "id": "linkedin", "label": "LinkedIn", "href": "#" },
+      { "id": "x", "label": "X", "href": "#" },
+      { "id": "github", "label": "GitHub", "href": "#" },
+      { "id": "instagram", "label": "Instagram", "href": "#" },
+      { "id": "youtube", "label": "YouTube", "href": "#" }
     ],
     "columns": [
       {
@@ -497,7 +519,7 @@
       { "label": "Terms of Service", "href": "/terms" },
       { "label": "Cookie Policy", "href": "/cookies" }
     ],
-    "copyright": "© 2026 Canopy Arc. All rights reserved."
+    "copyright": "Canopy Arc. Enterprise-grade tech. World-class delivery."
   }
 }
 

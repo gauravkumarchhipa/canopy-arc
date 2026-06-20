@@ -7,26 +7,35 @@ function isExternal(href: string) {
 
 export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
   return (
-    <div>
-      <h4 className="text-xs tracking-[0.2em] uppercase text-muted mb-5">
+    <div className="min-w-0">
+      <div
+        className="mb-[0.85rem] h-[3px] w-8 rounded-full bg-[linear-gradient(90deg,#3b82f6,#22d3ee)]"
+        aria-hidden
+      />
+      <h4 className="text-[0.95rem] font-semibold tracking-tight text-foreground">
         {column.heading}
       </h4>
-      <ul className="space-y-3 text-sm">
+      <ul className="m-0 mt-4 list-none space-y-2.5 p-0">
         {column.links.map((link) => (
           <li key={link.href}>
             {isExternal(link.href) ? (
               <a
                 href={link.href}
-                className="hover:text-accent transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
               </a>
             ) : (
               <Link
                 href={link.href}
-                className="hover:text-accent transition-colors"
+                className="inline-flex flex-wrap items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
+                {link.label === "Careers" && (
+                  <span className="inline-flex items-center rounded-full bg-[linear-gradient(135deg,#3b82f6,#2563eb)] px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-white">
+                    We&apos;re Hiring
+                  </span>
+                )}
               </Link>
             )}
           </li>

@@ -5,7 +5,7 @@ export default function CtaSection() {
   return (
     <section className="relative py-12 sm:py-24">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-10">
-        <div className="glass rounded-3xl p-6 sm:p-10 md:p-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
+        <div className="border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 rounded-3xl p-6 sm:p-10 md:p-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div>
             <RevealText
               as="h3"

@@ -1,31 +1,69 @@
 "use client";
 
+import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { useTheme } from "../../layout/ThemeProvider";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
+import "./hero-ecosystem.css";
 
-export type EcosystemNode = {
-  id: string;
-  label: string;
-  x: number;
-  y: number;
-};
+import type { EcosystemNode } from "./hero/ecosystem-types";
 
 type Props = {
   nodes: EcosystemNode[];
   icons: Record<string, ReactNode>;
 };
 
+const ORBIT_HREFS: Record<string, string> = {
+  web: "/services#web-development",
+  mobile: "/services#app-development",
+  ai: "/services#ai-ml",
+  cloud: "/services#cloud-devops",
+  data: "/services#data-engineering",
+  ux: "/services#ui-ux",
+  ecom: "/services#ecommerce",
+  cyber: "/services#cybersecurity",
+};
+
 const VB = 400;
+/** Shift link endpoint up from node layout center to icon center (viewBox units). */
+const LINE_ICON_OFFSET_Y = 14;
 
 function splitLines(s: string) {
   return s.split("\n").map((t) => t.trim());
 }
 
+function buildZigzagPath(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  zigCount = 6,
+  amplitude = 7
+) {
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const len = Math.hypot(dx, dy) || 1;
+  const perpX = -dy / len;
+  const perpY = dx / len;
+
+  let d = `M ${x1} ${y1}`;
+  for (let i = 1; i <= zigCount; i++) {
+    const t = i / (zigCount + 1);
+    const bx = x1 + dx * t;
+    const by = y1 + dy * t;
+    const sign = i % 2 === 0 ? -1 : 1;
+    d += ` L ${roundSvgCoord(bx + perpX * amplitude * sign)} ${roundSvgCoord(by + perpY * amplitude * sign)}`;
+  }
+  d += ` L ${x2} ${y2}`;
+  return d;
+}
+
 export default function HeroEcosystem({ nodes, icons }: Props) {
   const mesh = SPHERE_MESH;
   const isLight = useTheme() === "light";
+  const [activeId, setActiveId] = useState<string | null>(null);
 
   const center = { x: 0.5, y: 0.54 };
   const sx = roundSvgCoord(center.x * VB);
@@ -55,8 +93,8 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
             <stop offset="0%" stopColor={isLight ? "#2563eb" : "#67e8f9"} />
             <stop offset="100%" stopColor={isLight ? "#06b6d4" : "#3b82f6"} />
           </radialGradient>
-          <filter id="hero-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
+          <filter id="hero-link-glow-filter" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="3.5" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
               <feMergeNode in="SourceGraphic" />
@@ -203,16 +241,21 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
             r={i % 5 === 0 ? 2.2 : 1.4}
             fill="url(#hero-dot-grad)"
             className={i % 5 === 0 ? "hero-mesh-dot--lg" : "hero-mesh-dot--sm"}
-            filter={i % 5 === 0 ? "url(#hero-glow)" : "none"}
+            filter={i % 5 === 0 ? "url(#hero-link-glow-filter)" : "none"}
           />
         ))}
 
         {/* lines from center to each service node */}
-        {nodes.map((n) => {
+        {nodes.map((n, i) => {
           const tx = roundSvgCoord(n.x * VB);
-          const ty = roundSvgCoord(n.y * VB);
+          const ty = roundSvgCoord(n.y * VB - LINE_ICON_OFFSET_Y);
+          const isActive = activeId === n.id;
+          const zigPath = buildZigzagPath(sx, sy, tx, ty);
           return (
-            <g key={`link-${n.id}`}>
+            <g
+              key={`link-${n.id}`}
+              className={isActive ? "hero-link-group is-active" : "hero-link-group"}
+            >
               <line
                 x1={sx}
                 y1={sy}
@@ -225,15 +268,41 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
                 y1={sy}
                 x2={tx}
                 y2={ty}
-                className="hero-link-pulse"
+                className="hero-link-glow"
               />
+              <line
+                x1={sx}
+                y1={sy}
+                x2={tx}
+                y2={ty}
+                className="hero-link-beam"
+              />
+              <path d={zigPath} className="hero-link-zigzag" />
+              <line
+                x1={sx}
+                y1={sy}
+                x2={tx}
+                y2={ty}
+                className="hero-link-pulse"
+                style={{ animationDelay: `${i * 0.45}s` }}
+              />
+              <circle
+                r={isActive ? 3.8 : 0}
+                className="hero-link-dot"
+                fill="url(#hero-dot-grad)"
+                filter="url(#hero-link-glow-filter)"
+              >
+                {isActive ? (
+                  <animateMotion dur="0.85s" repeatCount="indefinite" path={zigPath} />
+                ) : null}
+              </circle>
             </g>
           );
         })}
       </svg>
 
       {/* central canopy mark */}
-      <div className="hero-mark-wrap">
+      <div className={`hero-mark-wrap${activeId ? " is-link-active" : ""}`}>
         <ThemeAwareMark
           alt="Canopy Arc"
           width={280}
@@ -245,23 +314,35 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
       </div>
 
       {/* orbiting service nodes */}
-      {nodes.map((n) => (
-        <div
-          key={n.id}
-          data-node-float
-          className="absolute -translate-x-1/2 -translate-y-1/2 z-10"
-          style={{ left: `${n.x * 100}%`, top: `${n.y * 100}%` }}
-        >
-          <div className="flex flex-col items-center gap-1.5">
-            <div className="hero-orbit-icon">
-              {icons[n.id]}
+      {nodes.map((n) => {
+        const isActive = activeId === n.id;
+        return (
+          <div
+            key={n.id}
+            className={`hero-orbit-anchor${isActive ? " is-active" : ""}`}
+            style={{ left: `${n.x * 100}%`, top: `${n.y * 100}%` }}
+            onPointerEnter={() => setActiveId(n.id)}
+            onPointerLeave={() => setActiveId(null)}
+          >
+            <div data-node-float className="hero-orbit-float">
+              <Link
+                href={ORBIT_HREFS[n.id] ?? "/services"}
+                className="hero-orbit-node"
+                onFocus={() => setActiveId(n.id)}
+                onBlur={() => setActiveId(null)}
+              >
+                <span className="hero-orbit-icon-wrap">
+                  <span className="hero-orbit-ring" aria-hidden />
+                  <span className="hero-orbit-icon">{icons[n.id]}</span>
+                </span>
+                <p className="hero-orbit-label">
+                  {splitLines(n.label).join("\n")}
+                </p>
+              </Link>
             </div>
-            <p className="text-[10px] sm:text-[11px] leading-tight tracking-wide text-muted text-center whitespace-pre-line max-w-[92px]">
-              {splitLines(n.label).join("\n")}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

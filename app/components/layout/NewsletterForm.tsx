@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { IconSend } from "./footer/FooterIcons";
 
 export default function NewsletterForm() {
   const [done, setDone] = useState(false);
 
   return (
     <form
-      className="mt-4 flex items-stretch rounded-full border border-line-strong overflow-hidden bg-surface focus-within:border-accent transition-colors"
+      className="mt-5 flex items-stretch overflow-hidden rounded-xl border border-line-strong bg-surface"
       onSubmit={(e) => {
         e.preventDefault();
         setDone(true);
@@ -17,15 +18,20 @@ export default function NewsletterForm() {
       <input
         type="email"
         required
-        placeholder="your email"
+        placeholder="Enter your email"
         aria-label="Your email"
-        className="flex-1 min-w-0 bg-transparent text-sm outline-none placeholder:text-muted/60 pl-4 pr-2 py-2.5"
+        className="min-w-0 flex-1 border-0 bg-transparent px-4 py-3 text-sm text-foreground outline-none placeholder:text-muted"
       />
       <button
         type="submit"
-        className="shrink-0 px-3.5 text-[10px] uppercase tracking-[0.18em] font-semibold bg-foreground text-background hover:bg-accent transition-colors"
+        className="inline-flex shrink-0 items-center justify-center border-0 bg-accent px-4 text-white transition-[filter,transform] duration-200 hover:brightness-110 active:scale-95"
+        aria-label="Subscribe"
       >
-        {done ? "Thanks" : "Join"}
+        {done ? (
+          <span className="text-[10px] font-semibold uppercase tracking-wider">OK</span>
+        ) : (
+          <IconSend />
+        )}
       </button>
     </form>
   );

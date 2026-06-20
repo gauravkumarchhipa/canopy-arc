@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
-import Eyebrow from "../../ui/Eyebrow";
 import HeaderCtaButtons from "./HeaderCtaButtons";
 import { siteData } from "../../../content/site-data";
+import { tw } from "../../../lib/tw";
 
 type Props = {
   open: boolean;
@@ -54,11 +54,9 @@ export default function MobileMenu({ open, onClose }: Props) {
         }`}
         data-lenis-prevent
       >
-        <div className="relative min-h-full flex flex-col px-6 pt-28 pb-10">
-          <div className="brand-orb brand-orb-warm -top-24 -right-24 h-72 w-72" />
-          <div className="brand-orb brand-orb-trust -bottom-24 -left-24 h-72 w-72" />
-
-          <Eyebrow className="mb-6">Menu</Eyebrow>
+        <div className="relative min-h-full flex flex-col px-6 pt-24 pb-10">
+          <div className={`${tw.brandOrb} ${tw.brandOrbWarm} -top-24 -right-24 h-72 w-72`} />
+          <div className={`${tw.brandOrb} ${tw.brandOrbTrust} -bottom-24 -left-24 h-72 w-72`} />
 
           <nav className="relative flex flex-col gap-1 flex-1">
             {NAV.map((item, i) => {
@@ -78,7 +76,7 @@ export default function MobileMenu({ open, onClose }: Props) {
                   >
                     <span
                       className={`font-display text-3xl sm:text-4xl leading-none tracking-tight ${
-                        active ? "gradient-text" : ""
+                        active ? tw.gradientText : ""
                       }`}
                     >
                       {item.label}
@@ -102,7 +100,7 @@ export default function MobileMenu({ open, onClose }: Props) {
                 : "0ms",
             }}
           >
-            <HeaderCtaButtons stacked className="[&_.btn-header]:w-full" />
+            <HeaderCtaButtons stacked className="[&_a]:w-full" />
             <a
               href={`mailto:${siteData.footer.contact.email}`}
               className="text-center text-sm text-muted hover:text-foreground transition-colors"

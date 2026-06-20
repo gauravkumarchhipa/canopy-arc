@@ -5,13 +5,13 @@ import Button from '../ui/Button'
 const CTA = () => {
     return (
         <section className="relative py-16 sm:py-24 md:py-44">
-            {/* Solid backdrop so the glass card sits on a clean canvas — the mic
+            {/* Solid backdrop so the border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 card sits on a clean canvas — the mic
             on the far right edge stays visible but never bleeds into the card */}
             <div className="absolute inset-y-0 left-0 right-1/4 bg-linear-to-r from-background from-60% via-background/95 to-transparent pointer-events-none" />
             <div className="relative mx-auto max-w-300 px-6 lg:px-10">
-                <div className="relative glass rounded-3xl p-6 sm:p-10 md:p-20 overflow-hidden bg-background/70">
-                    <div className="brand-orb brand-orb-warm -top-40 -right-40 h-96 w-96" />
-                    <div className="brand-orb brand-orb-trust -bottom-40 -left-40 h-96 w-96" />
+                <div className="relative border border-line bg-surface backdrop-blur-xl backdrop-saturate-140 rounded-3xl p-6 sm:p-10 md:p-20 overflow-hidden bg-background/70">
+                    <div className="pointer-events-none absolute rounded-full blur-[80px] opacity-55 bg-[radial-gradient(closest-side,rgba(242,153,74,0.55),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(255,176,104,0.5),transparent_70%)] -top-40 -right-40 h-96 w-96" />
+                    <div className="pointer-events-none absolute rounded-full blur-[80px] opacity-55 bg-[radial-gradient(closest-side,rgba(43,179,163,0.45),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(78,209,193,0.4),transparent_70%)] -bottom-40 -left-40 h-96 w-96" />
 
                     <div className="relative">
                         <RevealText

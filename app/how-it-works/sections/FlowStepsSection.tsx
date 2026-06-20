@@ -14,7 +14,7 @@ export default function FlowStepsSection() {
                 data-cursor="hover"
               >
                 <div className="md:col-span-3 flex md:flex-col md:justify-between items-baseline gap-4">
-                  <span className="font-display text-6xl md:text-8xl leading-none tracking-tight gradient-text">
+                  <span className="font-display text-6xl md:text-8xl leading-none tracking-tight bg-[image:var(--grad)] bg-clip-text text-transparent">
                     {s.step}
                   </span>
                   <span className="hidden md:inline-block text-xs tracking-[0.3em] uppercase text-muted">

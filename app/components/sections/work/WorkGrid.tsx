@@ -53,7 +53,7 @@ export default function WorkGrid() {
             className="group rounded-3xl border border-line bg-surface overflow-hidden hover:-translate-y-1 transition-transform"
           >
             <div className="relative h-52 sm:h-60 bg-background/60">
-              <div className="absolute inset-0 opacity-25 grid-bg" />
+              <div className="absolute inset-0 opacity-25 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px]" />
               <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full blur-[60px] opacity-60 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.35),transparent_65%)]" />
               <div className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full blur-[70px] opacity-45 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_65%)]" />
               <div className="absolute inset-0 flex items-center justify-center">

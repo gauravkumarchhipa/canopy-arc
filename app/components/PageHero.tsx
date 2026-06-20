@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import Eyebrow from "./ui/Eyebrow";
+import { tw } from "../lib/tw";
 
 type Props = {
   eyebrow: string;
@@ -27,14 +28,14 @@ export default function PageHero({ eyebrow, title, blurb }: Props) {
 
   return (
     <section className="relative pt-24 sm:pt-32 md:pt-44 lg:pt-52 pb-12 sm:pb-20 md:pb-28 overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none mask-fade-bottom" />
+      <div className={`absolute inset-0 opacity-30 pointer-events-none ${tw.gridBg} ${tw.maskFadeBottom}`} />
       <div
         ref={blob1}
-        className="brand-orb brand-orb-warm -top-20 -left-32 h-72 w-72 sm:h-96 sm:w-96 md:h-[36rem] md:w-[36rem]"
+        className={`${tw.brandOrb} ${tw.brandOrbWarm} -top-20 -left-32 h-72 w-72 sm:h-96 sm:w-96 md:h-[36rem] md:w-[36rem]`}
       />
       <div
         ref={blob2}
-        className="brand-orb brand-orb-trust top-20 -right-32 h-64 w-64 sm:h-80 sm:w-80 md:h-[28rem] md:w-[28rem]"
+        className={`${tw.brandOrb} ${tw.brandOrbTrust} top-20 -right-32 h-64 w-64 sm:h-80 sm:w-80 md:h-[28rem] md:w-[28rem]`}
       />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">

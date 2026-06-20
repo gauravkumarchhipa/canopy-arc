@@ -38,7 +38,7 @@ const System = () => {
                     <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
                         {STATS.map((s) => (
                             <Card key={s.v} padding="md" arrow>
-                                <p className="font-display text-4xl md:text-5xl tracking-tight gradient-text">
+                                <p className="font-display text-4xl md:text-5xl tracking-tight bg-[image:var(--grad)] bg-clip-text text-transparent">
                                     {s.k}
                                 </p>
                                 <p className="mt-3 text-xs tracking-[0.2em] uppercase text-muted">
