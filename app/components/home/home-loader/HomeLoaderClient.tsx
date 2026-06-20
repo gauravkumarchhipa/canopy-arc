@@ -21,10 +21,10 @@ export default function HomeLoaderClient({
 }: HomeLoaderProps) {
   const theme = useTheme();
   const isDark = isDarkProp ?? theme === "dark";
-  const { stage, progress } = useLoaderLifecycle({ autoFinish });
+  const { stage, progress, mounted } = useLoaderLifecycle({ autoFinish });
   const themeClasses = getLoaderThemeClasses(isDark);
 
-  if (stage === "gone") return null;
+  if (mounted && stage === "gone") return null;
 
   return (
     <div

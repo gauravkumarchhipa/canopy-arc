@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
+import "./components/home/home-loader.css";
 import SmoothScroll from "./components/layout/SmoothScroll";
 // import CustomCursor from "./components/layout/CustomCursor";
 import RegisterSW from "./components/webworkers/RegisterSW";
@@ -71,16 +72,18 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
+      <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider initialTheme={theme}>
           <RegisterSW />
-          <HomeLoaderGate />
-          <SmoothScroll>
-            {/* <CustomCursor /> */}
-            <Header initialTheme={theme} />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </SmoothScroll>
+          <HomeLoaderGate initialTheme={theme} />
+          <div data-app-content className="flex min-h-full flex-1 flex-col w-full">
+            <SmoothScroll>
+              {/* <CustomCursor /> */}
+              <Header initialTheme={theme} />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </SmoothScroll>
+          </div>
         </ThemeProvider>
       </body>
     </html>

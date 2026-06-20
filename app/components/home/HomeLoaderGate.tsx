@@ -1,9 +1,12 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import type { Theme } from "../../lib/theme";
+import HomeLoader from "./HomeLoader";
 
-const HomeLoader = dynamic(() => import("./HomeLoader"), { ssr: false });
+type Props = {
+  initialTheme: Theme;
+};
 
-export default function HomeLoaderGate() {
-  return <HomeLoader />;
+export default function HomeLoaderGate({ initialTheme }: Props) {
+  return <HomeLoader isDark={initialTheme === "dark"} />;
 }

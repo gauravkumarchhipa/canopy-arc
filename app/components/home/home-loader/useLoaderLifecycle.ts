@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { hasSeenLoader, markLoaderSeen } from "./loader-session";
 
 export type LoaderStage = "in" | "out" | "gone";
 
@@ -9,11 +10,40 @@ type Options = {
 };
 
 export function useLoaderLifecycle({ autoFinish }: Options) {
+  // Always "in" on server + first client render so hydration matches.
   const [stage, setStage] = useState<LoaderStage>("in");
   const [progress, setProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    document.documentElement.setAttribute("data-app-mounted", "");
+
+    if (hasSeenLoader()) {
+      setStage("gone");
+    } else {
+      document.documentElement.setAttribute("data-loader", "active");
+    }
+
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (stage === "gone") {
+      document.documentElement.removeAttribute("data-loader");
+      return;
+    }
+    if (mounted) {
+      document.documentElement.setAttribute("data-loader", "active");
+    }
+  }, [stage, mounted]);
+
+  useEffect(() => {
+    if (stage !== "gone") return;
+    markLoaderSeen();
+  }, [stage]);
+
+  useEffect(() => {
+    if (!mounted || stage === "gone") return;
 
     const duration = 2400;
     const start = performance.now();
@@ -58,7 +88,7 @@ export function useLoaderLifecycle({ autoFinish }: Options) {
     }
 
     return () => cancelAnimationFrame(raf);
-  }, [autoFinish]);
+  }, [autoFinish, mounted, stage]);
 
   useEffect(() => {
     if (stage === "gone") return;
@@ -69,5 +99,5 @@ export function useLoaderLifecycle({ autoFinish }: Options) {
     };
   }, [stage]);
 
-  return { stage, progress };
+  return { stage, progress, mounted };
 }
