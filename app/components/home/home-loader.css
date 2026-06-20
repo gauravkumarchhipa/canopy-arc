@@ -1,0 +1,132 @@
+@keyframes loader-node-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 1; }
+}
+
+@keyframes loader-mark-glow {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 14px rgba(34, 211, 238, 0.55))
+      drop-shadow(0 0 30px rgba(59, 130, 246, 0.35));
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 22px rgba(103, 232, 249, 0.85))
+      drop-shadow(0 0 42px rgba(59, 130, 246, 0.5));
+  }
+}
+
+@keyframes loader-mark-glow-light {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.25)); }
+  50%      { filter: drop-shadow(0 0 14px rgba(6, 182, 212, 0.35)); }
+}
+
+@keyframes loader-progress-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(34, 211, 238, 0.9), 0 0 24px rgba(59, 130, 246, 0.5); }
+  50%      { box-shadow: 0 0 18px rgba(103, 232, 249, 1),   0 0 36px rgba(59, 130, 246, 0.75); }
+}
+
+@keyframes loader-star-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.9; }
+}
+
+.loader-bg-dark {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 18%, rgba(12, 30, 64, 0.85), transparent 70%),
+    radial-gradient(ellipse 100% 80% at 50% 0%, rgba(8, 18, 40, 1), #02060f 70%),
+    #01040a;
+}
+
+.loader-bg-light {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(219, 234, 254, 0.7), transparent 70%),
+    #ffffff;
+}
+
+.loader-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 6% 12%,  rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 14% 30%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 22% 18%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 31% 42%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 42% 14%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 51% 28%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 60% 8%,  rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 68% 36%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(1px 1px at 76% 16%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 84% 40%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 92% 22%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 97% 8%,  rgba(255,255,255,0.45), transparent);
+  animation: loader-star-twinkle 5s ease-in-out infinite;
+}
+
+.loader-earth-photo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.loader-earth-photo img {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 130%;
+  min-width: 1400px;
+  height: auto;
+  transform: translateX(-50%);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.loader-earth-fade { position: absolute; inset: 0; pointer-events: none; }
+
+.loader-earth-fade--dark {
+  background: linear-gradient(
+    to bottom,
+    #01040a 0%,
+    rgba(1, 4, 10, 0.85) 28%,
+    rgba(1, 4, 10, 0.35) 48%,
+    rgba(1, 4, 10, 0) 62%
+  );
+}
+
+.loader-earth-fade--light {
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.9) 30%,
+    rgba(255, 255, 255, 0.4) 52%,
+    rgba(255, 255, 255, 0) 66%
+  );
+}
+
+.loader-dome-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dome-node { animation: loader-node-pulse 2.4s ease-in-out infinite; }
+
+.loader-mark-glow       { animation: loader-mark-glow 2.8s ease-in-out infinite; }
+.loader-mark-glow--light { animation: loader-mark-glow-light 2.8s ease-in-out infinite; }
+
+.loader-progress-thumb  { animation: loader-progress-glow 1.6s ease-in-out infinite; }
+
+@media (max-height: 760px) {
+  .loader-brand-zone    { top: 10%; }
+  .loader-progress-zone { bottom: 8%; }
+}
+@media (max-height: 620px) {
+  .loader-brand-zone    { top: 6%; }
+  .loader-progress-zone { bottom: 6%; }
+}
