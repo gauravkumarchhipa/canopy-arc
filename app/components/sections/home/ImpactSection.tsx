@@ -25,7 +25,7 @@ export default function ImpactSection() {
           <p className="mt-5 text-base leading-relaxed text-muted sm:text-lg">{impact.subtitle}</p>
         </div>
 
-        <div className="mt-12 grid items-stretch gap-4 sm:mt-14 lg:mt-16 lg:grid-cols-[0.95fr_1.35fr] lg:gap-5">
+        <div className="mt-12 grid items-stretch gap-4 overflow-visible p-1 sm:mt-14 lg:mt-16 lg:grid-cols-[0.95fr_1.35fr] lg:gap-5">
           <ImpactFeaturedCard
             icon={impact.featured.icon}
             value={impact.featured.value}
