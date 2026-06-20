@@ -33,7 +33,9 @@ export function headerShellClass({
 }) {
   return [
     "group/header fixed inset-x-0 top-0 z-50 will-change-transform border-b border-transparent",
-    "translate-y-0 opacity-100 pointer-events-auto",
+    hidden
+      ? "-translate-y-full opacity-0 pointer-events-none"
+      : "translate-y-0 opacity-100 pointer-events-auto",
     "transition-[transform,opacity,padding,background-color,border-color,box-shadow] duration-300 ease-out",
     elevated
       ? "is-scrolled py-3 border-[var(--header-border)] bg-[var(--header-bg)] shadow-[var(--header-shadow)] backdrop-blur-xl backdrop-saturate-140"
@@ -45,7 +47,6 @@ export function headerShellClass({
     open && "max-md:border-transparent max-md:shadow-none",
     open && "[html[data-theme=light]_&]:max-md:bg-[rgba(248,251,255,0.97)]",
     "[html[data-theme=light]_&]:max-md:bg-[rgba(248,251,255,0.94)]",
-    hidden && "-translate-y-[110%] opacity-0 pointer-events-none",
     open ? "is-open" : "",
   ]
     .filter(Boolean)
