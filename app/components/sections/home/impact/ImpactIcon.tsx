@@ -6,5 +6,11 @@ type ImpactIconProps = {
 };
 
 export default function ImpactIcon({ name, className }: ImpactIconProps) {
-  return <span className={className}>{IMPACT_ICONS[name]}</span>;
+  const icon = IMPACT_ICONS[name];
+  if (!icon) return null;
+  return (
+    <span className={`inline-flex items-center justify-center ${className ?? ""}`}>
+      {icon}
+    </span>
+  );
 }

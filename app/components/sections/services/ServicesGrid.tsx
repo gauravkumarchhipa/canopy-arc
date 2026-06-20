@@ -5,6 +5,11 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import {
+  impactStatAccentLine,
+  impactStatCard,
+  impactStatIconBox,
+} from "../home/impact/impact-styles";
+import {
   filterLabelToSlug,
   resolveServiceFilter,
   SERVICE_FILTER_PARAM,
@@ -16,27 +21,6 @@ function chipClass(active: boolean) {
       ? "border-foreground/20 bg-surface text-foreground"
       : "border-line bg-background text-muted hover:text-foreground hover:bg-surface"
   }`;
-}
-
-function accentGlow(accent: string) {
-  const map: Record<string, string> = {
-    blue: "rgba(59,130,246,0.45)",
-    purple: "rgba(139,92,246,0.40)",
-    emerald: "rgba(16,185,129,0.40)",
-    red: "rgba(239,68,68,0.35)",
-    sky: "rgba(34,211,238,0.35)",
-    pink: "rgba(236,72,153,0.35)",
-    amber: "rgba(245,158,11,0.35)",
-    teal: "rgba(20,184,166,0.35)",
-    violet: "rgba(124,58,237,0.32)",
-    orange: "rgba(249,115,22,0.34)",
-    indigo: "rgba(99,102,241,0.34)",
-    slate: "rgba(148,163,184,0.28)",
-    lime: "rgba(132,204,22,0.30)",
-    cyan: "rgba(6,182,212,0.30)",
-    green: "rgba(34,197,94,0.30)",
-  };
-  return map[accent] ?? "rgba(59,130,246,0.35)";
 }
 
 export default function ServicesGrid() {
@@ -89,34 +73,26 @@ export default function ServicesGrid() {
           <Link
             key={card.id}
             href={`/services?${SERVICE_FILTER_PARAM}=${card.id}`}
-            className="group relative rounded-2xl border border-line bg-surface p-5 overflow-hidden transition-transform hover:-translate-y-1"
+            className={`group ${impactStatCard} no-underline`}
           >
-            <div
-              className="absolute -top-24 -right-24 h-56 w-56 rounded-full blur-[40px] opacity-70"
-              style={{
-                background: `radial-gradient(circle at center, ${accentGlow(card.accent)}, transparent 70%)`,
-              }}
-            />
-
-            <div className="relative flex items-start justify-between gap-4">
-              <div className="h-12 w-12 rounded-2xl border border-line bg-background grid place-items-center">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#3b82f6] opacity-90" />
-              </div>
-              <span className="text-xs text-muted rounded-full border border-line px-3 py-1 bg-background/60">
-                {card.projects} Projects
+            <div className="flex items-start justify-between gap-3">
+              <span className={impactStatIconBox}>
+                <span className="h-2.5 w-2.5 rounded-full bg-accent opacity-90" />
               </span>
+              <p className="m-0 text-sm leading-none font-semibold tracking-tight text-accent">
+                {card.projects} Projects
+              </p>
             </div>
 
-            <h3 className="relative mt-5 font-medium tracking-tight text-foreground">
+            <h3 className="mt-3.5 text-[0.9375rem] leading-snug font-semibold text-foreground transition-colors group-hover:text-accent">
               {card.title}
             </h3>
-            <p className="relative mt-2 text-sm text-muted leading-relaxed">
-              {card.subtitle}
-            </p>
+            <span className={impactStatAccentLine} aria-hidden />
+            <p className="m-0 flex-1 text-xs leading-snug text-muted">{card.subtitle}</p>
 
-            <div className="relative mt-5 flex items-center justify-between text-sm">
+            <div className="mt-3 flex items-center justify-between text-xs">
               <span className="text-muted">{card.tag}</span>
-              <span className="text-foreground/80 group-hover:text-foreground transition-colors">
+              <span className="text-foreground/70 transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-accent">
                 →
               </span>
             </div>
