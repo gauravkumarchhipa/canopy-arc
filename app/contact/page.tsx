@@ -12,12 +12,6 @@ export default function ContactPage() {
   return (
     <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-56 -left-56 h-[760px] w-[760px] rounded-full blur-[130px] opacity-40 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.26),transparent_65%)]" />
-          <div className="absolute -bottom-64 -right-64 h-[820px] w-[820px] rounded-full blur-[140px] opacity-32 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.32),transparent_65%)]" />
-          <div className="absolute inset-0 opacity-18 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]" />
-        </div>
-
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <p className="text-xs tracking-[0.3em] uppercase text-muted">
             Contact Us

@@ -1,8 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
+import {
+  filterLabelToSlug,
+  resolveServiceFilter,
+  SERVICE_FILTER_PARAM,
+} from "../../../lib/service-filters";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -28,19 +34,39 @@ function accentGlow(accent: string) {
     slate: "rgba(148,163,184,0.28)",
     lime: "rgba(132,204,22,0.30)",
     cyan: "rgba(6,182,212,0.30)",
-    green: "rgba(34,197,94,0.30)"
+    green: "rgba(34,197,94,0.30)",
   };
   return map[accent] ?? "rgba(59,130,246,0.35)";
 }
 
 export default function ServicesGrid() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const filters = servicesGrid.filters;
-  const [active, setActive] = useState(filters[0]);
 
-  const cards = useMemo(() => {
-    if (active === filters[0]) return servicesGrid.cards;
-    return servicesGrid.cards.filter((c) => c.tag === active);
-  }, [active, filters]);
+  const filterParam = searchParams.get(SERVICE_FILTER_PARAM);
+  const { active, cards } = useMemo(
+    () => resolveServiceFilter(filterParam),
+    [filterParam]
+  );
+
+  const setFilter = useCallback(
+    (label: string) => {
+      const slug = filterLabelToSlug(label);
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (slug === "all") {
+        params.delete(SERVICE_FILTER_PARAM);
+      } else {
+        params.set(SERVICE_FILTER_PARAM, slug);
+      }
+
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [pathname, router, searchParams]
+  );
 
   return (
     <section className="mx-auto max-w-350 px-6 lg:px-10 pb-18 sm:pb-24">
@@ -50,7 +76,8 @@ export default function ServicesGrid() {
             key={f}
             type="button"
             className={chipClass(active === f)}
-            onClick={() => setActive(f)}
+            onClick={() => setFilter(f)}
+            aria-pressed={active === f}
           >
             {f}
           </button>
@@ -61,13 +88,13 @@ export default function ServicesGrid() {
         {cards.map((card) => (
           <Link
             key={card.id}
-            href={`/services#${card.id}`}
+            href={`/services?${SERVICE_FILTER_PARAM}=${card.id}`}
             className="group relative rounded-2xl border border-line bg-surface p-5 overflow-hidden transition-transform hover:-translate-y-1"
           >
             <div
               className="absolute -top-24 -right-24 h-56 w-56 rounded-full blur-[40px] opacity-70"
               style={{
-                background: `radial-gradient(circle at center, ${accentGlow(card.accent)}, transparent 70%)`
+                background: `radial-gradient(circle at center, ${accentGlow(card.accent)}, transparent 70%)`,
               }}
             />
 
@@ -96,7 +123,12 @@ export default function ServicesGrid() {
           </Link>
         ))}
       </div>
+
+      {cards.length === 0 ? (
+        <p className="mt-10 text-center text-sm text-muted">
+          No services found for this filter.
+        </p>
+      ) : null}
     </section>
   );
 }
-

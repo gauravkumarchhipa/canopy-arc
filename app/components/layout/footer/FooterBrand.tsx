@@ -12,6 +12,11 @@ import {
 
 type SocialLink = (typeof footer.social)[number];
 
+const contactIconClass =
+  "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4";
+
+const contactTextClass = "min-w-0 text-sm text-muted";
+
 function FooterSocialLinks({ social }: { social: SocialLink[] }) {
   return (
     <div className="grid w-full max-w-80 grid-cols-5 gap-2 lg:flex lg:max-w-none lg:flex-wrap lg:items-center lg:gap-2.5">
@@ -71,44 +76,47 @@ export default function FooterBrand() {
         <FooterSocialLinks social={social} />
       </div>
 
-      <div className="order-4 mx-auto mt-7 w-full max-w-[18.5rem] space-y-3.5 lg:mx-0 lg:mt-7 lg:max-w-none">
-        <div className="flex items-center justify-center gap-3 text-left lg:justify-start">
-          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4">
-            <IconLocation />
-          </span>
-          <p className="min-w-0 flex-[0_1_auto] text-sm leading-relaxed whitespace-pre-line text-muted">
-            {contact.address}
-          </p>
-        </div>
-        <div className="flex items-center justify-center gap-3 text-left lg:justify-start">
-          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4">
-            <IconMail />
-          </span>
-          <a
-            href={`mailto:${contact.email}`}
-            className="min-w-0 flex-[0_1_auto] text-sm text-muted transition-colors hover:text-foreground"
-          >
-            {contact.email}
-          </a>
-        </div>
-        <div className="flex items-center justify-center gap-3 text-left lg:justify-start">
-          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4">
-            <IconPhone />
-          </span>
-          <a
-            href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
-            className="min-w-0 flex-[0_1_auto] text-sm text-muted transition-colors hover:text-foreground"
-          >
-            {contact.phone}
-          </a>
-        </div>
-        <div className="flex items-center justify-center gap-3 text-left lg:justify-start">
-          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4">
-            <IconClock />
-          </span>
-          <span className="min-w-0 flex-[0_1_auto] text-sm text-muted">
-            {contact.hours}
-          </span>
+      <div className="order-4 mt-7 w-full lg:max-w-none">
+        <div className="mx-auto flex w-full max-w-[20rem] flex-col gap-3.5 lg:mx-0">
+          <div className="flex items-start gap-3 text-left">
+            <span className={contactIconClass}>
+              <IconLocation />
+            </span>
+            <p className={`${contactTextClass} flex-1 leading-relaxed whitespace-pre-line`}>
+              {contact.address}
+            </p>
+          </div>
+
+          <div className="flex items-start gap-3 text-left">
+            <span className={contactIconClass}>
+              <IconMail />
+            </span>
+            <a
+              href={`mailto:${contact.email}`}
+              className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
+            >
+              {contact.email}
+            </a>
+          </div>
+
+          <div className="flex items-start gap-3 text-left">
+            <span className={contactIconClass}>
+              <IconPhone />
+            </span>
+            <a
+              href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
+              className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
+            >
+              {contact.phone}
+            </a>
+          </div>
+
+          <div className="flex items-start gap-3 text-left">
+            <span className={contactIconClass}>
+              <IconClock />
+            </span>
+            <span className={`${contactTextClass} flex-1`}>{contact.hours}</span>
+          </div>
         </div>
       </div>
     </div>

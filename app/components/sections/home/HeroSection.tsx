@@ -15,12 +15,6 @@ export default function HeroSection() {
   return (
     <HeroSectionAnimations>
       <section className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className={`absolute inset-0 opacity-[var(--hero-grid-opacity)] ${tw.gridBg} ${tw.maskFadeBottom}`}
-          />
-        </div>
-
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-6">

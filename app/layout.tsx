@@ -8,6 +8,7 @@ import SmoothScroll from "./components/layout/SmoothScroll";
 import RegisterSW from "./components/webworkers/RegisterSW";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import PageGridBackground from "./components/layout/PageGridBackground";
 import HomeLoaderGate from "./components/home/HomeLoaderGate";
 import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
@@ -80,7 +81,10 @@ export default async function RootLayout({
             <SmoothScroll>
               {/* <CustomCursor /> */}
               <Header initialTheme={theme} />
-              <main className="flex-1">{children}</main>
+              <main className="relative isolate flex-1">
+                <PageGridBackground />
+                {children}
+              </main>
               <Footer />
             </SmoothScroll>
           </div>
