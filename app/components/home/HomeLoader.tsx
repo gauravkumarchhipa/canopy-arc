@@ -24,7 +24,51 @@ const VB_W = 1200;
 const VB_H = 900;
 const HORIZON_Y = 560;
 const APEX_X = 600;
-const APEX_Y = 150;
+const APEX_Y = 102;
+
+type ArcDef = {
+  p0: [number, number];
+  c: [number, number];
+  p1: [number, number];
+};
+
+/** Fewer bands = cleaner linked grid */
+const LATITUDE_LEVELS = [0.14, 0.26, 0.38, 0.5, 0.62, 0.74, 0.86];
+
+const MERIDIAN_SPREADS = [640, 520, 400, 290, 195, 115, 55, 20];
+
+/** Horizontal stretch from top center — wider edge reach */
+const MESH_STRETCH_X = 1.28;
+
+/** Full-width top rim */
+const TOP_RIM_ARCS: ArcDef[] = [
+  arc(-20, 0, 1220, 0, APEX_X, 42),
+  arc(-20, 0, 1220, 0, APEX_X, 78),
+  arc(-40, 58, 1240, 58, APEX_X, 12),
+];
+
+const TOP_RIM_LINES: [number, number, number, number][] = [
+  [0, 0, APEX_X, APEX_Y],
+  [1200, 0, APEX_X, APEX_Y],
+  [0, 0, 360, 175],
+  [1200, 0, 840, 175],
+];
+
+/** Outer wrap curves — reach screen edges */
+const SIDE_ARCS: ArcDef[] = [
+  arc(-20, 530, 700, 230, 260, 320),
+  arc(1220, 530, 500, 230, 940, 320),
+  arc(40, 460, 790, 200, 360, 275),
+  arc(1160, 460, 410, 200, 840, 275),
+];
+
+function arc(x0: number, y0: number, x1: number, y1: number, cx: number, cy: number): ArcDef {
+  return {
+    p0: [x0, y0],
+    c: [cx, cy],
+    p1: [x1, y1],
+  };
+}
 
 const qb = (
   t: number,
@@ -39,91 +83,94 @@ const qb = (
   ];
 };
 
-function meridian(spread: number) {
+function meridian(spread: number): ArcDef {
   const controlY = 2 * APEX_Y - HORIZON_Y;
   return {
-    p0: [APEX_X - spread, HORIZON_Y] as [number, number],
-    c: [APEX_X, controlY] as [number, number],
-    p1: [APEX_X + spread, HORIZON_Y] as [number, number],
+    p0: [APEX_X - spread, HORIZON_Y],
+    c: [APEX_X, controlY],
+    p1: [APEX_X + spread, HORIZON_Y],
   };
 }
 
-function arc(x0: number, y0: number, x1: number, y1: number, cx: number, cy: number) {
-  return {
-    p0: [x0, y0] as [number, number],
-    c: [cx, cy] as [number, number],
-    p1: [x1, y1] as [number, number],
-  };
+function pointOnArc(a: ArcDef, t: number): [number, number] {
+  return qb(t, a.p0, a.c, a.p1);
 }
 
-const MERIDIAN_SPREADS = [1300, 1050, 850, 680, 520, 380, 260, 160, 80];
+/** Latitude arc linking meridian points at the same depth — true grid connectivity */
+function latitudeArcThrough(meridians: ArcDef[], t: number): ArcDef {
+  const pts = meridians.map((m) => pointOnArc(m, t));
+  const left = pts[0];
+  const right = pts[pts.length - 1];
+  const mid = pts[Math.floor(pts.length / 2)];
+  const cy = Math.min(mid[1] - 6, APEX_Y + (mid[1] - APEX_Y) * 0.42);
+  return arc(left[0], left[1], right[0], right[1], APEX_X, cy);
+}
 
-const CROSS_ARCS = [
-  arc(120, 360, 1080, 360, 600, 230),
-  arc(60, 440, 1140, 440, 600, 310),
-  arc(220, 290, 980, 290, 600, 200),
-  arc(320, 240, 880, 240, 600, 175),
-  arc(-40, 540, 720, 230, 280, 320),
-  arc(1240, 540, 480, 230, 920, 320),
-  arc(80, 480, 820, 200, 380, 280),
-  arc(1120, 480, 380, 200, 820, 280),
-];
-
-function sampleArc(
-  a: { p0: [number, number]; c: [number, number]; p1: [number, number] },
-  count: number,
-) {
-  const pts: [number, number, number][] = [];
-  for (let i = 1; i < count; i++) {
-    const t = i / count;
-    const [x, y] = qb(t, a.p0, a.c, a.p1);
-    const apexNess = 1 - Math.min(1, Math.abs(t - 0.5) * 2);
-    pts.push([x, y, 0.55 + apexNess * 0.6]);
-  }
-  return pts;
+function arcPath(a: ArcDef) {
+  return `M ${a.p0[0]} ${a.p0[1]} Q ${a.c[0]} ${a.c[1]} ${a.p1[0]} ${a.p1[1]}`;
 }
 
 function useDome() {
   return useMemo(() => {
     const meridians = MERIDIAN_SPREADS.map((s) => meridian(s));
-    const allArcs = [...meridians, ...CROSS_ARCS];
+    const latArcs = LATITUDE_LEVELS.map((t) => latitudeArcThrough(meridians, t));
+    const allArcs = [...meridians, ...latArcs, ...TOP_RIM_ARCS, ...SIDE_ARCS];
 
-    const nodes: [number, number, number, number][] = [];
+    /** x, y, radius, index, brightness */
+    const nodes: [number, number, number, number, number][] = [];
     let idx = 0;
-    meridians.forEach((m, i) => {
-      const samples = sampleArc(m, 14 - Math.min(8, Math.floor(i / 1.5)));
-      samples.forEach(([x, y, s]) => {
-        if (y > HORIZON_Y - 6) return;
-        nodes.push([x, y, 1.1 * s, idx++]);
-      });
-    });
-    CROSS_ARCS.forEach((a) => {
-      const samples = sampleArc(a, 8);
-      samples.forEach(([x, y, s]) => {
-        if (y > HORIZON_Y - 6) return;
-        nodes.push([x, y, 0.95 * s, idx++]);
+
+    meridians.forEach((m, mi) => {
+      LATITUDE_LEVELS.forEach((t, ti) => {
+        const sparse = mi % 2 === 0 && ti % 2 === 0;
+        const topHighlight = t <= 0.28 && (mi === 0 || mi === meridians.length - 1 || mi % 3 === 0);
+        if (!sparse && !topHighlight) return;
+
+        const [x, y] = pointOnArc(m, t);
+        if (y > HORIZON_Y - 12) return;
+
+        const depth = 1 - t;
+        const edgeFade = 1 - Math.abs(mi / (meridians.length - 1) - 0.5) * 0.22;
+        const r = (0.65 + depth * 0.85) * edgeFade;
+        const bright = 0.4 + depth * 0.5;
+        nodes.push([x, y, r, idx++, bright]);
       });
     });
 
-    return { allArcs, nodes };
+    nodes.push([APEX_X, APEX_Y, 2, idx++, 1]);
+    [[0, 0], [1200, 0], [600, 0]].forEach(([x, y]) => {
+      nodes.push([x, y, 1.5, idx++, 0.95]);
+    });
+
+    return { allArcs, nodes, topRimLines: TOP_RIM_LINES };
   }, []);
 }
 
 function DomeLayer({ isDark }: { isDark: boolean }) {
-  const { allArcs, nodes } = useDome();
-  const stroke = isDark ? "rgba(125, 211, 252, 0.32)" : "rgba(37, 99, 235, 0.28)";
-  const nodeFill = isDark ? "#bae6fd" : "#1d4ed8";
+  const { allArcs, nodes, topRimLines } = useDome();
+  const stroke = isDark ? "rgba(186, 230, 253, 0.32)" : "rgba(37, 99, 235, 0.28)";
+  const rimStroke = isDark ? "rgba(186, 230, 253, 0.38)" : "rgba(37, 99, 235, 0.34)";
+  const nodeFill = isDark ? "#e0f2fe" : "#2563eb";
+  const meshTransform = `translate(${APEX_X} 0) scale(${MESH_STRETCH_X} 1) translate(${-APEX_X} 0)`;
 
   return (
-    <svg
-      className="loader-dome-svg"
-      viewBox={`0 0 ${VB_W} ${VB_H}`}
-      preserveAspectRatio="xMidYMax slice"
-      aria-hidden
-    >
+    <div className="loader-dome-wrap" aria-hidden>
+      <svg
+        className="loader-dome-svg"
+        viewBox={`0 0 ${VB_W} ${VB_H}`}
+        preserveAspectRatio="none"
+        aria-hidden
+      >
       <defs>
-        <filter id="dome-glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="1.6" result="b" />
+        <filter id="dome-glow" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="2.2" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <filter id="dome-line-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.8" result="b" />
           <feMerge>
             <feMergeNode in="b" />
             <feMergeNode in="SourceGraphic" />
@@ -131,29 +178,50 @@ function DomeLayer({ isDark }: { isDark: boolean }) {
         </filter>
       </defs>
 
-      <g stroke={stroke} strokeWidth={isDark ? 0.55 : 0.5} fill="none" strokeLinecap="round">
-        {allArcs.map((a, i) => (
-          <path
-            key={i}
-            d={`M ${a.p0[0]} ${a.p0[1]} Q ${a.c[0]} ${a.c[1]} ${a.p1[0]} ${a.p1[1]}`}
-          />
-        ))}
-      </g>
+      <g transform={meshTransform}>
+        <g
+          stroke={rimStroke}
+          strokeWidth={isDark ? 0.52 : 0.5}
+          fill="none"
+          strokeLinecap="round"
+          filter={isDark ? "url(#dome-line-glow)" : undefined}
+        >
+          {topRimLines.map(([x0, y0, x1, y1], i) => (
+            <line key={`rim-${i}`} x1={x0} y1={y0} x2={x1} y2={y1} />
+          ))}
+        </g>
 
-      <g filter={isDark ? "url(#dome-glow)" : undefined}>
-        {nodes.map(([x, y, r, i]) => (
-          <circle
-            key={i}
-            cx={x}
-            cy={y}
-            r={r}
-            fill={nodeFill}
-            className="dome-node"
-            style={{ animationDelay: `${(i % 11) * 0.18}s` }}
-          />
-        ))}
+        <g
+          stroke={stroke}
+          strokeWidth={isDark ? 0.48 : 0.45}
+          fill="none"
+          strokeLinecap="round"
+          filter={isDark ? "url(#dome-line-glow)" : undefined}
+        >
+          {allArcs.map((a, i) => (
+            <path key={i} d={arcPath(a)} />
+          ))}
+        </g>
+
+        <g filter={isDark ? "url(#dome-glow)" : undefined}>
+          {nodes.map(([x, y, r, i, bright]) => (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r={r}
+              fill={nodeFill}
+              className="dome-node"
+              style={{
+                animationDelay: `${(i % 9) * 0.2}s`,
+                opacity: 0.45 + bright * 0.45,
+              }}
+            />
+          ))}
+        </g>
       </g>
     </svg>
+    </div>
   );
 }
 
@@ -178,24 +246,6 @@ function LoaderScene({ isDark }: { isDark: boolean }) {
 
       <DomeLayer isDark={isDark} />
     </>
-  );
-}
-
-function LoaderBars({ isDark }: { isDark: boolean }) {
-  return (
-    <div className="flex h-7 items-end justify-center gap-[3px]" aria-hidden>
-      {BAR_HEIGHTS.map((h, i) => (
-        <span
-          key={i}
-          className={
-            isDark
-              ? "w-[3px] rounded-[1px] bg-gradient-to-t from-blue-700 via-sky-400 to-cyan-200 shadow-[0_0_8px_rgba(56,189,248,0.6)]"
-              : "w-[3px] rounded-[1px] bg-gradient-to-t from-blue-700 via-blue-500 to-sky-400"
-          }
-          style={{ height: `${h}%` }}
-        />
-      ))}
-    </div>
   );
 }
 
@@ -305,8 +355,6 @@ export default function HomeLoader({ isDark: isDarkProp, autoFinish = true }: Ho
               />
             </div>
           </div>
-
-          <LoaderBars isDark={isDark} />
 
           <p className={`mt-3 text-[0.625rem] font-medium tracking-[0.38em] uppercase sm:text-[0.6875rem] ${tagline}`}>
             Building digital solutions
