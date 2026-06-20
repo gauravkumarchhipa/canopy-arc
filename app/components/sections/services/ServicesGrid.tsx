@@ -5,15 +5,25 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import {
-  impactStatAccentLine,
-  impactStatCard,
-  impactStatIconBox,
-} from "../home/impact/impact-styles";
-import {
   filterLabelToSlug,
   resolveServiceFilter,
   SERVICE_FILTER_PARAM,
 } from "../../../lib/service-filters";
+import {
+  serviceCard,
+  serviceCardArrow,
+  serviceCardArrowIcon,
+  serviceCardHeaderAction,
+  serviceCardIndex,
+  serviceCardMeta,
+  serviceCardSubtitle,
+  serviceCardTag,
+  serviceCardTitle,
+} from "./service-card-styles";
+
+function formatCardIndex(index: number, total: number) {
+  return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+}
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -23,6 +33,22 @@ function chipClass(active: boolean) {
   }`;
 }
 
+function ServiceArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      className={serviceCardArrowIcon}
+      aria-hidden
+    >
+      <path d="M7 17L17 7" strokeLinecap="round" />
+      <path d="M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function ServicesGrid() {
   const router = useRouter();
   const pathname = usePathname();
@@ -30,6 +56,13 @@ export default function ServicesGrid() {
   const filters = servicesGrid.filters;
 
   const filterParam = searchParams.get(SERVICE_FILTER_PARAM);
+  const totalCards = servicesGrid.cards.length;
+  const cardIndexById = useMemo(() => {
+    const map = new Map<string, number>();
+    servicesGrid.cards.forEach((card, index) => map.set(card.id, index + 1));
+    return map;
+  }, []);
+
   const { active, cards } = useMemo(
     () => resolveServiceFilter(filterParam),
     [filterParam]
@@ -68,32 +101,28 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cards.map((card) => (
-          <Link
-            key={card.id}
-            href={`/services?${SERVICE_FILTER_PARAM}=${card.id}`}
-            className={`group ${impactStatCard} no-underline`}
-          >
+          <Link key={card.id} href={`/services/${card.id}`} className={serviceCard}>
             <div className="flex items-start justify-between gap-3">
-              <span className={impactStatIconBox}>
-                <span className="h-2.5 w-2.5 rounded-full bg-accent opacity-90" />
-              </span>
-              <p className="m-0 text-sm leading-none font-semibold tracking-tight text-accent">
-                {card.projects} Projects
-              </p>
+              <span className={serviceCardTag}>{card.tag}</span>
+              <div className={serviceCardHeaderAction}>
+                <span className={serviceCardIndex}>
+                  {formatCardIndex(cardIndexById.get(card.id) ?? 1, totalCards)}
+                </span>
+                <span className={serviceCardArrow} aria-hidden>
+                  <ServiceArrowIcon />
+                </span>
+              </div>
             </div>
 
-            <h3 className="mt-3.5 text-[0.9375rem] leading-snug font-semibold text-foreground transition-colors group-hover:text-accent">
-              {card.title}
-            </h3>
-            <span className={impactStatAccentLine} aria-hidden />
-            <p className="m-0 flex-1 text-xs leading-snug text-muted">{card.subtitle}</p>
+            <h3 className={serviceCardTitle}>{card.title}</h3>
+            <p className={serviceCardSubtitle}>{card.subtitle}</p>
 
-            <div className="mt-3 flex items-center justify-between text-xs">
-              <span className="text-muted">{card.tag}</span>
-              <span className="text-foreground/70 transition-[transform,color] duration-300 group-hover:translate-x-0.5 group-hover:text-accent">
-                →
+            <div className={serviceCardMeta}>
+              <span>{card.projects} Projects</span>
+              <span className="font-medium text-foreground/70 transition-colors duration-[350ms] group-hover:text-foreground">
+                View service
               </span>
             </div>
           </Link>

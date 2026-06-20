@@ -9,7 +9,11 @@ export function filterLabelToSlug(label: string): string {
   return label.toLowerCase();
 }
 
-export function serviceFilterHref(slug: string): string {
+export function serviceDetailHref(id: string): string {
+  return `/services/${id}`;
+}
+
+export function serviceCategoryFilterHref(slug: string): string {
   if (!slug || slug === "all") return "/services";
   return `/services?${SERVICE_FILTER_PARAM}=${encodeURIComponent(slug)}`;
 }
@@ -30,11 +34,6 @@ export function resolveServiceFilter(filterParam: string | null): {
       active: category,
       cards: servicesGrid.cards.filter((c) => c.tag === category),
     };
-  }
-
-  const card = servicesGrid.cards.find((c) => c.id === filterParam);
-  if (card) {
-    return { active: card.tag, cards: [card] };
   }
 
   return { active: ALL_SERVICES_LABEL, cards: servicesGrid.cards };
