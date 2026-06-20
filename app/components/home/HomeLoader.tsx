@@ -265,8 +265,8 @@ export default function HomeLoader({ isDark: isDarkProp, autoFinish = true }: Ho
   if (stage === "gone") return null;
 
   const tagline = isDark ? "text-slate-200/90" : "text-slate-600";
-  const taglineMuted = isDark ? "text-slate-400/75" : "text-slate-400";
-  const progressLabel = isDark ? "text-slate-200/90" : "text-slate-500";
+  const taglineMuted = isDark ? "text-slate-300" : "text-slate-700";
+  const progressLabel = isDark ? "text-white" : "text-slate-800";
   const progressPct = isDark
     ? "text-cyan-200 drop-shadow-[0_0_24px_rgba(56,189,248,0.7)]"
     : "text-blue-700";
