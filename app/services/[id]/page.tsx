@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Button from "../../components/ui/Button";
 import {
   getServiceById,
   servicesGrid,
@@ -80,13 +79,19 @@ export default async function ServiceDetailPage({ params }: Props) {
               ))}
             </div>
 
-            <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <Button href="/contact" className="text-sm">
+            <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <Link
+                href="/contact"
+                className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
+              >
                 Start a Project →
-              </Button>
-              <Button href="/work" variant="ghost" className="text-sm">
+              </Link>
+              <Link
+                href="/work"
+                className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
+              >
                 View Our Work
-              </Button>
+              </Link>
             </div>
           </div>
         </section>

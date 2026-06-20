@@ -6,7 +6,7 @@ import { FOOTER_COLUMNS } from "./footer/footer-data";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-16 sm:mt-24 border-t border-line bg-background">
+    <footer className="relative mt-12 sm:mt-16 border-t border-line bg-background">
       <div className="absolute inset-x-0 -top-px h-px bg-linear-to-r from-transparent via-[#3b82f6]/35 to-transparent" />
 
       <div className="mx-auto max-w-350 px-6 lg:px-10 pt-14 sm:pt-20 pb-8 sm:pb-10">

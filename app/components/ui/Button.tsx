@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-type Variant = "primary" | "ghost";
+type Variant = "primary" | "ghost" | "secondary";
 
 const VARIANT_CLASS: Record<Variant, string> = {
   primary: "btn-primary",
   ghost: "btn-ghost",
+  secondary: "btn-secondary",
 };
 
 type CommonProps = {
