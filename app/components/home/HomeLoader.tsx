@@ -295,7 +295,7 @@ export default function HomeLoader({ isDark: isDarkProp, autoFinish = true }: Ho
               className={`absolute -inset-3 rounded-full border border-dashed ${isDark ? "border-cyan-400/20" : "border-blue-400/20"}`}
               aria-hidden
             />
-            <div className={isDark ? "loader-mark-glow" : "loader-mark-glow--light"}>
+            <div className={`scale-[1.3] ${isDark ? "loader-mark-glow" : "loader-mark-glow--light"}`}>
               <ThemeAwareMark
                 alt="Canopy Arc"
                 width={76}
