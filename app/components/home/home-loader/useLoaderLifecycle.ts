@@ -1,57 +1,47 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { hasSeenLoader, markLoaderSeen } from "./loader-session";
 
 export type LoaderStage = "in" | "out" | "gone";
+
+const LOADER_DURATION_MS = 2800;
+const LOADER_FADE_MS = 700;
 
 type Options = {
   autoFinish: boolean;
 };
 
 export function useLoaderLifecycle({ autoFinish }: Options) {
-  // Always "in" on server + first client render so hydration matches.
   const [stage, setStage] = useState<LoaderStage>("in");
   const [progress, setProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
 
   useLayoutEffect(() => {
     document.documentElement.setAttribute("data-app-mounted", "");
-
-    if (hasSeenLoader()) {
-      setStage("gone");
-    } else {
-      document.documentElement.setAttribute("data-loader", "active");
-    }
-
+    document.documentElement.setAttribute("data-loader", "active");
     setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (stage === "gone") {
-      document.documentElement.removeAttribute("data-loader");
+    if (stage === "in") {
+      document.documentElement.setAttribute("data-loader", "active");
       return;
     }
-    if (mounted) {
-      document.documentElement.setAttribute("data-loader", "active");
-    }
-  }, [stage, mounted]);
-
-  useEffect(() => {
-    if (stage !== "gone") return;
-    markLoaderSeen();
+    document.documentElement.removeAttribute("data-loader");
   }, [stage]);
 
   useEffect(() => {
-    if (!mounted || stage === "gone") return;
+    if (!mounted || stage !== "in") return;
 
-    const duration = 2400;
     const start = performance.now();
     let raf = 0;
+    let finishTimeout = 0;
+    let fadeTimeout = 0;
+    let safetyTimeout = 0;
 
     const tick = () => {
       const elapsed = performance.now() - start;
-      const pct = Math.min(100, Math.round((elapsed / duration) * 100));
+      const pct = Math.min(100, Math.round((elapsed / LOADER_DURATION_MS) * 100));
       setProgress(pct);
 
       if (!autoFinish && pct >= 100) {
@@ -63,31 +53,33 @@ export function useLoaderLifecycle({ autoFinish }: Options) {
       if (pct < 100) raf = requestAnimationFrame(tick);
     };
 
-    raf = requestAnimationFrame(tick);
-
-    const finish = () => {
+    const complete = () => {
       if (!autoFinish) return;
       const elapsed = performance.now() - start;
-      const wait = Math.max(0, duration - elapsed);
-      window.setTimeout(() => {
+      const wait = Math.max(0, LOADER_DURATION_MS - elapsed);
+
+      finishTimeout = window.setTimeout(() => {
         setProgress(100);
         setStage("out");
-        window.setTimeout(() => setStage("gone"), 700);
+        fadeTimeout = window.setTimeout(() => setStage("gone"), LOADER_FADE_MS);
       }, wait);
     };
 
-    if (document.readyState === "complete") finish();
+    raf = requestAnimationFrame(tick);
+
+    if (document.readyState === "complete") complete();
     else {
-      window.addEventListener("load", finish, { once: true });
-      const safety = window.setTimeout(finish, 3400);
-      return () => {
-        cancelAnimationFrame(raf);
-        window.removeEventListener("load", finish);
-        window.clearTimeout(safety);
-      };
+      window.addEventListener("load", complete, { once: true });
+      safetyTimeout = window.setTimeout(complete, LOADER_DURATION_MS + 1200);
     }
 
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("load", complete);
+      window.clearTimeout(finishTimeout);
+      window.clearTimeout(fadeTimeout);
+      window.clearTimeout(safetyTimeout);
+    };
   }, [autoFinish, mounted, stage]);
 
   useEffect(() => {

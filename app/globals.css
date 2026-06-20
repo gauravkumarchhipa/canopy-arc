@@ -81,6 +81,26 @@
     0 4px 14px -8px rgba(34, 211, 238, 0.3);
   --btn-header-primary-shadow-hover: 0 14px 42px -10px rgba(59, 130, 246, 0.62),
     0 6px 18px -8px rgba(139, 92, 246, 0.35);
+
+  --service-card-bg: rgba(248, 250, 252, 0.03);
+  --service-card-hover-bg: #1a2844;
+  --service-card-hover-border: rgba(96, 165, 250, 0.22);
+  --service-card-arrow-bg: rgba(248, 250, 252, 0.05);
+  --service-card-arrow-hover-bg: rgba(37, 99, 235, 0.22);
+  --service-card-arrow-hover-border: rgba(96, 165, 250, 0.5);
+  --service-card-hover-meta-border: rgba(148, 163, 184, 0.18);
+
+  --service-filter-bg: rgba(248, 250, 252, 0.04);
+  --service-filter-border: rgba(148, 163, 184, 0.22);
+  --service-filter-fg: rgba(203, 213, 225, 0.88);
+  --service-filter-hover-bg: rgba(248, 250, 252, 0.08);
+  --service-filter-hover-border: rgba(148, 163, 184, 0.32);
+  --service-filter-hover-fg: #f8fafc;
+  --service-filter-active-bg: rgba(37, 99, 235, 0.22);
+  --service-filter-active-border: rgba(96, 165, 250, 0.52);
+  --service-filter-active-fg: #f8fafc;
+  --service-filter-active-shadow: 0 0 0 1px rgba(96, 165, 250, 0.12),
+    0 8px 22px -14px rgba(37, 99, 235, 0.45);
 }
 
 [data-theme="light"] {
@@ -153,6 +173,26 @@
     0 4px 12px -8px rgba(6, 182, 212, 0.28);
   --btn-header-primary-shadow-hover: 0 14px 38px -10px rgba(37, 99, 235, 0.5),
     0 6px 16px -8px rgba(124, 58, 237, 0.3);
+
+  --service-card-bg: #ffffff;
+  --service-card-hover-bg: #f2f6fb;
+  --service-card-hover-border: rgba(37, 99, 235, 0.16);
+  --service-card-arrow-bg: #f8fbff;
+  --service-card-arrow-hover-bg: #ffffff;
+  --service-card-arrow-hover-border: rgba(37, 99, 235, 0.38);
+  --service-card-hover-meta-border: rgba(11, 18, 32, 0.1);
+
+  --service-filter-bg: #ffffff;
+  --service-filter-border: rgba(11, 18, 32, 0.12);
+  --service-filter-fg: #4b5b7a;
+  --service-filter-hover-bg: #f8fbff;
+  --service-filter-hover-border: rgba(11, 18, 32, 0.18);
+  --service-filter-hover-fg: #0b1220;
+  --service-filter-active-bg: #e8f0fe;
+  --service-filter-active-border: rgba(37, 99, 235, 0.42);
+  --service-filter-active-fg: #1d4ed8;
+  --service-filter-active-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1),
+    0 8px 20px -14px rgba(37, 99, 235, 0.28);
 }
 
 @theme inline {
@@ -519,6 +559,60 @@ html.lenis body {
     forwards;
 }
 
+.service-card-arrow-icon {
+  display: block;
+  flex-shrink: 0;
+  transform: rotate(0deg);
+  transform-origin: center center;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .service-card-arrow-icon {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card-arrow-icon {
+    transition: none;
+  }
+
+  .group:hover .service-card-arrow-icon {
+    transform: rotate(45deg);
+  }
+}
+
+.service-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--service-filter-border);
+  background: var(--service-filter-bg);
+  color: var(--service-filter-fg);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.service-filter-chip:hover:not([aria-pressed="true"]) {
+  background: var(--service-filter-hover-bg);
+  border-color: var(--service-filter-hover-border);
+  color: var(--service-filter-hover-fg);
+}
+
+.service-filter-chip[aria-pressed="true"] {
+  background: var(--service-filter-active-bg);
+  border-color: var(--service-filter-active-border);
+  color: var(--service-filter-active-fg);
+  box-shadow: var(--service-filter-active-shadow);
+  font-weight: 600;
+}
+
 .tilt {
   transform-style: preserve-3d;
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -638,14 +732,8 @@ html.lenis body {
   animation: live-pulse 1.9s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
-/* Hide page until loader finishes — set by inline script before paint */
-/* Hide page until client loader gate mounts — same on server and client */
-html:not([data-app-mounted]) [data-app-content] {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
+/* Hide page until loader finishes (refresh / first load) */
+html:not([data-app-mounted]) [data-app-content],
 html[data-loader="active"] [data-app-content] {
   opacity: 0;
   visibility: hidden;

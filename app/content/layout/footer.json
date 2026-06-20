@@ -68,27 +68,27 @@
       "links": [
         {
           "label": "Web Development",
-          "href": "/services#web-development"
+          "href": "/services/web-development"
         },
         {
           "label": "Mobile Apps",
-          "href": "/services#mobile-apps"
+          "href": "/services/app-development"
         },
         {
           "label": "AI & ML Solutions",
-          "href": "/services#ai-ml"
+          "href": "/services/ai-ml"
         },
         {
           "label": "Cloud & DevOps",
-          "href": "/services#cloud-devops"
+          "href": "/services/cloud-devops"
         },
         {
           "label": "UI/UX Design",
-          "href": "/services#ui-ux"
+          "href": "/services/ui-ux"
         },
         {
           "label": "QA & Automation",
-          "href": "/services#qa-testing"
+          "href": "/services/qa-testing"
         }
       ]
     },
