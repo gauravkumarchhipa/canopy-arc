@@ -16,11 +16,19 @@ export interface CaseStudy {
   duration?: string;
 }
 
+export type ServiceCategory =
+  | "Development"
+  | "Engineering"
+  | "Design"
+  | "Marketing"
+  | "Operations";
+
 export interface Service {
   id: string;
   name: string;
   tagline: string;
   icon: string;
+  category: ServiceCategory;
   description: string;
   subDomains: string[];
   caseStudies: CaseStudy[];
@@ -35,6 +43,7 @@ export const services: Service[] = [
     name: 'Web Development',
     tagline: 'Full-stack web platforms & SaaS',
     icon: 'Globe',
+    category: 'Development',
     accent: 'from-cyan-500 to-blue-600',
     description: 'Enterprise websites, SaaS dashboards, PWAs, and scalable full-stack applications built with modern frameworks.',
     subDomains: ['Next.js', 'React', 'TypeScript', 'SaaS', 'PWA', 'WordPress', 'E-Commerce Sites'],
@@ -72,6 +81,7 @@ export const services: Service[] = [
     name: 'App Development',
     tagline: 'Native & cross-platform mobile apps',
     icon: 'Smartphone',
+    category: 'Development',
     accent: 'from-violet-500 to-purple-600',
     description: 'Android, iOS, React Native, and Flutter applications with offline support and app store deployment.',
     subDomains: ['Android', 'iOS', 'React Native', 'Flutter', 'Tablet Apps', 'Offline-First', 'Push Notifications'],
@@ -102,6 +112,7 @@ export const services: Service[] = [
     name: 'AI & Machine Learning',
     tagline: 'Intelligent systems that predict & automate',
     icon: 'Brain',
+    category: 'Engineering',
     accent: 'from-emerald-500 to-teal-600',
     description: 'Predictive models, NLP, computer vision, LLM chatbots, and recommendation engines for enterprise.',
     subDomains: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'LLM/RAG', 'Chatbots', 'Predictive Analytics'],
@@ -146,6 +157,7 @@ export const services: Service[] = [
     name: 'Cybersecurity',
     tagline: 'Security built into every layer',
     icon: 'Shield',
+    category: 'Operations',
     accent: 'from-red-500 to-rose-700',
     description: 'Zero-trust architecture, penetration testing, SOC 2, GDPR compliance, and API security.',
     subDomains: ['Pen Testing', 'SOC 2', 'ISO 27001', 'GDPR', 'Zero Trust', 'WAF', 'API Security', 'SIEM'],
@@ -197,6 +209,7 @@ export const services: Service[] = [
     name: 'IoT & Embedded Systems',
     tagline: 'Connected devices & smart infrastructure',
     icon: 'Cpu',
+    category: 'Engineering',
     accent: 'from-stone-500 to-amber-700',
     description: 'Sensor networks, edge computing, predictive maintenance, fleet telematics, and smart building systems.',
     subDomains: ['Sensor Networks', 'Edge Computing', 'MQTT', 'Predictive Maintenance', 'Fleet Telematics', 'SCADA', 'Smart Buildings'],
@@ -248,6 +261,7 @@ export const services: Service[] = [
     name: 'Data Engineering & Analytics',
     tagline: 'From raw data to decisions',
     icon: 'BarChart3',
+    category: 'Engineering',
     accent: 'from-sky-500 to-indigo-600',
     description: 'ETL pipelines, data warehouses, BI dashboards, Elasticsearch, and real-time analytics.',
     subDomains: ['ETL/ELT', 'Data Warehousing', 'BI Dashboards', 'BigQuery', 'Elasticsearch', 'Real-time Analytics', 'dbt'],
@@ -285,6 +299,7 @@ export const services: Service[] = [
     name: 'Cloud & DevOps',
     tagline: 'Infrastructure that scales infinitely',
     icon: 'Cloud',
+    category: 'Operations',
     accent: 'from-blue-500 to-cyan-600',
     description: 'AWS, GCP, Azure, Kubernetes, CI/CD, Terraform, and zero-downtime cloud migrations.',
     subDomains: ['AWS', 'GCP', 'Azure', 'Kubernetes', 'CI/CD', 'Terraform', 'Docker', 'Monitoring', 'SRE'],
@@ -336,6 +351,7 @@ export const services: Service[] = [
     name: 'UI/UX Design',
     tagline: 'Interfaces people love to use',
     icon: 'Palette',
+    category: 'Design',
     accent: 'from-pink-500 to-rose-500',
     description: 'User research, design systems, Figma prototypes, accessibility, and mobile-first experience design.',
     subDomains: ['UI Design', 'UX Research', 'Design Systems', 'Figma', 'Accessibility', 'Mobile-First', 'Prototyping'],
@@ -387,6 +403,7 @@ export const services: Service[] = [
     name: 'Digital Marketing & SEO',
     tagline: 'Grow visibility & engagement',
     icon: 'TrendingUp',
+    category: 'Marketing',
     accent: 'from-amber-500 to-orange-600',
     description: 'SEO, social media marketing, content strategy, ASO, link building, and campaign analytics.',
     subDomains: ['SEO', 'Social Media Marketing', 'Content Strategy', 'ASO', 'Link Building', 'Google Ads', 'Analytics'],
@@ -431,6 +448,7 @@ export const services: Service[] = [
     name: 'E-Commerce & SaaS',
     tagline: 'Platforms that sell & scale',
     icon: 'ShoppingCart',
+    category: 'Development',
     accent: 'from-rose-500 to-red-600',
     description: 'B2B/B2C marketplaces, multi-vendor platforms, subscription SaaS, and payment integration.',
     subDomains: ['E-Commerce', 'B2B Marketplaces', 'SaaS', 'Stripe', 'Multi-Vendor', 'Subscriptions', 'Payment Gateway'],
@@ -482,6 +500,7 @@ export const services: Service[] = [
     name: 'AR/VR & 3D Development',
     tagline: 'Immersive digital experiences',
     icon: 'Glasses',
+    category: 'Design',
     accent: 'from-fuchsia-500 to-pink-600',
     description: 'Virtual reality training, augmented product viewers, Unity apps, and 3D configurators.',
     subDomains: ['Virtual Reality', 'Augmented Reality', 'Unity 3D', 'WebXR', '3D Configurators', 'Gamification', 'Immersive Training'],
@@ -533,6 +552,7 @@ export const services: Service[] = [
     name: 'Backend & API Engineering',
     tagline: 'The engine behind every product',
     icon: 'Network',
+    category: 'Engineering',
     accent: 'from-indigo-500 to-blue-600',
     description: 'REST APIs, GraphQL, microservices, event-driven systems, Firebase, and integration hubs.',
     subDomains: ['REST APIs', 'GraphQL', 'Microservices', 'Event-Driven', 'Firebase', 'WebSockets', 'Message Queues'],
@@ -584,6 +604,7 @@ export const services: Service[] = [
     name: 'QA & Test Automation',
     tagline: 'Ship with confidence',
     icon: 'TestTube',
+    category: 'Operations',
     accent: 'from-teal-500 to-cyan-600',
     description: 'E2E testing, load testing, mobile device testing, API contracts, and production monitoring.',
     subDomains: ['E2E Testing', 'Load Testing', 'Mobile Testing', 'API Contracts', 'Visual Regression', 'CI Testing', 'SRE'],
@@ -635,6 +656,7 @@ export const services: Service[] = [
     name: 'Video & Content Production',
     tagline: 'Stories that move people',
     icon: 'Video',
+    category: 'Marketing',
     accent: 'from-orange-400 to-red-500',
     description: 'YouTube editing, corporate videos, motion graphics, live streaming, and multimedia content.',
     subDomains: ['YouTube Editing', 'Video Production', 'Motion Graphics', 'Live Streaming', 'Thumbnails', 'Post-Production', 'Sound Design'],
@@ -686,6 +708,7 @@ export const services: Service[] = [
     name: 'Enterprise & Industry Solutions',
     tagline: 'Vertical expertise delivered',
     icon: 'Building2',
+    category: 'Operations',
     accent: 'from-slate-600 to-slate-800',
     description: 'GovTech, FinTech, insurance, healthcare, hospitality, automotive, and industry-specific platforms.',
     subDomains: ['GovTech', 'FinTech', 'Insurance', 'Healthcare', 'Hospitality', 'Automotive', 'Industrial', 'CRM'],

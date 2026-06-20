@@ -22,12 +22,20 @@ import {
   serviceCardPattern,
   serviceCardSubtitle,
   serviceCardTag,
+  serviceCardTechTag,
+  serviceCardTechTags,
   serviceCardTitle,
 } from "./service-card-styles";
 import ServiceIcon from "./ServiceIcon";
 
 function formatCardIndex(index: number, total: number) {
   return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+}
+
+function formatTechTags(subDomains: string[]) {
+  const visible = subDomains.slice(0, 4);
+  const remaining = subDomains.length - visible.length;
+  return remaining > 0 ? [...visible, `+${remaining} more`] : visible;
 }
 
 function ServiceArrowIcon() {
@@ -98,7 +106,7 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 overflow-visible px-1 pb-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 overflow-visible px-1 pb-2 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card) => (
           <Link key={card.id} href={`/services/${card.id}`} className={serviceCard}>
             <div className={serviceCardGradient} aria-hidden />
@@ -120,6 +128,16 @@ export default function ServicesGrid() {
             </span>
             <h3 className={serviceCardTitle}>{card.title}</h3>
             <p className={serviceCardSubtitle}>{card.subtitle}</p>
+
+            {card.subDomains.length > 0 ? (
+              <div className={serviceCardTechTags}>
+                {formatTechTags(card.subDomains).map((tag) => (
+                  <span key={tag} className={serviceCardTechTag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
 
             <div className={serviceCardMeta}>
               <span>{card.projects} Projects</span>

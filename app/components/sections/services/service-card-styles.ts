@@ -8,7 +8,7 @@ export const serviceCardGradient = impactStatCardGradient;
 export const serviceCardPattern = impactStatCardPattern;
 
 export const serviceCard =
-  `group relative z-0 flex min-h-[11rem] flex-col overflow-hidden rounded-2xl border border-line bg-[var(--service-card-bg)] p-5 no-underline ${impactCardHoverZoom} hover:border-transparent hover:shadow-[0_28px_64px_-24px_rgba(37,99,235,0.72)]`;
+  `group relative z-0 flex min-h-[13.5rem] flex-col overflow-hidden rounded-2xl border border-line bg-[var(--service-card-bg)] p-5 no-underline ${impactCardHoverZoom} hover:border-transparent hover:shadow-[0_28px_64px_-24px_rgba(37,99,235,0.72)]`;
 
 export const serviceCardHeaderAction =
   "relative z-1 flex shrink-0 items-center gap-2.5";
@@ -34,8 +34,14 @@ export const serviceCardTitle =
 export const serviceCardSubtitle =
   "relative z-1 mt-3 flex-1 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
 
+export const serviceCardTechTags =
+  "relative z-1 mt-3 flex flex-wrap gap-1.5";
+
+export const serviceCardTechTag =
+  "rounded-full border border-line bg-background/70 px-2.5 py-1 text-[0.6875rem] leading-none text-muted transition-[border-color,background-color,color] duration-[400ms] group-hover:border-white/22 group-hover:bg-white/10 group-hover:text-white/85";
+
 export const serviceCardMeta =
-  "relative z-1 mt-5 flex items-center justify-between border-t border-line pt-4 text-xs text-muted transition-[border-color,color] duration-[400ms] group-hover:border-white/20 group-hover:text-white/75";
+  "relative z-1 mt-4 flex items-center justify-between border-t border-line pt-4 text-xs text-muted transition-[border-color,color] duration-[400ms] group-hover:border-white/20 group-hover:text-white/75";
 
 export const serviceCardMetaLink =
   "font-medium text-foreground/70 transition-colors duration-[400ms] group-hover:text-white";
