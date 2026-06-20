@@ -15,6 +15,7 @@ import {
   serviceCardArrowIcon,
   serviceCardGradient,
   serviceCardHeaderAction,
+  serviceCardIconBox,
   serviceCardIndex,
   serviceCardMeta,
   serviceCardMetaLink,
@@ -23,6 +24,7 @@ import {
   serviceCardTag,
   serviceCardTitle,
 } from "./service-card-styles";
+import ServiceIcon from "./ServiceIcon";
 
 function formatCardIndex(index: number, total: number) {
   return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
@@ -113,6 +115,9 @@ export default function ServicesGrid() {
               </div>
             </div>
 
+            <span className={serviceCardIconBox} aria-hidden>
+              <ServiceIcon name={card.icon} />
+            </span>
             <h3 className={serviceCardTitle}>{card.title}</h3>
             <p className={serviceCardSubtitle}>{card.subtitle}</p>
 

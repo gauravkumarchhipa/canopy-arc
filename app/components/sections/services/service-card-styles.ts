@@ -25,8 +25,11 @@ export const serviceCardArrowIcon =
 export const serviceCardTag =
   "relative z-1 text-[0.625rem] font-semibold tracking-[0.22em] uppercase text-muted transition-colors duration-[400ms] group-hover:text-white/80";
 
+export const serviceCardIconBox =
+  "relative z-1 mt-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[0.7rem] border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent [&_svg]:block [&_svg]:h-[1.125rem] [&_svg]:w-[1.125rem] transition-[border-color,background-color,color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white";
+
 export const serviceCardTitle =
-  "relative z-1 mt-4 font-display text-[1.15rem] leading-snug font-semibold tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-white sm:text-[1.25rem]";
+  "relative z-1 mt-3 font-display text-[1.15rem] leading-snug font-semibold tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-white sm:text-[1.25rem]";
 
 export const serviceCardSubtitle =
   "relative z-1 mt-3 flex-1 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
