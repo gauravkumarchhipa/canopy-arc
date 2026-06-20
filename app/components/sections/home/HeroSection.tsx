@@ -1,6 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { siteData } from "../../../content/site-data";
+import { homeHero } from "../../../content/pages/home/hero";
 import { tw } from "../../../lib/tw";
 import HeroSectionAnimations from "./hero/HeroSectionAnimations";
 import { ORBIT_ICONS } from "./hero/orbit-icons";
@@ -9,7 +9,7 @@ import { buildOrbitNodes } from "./hero/orbit-nodes";
 const HeroEcosystem = dynamic(() => import("./HeroEcosystem"));
 
 export default function HeroSection() {
-  const hero = siteData.home.hero;
+  const hero = homeHero;
   const nodes = buildOrbitNodes(hero.orbitLabels);
 
   return (

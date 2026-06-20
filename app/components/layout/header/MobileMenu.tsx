@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
 import HeaderCtaButtons from "./HeaderCtaButtons";
-import { siteData } from "../../../content/site-data";
+import { footer } from "../../../content/layout/footer";
 import { tw } from "../../../lib/tw";
 
 type Props = {
@@ -102,10 +102,10 @@ export default function MobileMenu({ open, onClose }: Props) {
           >
             <HeaderCtaButtons stacked className="[&_a]:w-full" />
             <a
-              href={`mailto:${siteData.footer.contact.email}`}
+              href={`mailto:${footer.contact.email}`}
               className="text-center text-sm text-muted hover:text-foreground transition-colors"
             >
-              {siteData.footer.contact.email}
+              {footer.contact.email}
             </a>
           </div>
         </div>

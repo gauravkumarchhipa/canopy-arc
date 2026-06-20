@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ContactForm from "../components/sections/contact/ContactForm";
-import { siteData } from "../content/site-data";
+import { footer } from "../content/layout/footer";
 
 export const metadata: Metadata = {
   title: "Contact Us — Canopy Arc",
@@ -47,14 +47,14 @@ export default function ContactPage() {
               Contact Details
             </h2>
             <div className="mt-5 space-y-3 text-sm text-muted">
-              <p className="whitespace-pre-line">{siteData.footer.contact.address}</p>
-              <a className="block hover:text-foreground transition-colors" href={`mailto:${siteData.footer.contact.email}`}>
-                {siteData.footer.contact.email}
+              <p className="whitespace-pre-line">{footer.contact.address}</p>
+              <a className="block hover:text-foreground transition-colors" href={`mailto:${footer.contact.email}`}>
+                {footer.contact.email}
               </a>
-              <a className="block hover:text-foreground transition-colors" href={`tel:${siteData.footer.contact.phone.replace(/[^+0-9]/g, "")}`}>
-                {siteData.footer.contact.phone}
+              <a className="block hover:text-foreground transition-colors" href={`tel:${footer.contact.phone.replace(/[^+0-9]/g, "")}`}>
+                {footer.contact.phone}
               </a>
-              <p>{siteData.footer.contact.hours}</p>
+              <p>{footer.contact.hours}</p>
             </div>
           </div>
 

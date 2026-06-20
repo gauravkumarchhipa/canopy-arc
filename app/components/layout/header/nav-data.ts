@@ -1,8 +1,8 @@
-import { siteData } from "../../../content/site-data";
+import { nav } from "../../../content/shared/nav";
 
 export type NavItem = {
   label: string;
   href: string;
 };
 
-export const NAV: NavItem[] = siteData.nav.items;
+export const NAV: NavItem[] = nav.items;

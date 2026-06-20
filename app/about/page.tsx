@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Button from "../components/ui/Button";
-import { siteData } from "../content/site-data";
+import { brand } from "../content/shared/brand";
 
 export const metadata: Metadata = {
   title: "About Us — Canopy Arc",
@@ -28,7 +28,7 @@ export default function AboutPage() {
             <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">scale safely</span>.
           </h1>
           <p className="mt-5 text-muted max-w-3xl leading-relaxed">
-            {siteData.brand.name} is a global team of engineers, designers and
+            {brand.name} is a global team of engineers, designers and
             strategists. We partner with teams to deliver high-quality software
             with modern UX, strong security, and performance that holds up in
             production.

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { siteData } from "../../content/site-data";
+import { teamGrid } from "../../content/pages/team/grid";
 import Button from "../../components/ui/Button";
 
 export default async function TeamMemberPage({
@@ -9,7 +9,7 @@ export default async function TeamMemberPage({
   params: { id: string };
 }) {
   const id = params.id;
-  const member = siteData.team.members.find((m) => m.id === id);
+  const member = teamGrid.members.find((m) => m.id === id);
 
   if (!member) notFound();
 

@@ -1,8 +1,8 @@
-import { siteData } from "../content/site-data";
+import { teamHero } from "../content/pages/team/hero";
 import TeamGrid from "../components/sections/team/TeamGrid";
 
 export default function TeamPage() {
-  const t = siteData.team;
+  const t = teamHero;
   return (
     <div className="pt-24 sm:pt-28">
       <section className="relative overflow-hidden">
@@ -14,13 +14,13 @@ export default function TeamPage() {
 
         <div className="mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14">
           <p className="text-xs tracking-[0.3em] uppercase text-muted">
-            {t.hero.eyebrow}
+            {t.eyebrow}
           </p>
           <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight whitespace-pre-line">
-            {t.hero.title}
+            {t.title}
           </h1>
           <p className="mt-5 text-muted max-w-3xl leading-relaxed">
-            {t.hero.subtitle}
+            {t.subtitle}
           </p>
 
           <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
