@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Button from "../components/ui/Button";
+import Link from "next/link";
 import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
@@ -19,13 +19,16 @@ export default function CareersPage() {
           This is a placeholder page. Add your open roles and application flow
           here.
         </p>
-        <div className="mt-8 flex items-center gap-4">
-          <Button href="/contact" className="text-sm">
+        <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+          <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
             Contact Us →
-          </Button>
-          <Button href="mailto:hello@canopyarc.com" variant="ghost" className="text-sm">
+          </Link>
+          <Link
+            href="mailto:hello@canopyarc.com"
+            className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
+          >
             Email Hiring Team
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

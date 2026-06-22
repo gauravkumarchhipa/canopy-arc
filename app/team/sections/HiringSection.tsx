@@ -21,8 +21,8 @@ export default function HiringSection() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Button href="mailto:support@sahai.ai">
-              Email support@sahai.ai
+            <Button href="mailto:support@canopy-arc.ai">
+              Email support@canopy-arc.ai
             </Button>
             <Button href="/about" variant="ghost">
               Read the why

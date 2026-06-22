@@ -102,7 +102,10 @@ export default function TeamGrid() {
             Our diverse team works together to bring your ideas to life.
           </p>
         </div>
-        <Link href="/careers" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary} relative z-1 shrink-0`}>
+        <Link
+          href="/careers"
+          className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} relative z-1 shrink-0`}
+        >
           Join Our Team →
         </Link>
       </GlowHoverCard>

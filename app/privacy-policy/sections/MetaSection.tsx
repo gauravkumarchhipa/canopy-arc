@@ -15,10 +15,10 @@ export default function MetaSection() {
             Data protection officer
           </p>
           <a
-            href="mailto:support@sahai.ai"
+            href="mailto:support@canopy-arc.ai"
             className="font-display text-xl text-accent"
           >
-            support@sahai.ai
+            support@canopy-arc.ai
           </a>
         </div>
         <div>

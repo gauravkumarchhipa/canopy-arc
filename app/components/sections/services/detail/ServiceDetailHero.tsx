@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Service } from "../../../../content/pages/services/services";
 import { SERVICE_HERO_STATS } from "../../../../content/pages/services/detail-shared";
 import { tw } from "../../../../lib/tw";
+import AnimatedCounter from "../../../ui/AnimatedCounter";
 import ImpactIcon from "../../home/impact/ImpactIcon";
 import ServiceIcon from "../ServiceIcon";
 import ServiceHeroVisual from "./ServiceHeroVisual";
@@ -52,7 +53,10 @@ export default function ServiceDetailHero({ service, iconName }: Props) {
                   <ImpactIcon name={stat.icon} className="[&_svg]:h-4 [&_svg]:w-4" />
                 </span>
                 <div>
-                  <p className="text-base font-semibold text-foreground">{stat.value}</p>
+                  <AnimatedCounter
+                    value={stat.value}
+                    className="block text-base font-semibold text-foreground"
+                  />
                   <p className="text-xs text-muted">{stat.label}</p>
                 </div>
               </div>

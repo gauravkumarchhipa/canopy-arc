@@ -30,7 +30,7 @@ export default function AboutPage() {
           </p>
 
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Link href="/work" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary}`}>
+            <Link href="/work" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
               View Our Work →
             </Link>
             <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>

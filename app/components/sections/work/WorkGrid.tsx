@@ -103,7 +103,10 @@ export default function WorkGrid() {
             Let&apos;s turn your vision into a powerful digital solution.
           </p>
         </div>
-        <Link href="/contact" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary}`}>
+        <Link
+          href="/contact"
+          className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} shrink-0`}
+        >
           Let&apos;s Build Together →
         </Link>
       </div>

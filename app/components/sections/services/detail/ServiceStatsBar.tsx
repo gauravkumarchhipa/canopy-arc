@@ -1,4 +1,5 @@
 import { SERVICE_BOTTOM_STATS } from "../../../../content/pages/services/detail-shared";
+import AnimatedCounter from "../../../ui/AnimatedCounter";
 import ImpactIcon from "../../home/impact/ImpactIcon";
 
 export default function ServiceStatsBar() {
@@ -10,7 +11,10 @@ export default function ServiceStatsBar() {
             <ImpactIcon name={stat.icon} className="[&_svg]:h-5 [&_svg]:w-5" />
           </span>
           <div>
-            <p className="text-xl font-semibold text-foreground">{stat.value}</p>
+            <AnimatedCounter
+              value={stat.value}
+              className="block text-xl font-semibold text-foreground"
+            />
             <p className="text-xs text-muted">{stat.label}</p>
           </div>
         </div>
