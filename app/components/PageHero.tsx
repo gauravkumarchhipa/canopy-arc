@@ -27,7 +27,7 @@ export default function PageHero({ eyebrow, title, blurb }: Props) {
   }, []);
 
   return (
-    <section className="relative pt-24 sm:pt-32 md:pt-44 lg:pt-52 pb-12 sm:pb-20 md:pb-28 overflow-hidden">
+    <section className="relative pt-[10rem] sm:pt-36 md:pt-40 pb-14 sm:pb-20 md:pb-28 overflow-hidden">
       <div className={`absolute inset-0 opacity-30 pointer-events-none ${tw.gridBg} ${tw.maskFadeBottom}`} />
       <div
         ref={blob1}

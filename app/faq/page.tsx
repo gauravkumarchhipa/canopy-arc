@@ -3,6 +3,7 @@ import PageHero from "../components/PageHero";
 import FaqList from "../components/FaqList";
 import { SECTIONS } from "./sections/faq-data";
 import StillCuriousSection from "./sections/StillCuriousSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "FAQ — SAHAI",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="FAQ"
         title={
@@ -30,6 +31,6 @@ export default function FaqPage() {
       <FaqList sections={SECTIONS} />
 
       <StillCuriousSection />
-    </>
+    </div>
   );
 }

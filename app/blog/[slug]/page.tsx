@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { tw } from "../../lib/tw";
 
 const POSTS: Record<
   string,
@@ -34,7 +35,7 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <div className="mx-auto max-w-3xl px-6">
         <Link href="/blog" className="text-sm text-muted hover:text-foreground">
           ← Back to Blog

@@ -27,8 +27,8 @@ export const FOUNDERS: Member[] = [
     hue: "a",
     links: [
       { label: "LinkedIn", href: "https://linkedin.com" },
-      { label: "Email", href: "mailto:support@sahai.ai" },
-    ],
+      { label: "Email", href: "mailto:support@canopy-arc.ai" },
+    ],  
   },
   {
     initial: "P",
@@ -38,7 +38,7 @@ export const FOUNDERS: Member[] = [
     hue: "b",
     links: [
       { label: "LinkedIn", href: "https://linkedin.com" },
-      { label: "Email", href: "mailto:support@sahai.ai" },
+      { label: "Email", href: "mailto:support@canopy-arc.ai" },
     ],
   },
 ];

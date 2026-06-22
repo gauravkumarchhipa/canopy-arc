@@ -19,7 +19,7 @@ export default function CtaSection() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Button href="mailto:support@sahai.ai">
+            <Button href="mailto:support@canopy-arc.ai">
               Apply now
             </Button>
             <Button href="/contact" variant="ghost">

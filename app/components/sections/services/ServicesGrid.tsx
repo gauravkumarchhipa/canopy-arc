@@ -1,13 +1,15 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import {
   filterLabelToSlug,
   resolveServiceFilter,
+  serviceOrbitHref,
   SERVICE_FILTER_PARAM,
+  SERVICE_ID_PARAM,
 } from "../../../lib/service-filters";
 import {
   serviceCard,
@@ -15,17 +17,27 @@ import {
   serviceCardArrowIcon,
   serviceCardGradient,
   serviceCardHeaderAction,
+  serviceCardIconBox,
   serviceCardIndex,
   serviceCardMeta,
   serviceCardMetaLink,
   serviceCardPattern,
   serviceCardSubtitle,
   serviceCardTag,
+  serviceCardTechTag,
+  serviceCardTechTags,
   serviceCardTitle,
 } from "./service-card-styles";
+import ServiceIcon from "./ServiceIcon";
 
 function formatCardIndex(index: number, total: number) {
   return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+}
+
+function formatTechTags(subDomains: string[]) {
+  const visible = subDomains.slice(0, 4);
+  const remaining = subDomains.length - visible.length;
+  return remaining > 0 ? [...visible, `+${remaining} more`] : visible;
 }
 
 function ServiceArrowIcon() {
@@ -51,6 +63,7 @@ export default function ServicesGrid() {
   const filters = servicesGrid.filters;
 
   const filterParam = searchParams.get(SERVICE_FILTER_PARAM);
+  const serviceIdParam = searchParams.get(SERVICE_ID_PARAM);
   const totalCards = servicesGrid.cards.length;
   const cardIndexById = useMemo(() => {
     const map = new Map<string, number>();
@@ -58,15 +71,26 @@ export default function ServicesGrid() {
     return map;
   }, []);
 
-  const { active, cards } = useMemo(
-    () => resolveServiceFilter(filterParam),
-    [filterParam]
+  const { active, cards, focusServiceId } = useMemo(
+    () => resolveServiceFilter(filterParam, serviceIdParam),
+    [filterParam, serviceIdParam]
   );
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash || hash === "services-grid") return;
+
+    const legacyService = servicesGrid.cards.find((card) => card.id === hash);
+    if (legacyService) {
+      router.replace(serviceOrbitHref(legacyService.id), { scroll: false });
+    }
+  }, [router]);
 
   const setFilter = useCallback(
     (label: string) => {
       const slug = filterLabelToSlug(label);
       const params = new URLSearchParams(searchParams.toString());
+      params.delete(SERVICE_ID_PARAM);
 
       if (slug === "all") {
         params.delete(SERVICE_FILTER_PARAM);
@@ -81,7 +105,7 @@ export default function ServicesGrid() {
   );
 
   return (
-    <section className="mx-auto max-w-350 px-6 lg:px-10 pb-18 sm:pb-24">
+    <section id="services-grid" className="mx-auto max-w-350 px-6 lg:px-10 scroll-mt-32">
       <div className="flex flex-wrap items-center gap-3">
         {filters.map((f) => (
           <button
@@ -96,9 +120,13 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-10 grid gap-5 overflow-visible px-1 pb-2 sm:grid-cols-2 lg:grid-cols-3">
         {cards.map((card) => (
-          <Link key={card.id} href={`/services/${card.id}`} className={serviceCard}>
+          <Link
+            key={card.id}
+            href={`/services/${card.id}`}
+            className={`${serviceCard}${focusServiceId === card.id ? " ring-2 ring-accent/50 ring-offset-2 ring-offset-background" : ""}`}
+          >
             <div className={serviceCardGradient} aria-hidden />
             <div className={serviceCardPattern} aria-hidden />
             <div className="relative z-1 flex items-start justify-between gap-3">
@@ -113,8 +141,21 @@ export default function ServicesGrid() {
               </div>
             </div>
 
+            <span className={serviceCardIconBox} aria-hidden>
+              <ServiceIcon name={card.icon} />
+            </span>
             <h3 className={serviceCardTitle}>{card.title}</h3>
             <p className={serviceCardSubtitle}>{card.subtitle}</p>
+
+            {card.subDomains.length > 0 ? (
+              <div className={serviceCardTechTags}>
+                {formatTechTags(card.subDomains).map((tag) => (
+                  <span key={tag} className={serviceCardTechTag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
 
             <div className={serviceCardMeta}>
               <span>{card.projects} Projects</span>

@@ -1,4 +1,5 @@
-import Button from "./components/ui/Button";
+import Link from "next/link";
+import { tw } from "./lib/tw";
 
 export default function NotFound() {
   return (
@@ -14,13 +15,13 @@ export default function NotFound() {
           The page you&apos;re looking for either moved, was renamed, or never
           existed. The rest of Canopy Arc is right where you left it.
         </p>
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Button href="/">
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
+          <Link href="/" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
             Back to home
-          </Button>
-          <Button href="/contact" variant="ghost">
+          </Link>
+          <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
             Tell us what&apos;s missing
-          </Button>
+          </Link>
         </div>
       </div>
     </section>

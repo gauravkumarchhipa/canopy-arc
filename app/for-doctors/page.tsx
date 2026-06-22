@@ -5,6 +5,7 @@ import HowItWorksSection from "./sections/HowItWorksSection";
 import SpecialtiesSection from "./sections/SpecialtiesSection";
 import SocialProofSection from "./sections/SocialProofSection";
 import CtaSection from "./sections/CtaSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "For doctors — SAHAI",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ForDoctorsPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="For doctors"
         title={
@@ -33,6 +34,6 @@ export default function ForDoctorsPage() {
       <SpecialtiesSection />
       <SocialProofSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

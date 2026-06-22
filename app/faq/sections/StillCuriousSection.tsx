@@ -1,4 +1,5 @@
-import Button from "../../components/ui/Button";
+import Link from "next/link";
+import { tw } from "../../lib/tw";
 
 export default function StillCuriousSection() {
   return (
@@ -10,13 +11,16 @@ export default function StillCuriousSection() {
               Still curious? Just ask.
             </h3>
           </div>
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <Button href="/contact">
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
               Send us a note
-            </Button>
-            <Button href="mailto:support@sahai.ai" variant="ghost">
-              support@sahai.ai
-            </Button>
+            </Link>
+            <Link
+              href="mailto:support@canopy-arc.ai"
+              className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
+            >
+              support@canopy-arc.ai
+            </Link>
           </div>
         </div>
       </div>

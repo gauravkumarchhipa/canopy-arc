@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { teamGrid } from "../../content/pages/team/grid";
 import Button from "../../components/ui/Button";
+import { tw } from "../../lib/tw";
 
 export default async function TeamMemberPage({
   params
@@ -17,7 +18,7 @@ export default async function TeamMemberPage({
 
   if (!details) {
     return (
-      <div className="pt-24 sm:pt-28 mx-auto max-w-350 px-6 lg:px-10 pb-18 sm:pb-24">
+      <div className={`${tw.pageShell} mx-auto max-w-350 px-6 lg:px-10`}>
         <Link href="/team" className="text-sm text-muted hover:text-foreground">
           ← Back to Team
         </Link>
@@ -33,7 +34,7 @@ export default async function TeamMemberPage({
   }
 
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <Link href="/team" className="text-sm text-muted hover:text-foreground">
           ← Back to Team

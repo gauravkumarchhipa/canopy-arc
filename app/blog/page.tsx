@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Blog — Canopy Arc",
@@ -29,7 +30,7 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <section className="mx-auto max-w-350 px-6 lg:px-10">
         <p className="text-xs tracking-[0.3em] uppercase text-muted">Blog</p>
         <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">

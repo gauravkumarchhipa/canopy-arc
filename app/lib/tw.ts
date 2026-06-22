@@ -10,6 +10,9 @@ export const tw = {
     "inline-flex items-center justify-center gap-1.5 rounded-full px-[1.35rem] py-2.5 text-sm font-medium tracking-tight no-underline whitespace-nowrap transition-[transform,box-shadow,border-color,background,color] duration-300",
   headerBtnPrimary:
     "border border-transparent bg-[image:var(--grad)] text-white shadow-[var(--btn-header-primary-shadow)] hover:-translate-y-px hover:shadow-[var(--btn-header-primary-shadow-hover)]",
+  /** Gradient CTA with dark text on light theme (hero/about body CTAs). */
+  pageBtnPrimary:
+    "border border-transparent bg-[image:var(--grad)] text-[#0b1220] shadow-[var(--btn-header-primary-shadow)] hover:-translate-y-px hover:shadow-[var(--btn-header-primary-shadow-hover)] [html[data-theme=dark]_&]:text-white",
   headerBtnGhost:
     "border border-[var(--btn-header-ghost-border)] bg-[var(--btn-header-ghost-bg)] text-[var(--btn-header-ghost-fg)] hover:border-[var(--btn-header-ghost-border-hover)] hover:bg-[var(--btn-header-ghost-bg-hover)] hover:text-[var(--btn-header-ghost-fg-hover)] [html[data-theme=light]_&]:border-[rgba(11,18,32,0.28)] [html[data-theme=light]_&]:bg-white [html[data-theme=light]_&]:text-[#0b1220] [html[data-theme=light]_&]:shadow-[0_1px_2px_rgba(11,18,32,0.06)] [html[data-theme=light]_&]:hover:border-[rgba(11,18,32,0.42)] [html[data-theme=light]_&]:hover:bg-[#f8fbff]",
   headerIconBtn:
@@ -20,6 +23,11 @@ export const tw = {
     "bg-[radial-gradient(closest-side,rgba(242,153,74,0.55),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(255,176,104,0.5),transparent_70%)]",
   brandOrbTrust:
     "bg-[radial-gradient(closest-side,rgba(43,179,163,0.45),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(78,209,193,0.4),transparent_70%)]",
+  /** Clears fixed header (tall mobile logo + tagline + py-5). */
+  pageShell:
+    "pt-[10rem] sm:pt-36 md:pt-40 pb-20 sm:pb-24 [scroll-margin-top:10rem] md:[scroll-margin-top:9rem]",
+  pageIntro: "mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14",
+  pageShellBottom: "pb-20 sm:pb-24",
 } as const;
 
 export function headerShellClass({

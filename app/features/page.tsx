@@ -3,6 +3,7 @@ import PageHero from "../components/PageHero";
 import FeatureGridSection from "./sections/FeatureGridSection";
 import DeliberateNoSection from "./sections/DeliberateNoSection";
 import CtaSection from "./sections/CtaSection";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Features — SAHAI",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function FeaturesPage() {
   return (
-    <>
+    <div className={tw.pageShellBottom}>
       <PageHero
         eyebrow="Features"
         title={
@@ -29,6 +30,6 @@ export default function FeaturesPage() {
       <FeatureGridSection />
       <DeliberateNoSection />
       <CtaSection />
-    </>
+    </div>
   );
 }

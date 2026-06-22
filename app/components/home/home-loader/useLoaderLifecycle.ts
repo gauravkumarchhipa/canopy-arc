@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 
 export type LoaderStage = "in" | "out" | "gone";
 
-const LOADER_DURATION_MS = 2800;
+const LOADER_DURATION_MS = 800;
 const LOADER_FADE_MS = 700;
 
 type Options = {
@@ -37,7 +37,6 @@ export function useLoaderLifecycle({ autoFinish }: Options) {
     let raf = 0;
     let finishTimeout = 0;
     let fadeTimeout = 0;
-    let safetyTimeout = 0;
 
     const tick = () => {
       const elapsed = performance.now() - start;
@@ -53,32 +52,20 @@ export function useLoaderLifecycle({ autoFinish }: Options) {
       if (pct < 100) raf = requestAnimationFrame(tick);
     };
 
-    const complete = () => {
-      if (!autoFinish) return;
-      const elapsed = performance.now() - start;
-      const wait = Math.max(0, LOADER_DURATION_MS - elapsed);
+    raf = requestAnimationFrame(tick);
 
+    if (autoFinish) {
       finishTimeout = window.setTimeout(() => {
         setProgress(100);
         setStage("out");
         fadeTimeout = window.setTimeout(() => setStage("gone"), LOADER_FADE_MS);
-      }, wait);
-    };
-
-    raf = requestAnimationFrame(tick);
-
-    if (document.readyState === "complete") complete();
-    else {
-      window.addEventListener("load", complete, { once: true });
-      safetyTimeout = window.setTimeout(complete, LOADER_DURATION_MS + 1200);
+      }, LOADER_DURATION_MS);
     }
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("load", complete);
       window.clearTimeout(finishTimeout);
       window.clearTimeout(fadeTimeout);
-      window.clearTimeout(safetyTimeout);
     };
   }, [autoFinish, mounted, stage]);
 

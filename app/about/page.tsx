@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Button from "../components/ui/Button";
+import Link from "next/link";
 import { brand } from "../content/shared/brand";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "About Us — Canopy Arc",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-350 px-6 lg:px-10">
           <p className="text-xs tracking-[0.3em] uppercase text-muted">
@@ -28,13 +29,13 @@ export default function AboutPage() {
             production.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Button href="/work" className="text-sm">
+          <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+            <Link href="/work" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
               View Our Work →
-            </Button>
-            <Button href="/contact" variant="ghost" className="text-sm">
+            </Link>
+            <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
               Let&apos;s Talk
-            </Button>
+            </Link>
           </div>
         </div>
       </section>

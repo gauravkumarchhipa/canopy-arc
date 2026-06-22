@@ -347,8 +347,8 @@ export const SECTIONS: TermsSection[] = [
     title: "Contact",
     body: [
       "For support or legal questions:",
-      "Email: support@sahai.ai",
-      "Website: www.sahai.ai",
+      "Email: support@canopy-arc.ai",
+      "Website: www.canopy-arc.ai",
     ],
   },
 ];

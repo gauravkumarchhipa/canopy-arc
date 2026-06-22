@@ -15,10 +15,10 @@ export default function MetaSection() {
             Support &amp; legal contact
           </p>
           <a
-            href="mailto:support@sahai.ai  "
+            href="mailto:support@canopy-arc.ai  "
             className="font-display text-xl text-accent"
           >
-            support@sahai.ai
+            support@canopy-arc.ai
           </a>
         </div>
         <div>

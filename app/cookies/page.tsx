@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Cookie Policy — Canopy Arc",
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <div className="pt-24 sm:pt-28 pb-18 sm:pb-24">
+    <div className={tw.pageShell}>
       <div className="mx-auto max-w-3xl px-6">
         <p className="text-xs tracking-[0.3em] uppercase text-muted">
           Cookie Policy

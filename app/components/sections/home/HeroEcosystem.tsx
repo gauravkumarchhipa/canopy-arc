@@ -8,6 +8,7 @@ import { useTheme } from "../../layout/ThemeProvider";
 import { roundSvgCoord, SPHERE_MESH } from "./hero-sphere-mesh";
 import "./hero-ecosystem.css";
 
+import { serviceOrbitHref } from "../../../lib/service-filters";
 import type { EcosystemNode } from "./hero/ecosystem-types";
 
 type Props = {
@@ -15,15 +16,15 @@ type Props = {
   icons: Record<string, ReactNode>;
 };
 
-const ORBIT_HREFS: Record<string, string> = {
-  web: "/services#web-development",
-  mobile: "/services#app-development",
-  ai: "/services#ai-ml",
-  cloud: "/services#cloud-devops",
-  data: "/services#data-engineering",
-  ux: "/services#ui-ux",
-  ecom: "/services#ecommerce",
-  cyber: "/services#cybersecurity",
+const ORBIT_SERVICE_IDS: Record<string, string> = {
+  web: "web-development",
+  mobile: "app-development",
+  ai: "ai-ml",
+  cloud: "cloud-devops",
+  data: "data-engineering",
+  ux: "ui-ux-design",
+  ecom: "ecommerce-saas",
+  cyber: "cybersecurity",
 };
 
 const VB = 400;
@@ -311,7 +312,11 @@ export default function HeroEcosystem({ nodes, icons }: Props) {
           >
             <div data-node-float className="hero-orbit-float">
               <Link
-                href={ORBIT_HREFS[n.id] ?? "/services"}
+                href={
+                  ORBIT_SERVICE_IDS[n.id]
+                    ? serviceOrbitHref(ORBIT_SERVICE_IDS[n.id])
+                    : "/services"
+                }
                 className="hero-orbit-node"
                 onFocus={() => setActiveId(n.id)}
                 onBlur={() => setActiveId(null)}
