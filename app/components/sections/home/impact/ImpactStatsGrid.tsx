@@ -6,6 +6,7 @@ import {
   impactStatValue,
 } from "./impact-styles";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
+import AnimatedCounter from "../../../ui/AnimatedCounter";
 import ImpactIcon from "./ImpactIcon";
 
 type Stat = {
@@ -32,7 +33,7 @@ export default function ImpactStatsGrid({ stats }: ImpactStatsGridProps) {
             <span className={impactStatIconBox}>
               <ImpactIcon name={stat.icon} />
             </span>
-            <p className={impactStatValue}>{stat.value}</p>
+            <AnimatedCounter value={stat.value} className={impactStatValue} />
           </div>
           <h3 className={impactStatLabel}>{stat.label}</h3>
           <span className={impactStatAccentLine} aria-hidden />

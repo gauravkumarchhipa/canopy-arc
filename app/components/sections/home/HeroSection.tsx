@@ -16,7 +16,7 @@ export default function HeroSection() {
   return (
     <HeroSectionAnimations>
       <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-18 lg:pt-36">
-        <PageAmbientGlow />
+        <PageAmbientGlow variant="gradient" />
         <div className="relative mx-auto max-w-350 px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-6">

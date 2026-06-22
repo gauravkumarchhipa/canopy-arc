@@ -1,4 +1,5 @@
 import { impactCardPattern, impactFeaturedCard, impactFeaturedIcon } from "./impact-styles";
+import AnimatedCounter from "../../../ui/AnimatedCounter";
 import ImpactIcon from "./ImpactIcon";
 
 type ImpactFeaturedCardProps = {
@@ -23,9 +24,10 @@ export default function ImpactFeaturedCard({
       <div className={impactFeaturedIcon}>
         <ImpactIcon name={icon} />
       </div>
-      <p className="relative z-1 mt-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-none font-semibold tracking-tight">
-        {value}
-      </p>
+      <AnimatedCounter
+        value={value}
+        className="relative z-1 mt-5 block text-[clamp(2.5rem,5vw,3.5rem)] leading-none font-semibold tracking-tight"
+      />
       <h3 className="relative z-1 mt-2.5 text-lg leading-tight font-semibold">{label}</h3>
       <span
         className="relative z-1 mt-4 mb-3 block h-0.5 w-10 rounded-full bg-white/55 transition-[width] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-14"
