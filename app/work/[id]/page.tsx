@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { workGrid } from "../../content/pages/work/grid";
-import Button from "../../components/ui/Button";
 import { tw } from "../../lib/tw";
 
 export default async function WorkDetailPage({
@@ -33,13 +32,13 @@ export default async function WorkDetailPage({
                 {project.subtitle}
               </p>
 
-              <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <Button href="/contact" className="text-sm">
+              <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+                <Link href="/contact" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary}`}>
                   Start a Project →
-                </Button>
-                <Button href="/services" variant="ghost" className="text-sm">
+                </Link>
+                <Link href="/services" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
                   Explore Services
-                </Button>
+                </Link>
               </div>
 
               <div className="mt-9 flex flex-wrap gap-2">
@@ -103,9 +102,12 @@ export default async function WorkDetailPage({
               </div>
             </div>
             <div className="mt-8">
-              <Button href="/contact" className="w-full justify-center text-sm">
+              <Link
+                href="/contact"
+                className={`${tw.headerBtnBase} ${tw.pageBtnPrimary} w-full justify-center`}
+              >
                 Contact Us →
-              </Button>
+              </Link>
             </div>
           </aside>
         </div>

@@ -798,3 +798,93 @@ html[data-loader="active"] body {
 [data-app-content] {
   transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
 }
+
+/* ──────────────────────────────────────────────────────────
+ * Page ambient glow — contact + home hero backgrounds
+ * ────────────────────────────────────────────────────────── */
+.page-ambient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(88px);
+}
+
+.page-ambient-orb-top {
+  top: -8rem;
+  right: -6rem;
+  width: min(42rem, 88vw);
+  height: min(42rem, 88vw);
+  background: radial-gradient(
+    circle at center,
+    rgba(37, 99, 235, 0.22) 0%,
+    rgba(6, 182, 212, 0.12) 38%,
+    rgba(124, 58, 237, 0.08) 62%,
+    transparent 72%
+  );
+  opacity: 0.95;
+}
+
+.page-ambient-orb-mid {
+  top: 34%;
+  left: -7rem;
+  width: min(30rem, 72vw);
+  height: min(30rem, 72vw);
+  background: radial-gradient(
+    circle at center,
+    rgba(6, 182, 212, 0.14) 0%,
+    rgba(37, 99, 235, 0.08) 45%,
+    transparent 70%
+  );
+  opacity: 0.75;
+}
+
+.page-ambient-orb-bottom {
+  bottom: -7rem;
+  right: 12%;
+  width: min(26rem, 62vw);
+  height: min(26rem, 62vw);
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 58, 237, 0.12) 0%,
+    rgba(37, 99, 235, 0.08) 42%,
+    transparent 70%
+  );
+  opacity: 0.65;
+}
+
+[data-theme="dark"] .page-ambient-orb-top {
+  background: radial-gradient(
+    circle at center,
+    rgba(59, 130, 246, 0.42) 0%,
+    rgba(34, 211, 238, 0.22) 40%,
+    rgba(139, 92, 246, 0.14) 62%,
+    transparent 72%
+  );
+  opacity: 0.85;
+}
+
+[data-theme="dark"] .page-ambient-orb-mid {
+  background: radial-gradient(
+    circle at center,
+    rgba(34, 211, 238, 0.24) 0%,
+    rgba(59, 130, 246, 0.14) 45%,
+    transparent 70%
+  );
+  opacity: 0.7;
+}
+
+[data-theme="dark"] .page-ambient-orb-bottom {
+  background: radial-gradient(
+    circle at center,
+    rgba(139, 92, 246, 0.2) 0%,
+    rgba(59, 130, 246, 0.12) 42%,
+    transparent 70%
+  );
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .page-ambient-orb-top {
+    top: -10rem;
+    right: -8rem;
+  }
+}

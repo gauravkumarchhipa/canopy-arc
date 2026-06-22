@@ -1,5 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import PageAmbientGlow from "../../layout/PageAmbientGlow";
 import { homeHero } from "../../../content/pages/home/hero";
 import { tw } from "../../../lib/tw";
 import HeroSectionAnimations from "./hero/HeroSectionAnimations";
@@ -14,8 +15,9 @@ export default function HeroSection() {
 
   return (
     <HeroSectionAnimations>
-      <section className="relative pt-28 sm:pt-32 lg:pt-36 pb-14 sm:pb-18 overflow-hidden">
-        <div className="mx-auto max-w-350 px-6 lg:px-10">
+      <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-18 lg:pt-36">
+        <PageAmbientGlow />
+        <div className="relative mx-auto max-w-350 px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-6">
               <div

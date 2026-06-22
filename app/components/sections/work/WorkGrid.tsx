@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { workGrid } from "../../../content/pages/work/grid";
+import { tw } from "../../../lib/tw";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
@@ -102,9 +103,9 @@ export default function WorkGrid() {
             Let&apos;s turn your vision into a powerful digital solution.
           </p>
         </div>
-        <a href="/contact" className="btn-primary text-sm px-5 py-2.5">
+        <Link href="/contact" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary}`}>
           Let&apos;s Build Together →
-        </a>
+        </Link>
       </div>
     </section>
   );
