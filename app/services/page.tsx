@@ -8,7 +8,7 @@ export default function ServicesPage() {
   const s = servicesHero;
   return (
     <div className={tw.pageShell}>
-      <PageIntro eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle} />
+      <PageIntro eyebrow={s.eyebrow} title={s.title} subtitle={s.subtitle} eyebrowPill />
       <Suspense fallback={null}>
         <ServicesGrid />
       </Suspense>

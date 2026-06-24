@@ -1,6 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import PageAmbientGlow from "../../layout/PageAmbientGlow";
+import EyebrowPill from "../../ui/EyebrowPill";
 import { homeHero } from "../../../content/pages/home/hero";
 import { tw } from "../../../lib/tw";
 import HeroSectionAnimations from "./hero/HeroSectionAnimations";
@@ -16,25 +16,11 @@ export default function HeroSection() {
   return (
     <HeroSectionAnimations>
       <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-18 lg:pt-36">
-        <PageAmbientGlow variant="gradient" />
         <div className="relative mx-auto max-w-350 px-6 lg:px-10">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             <div className="lg:col-span-6">
-              <div
-                data-hero-fade
-                className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-4 py-2 text-xs text-muted"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="h-3.5 w-3.5 text-accent shrink-0"
-                >
-                  <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.05-2.91a2.18 2.18 0 0 0-2.91-.05z" />
-                  <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
-                </svg>
-                <span className="tracking-[0.08em] uppercase">{hero.eyebrow}</span>
+              <div data-hero-fade>
+                <EyebrowPill>{hero.eyebrow}</EyebrowPill>
               </div>
 
               <h1
