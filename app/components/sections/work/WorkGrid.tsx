@@ -3,6 +3,11 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { workGrid } from "../../../content/pages/work/grid";
+import {
+  teamBannerText,
+  teamBannerTitle,
+} from "../team/team-card-styles";
+import GlowHoverCard from "../../ui/GlowHoverCard";
 import { tw } from "../../../lib/tw";
 
 function chipClass(active: boolean) {
@@ -94,22 +99,20 @@ export default function WorkGrid() {
         ))}
       </div>
 
-      <div className="mt-12 rounded-3xl border border-line bg-surface px-6 py-5 flex items-center justify-between gap-6">
+      <GlowHoverCard className="mt-12 flex flex-col items-start justify-between gap-6 rounded-2xl px-6 py-5 sm:flex-row sm:items-center">
         <div>
-          <p className="text-sm text-muted">
-            <span className="text-foreground/90 font-medium">
-              Have an idea in mind?
-            </span>{" "}
+          <p className={teamBannerTitle}>Have an idea in mind?</p>
+          <p className={teamBannerText}>
             Let&apos;s turn your vision into a powerful digital solution.
           </p>
         </div>
         <Link
           href="/contact"
-          className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} shrink-0`}
+          className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} relative z-1 shrink-0`}
         >
           Let&apos;s Build Together →
         </Link>
-      </div>
+      </GlowHoverCard>
     </section>
   );
 }

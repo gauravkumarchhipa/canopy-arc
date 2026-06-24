@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import EyebrowPill from "../components/ui/EyebrowPill";
 import { brand } from "../content/shared/brand";
 import { tw } from "../lib/tw";
 
@@ -14,10 +15,8 @@ export default function AboutPage() {
     <div className={tw.pageShell}>
       <section className="relative overflow-hidden">
         <div className="mx-auto max-w-350 px-6 lg:px-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-muted">
-            About Us
-          </p>
-          <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
+          <EyebrowPill>About Us</EyebrowPill>
+          <h1 className="mt-7 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
             We build products that{" "}
             <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">ship fast</span> and{" "}
             <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">scale safely</span>.
