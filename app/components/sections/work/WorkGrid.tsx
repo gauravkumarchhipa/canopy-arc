@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { workGrid } from "../../../content/pages/work/grid";
@@ -13,20 +14,27 @@ import {
   workCardBodyGlow,
   workCardBodyGradient,
   workCardBodyPattern,
-  workCardCategory,
+  workCardDescription,
+  workCardExternalBtn,
+  workCardHighlight,
+  workCardIconBox,
   workCardImage,
-  workCardLink,
+  workCardImageGrid,
+  workCardImageIcon,
+  workCardImageWash,
+  workCardLiveLink,
+  workCardMeta,
   workCardShell,
-  workCardSubtitle,
-  workCardTag,
   workCardTitle,
 } from "./work-card-styles";
+import { ExternalLinkIcon } from "./work-product-icons";
+import WorkProductIcon from "./WorkProductIcon";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
     active
-      ? "border-foreground/20 bg-surface text-foreground"
-      : "border-line bg-background text-muted hover:text-foreground hover:bg-surface"
+      ? "border-accent/35 bg-accent/10 text-accent shadow-[0_0_0_1px_rgba(37,99,235,0.12)]"
+      : "border-line bg-background text-muted hover:bg-surface hover:text-foreground"
   }`;
 }
 
@@ -55,37 +63,64 @@ export default function WorkGrid() {
       </div>
 
       <div className="mt-10 grid gap-6 overflow-visible p-1 lg:grid-cols-2">
-        {items.map((p) => (
-          <Link key={p.id} href={p.href} className={workCardShell}>
+        {items.map((project) => (
+          <a
+            key={project.id}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={workCardShell}
+          >
             <div className={workCardImage}>
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px] opacity-25" />
-              <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.35),transparent_65%)] opacity-60 blur-[60px]" />
-              <div className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.22),transparent_65%)] opacity-45 blur-[70px]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="grid h-20 w-20 place-items-center rounded-3xl border border-line bg-background">
-                  <span className="text-sm text-muted">{p.category}</span>
-                </div>
-              </div>
+              {project.image ? (
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              ) : (
+                <>
+                  <div className={workCardImageWash} aria-hidden />
+                  <div className={workCardImageGrid} aria-hidden />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className={workCardImageIcon}>
+                      <WorkProductIcon name={project.icon} />
+                    </span>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className={workCardBodyGlow}>
               <div className={workCardBodyGradient} aria-hidden />
               <div className={workCardBodyPattern} aria-hidden />
-              <div className="flex items-center justify-between gap-4">
-                <p className={workCardCategory}>{p.category}</p>
-                <span className={workCardLink}>View Case Study →</span>
-              </div>
-              <h3 className={workCardTitle}>{p.title}</h3>
-              <p className={workCardSubtitle}>{p.subtitle}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span key={t} className={workCardTag}>
-                    {t}
+              <div className="flex items-start justify-between gap-3">
+                <span className={workCardIconBox}>
+                  <WorkProductIcon name={project.icon} />
+                </span>
+                <div className="flex items-center gap-2">
+                  {project.highlight ? (
+                    <span className={workCardHighlight}>{project.highlight}</span>
+                  ) : null}
+                  <span className={workCardExternalBtn} aria-hidden>
+                    <ExternalLinkIcon />
                   </span>
-                ))}
+                </div>
               </div>
+
+              <p className={workCardMeta}>
+                {project.category} • {project.year}
+              </p>
+              <h3 className={workCardTitle}>{project.name}</h3>
+              <p className={workCardDescription}>{project.description}</p>
+              <span className={workCardLiveLink}>
+                Open Live Project
+                <ExternalLinkIcon className="h-3.5 w-3.5" />
+              </span>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
 

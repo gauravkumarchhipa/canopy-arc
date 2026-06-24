@@ -133,20 +133,12 @@
           "href": "/blog"
         },
         {
-          "label": "Documentation",
-          "href": "/docs"
-        },
-        {
-          "label": "Partners",
-          "href": "/partners"
-        },
-        {
           "label": "FAQs",
           "href": "/faq"
         },
         {
           "label": "Support Center",
-          "href": "/support"
+          "href": "/contact"
         }
       ]
     }

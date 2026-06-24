@@ -1,7 +1,12 @@
 import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
+import GlowHoverCard from "../../ui/GlowHoverCard";
 import { brand } from "../../../content/shared/brand";
 import { footer } from "../../../content/layout/footer";
+import {
+  footerSocialGlow,
+  footerSocialIcon,
+} from "./footer-card-styles";
 import {
   IconClock,
   IconLocation,
@@ -19,16 +24,19 @@ const contactTextClass = "min-w-0 text-sm text-muted";
 
 function FooterSocialLinks({ social }: { social: SocialLink[] }) {
   return (
-    <div className="grid w-full max-w-80 grid-cols-5 gap-2 lg:flex lg:max-w-none lg:flex-wrap lg:items-center lg:gap-2.5">
+    <div className="flex flex-nowrap items-center justify-center gap-2 overflow-visible p-0.5 lg:justify-start lg:gap-2.5">
       {social.map((s) => (
-        <a
+        <GlowHoverCard
           key={s.label}
+          as="a"
           href={s.href}
           aria-label={s.label}
-          className="inline-flex aspect-square h-auto w-full max-w-none items-center justify-center rounded-[0.7rem] border border-line-strong bg-surface text-foreground transition-[color,border-color,background,transform] duration-200 hover:-translate-y-px hover:border-accent/40 hover:bg-accent/8 hover:text-accent lg:aspect-auto lg:h-[2.65rem] lg:w-[2.65rem] lg:rounded-xl"
+          className={footerSocialGlow}
         >
-          <SocialIcon id={s.id} label={s.label} />
-        </a>
+          <span className={footerSocialIcon}>
+            <SocialIcon id={s.id} label={s.label} />
+          </span>
+        </GlowHoverCard>
       ))}
     </div>
   );
