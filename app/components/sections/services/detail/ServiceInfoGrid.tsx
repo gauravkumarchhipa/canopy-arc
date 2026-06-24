@@ -1,7 +1,21 @@
 import type { CaseStudy, Service } from "../../../../content/pages/services/services";
 import { SERVICE_PROCESS_STEPS, SERVICE_WHY_CHOOSE } from "../../../../content/pages/services/detail-shared";
+import GlowHoverCard from "../../../ui/GlowHoverCard";
 import CheckIcon from "./CheckIcon";
-import { detailCheckIcon, detailCheckItem, detailPanel, detailSectionTitle } from "./service-detail-styles";
+import {
+  detailCheckIconHover,
+  detailCheckItemHover,
+  detailPanelGlow,
+  detailProcessStepBadge,
+  detailProcessStepDesc,
+  detailProcessStepTitle,
+  detailSectionTitleHover,
+  detailTestimonialAvatar,
+  detailTestimonialBox,
+  detailTestimonialMeta,
+  detailTestimonialName,
+  detailTestimonialQuote,
+} from "./service-detail-styles";
 
 type Props = {
   service: Service;
@@ -11,44 +25,42 @@ type Props = {
 
 export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy }: Props) {
   return (
-    <section className="mt-8 grid gap-5 lg:grid-cols-3">
-      <div className={detailPanel}>
-        <h2 className={detailSectionTitle}>What We Build</h2>
+    <section className="mt-8 grid gap-5 overflow-visible p-1 lg:grid-cols-3">
+      <GlowHoverCard className={detailPanelGlow}>
+        <h2 className={detailSectionTitleHover}>What We Build</h2>
         <ul className="mt-5 space-y-3">
           {whatWeBuild.map((item) => (
-            <li key={item} className={detailCheckItem}>
-              <span className={detailCheckIcon}>
+            <li key={item} className={detailCheckItemHover}>
+              <span className={detailCheckIconHover}>
                 <CheckIcon />
               </span>
               <span>{item}</span>
             </li>
           ))}
         </ul>
-      </div>
+      </GlowHoverCard>
 
-      <div className={detailPanel}>
-        <h2 className={detailSectionTitle}>Our Development Process</h2>
+      <GlowHoverCard className={detailPanelGlow}>
+        <h2 className={detailSectionTitleHover}>Our Development Process</h2>
         <ol className="mt-5 space-y-4">
           {SERVICE_PROCESS_STEPS.map((step) => (
             <li key={step.step} className="flex gap-3">
-              <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[image:var(--grad)] text-xs font-semibold text-white">
-                {step.step}
-              </span>
+              <span className={detailProcessStepBadge}>{step.step}</span>
               <div>
-                <p className="text-sm font-semibold text-foreground">{step.title}</p>
-                <p className="mt-1 text-xs leading-relaxed text-muted">{step.description}</p>
+                <p className={detailProcessStepTitle}>{step.title}</p>
+                <p className={detailProcessStepDesc}>{step.description}</p>
               </div>
             </li>
           ))}
         </ol>
-      </div>
+      </GlowHoverCard>
 
-      <div className={detailPanel}>
-        <h2 className={detailSectionTitle}>Why Choose Canopy Arc?</h2>
+      <GlowHoverCard className={detailPanelGlow}>
+        <h2 className={detailSectionTitleHover}>Why Choose Canopy Arc?</h2>
         <ul className="mt-5 space-y-3">
           {SERVICE_WHY_CHOOSE.map((item) => (
-            <li key={item} className={detailCheckItem}>
-              <span className={detailCheckIcon}>
+            <li key={item} className={detailCheckItemHover}>
+              <span className={detailCheckIconHover}>
                 <CheckIcon />
               </span>
               <span>{item}</span>
@@ -57,24 +69,24 @@ export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy
         </ul>
 
         {testimonialStudy ? (
-          <blockquote className="mt-6 rounded-2xl border border-line bg-background/60 p-5">
-            <p className="text-sm italic leading-relaxed text-muted">
+          <blockquote className={detailTestimonialBox}>
+            <p className={detailTestimonialQuote}>
               &ldquo;{testimonialStudy.outcome}&rdquo;
             </p>
-            <footer className="mt-4 flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[image:var(--grad-soft)] text-sm font-semibold text-accent">
+            <footer className="relative z-1 mt-4 flex items-center gap-3">
+              <span className={detailTestimonialAvatar}>
                 {(testimonialStudy.client ?? "CA").slice(0, 2).toUpperCase()}
               </span>
               <div>
-                <p className="text-sm font-semibold text-foreground">
+                <p className={detailTestimonialName}>
                   {testimonialStudy.client ?? "Client Partner"}
                 </p>
-                <p className="text-xs text-muted">{service.name} Project</p>
+                <p className={detailTestimonialMeta}>{service.name} Project</p>
               </div>
             </footer>
           </blockquote>
         ) : null}
-      </div>
+      </GlowHoverCard>
     </section>
   );
 }

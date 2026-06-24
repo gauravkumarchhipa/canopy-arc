@@ -1,64 +1,57 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import BlogPostGrid from "../components/sections/blog/BlogPostGrid";
+import GlowHoverCard from "../components/ui/GlowHoverCard";
+import {
+  teamBannerText,
+  teamBannerTitle,
+} from "../components/sections/team/team-card-styles";
+import { blogPosts } from "../content/pages/blog/posts";
 import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
   title: "Blog — Canopy Arc",
-  description: "Insights on engineering, design, AI, and product delivery."
+  description:
+    "Insights on engineering, design, AI, cloud, and product delivery from the Canopy Arc team.",
 };
 
 export default function BlogPage() {
-  const posts = [
-    {
-      slug: "building-performant-nextjs-websites",
-      title: "Building performant Next.js websites",
-      excerpt: "A practical checklist for shipping fast, stable, and scalable UIs.",
-      date: "2026-06-16"
-    },
-    {
-      slug: "design-systems-that-scale",
-      title: "Design systems that scale",
-      excerpt: "How to keep UI consistent while moving quickly across teams.",
-      date: "2026-06-10"
-    },
-    {
-      slug: "ai-products-from-prototype-to-production",
-      title: "AI products: from prototype to production",
-      excerpt: "Making AI features reliable, secure, and measurable in real apps.",
-      date: "2026-05-30"
-    }
-  ];
-
   return (
     <div className={tw.pageShell}>
-      <section className="mx-auto max-w-350 px-6 lg:px-10">
-        <p className="text-xs tracking-[0.3em] uppercase text-muted">Blog</p>
-        <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
-          Updates, guides, and{" "}
-          <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">practical insights</span>.
-        </h1>
-        <p className="mt-5 text-muted max-w-3xl leading-relaxed">
-          Short, high-signal posts from the team — engineering, UX, cloud, and AI.
-        </p>
+      <section className="relative">
+        <div className="mx-auto max-w-350 px-6 lg:px-10">
+          <p className="text-xs tracking-[0.3em] uppercase text-muted">Blog</p>
+          <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
+            Updates, guides, and{" "}
+            <span className={tw.gradientText}>practical insights</span>.
+          </h1>
+          <p className="mt-5 max-w-3xl leading-relaxed text-muted">
+            High-signal posts from our team — engineering, UX, cloud, AI, and the
+            craft of shipping software that lasts.
+          </p>
+        </div>
       </section>
 
-      <section className="mx-auto max-w-350 px-6 lg:px-10 mt-12 sm:mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {posts.map((p) => (
+      <section className="relative mx-auto mt-12 max-w-350 px-6 sm:mt-14 lg:px-10">
+        <BlogPostGrid posts={blogPosts} />
+      </section>
+
+      <section className="relative mx-auto mt-12 max-w-350 px-6 pb-4 lg:px-10">
+        <GlowHoverCard className="flex flex-col items-start justify-between gap-6 rounded-3xl px-6 py-5 sm:flex-row sm:items-center">
+          <div>
+            <p className={teamBannerTitle}>Want to build with us?</p>
+            <p className={teamBannerText}>
+              Tell us about your product — we&apos;ll share how we can help you ship.
+            </p>
+          </div>
           <Link
-            key={p.slug}
-            href={`/blog/${p.slug}`}
-            className="rounded-3xl border border-line bg-surface p-6 hover:-translate-y-1 transition-transform"
+            href="/contact"
+            className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} relative z-1 shrink-0`}
           >
-            <p className="text-xs text-muted">{p.date}</p>
-            <h2 className="mt-3 text-lg font-semibold tracking-tight text-foreground">
-              {p.title}
-            </h2>
-            <p className="mt-3 text-sm text-muted leading-relaxed">{p.excerpt}</p>
-            <p className="mt-5 text-sm text-foreground/80">Read →</p>
+            Get in Touch →
           </Link>
-        ))}
+        </GlowHoverCard>
       </section>
     </div>
   );
 }
-

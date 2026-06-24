@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sahai-ai",
+    "name": "Sahai AI",
+    "description": "AI-powered platform delivering intelligent assistance and automation for modern business workflows and decision support.",
+    "url": "https://sahaiai.vercel.app/",
+    "category": "AI & SaaS",
+    "icon": "Sparkles",
+    "year": 2025,
+    "highlight": "AI Platform"
+  },
+  {
+    "id": "pannobaa",
+    "name": "Pannobaa Advisers",
+    "description": "Professional advisory platform simplifying accounting and compliance for startups — streamlined financial guidance and regulatory support.",
+    "url": "https://www.pannobaa.com/",
+    "category": "FinTech & Compliance",
+    "icon": "Calculator",
+    "year": 2025,
+    "highlight": "Accounting & Compliance"
+  },
+  {
+    "id": "zyapaar",
+    "name": "Zyapaar Mobile",
+    "description": "B2B marketplace Android application connecting wholesalers and retailers with real-time inventory, trade flows, and secure payments.",
+    "url": "https://play.google.com/store/apps/details?id=com.zyapaar.mobile",
+    "category": "Mobile App",
+    "icon": "Smartphone",
+    "year": 2024,
+    "highlight": "B2B Marketplace"
+  },
+  {
+    "id": "guestpostlinks",
+    "name": "GuestPostLinks SEO Tools",
+    "description": "Enterprise SEO toolkit for guest posting, outreach automation, domain authority tracking, and link-building campaign management.",
+    "url": "https://share.google/yNwK3XFXpwdY8SGf4",
+    "category": "SEO & Marketing",
+    "icon": "Search",
+    "year": 2024,
+    "highlight": "SEO Platform"
+  },
+  {
+    "id": "tender247",
+    "name": "Tender247",
+    "description": "Government tender discovery, e-procurement, global RFP aggregation, and end-to-end bid management for businesses.",
+    "url": "https://share.google/giffQM9vRPu0XNxhl",
+    "category": "E-Procurement",
+    "icon": "FileText",
+    "year": 2024,
+    "highlight": "GovTech"
+  },
+  {
+    "id": "orme-industries",
+    "name": "Orme Industries",
+    "description": "Global industrial manufacturing website with product catalog, certifications, multilingual content, and international lead generation.",
+    "url": "https://ormeindustries.com/",
+    "category": "Industrial Web",
+    "icon": "Factory",
+    "year": 2024,
+    "highlight": "Manufacturing"
+  }
+]

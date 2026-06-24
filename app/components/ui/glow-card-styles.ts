@@ -22,6 +22,12 @@ export const glowHoverCardText =
 export const glowHoverCardLabel =
   "relative z-1 text-xs tracking-[0.2em] uppercase text-muted transition-colors duration-[400ms] group-hover:text-white/75 group-focus-within:text-white/75";
 
+export const glowHoverCardEyebrow =
+  "relative z-1 text-xs font-semibold tracking-[0.2em] uppercase text-accent transition-colors duration-[400ms] group-hover:text-white/85 group-focus-within:text-white/85";
+
+export const glowHoverCardHeading =
+  "relative z-1 font-display text-2xl font-semibold tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
+
 export const glowHoverCardLink =
   "relative z-1 block transition-colors duration-[400ms] text-muted group-hover:text-white/90 group-focus-within:text-white/90 hover:text-white";
 

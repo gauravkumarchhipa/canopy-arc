@@ -2,9 +2,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { workGrid } from "../../content/pages/work/grid";
 import { tw } from "../../lib/tw";
+import WorkProductIcon from "../../components/sections/work/WorkProductIcon";
+import { ExternalLinkIcon } from "../../components/sections/work/work-product-icons";
 
 export default async function WorkDetailPage({
-  params
+  params,
 }: {
   params: { id: string };
 }) {
@@ -19,95 +21,79 @@ export default async function WorkDetailPage({
           ← Back to Our Work
         </Link>
 
-        <section className="mt-6 rounded-3xl border border-line bg-surface overflow-hidden">
-          <div className="relative px-6 sm:px-10 py-10 sm:py-12">
+        <section className="mt-6 overflow-hidden rounded-3xl border border-line bg-surface">
+          <div className="relative px-6 py-10 sm:px-10 sm:py-12">
             <div className="relative">
-              <p className="text-xs tracking-[0.25em] uppercase text-muted">
-                {project.category}
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                {project.category} • {project.year}
               </p>
-              <h1 className="mt-3 font-display text-4xl sm:text-5xl tracking-tight">
-                {project.title}
+              <h1 className="mt-3 font-display text-4xl tracking-tight sm:text-5xl">
+                {project.name}
               </h1>
-              <p className="mt-4 text-muted max-w-3xl leading-relaxed">
-                {project.subtitle}
-              </p>
+              <p className="mt-4 max-w-3xl leading-relaxed text-muted">{project.description}</p>
 
               <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-                <Link href="/contact" className={`${tw.headerBtnBase} ${tw.pageBtnPrimary}`}>
-                  Start a Project →
-                </Link>
-                <Link href="/services" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
-                  Explore Services
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
+                >
+                  Open Live Project →
+                </a>
+                <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
+                  Start a Project
                 </Link>
               </div>
 
-              <div className="mt-9 flex flex-wrap gap-2">
-                {project.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-line bg-background/60 px-3 py-1 text-xs text-muted"
-                  >
-                    {t}
+              {project.highlight ? (
+                <div className="mt-9">
+                  <span className="rounded-full border border-line bg-background/60 px-3 py-1 text-xs text-muted">
+                    {project.highlight}
                   </span>
-                ))}
-              </div>
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
 
-        <div className="mt-10 grid lg:grid-cols-12 gap-6 lg:gap-8">
-          <section className="lg:col-span-8 rounded-3xl border border-line bg-surface p-6 sm:p-7">
-            <h2 className="text-sm font-semibold text-foreground/90">
-              Project Overview
-            </h2>
-            <p className="mt-4 text-sm text-muted leading-relaxed">
-              This case study page is driven from the common JSON. Add richer
-              content (problem, approach, results, screenshots) to the matching
-              project file under `app/content/pages/work/grid.json` to match your final
-              portfolio content exactly.
-            </p>
-            <div className="mt-6 rounded-2xl border border-line bg-background/60 p-5">
-              <p className="text-xs tracking-[0.2em] uppercase text-muted">
-                Deliverables
-              </p>
-              <ul className="mt-4 space-y-2 text-sm text-muted">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
-                  Responsive UI with modern interactions
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
-                  Performance-first implementation (images, code-splitting)
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
-                  Clean, scalable component architecture
-                </li>
-              </ul>
-            </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-8">
+          <section className="rounded-3xl border border-line bg-surface p-6 sm:p-7 lg:col-span-8">
+            <h2 className="text-sm font-semibold text-foreground/90">Project Overview</h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
           </section>
 
-          <aside className="lg:col-span-4 rounded-3xl border border-line bg-surface p-6 sm:p-7">
-            <h2 className="text-sm font-semibold text-foreground/90">
-              Project Info
-            </h2>
+          <aside className="rounded-3xl border border-line bg-surface p-6 sm:p-7 lg:col-span-4">
+            <h2 className="text-sm font-semibold text-foreground/90">Project Info</h2>
             <div className="mt-5 space-y-3 text-sm text-muted">
               <div className="flex items-center justify-between gap-3">
                 <span>Category</span>
                 <span className="text-foreground/85">{project.category}</span>
               </div>
               <div className="flex items-center justify-between gap-3">
-                <span>Stack</span>
-                <span className="text-foreground/85">{project.tags.join(", ")}</span>
+                <span>Year</span>
+                <span className="text-foreground/85">{project.year}</span>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <span>Type</span>
+                <span className="inline-flex items-center gap-2 text-foreground/85">
+                  <WorkProductIcon name={project.icon} className="[&_svg]:h-4 [&_svg]:w-4" />
+                  {project.icon}
+                </span>
               </div>
             </div>
             <div className="mt-8">
-              <Link
-                href="/contact"
-                className={`${tw.headerBtnBase} ${tw.pageBtnPrimary} w-full justify-center`}
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} w-full justify-center`}
               >
-                Contact Us →
-              </Link>
+                <span className="inline-flex items-center gap-2">
+                  Visit Live Site
+                  <ExternalLinkIcon className="h-4 w-4" />
+                </span>
+              </a>
             </div>
           </aside>
         </div>
@@ -115,4 +101,3 @@ export default async function WorkDetailPage({
     </div>
   );
 }
-

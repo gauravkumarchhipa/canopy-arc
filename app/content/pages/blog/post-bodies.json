@@ -1,0 +1,56 @@
+{
+  "building-performant-nextjs-websites": {
+    "paragraphs": [
+      "Performance is a feature — especially for marketing sites and SaaS dashboards where every second of load time affects conversion. At Canopy Arc, we treat performance as a requirement from sprint one, not a polish task before launch.",
+      "Start with images: use modern formats, explicit dimensions, and lazy loading below the fold. Next.js Image handles much of this, but only if your layout and CMS workflows are set up correctly.",
+      "Server Components reduce client JavaScript by default. Audit what truly needs interactivity — carousels, forms, and dashboards do; static content does not. Split client boundaries deliberately.",
+      "Measure with real tools: Core Web Vitals in the field, Lighthouse in CI, and bundle analysis on every major dependency add. Set budgets and fail builds when they regress.",
+      "The goal is not perfect scores — it is a fast, stable experience on mid-range devices and average networks. That is what your users actually feel."
+    ]
+  },
+  "design-systems-that-scale": {
+    "paragraphs": [
+      "A design system should make the right thing easy. Without governance, it becomes another library nobody uses — or worse, three competing libraries across teams.",
+      "Start with tokens: color, spacing, typography, and radii defined once and consumed everywhere. Tailwind CSS v4 and CSS variables make this practical in modern web stacks.",
+      "Components should solve repeated product problems, not abstract every possible variant on day one. Ship Button, Input, Card, and Modal well before you debate a 47-prop DataTable.",
+      "Document usage, not just API. Designers and engineers need examples of correct patterns — especially for empty states, errors, and loading.",
+      "Review the system quarterly. Prune unused pieces, align with brand updates, and measure adoption. A living system beats a frozen specification every time."
+    ]
+  },
+  "ai-products-from-prototype-to-production": {
+    "paragraphs": [
+      "Demos are easy. Production AI is hard. The gap is evaluation, guardrails, cost control, and failure modes users never see in a prototype.",
+      "Define success metrics before you integrate a model: accuracy on representative inputs, latency p95, cost per request, and escalation rate to humans.",
+      "Never trust a single prompt version in production. Version prompts, log inputs and outputs (with privacy controls), and A/B test changes on a slice of traffic.",
+      "Build fallbacks: when confidence is low, ask a clarifying question or route to a deterministic path. Silent wrong answers destroy trust faster than honest limits.",
+      "Security matters — prompt injection, data leakage, and over-permissioned tools are real risks. Treat AI features like any other surface that handles user data."
+    ]
+  },
+  "shipping-mvps-without-tech-debt": {
+    "paragraphs": [
+      "MVPs should be small, not sloppy. The art is choosing which shortcuts are reversible and which become expensive within six months.",
+      "Use a boring, well-understood stack for v1. Novelty belongs in the product idea, not in your auth layer or database choice.",
+      "Modular boundaries early — even a monolith can have clear domains (billing, users, core workflow) so you can extract services later without a rewrite.",
+      "Write tests for critical paths: signup, payment, and the one workflow that defines your product. Skip exhaustive coverage of admin screens that will change weekly.",
+      "Document decisions in ADRs or a simple decisions log. Future you will forget why you chose Postgres over Firebase — and that context saves hours."
+    ]
+  },
+  "cloud-cost-optimization-playbook": {
+    "paragraphs": [
+      "Cloud bills creep. Unused staging environments, oversized instances, and unoptimized assets add up quietly until finance asks questions.",
+      "Right-size first: metrics over guesses. CPU, memory, and request patterns should drive instance types — not the largest option that feels safe.",
+      "Automate off-hours scaling for non-production. Many teams run full-size staging 24/7 with zero benefit.",
+      "CDN and caching are cheaper than compute. Push static assets to the edge, cache API responses where business rules allow, and compress aggressively.",
+      "Review monthly with owners. Assign cost visibility per environment and per service so optimization is everyone's job, not a once-a-year audit."
+    ]
+  },
+  "ux-patterns-for-b2b-saas": {
+    "paragraphs": [
+      "B2B users are busy and often expert in their domain — not yours. Interfaces should respect their time with density, clarity, and keyboard-friendly flows.",
+      "Onboarding should get users to value in minutes. Defer advanced configuration; show a working default path first.",
+      "Dashboards need hierarchy: primary KPIs above the fold, drill-down on demand, and exports where workflows leave the browser.",
+      "Empty states are opportunities — explain what will appear, why it matters, and the one action that populates the view.",
+      "Consistency beats novelty in enterprise tools. Reuse patterns across modules so learning one screen teaches ten others."
+    ]
+  }
+}

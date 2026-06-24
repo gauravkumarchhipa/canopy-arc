@@ -1,7 +1,5 @@
 import { homeImpact } from "../../../content/pages/home/impact";
-import PageAmbientGlow from "../../layout/PageAmbientGlow";
-import { tw } from "../../../lib/tw";
-import ImpactCommitment from "./impact/ImpactCommitment";
+import { tw } from "../../../lib/tw";import ImpactCommitment from "./impact/ImpactCommitment";
 import ImpactFeaturedCard from "./impact/ImpactFeaturedCard";
 import ImpactStatsGrid from "./impact/ImpactStatsGrid";
 
@@ -10,9 +8,7 @@ export default function ImpactSection() {
 
   return (
     <section className="relative flex min-h-svh flex-col justify-center overflow-hidden py-16 sm:py-20">
-      <PageAmbientGlow variant="gradient" />
-      <div className="relative mx-auto w-full max-w-350 px-6 lg:px-10">
-        <div className="mx-auto max-w-3xl text-center">
+      <div className="relative mx-auto w-full max-w-350 px-6 lg:px-10">        <div className="mx-auto max-w-3xl text-center">
           <p className="inline-flex items-center gap-2 rounded-full border border-[rgba(37,99,235,0.18)] bg-[rgba(37,99,235,0.06)] px-3.5 py-1.75 text-[0.6875rem] font-semibold tracking-[0.14em] text-accent uppercase">
             <span
               className="h-1.75 w-1.75 rounded-full bg-accent shadow-[0_0_10px_rgba(37,99,235,0.55)]"

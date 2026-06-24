@@ -13,105 +13,117 @@ export const SECTIONS: FaqSection[] = [
     title: "Getting started",
     items: [
       {
-        q: "How long does setup take?",
-        a: "Five minutes. The family member signs up first, fills the elder's profile (name, age, conditions, medicines), then shares a 6-digit pairing code with the elder's phone. Done.",
+        q: "How do we start a project with Canopy Arc?",
+        a: "Book a discovery call or send us a brief through the contact page. We review your goals, timeline, and budget, then share a scoped proposal with milestones, deliverables, and a clear next step — usually within two business days.",
       },
       {
-        q: "Does the elder need to be tech-savvy?",
-        a: "No. The elder screen is a single big 'Tap to Talk' button. SAHAI listens. The elder speaks. Everything else happens in the background.",
+        q: "What information should we prepare before the first call?",
+        a: "A short overview of your product or business problem, target users, must-have features, any existing systems or designs, and your ideal launch window. Rough notes are fine — we help shape the rest.",
       },
       {
-        q: "Can SAHAI work without an internet connection?",
-        a: "Yes. Reminders fire from the local queue even offline. SOS works through call + SMS without internet. Voice inputs are stored locally and synced when online.",
+        q: "Do you work with startups as well as established companies?",
+        a: "Yes. We partner with early-stage founders building MVPs and with enterprises modernizing legacy platforms. The engagement model scales — from focused sprints to long-term product teams.",
       },
       {
-        q: "Which phones does SAHAI work on?",
-        a: "Any iPhone with iOS 15+ and any Android with version 8+. We test specifically on budget Android phones — the kind most elders actually use.",
-      },
-    ],
-  },
-  {
-    title: "Voice & languages",
-    items: [
-      {
-        q: "Which languages does SAHAI speak?",
-        a: "Today: Hindi and English, including a comfortable mix of both. Through the year we're rolling out Gujarati, Marathi, Tamil, Telugu, Bengali, Kannada, Punjabi, and Malayalam.",
-      },
-      {
-        q: "What if SAHAI doesn't understand my parent?",
-        a: "If confidence is low, SAHAI gently asks once for clarification. If voice fails repeatedly, it falls back to text or WhatsApp. Critical inputs are confirmed before being saved.",
-      },
-      {
-        q: "Can the elder use SAHAI just for company?",
-        a: "Yes. SAHAI listens warmly when an elder feels lonely or worried. It's not a general assistant — it stays in the lane of health and care — but it answers as a calm, present companion.",
+        q: "Can you join an project already in progress?",
+        a: "Often, yes. We audit the codebase, delivery process, and roadmap first, then recommend whether to stabilize, extend, or rebuild. We only take over when we can add clear value without unnecessary risk.",
       },
     ],
   },
   {
-    title: "Family & alerts",
+    title: "Services & delivery",
     items: [
       {
-        q: "How many family members can be linked?",
-        a: "Up to 3 family members per elder. One family member can manage up to 5 elders — useful for siblings caring for parents, or caregivers managing multiple seniors.",
+        q: "What services does Canopy Arc offer?",
+        a: "Web and mobile development, AI and automation, cloud and DevOps, UI/UX design, and e-commerce or SaaS platforms. See our Services page for the full list and case studies tied to each capability.",
       },
       {
-        q: "Will the family be alerted for every little thing?",
-        a: "No. Family receives one calm morning summary at 8 AM. They only get an active alert if a critical medicine is missed for 10 minutes, or the SOS button is pressed. Quiet most days. Loud only when it matters.",
+        q: "Do you provide design as well as development?",
+        a: "Yes. We can handle research, wireframes, visual design, and design systems — or work from your existing Figma files. Design and engineering stay aligned so what ships matches what was approved.",
       },
       {
-        q: "What's the escalation chain when something goes wrong?",
-        a: "Push notification first. If unacknowledged in 5 minutes, SAHAI auto-calls the family with a clear voice message. If the call goes unanswered, an SMS is sent. The chain is tested ten times before every release.",
+        q: "How do you handle project communication?",
+        a: "A dedicated point of contact, weekly progress updates, and a shared channel (Slack, Teams, or email — your preference). You get visibility into tasks, demos, and blockers without daily micromanagement.",
+      },
+      {
+        q: "Will we own the code and assets when the project ends?",
+        a: "Yes. Upon final payment, you receive full ownership of custom code, designs, and documentation produced for your engagement, unless otherwise agreed in writing for licensed third-party components.",
       },
     ],
   },
   {
-    title: "Doctors & medical",
+    title: "Technology & process",
     items: [
       {
-        q: "Is SAHAI a doctor?",
-        a: "No. SAHAI is a companion — it listens, logs, reminds, escalates. It does not diagnose, prescribe, or replace a medical professional. Reminders reflect what you, your family, or your doctor entered.",
+        q: "Which technologies do you typically use?",
+        a: "Modern stacks such as Next.js, React, React Native, Node.js, PostgreSQL, Redis, and cloud platforms like AWS and Vercel. We choose tools based on your product needs, team skills, and long-term maintainability — not trends alone.",
       },
       {
-        q: "Can I consult a real doctor through SAHAI?",
-        a: "Yes, on the Premium Care and NRI Care plans. Verified physicians, geriatricians and pediatricians are available for voice and video consultations from inside the app — with patient context shared securely before the call.",
+        q: "What does your development process look like?",
+        a: "Discovery → architecture and scope → iterative sprints with demos → QA and staging → production launch → post-launch support. Each phase has defined outputs so you always know what was delivered and what comes next.",
       },
       {
-        q: "How are doctors verified?",
-        a: "Every doctor on SAHAI has had their medical registration confirmed, agreement signed, and background reviewed. We monitor patient ratings, response times, and complaints.",
+        q: "Do you follow agile or fixed-scope delivery?",
+        a: "Both, depending on the project. MVPs and evolving products usually run on agile sprints. Well-defined builds with fixed requirements can use milestone-based fixed scope. We recommend the model that fits your risk and timeline.",
+      },
+      {
+        q: "How do you ensure quality before launch?",
+        a: "Code review, automated tests where appropriate, cross-browser and device checks, performance passes, and staging sign-off. Critical flows — auth, payments, data — get extra scrutiny before anything reaches production.",
       },
     ],
   },
   {
-    title: "Privacy & data",
+    title: "Timelines & pricing",
     items: [
       {
-        q: "Where is my data stored?",
-        a: "Encrypted at rest (AES-256) and in transit (TLS), on servers in India. Append-only — nothing is silently overwritten or deleted.",
+        q: "How long does a typical project take?",
+        a: "A focused MVP often takes 8–14 weeks. Larger platforms or multi-surface products may run several months in phases. After discovery we give a realistic range — not a guess — tied to agreed scope.",
       },
       {
-        q: "Do you sell health data?",
-        a: "No. Never. We do not sell, rent or share individual health information with advertisers, brokers or third-party marketers — read the full policy at /privacy-policy.",
+        q: "How is pricing structured?",
+        a: "Fixed-price milestones for defined scope, or monthly retainers for ongoing product work. Every quote breaks down what is included, what is out of scope, and how change requests are handled so there are no surprise invoices.",
       },
       {
-        q: "Can I export everything?",
-        a: "Yes. Anytime. Full structured health memory as a PDF or machine-readable JSON. Your data, your decision.",
+        q: "Can we start small and expand later?",
+        a: "Yes — that is our recommended approach for many clients. Launch a solid v1, learn from users, then add features in planned phases. Architecture is built to grow so early work is not throwaway.",
+      },
+      {
+        q: "Do you offer ongoing maintenance after launch?",
+        a: "Yes. We offer support retainers for bug fixes, security updates, monitoring, and feature enhancements. Terms and response times are defined upfront so your product stays healthy after go-live.",
       },
     ],
   },
   {
-    title: "Payments",
+    title: "Security & compliance",
     items: [
       {
-        q: "What payment methods do you accept?",
-        a: "UPI (with auto-pay), credit and debit cards, net banking, Visa/Mastercard/Amex internationally. GST-compliant invoices for every transaction.",
+        q: "How do you handle data security?",
+        a: "Encryption in transit and at rest, least-privilege access, secure secrets management, and environment separation (dev/staging/production). We follow OWASP-minded practices and can align with your internal security requirements.",
       },
       {
-        q: "Do you offer refunds?",
-        a: "Cancel anytime, refund of any unused time within 7 working days. No questions asked.",
+        q: "Can you sign an NDA before we share details?",
+        a: "Yes. We routinely sign NDAs before reviewing proprietary systems, roadmaps, or sensitive business data. Ask on the contact form and we will send a standard agreement or work with yours.",
       },
       {
-        q: "Can I gift SAHAI to my parents?",
-        a: "Absolutely. NRIs and family abroad can pay for parents' subscription — your parents never see a payment screen.",
+        q: "Do you work with regulated industries?",
+        a: "We have experience building for fintech, healthcare-adjacent, and enterprise contexts where audit trails, access control, and data handling matter. Specific compliance (e.g. HIPAA, SOC 2) depends on scope — we discuss requirements during discovery.",
+      },
+    ],
+  },
+  {
+    title: "Support & contact",
+    items: [
+      {
+        q: "What are your support hours?",
+        a: "Core team hours are Monday–Friday, 9:00 AM–6:00 PM in our primary timezone. Critical production issues on support plans receive prioritized response windows as defined in your agreement.",
+      },
+      {
+        q: "How quickly do you respond to new inquiries?",
+        a: "We aim to reply to all contact form and email inquiries within two business days — usually sooner. Urgent production issues for active support clients are handled per your SLA.",
+      },
+      {
+        q: "Where are you located? Do you work remotely?",
+        a: "We are a distributed team working with clients globally. Discovery, demos, and standups run over video — timezone overlap is planned so collaboration stays smooth without constant late-night calls.",
       },
     ],
   },

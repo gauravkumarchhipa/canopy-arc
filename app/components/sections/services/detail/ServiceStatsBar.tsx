@@ -1,23 +1,29 @@
 import { SERVICE_BOTTOM_STATS } from "../../../../content/pages/services/detail-shared";
 import AnimatedCounter from "../../../ui/AnimatedCounter";
+import GlowHoverCard from "../../../ui/GlowHoverCard";
 import ImpactIcon from "../../home/impact/ImpactIcon";
+import {
+  detailBottomStatIcon,
+  detailBottomStatLabel,
+  detailBottomStatValue,
+} from "./service-detail-styles";
 
 export default function ServiceStatsBar() {
   return (
-    <section className="mt-8 grid gap-4 rounded-[1.25rem] border border-line bg-surface p-5 sm:grid-cols-2 lg:grid-cols-4 sm:p-6">
+    <section className="mt-8 grid gap-4 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-4">
       {SERVICE_BOTTOM_STATS.map((stat) => (
-        <div key={stat.label} className="flex items-center gap-3 px-2 py-1">
-          <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[image:var(--grad-soft)] text-accent">
-            <ImpactIcon name={stat.icon} className="[&_svg]:h-5 [&_svg]:w-5" />
+        <GlowHoverCard
+          key={stat.label}
+          className="flex items-center gap-3 rounded-xl px-4 py-3"
+        >
+          <span className={detailBottomStatIcon}>
+            <ImpactIcon name={stat.icon} />
           </span>
           <div>
-            <AnimatedCounter
-              value={stat.value}
-              className="block text-xl font-semibold text-foreground"
-            />
-            <p className="text-xs text-muted">{stat.label}</p>
+            <AnimatedCounter value={stat.value} className={detailBottomStatValue} />
+            <p className={detailBottomStatLabel}>{stat.label}</p>
           </div>
-        </div>
+        </GlowHoverCard>
       ))}
     </section>
   );

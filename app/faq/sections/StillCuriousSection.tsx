@@ -16,10 +16,10 @@ export default function StillCuriousSection() {
               Send us a note
             </Link>
             <Link
-              href="mailto:support@canopy-arc.ai"
+              href="mailto:hello@canopyarc.com"
               className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
             >
-              support@canopy-arc.ai
+              hello@canopyarc.com
             </Link>
           </div>
         </div>

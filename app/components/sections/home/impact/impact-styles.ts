@@ -59,7 +59,7 @@ export const impactCommitmentPillarDescription =
   "relative z-1 mt-1 text-[0.6875rem] leading-snug text-muted transition-colors duration-[400ms] group-hover:text-white/75";
 
 export const impactFeaturedCard =
-  `group relative z-0 flex min-h-72 flex-col justify-end overflow-hidden rounded-[1.25rem] p-6 text-white ${impactCardGradient} ${impactCardGlow} ${impactCardHoverZoom} hover:shadow-[0_32px_72px_-22px_rgba(37,99,235,0.78)] lg:min-h-full lg:p-8`;
+  `group relative z-0 flex min-h-72 flex-col justify-end overflow-hidden rounded-2xl p-6 text-white ${impactCardGradient} ${impactCardGlow} ${impactCardHoverZoom} hover:shadow-[0_32px_72px_-22px_rgba(37,99,235,0.78)] lg:min-h-full lg:p-8`;
 
 export const impactFeaturedIcon =
   "relative z-1 mb-auto inline-flex h-13 w-13 items-center justify-center rounded-full border border-white/28 bg-white/12 shadow-[0_0_28px_rgba(255,255,255,0.18)] transition-[background-color,border-color] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:border-white/40 group-hover:bg-white/18 [&_svg]:h-5.5 [&_svg]:w-5.5";

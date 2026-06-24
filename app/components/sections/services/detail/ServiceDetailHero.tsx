@@ -3,10 +3,17 @@ import type { Service } from "../../../../content/pages/services/services";
 import { SERVICE_HERO_STATS } from "../../../../content/pages/services/detail-shared";
 import { tw } from "../../../../lib/tw";
 import AnimatedCounter from "../../../ui/AnimatedCounter";
+import GlowHoverCard from "../../../ui/GlowHoverCard";
 import ImpactIcon from "../../home/impact/ImpactIcon";
 import ServiceIcon from "../ServiceIcon";
 import ServiceHeroVisual from "./ServiceHeroVisual";
-import { detailBadge, detailStatPill, detailTag } from "./service-detail-styles";
+import {
+  detailBadge,
+  detailHeroStatIcon,
+  detailHeroStatLabel,
+  detailHeroStatValue,
+  detailTag,
+} from "./service-detail-styles";
 
 type Props = {
   service: Service;
@@ -15,12 +22,8 @@ type Props = {
 
 export default function ServiceDetailHero({ service, iconName }: Props) {
   return (
-    <section className="relative mt-8 overflow-hidden rounded-[1.5rem] border border-line bg-surface p-6 sm:p-8 lg:p-10">
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_100%_0%,rgba(59,130,246,0.12),transparent_55%)]"
-        aria-hidden
-      />
-      <div className="relative grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
+    <section className="relative mt-8">
+      <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
         <div>
           <div className="flex items-start gap-4">
             <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-line bg-[image:var(--grad-soft)] text-accent [&_svg]:h-7 [&_svg]:w-7">
@@ -46,20 +49,20 @@ export default function ServiceDetailHero({ service, iconName }: Props) {
             ))}
           </div>
 
-          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+          <div className="mt-7 grid gap-3 overflow-visible p-1 sm:grid-cols-2">
             {SERVICE_HERO_STATS.map((stat) => (
-              <div key={stat.label} className={detailStatPill}>
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[image:var(--grad-soft)] text-accent">
-                  <ImpactIcon name={stat.icon} className="[&_svg]:h-4 [&_svg]:w-4" />
+              <GlowHoverCard
+                key={stat.label}
+                className="flex items-center gap-2.5 rounded-xl px-3 py-2.5"
+              >
+                <span className={detailHeroStatIcon}>
+                  <ImpactIcon name={stat.icon} />
                 </span>
                 <div>
-                  <AnimatedCounter
-                    value={stat.value}
-                    className="block text-base font-semibold text-foreground"
-                  />
-                  <p className="text-xs text-muted">{stat.label}</p>
+                  <AnimatedCounter value={stat.value} className={detailHeroStatValue} />
+                  <p className={detailHeroStatLabel}>{stat.label}</p>
                 </div>
-              </div>
+              </GlowHoverCard>
             ))}
           </div>
 

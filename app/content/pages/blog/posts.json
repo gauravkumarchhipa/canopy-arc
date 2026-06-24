@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "building-performant-nextjs-websites",
+    "title": "Building performant Next.js websites",
+    "excerpt": "A practical checklist for shipping fast, stable, and scalable UIs — from image optimization to server components.",
+    "date": "2026-06-16",
+    "category": "Engineering",
+    "readTime": "6 min read",
+    "tags": ["Next.js", "Performance", "React"]
+  },
+  {
+    "slug": "design-systems-that-scale",
+    "title": "Design systems that scale",
+    "excerpt": "How to keep UI consistent while moving quickly across teams — tokens, components, and governance that actually works.",
+    "date": "2026-06-10",
+    "category": "Design",
+    "readTime": "5 min read",
+    "tags": ["Design Systems", "Figma", "UI"]
+  },
+  {
+    "slug": "ai-products-from-prototype-to-production",
+    "title": "AI products: from prototype to production",
+    "excerpt": "Making AI features reliable, secure, and measurable in real apps — beyond the demo.",
+    "date": "2026-05-30",
+    "category": "AI",
+    "readTime": "7 min read",
+    "tags": ["AI", "LLMs", "Production"]
+  },
+  {
+    "slug": "shipping-mvps-without-tech-debt",
+    "title": "Shipping MVPs without accumulating tech debt",
+    "excerpt": "Move fast on v1 while laying foundations that won't block v2 — architecture choices that matter early.",
+    "date": "2026-05-18",
+    "category": "Engineering",
+    "readTime": "5 min read",
+    "tags": ["MVP", "Architecture", "Startups"]
+  },
+  {
+    "slug": "cloud-cost-optimization-playbook",
+    "title": "A cloud cost optimization playbook",
+    "excerpt": "Practical steps to right-size infrastructure, cut waste, and keep performance high on AWS and Vercel.",
+    "date": "2026-05-02",
+    "category": "Engineering",
+    "readTime": "6 min read",
+    "tags": ["Cloud", "DevOps", "AWS"]
+  },
+  {
+    "slug": "ux-patterns-for-b2b-saas",
+    "title": "UX patterns that work for B2B SaaS",
+    "excerpt": "Dashboards, onboarding, and data-heavy interfaces — patterns we use on enterprise product builds.",
+    "date": "2026-04-20",
+    "category": "Design",
+    "readTime": "4 min read",
+    "tags": ["UX", "SaaS", "Product"]
+  }
+]

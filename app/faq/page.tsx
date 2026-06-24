@@ -6,15 +6,16 @@ import StillCuriousSection from "./sections/StillCuriousSection";
 import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
-  title: "FAQ — SAHAI",
+  title: "FAQ — Canopy Arc",
   description:
-    "Common questions about SAHAI — voice, reminders, family, doctors, privacy, payments. Answered plainly.",
+    "Common questions about working with Canopy Arc — services, process, timelines, pricing, security, and support. Answered plainly.",
 };
 
 export default function FaqPage() {
   return (
     <div className={tw.pageShellBottom}>
       <PageHero
+        warmGlow={false}
         eyebrow="FAQ"
         title={
           <>
@@ -25,7 +26,7 @@ export default function FaqPage() {
             ask us.
           </>
         }
-        blurb="Six topics, real questions families ask. If yours isn't here, write to us — we read every message and reply within two working days."
+        blurb="Six topics, real questions clients ask before and during a build. If yours isn't here, write to us — we read every message and reply within two business days."
       />
 
       <FaqList sections={SECTIONS} />

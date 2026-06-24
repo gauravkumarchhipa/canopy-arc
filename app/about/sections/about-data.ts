@@ -10,92 +10,111 @@ export type Value = {
   body: string;
 };
 
-export type PersonPreview = {
-  initial: string;
-  name: string;
-  role: string;
-  hue: string;
+export type Pillar = {
+  icon: string;
+  title: string;
+  body: string;
 };
+
+export type Capability = {
+  title: string;
+  body: string;
+  href: string;
+};
+
+export const PILLARS: Pillar[] = [
+  {
+    icon: "code",
+    title: "Engineering-first",
+    body: "Clean architecture, reliable delivery, and maintainable codebases built for long-term product growth.",
+  },
+  {
+    icon: "layout",
+    title: "Design that converts",
+    body: "Polished interfaces with clear hierarchy, purposeful motion, and usability that turns visitors into users.",
+  },
+  {
+    icon: "shield",
+    title: "Performance & security",
+    body: "Fast loads, stable UI, and security best practices baked in from day one — not bolted on at the end.",
+  },
+];
 
 export const TIMELINE: TimelineEntry[] = [
   {
-    date: "Apr 2026",
-    title: "Project kick-off",
-    body: "A small team. One stubborn idea — care should be continuous, not episodic.",
+    date: "2018",
+    title: "Canopy Arc founded",
+    body: "Started as a small studio helping startups ship their first production-ready web products with a focus on quality over volume.",
   },
   {
-    date: "May 2026",
-    title: "Voice foundation",
-    body: "Real conversations with SAHAI in Hindi and English. Speech in, structured care out.",
+    date: "2020",
+    title: "Mobile & cloud expansion",
+    body: "Added React Native, cloud infrastructure, and DevOps capabilities — delivering full-stack products end to end.",
   },
   {
-    date: "May 2026",
-    title: "Reliability shipped",
-    body: "Family escalation chain — push, automatic phone call, SMS backup — proven across 10× tests.",
+    date: "2022",
+    title: "Enterprise partnerships",
+    body: "Began long-term engagements with fintech, healthcare, and industrial clients needing scalable platforms and strict reliability.",
   },
   {
-    date: "May 2026",
-    title: "Internal testing",
-    body: "Real elders and families using SAHAI every day. Feedback flowed in. Bugs fixed within hours.",
+    date: "2024",
+    title: "AI & automation practice",
+    body: "Launched dedicated AI engineering — intelligent workflows, data pipelines, and product features powered by modern ML tooling.",
   },
   {
-    date: "May 2026",
-    title: "Public launch",
-    body: "SAHAI live on the App Store and Play Store. Any family in India can download and start.",
+    date: "2025",
+    title: "Global delivery model",
+    body: "Distributed team across multiple time zones, shipping live products for clients in the US, Europe, and Asia.",
   },
   {
     date: "Today",
-    title: "In thousands of homes",
-    body: "Continuously listening, gently catching what matters. A quiet system that never forgets.",
+    title: "150+ projects delivered",
+    body: "A trusted partner for teams who need software that ships on time, scales under load, and stays maintainable years later.",
   },
 ];
 
 export const VALUES: Value[] = [
   {
     n: "01",
-    title: "Data integrity over speed",
-    body: "Append-only events, no overwriting, raw input + structured output. Memory you can audit and trust years from now.",
+    title: "Ship with clarity",
+    body: "Every sprint ends with something demoable. Scope, trade-offs, and deadlines are discussed openly so there are no surprises at launch.",
   },
   {
     n: "02",
-    title: "Reliability over cleverness",
-    body: "AI is used for understanding and tone. Reminders, escalation and SOS run on deterministic systems that must not fail.",
+    title: "Build to last",
+    body: "We write code and design systems your team can own after handoff. Documentation, tests, and clean structure are part of delivery — not extras.",
   },
   {
     n: "03",
-    title: "Stay in the lane",
-    body: "No weather, no news, no shopping. Health, medicines, symptoms, family safety. Nothing else. That focus is the product.",
+    title: "Stay close to users",
+    body: "Great software solves real problems. We validate assumptions early, measure what matters, and iterate based on feedback — not opinions alone.",
   },
   {
     n: "04",
-    title: "Elder-first design",
-    body: "Big buttons. Calm voice. One-tap SOS. We measure success by whether a 75-year-old can use SAHAI without help.",
+    title: "Own the outcome",
+    body: "We treat your product like our reputation depends on it — because it does. From discovery through post-launch support, we stay accountable.",
   },
 ];
 
-export const PEOPLE: PersonPreview[] = [
+export const CAPABILITIES: Capability[] = [
   {
-    initial: "K",
-    name: "Kartik Tanna",
-    role: "Co-founder & CEO",
-    hue: "from-[#f2994a] via-[#2bb3a3] to-[#2a2f6b]",
+    title: "Web Development",
+    body: "High-performance web apps with Next.js, React, and modern APIs — from marketing sites to complex SaaS dashboards.",
+    href: "/services/web-development",
   },
   {
-    initial: "P",
-    name: "Priya Iyer",
-    role: "Co-founder & CTO",
-    hue: "from-[#2bb3a3] via-[#7d85d6] to-[#e86a77]",
+    title: "Mobile Apps",
+    body: "Native-quality iOS and Android experiences with React Native — offline support, push notifications, and app store delivery.",
+    href: "/services/app-development",
   },
   {
-    initial: "R",
-    name: "Rohan Krishnan",
-    role: "Head of AI & Voice",
-    hue: "from-[#f2994a] via-[#e86a77] to-[#7d85d6]",
+    title: "AI & ML Solutions",
+    body: "Intelligent features, automation pipelines, and data-driven tools integrated responsibly into your product workflow.",
+    href: "/services/ai-ml",
   },
   {
-    initial: "M",
-    name: "Dr. Meera Suresh",
-    role: "Chief Medical Advisor",
-    hue: "from-[#2bb3a3] via-[#2a2f6b] to-[#7d85d6]",
+    title: "Cloud & DevOps",
+    body: "Infrastructure, CI/CD, monitoring, and scaling strategies so your platform stays fast and available in production.",
+    href: "/services/cloud-devops",
   },
 ];
