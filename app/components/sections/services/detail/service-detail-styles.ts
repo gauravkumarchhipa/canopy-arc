@@ -73,6 +73,30 @@ export const detailHeroStatValue =
 export const detailHeroStatLabel =
   "relative z-1 text-xs text-muted transition-colors duration-[400ms] group-hover:text-white/75 group-focus-within:text-white/75";
 
+export const detailBottomStatIcon =
+  "relative z-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent transition-[border-color,background-color,color] duration-[400ms] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white [&_svg]:h-5 [&_svg]:w-5";
+
+export const detailBottomStatValue =
+  "relative z-1 block text-xl font-semibold text-foreground transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
+
+export const detailBottomStatLabel =
+  "relative z-1 text-xs text-muted transition-colors duration-[400ms] group-hover:text-white/75 group-focus-within:text-white/75";
+
+export const detailIndustryItem =
+  "relative z-1 flex items-center gap-3 rounded-xl border border-line bg-background/60 px-4 py-3 transition-[border-color,background-color] duration-[400ms] group-hover:border-white/22 group-hover:bg-white/10";
+
+export const detailIndustryIcon =
+  "relative z-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent transition-[border-color,background-color,color] duration-[400ms] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white [&_svg]:h-4 [&_svg]:w-4";
+
+export const detailIndustryLabel =
+  "relative z-1 text-sm font-medium text-foreground transition-colors duration-[400ms] group-hover:text-white";
+
+export const detailTechGroupLabel =
+  "relative z-1 text-xs font-semibold tracking-[0.18em] uppercase text-muted transition-colors duration-[400ms] group-hover:text-white/75";
+
+export const detailTagHover =
+  "relative z-1 rounded-full border border-line bg-background/70 px-3 py-1.5 text-xs text-muted transition-[border-color,background-color,color] duration-[400ms] group-hover:border-white/22 group-hover:bg-white/10 group-hover:text-white/85";
+
 export const detailCaseCardShell =
   `group/card flex flex-col overflow-hidden rounded-[1.15rem] border border-line bg-surface ${impactCardHoverZoom} hover:z-10 hover:border-transparent hover:shadow-[0_28px_64px_-24px_rgba(37,99,235,0.72)]`;
 
@@ -108,6 +132,48 @@ export const detailCaseTechTagHover =
 
 export const detailCaseLinkHover =
   "relative z-1 mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors duration-[400ms] group-hover/card:text-white group-focus-within/card:text-white";
+
+export const detailDeliverablesBox =
+  "relative z-1 mt-5 rounded-2xl border border-line bg-background/60 p-5 transition-[border-color,background-color] duration-[400ms] group-hover:border-white/22 group-hover:bg-white/10";
+
+export const detailDeliverablesLabel =
+  "relative z-1 text-xs tracking-[0.18em] uppercase text-accent transition-colors duration-[400ms] group-hover:text-white/90";
+
+export const detailStudyEyebrow =
+  "relative z-1 text-xs font-semibold tracking-[0.2em] uppercase text-accent transition-colors duration-[400ms] group-hover:text-white/90 group-focus-within:text-white/90";
+
+export const detailStudyYear =
+  "relative z-1 text-xs text-muted transition-colors duration-[400ms] group-hover:text-white/75";
+
+export const detailStudyTitle =
+  "relative z-1 mt-3 font-display text-2xl tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-white";
+
+export const detailStudyClient =
+  "relative z-1 mt-1 text-sm text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+
+export const detailStudyDesc =
+  "relative z-1 mt-3 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+
+export const detailStudyColumnLabel =
+  "relative z-1 text-xs tracking-[0.18em] uppercase text-muted transition-colors duration-[400ms] group-hover:text-white/75";
+
+export const detailStudyColumnText =
+  "relative z-1 mt-2 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+
+export const detailCtaGlow =
+  "mt-12 flex flex-col gap-6 rounded-[1.35rem] p-8 sm:p-10 lg:flex-row lg:items-center lg:justify-between lg:p-12";
+
+export const detailCtaIcon =
+  "relative z-1 inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[image:var(--grad)] text-white transition-[border-color,background-color,box-shadow] duration-[400ms] group-hover:border group-hover:border-white/28 group-hover:bg-white/12 [&_svg]:h-6 [&_svg]:w-6";
+
+export const detailCtaTitle =
+  "relative z-1 font-display text-2xl tracking-tight text-foreground transition-colors duration-[400ms] sm:text-3xl group-hover:text-white";
+
+export const detailCtaText =
+  "relative z-1 mt-2 max-w-2xl text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+
+export const detailRelatedLink =
+  "relative z-1 block text-sm font-medium text-foreground transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
 
 export const detailCtaSection =
   "relative overflow-hidden rounded-[1.35rem] border border-[rgba(37,99,235,0.18)] bg-[linear-gradient(135deg,rgba(37,99,235,0.12)_0%,rgba(6,182,212,0.08)_45%,rgba(124,58,237,0.1)_100%)] p-8 sm:p-10 lg:p-12 [html[data-theme=dark]_&]:border-[rgba(96,165,250,0.22)] [html[data-theme=dark]_&]:bg-[linear-gradient(135deg,rgba(37,99,235,0.22)_0%,rgba(6,182,212,0.12)_45%,rgba(124,58,237,0.18)_100%)]";

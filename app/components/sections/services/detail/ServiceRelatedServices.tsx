@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { detailSectionTitle } from "./service-detail-styles";
+import GlowHoverCard from "../../../ui/GlowHoverCard";
+import { detailRelatedLink, detailSectionTitle } from "./service-detail-styles";
 
 type RelatedService = {
   id: string;
@@ -16,15 +17,16 @@ export default function ServiceRelatedServices({ related }: Props) {
   return (
     <section className="mt-12">
       <h2 className={detailSectionTitle}>Related Services</h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-4 grid gap-3 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3">
         {related.slice(0, 3).map((item) => (
-          <Link
+          <GlowHoverCard
             key={item.id}
+            as={Link}
             href={`/services/${item.id}`}
-            className="rounded-2xl border border-line bg-surface px-4 py-3 text-sm transition-colors hover:border-accent/40 hover:text-accent"
+            className="block rounded-2xl px-4 py-3"
           >
-            {item.title} →
-          </Link>
+            <span className={detailRelatedLink}>{item.title} →</span>
+          </GlowHoverCard>
         ))}
       </div>
     </section>

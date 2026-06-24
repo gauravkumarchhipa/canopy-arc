@@ -1,12 +1,22 @@
 import type { Service } from "../../../../content/pages/services/services";
+import GlowHoverCard from "../../../ui/GlowHoverCard";
 import CheckIcon from "./CheckIcon";
 import {
-  detailCheckIcon,
-  detailCheckItem,
-  detailPanel,
+  detailCheckIconHover,
+  detailCheckItemHover,
+  detailDeliverablesBox,
+  detailDeliverablesLabel,
+  detailPanelGlow,
   detailSectionSubtitle,
   detailSectionTitle,
-  detailTag,
+  detailStudyClient,
+  detailStudyColumnLabel,
+  detailStudyColumnText,
+  detailStudyDesc,
+  detailStudyEyebrow,
+  detailStudyTitle,
+  detailStudyYear,
+  detailTagHover,
 } from "./service-detail-styles";
 
 type Props = {
@@ -21,41 +31,43 @@ export default function ServiceCaseStudyBreakdowns({ service }: Props) {
         Full challenge, solution, outcome, and deliverables for every case study.
       </p>
 
-      <div className="mt-6 space-y-5">
+      <div className="mt-6 space-y-5 overflow-visible p-1">
         {service.caseStudies.map((study, index) => (
-          <article key={study.id} id={`study-${study.id}`} className={`${detailPanel} scroll-mt-32`}>
+          <GlowHoverCard
+            key={study.id}
+            id={`study-${study.id}`}
+            className={`${detailPanelGlow} scroll-mt-32`}
+          >
             <div className="flex flex-wrap items-start justify-between gap-3">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent">
+              <p className={detailStudyEyebrow}>
                 Case Study {String(index + 1).padStart(2, "0")}
               </p>
-              {study.year ? <span className="text-xs text-muted">{study.year}</span> : null}
+              {study.year ? <span className={detailStudyYear}>{study.year}</span> : null}
             </div>
 
-            <h3 className="mt-3 font-display text-2xl tracking-tight text-foreground">
-              {study.title}
-            </h3>
-            {study.client ? <p className="mt-1 text-sm text-muted">{study.client}</p> : null}
-            <p className="mt-3 text-sm leading-relaxed text-muted">{study.description}</p>
+            <h3 className={detailStudyTitle}>{study.title}</h3>
+            {study.client ? <p className={detailStudyClient}>{study.client}</p> : null}
+            <p className={detailStudyDesc}>{study.description}</p>
 
             <div className="mt-6 grid gap-5 lg:grid-cols-3">
               <div>
-                <p className="text-xs tracking-[0.18em] uppercase text-muted">Challenge</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{study.challenge}</p>
+                <p className={detailStudyColumnLabel}>Challenge</p>
+                <p className={detailStudyColumnText}>{study.challenge}</p>
               </div>
               <div>
-                <p className="text-xs tracking-[0.18em] uppercase text-muted">Solution</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{study.solution}</p>
+                <p className={detailStudyColumnLabel}>Solution</p>
+                <p className={detailStudyColumnText}>{study.solution}</p>
               </div>
               <div>
-                <p className="text-xs tracking-[0.18em] uppercase text-muted">Outcome</p>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{study.outcome}</p>
+                <p className={detailStudyColumnLabel}>Outcome</p>
+                <p className={detailStudyColumnText}>{study.outcome}</p>
               </div>
             </div>
 
             {study.technologies.length > 0 ? (
               <div className="mt-5 flex flex-wrap gap-2">
                 {study.technologies.map((tech) => (
-                  <span key={tech} className={detailTag}>
+                  <span key={tech} className={detailTagHover}>
                     {tech}
                   </span>
                 ))}
@@ -63,12 +75,12 @@ export default function ServiceCaseStudyBreakdowns({ service }: Props) {
             ) : null}
 
             {study.deliverables.length > 0 ? (
-              <div className="mt-5 rounded-2xl border border-line bg-background/60 p-5">
-                <p className="text-xs tracking-[0.18em] uppercase text-accent">Deliverables</p>
+              <div className={detailDeliverablesBox}>
+                <p className={detailDeliverablesLabel}>Deliverables</p>
                 <ul className="mt-3 grid gap-2 sm:grid-cols-2">
                   {study.deliverables.map((item) => (
-                    <li key={item} className={detailCheckItem}>
-                      <span className={detailCheckIcon}>
+                    <li key={item} className={detailCheckItemHover}>
+                      <span className={detailCheckIconHover}>
                         <CheckIcon />
                       </span>
                       <span>{item}</span>
@@ -77,7 +89,7 @@ export default function ServiceCaseStudyBreakdowns({ service }: Props) {
                 </ul>
               </div>
             ) : null}
-          </article>
+          </GlowHoverCard>
         ))}
       </div>
     </section>
