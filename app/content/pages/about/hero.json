@@ -1,0 +1,12 @@
+{
+  "eyebrow": "About Us",
+  "title": "We build products that",
+  "titleAccent": "ship fast and scale safely.",
+  "subtitle": "Canopy Arc is a global team of engineers, designers, and strategists. We partner with ambitious teams to deliver high-quality software — modern UX, strong security, and performance that holds up in production.",
+  "stats": [
+    { "label": "Projects Delivered", "value": "150+" },
+    { "label": "Client Satisfaction", "value": "98%" },
+    { "label": "Years of Experience", "value": "8+" },
+    { "label": "Expert Team Members", "value": "24+" }
+  ]
+}

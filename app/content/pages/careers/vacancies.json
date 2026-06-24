@@ -1,0 +1,56 @@
+[
+  {
+    "id": "senior-fullstack",
+    "title": "Senior Full-Stack Engineer",
+    "department": "Engineering",
+    "location": "Remote · India",
+    "type": "Full-time",
+    "description": "Lead feature delivery across Next.js, React, and Node.js. You'll architect APIs, mentor juniors, and ship production code for client and internal products.",
+    "tags": ["Next.js", "React", "Node.js", "PostgreSQL"]
+  },
+  {
+    "id": "react-native-dev",
+    "title": "React Native Developer",
+    "department": "Engineering",
+    "location": "Hybrid · Ahmedabad",
+    "type": "Full-time",
+    "description": "Build polished mobile experiences for iOS and Android — offline flows, push notifications, and app store releases for B2B and consumer clients.",
+    "tags": ["React Native", "TypeScript", "iOS", "Android"]
+  },
+  {
+    "id": "ui-ux-designer",
+    "title": "UI/UX Designer",
+    "department": "Design",
+    "location": "Remote",
+    "type": "Full-time",
+    "description": "Own end-to-end product design — research, wireframes, high-fidelity UI, and design systems that engineers can implement without guesswork.",
+    "tags": ["Figma", "Design Systems", "Prototyping"]
+  },
+  {
+    "id": "devops-engineer",
+    "title": "DevOps Engineer",
+    "department": "Engineering",
+    "location": "Remote",
+    "type": "Full-time",
+    "description": "Design CI/CD pipelines, cloud infrastructure, and monitoring for client platforms on AWS, Vercel, and containerized environments.",
+    "tags": ["AWS", "Docker", "CI/CD", "Terraform"]
+  },
+  {
+    "id": "ai-engineer",
+    "title": "AI / ML Engineer",
+    "department": "Engineering",
+    "location": "Remote",
+    "type": "Full-time",
+    "description": "Integrate LLMs, automation workflows, and data pipelines into production products — responsibly, with clear evaluation and guardrails.",
+    "tags": ["Python", "LLMs", "APIs", "Data Pipelines"]
+  },
+  {
+    "id": "project-manager",
+    "title": "Technical Project Manager",
+    "department": "Operations",
+    "location": "Hybrid · India",
+    "type": "Full-time",
+    "description": "Coordinate cross-functional delivery — scope, sprints, client communication, and risk management for multiple concurrent builds.",
+    "tags": ["Agile", "Client Delivery", "Scrum"]
+  }
+]

@@ -9,9 +9,11 @@ type Props = {
   eyebrow: string;
   title: React.ReactNode;
   blurb?: string;
+  /** Warm orange ambient orb (top-left). Off for pages that should stay clean. */
+  warmGlow?: boolean;
 };
 
-export default function PageHero({ eyebrow, title, blurb }: Props) {
+export default function PageHero({ eyebrow, title, blurb, warmGlow = true }: Props) {
   const blob1 = useRef<HTMLDivElement | null>(null);
   const blob2 = useRef<HTMLDivElement | null>(null);
 
@@ -29,10 +31,12 @@ export default function PageHero({ eyebrow, title, blurb }: Props) {
   return (
     <section className="relative pt-[10rem] sm:pt-36 md:pt-40 pb-14 sm:pb-20 md:pb-28 overflow-hidden">
       <div className={`absolute inset-0 opacity-30 pointer-events-none ${tw.gridBg} ${tw.maskFadeBottom}`} />
-      <div
-        ref={blob1}
-        className={`${tw.brandOrb} ${tw.brandOrbWarm} -top-20 -left-32 h-72 w-72 sm:h-96 sm:w-96 md:h-[36rem] md:w-[36rem]`}
-      />
+      {warmGlow ? (
+        <div
+          ref={blob1}
+          className={`${tw.brandOrb} ${tw.brandOrbWarm} -top-20 -left-32 h-72 w-72 sm:h-96 sm:w-96 md:h-[36rem] md:w-[36rem]`}
+        />
+      ) : null}
       <div
         ref={blob2}
         className={`${tw.brandOrb} ${tw.brandOrbTrust} top-20 -right-32 h-64 w-64 sm:h-80 sm:w-80 md:h-[28rem] md:w-[28rem]`}
