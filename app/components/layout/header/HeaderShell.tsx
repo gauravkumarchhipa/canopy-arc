@@ -15,6 +15,7 @@ type Props = {
   desktopNav: ReactNode;
   desktopActions: ReactNode;
   mobileActions: ReactNode;
+  contactEmail?: string;
 };
 
 export default function HeaderShell({
@@ -22,6 +23,7 @@ export default function HeaderShell({
   desktopNav,
   desktopActions,
   mobileActions,
+  contactEmail,
 }: Props) {
   const lenis = useLenis();
   const [scrolled, setScrolled] = useState(false);
@@ -122,7 +124,9 @@ export default function HeaderShell({
         </div>
       </header>
 
-      {hasOpened && <MobileMenu open={open} onClose={closeMenu} />}
+      {hasOpened && (
+        <MobileMenu open={open} onClose={closeMenu} contactEmail={contactEmail} />
+      )}
     </>
   );
 }

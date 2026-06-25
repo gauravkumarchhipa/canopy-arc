@@ -12,6 +12,7 @@ import PageGridBackground from "./components/layout/PageGridBackground";
 import HomeLoaderGate from "./components/home/HomeLoaderGate";
 import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
+import { getFooterData } from "./lib/footer/get-footer-data";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -65,6 +66,7 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const theme = resolveTheme(cookieStore.get(THEME_COOKIE)?.value);
+  const footerData = await getFooterData();
 
   return (
     <html
@@ -80,12 +82,15 @@ export default async function RootLayout({
           <div data-app-content className="flex min-h-full flex-1 flex-col w-full">
             <SmoothScroll>
               {/* <CustomCursor /> */}
-              <Header initialTheme={theme} />
+              <Header
+                initialTheme={theme}
+                contactEmail={footerData.contact.email}
+              />
               <main className="relative isolate flex-1">
                 <PageGridBackground />
                 {children}
               </main>
-              <Footer />
+              <Footer data={footerData} />
             </SmoothScroll>
           </div>
         </ThemeProvider>

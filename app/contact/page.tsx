@@ -8,7 +8,7 @@ import {
   glowHoverCardText,
   glowHoverCardTitle,
 } from "../components/ui/glow-card-styles";
-import { footer } from "../content/layout/footer";
+import { getFooterContact } from "../lib/footer/get-footer-data";
 import { tw } from "../lib/tw";
 
 export const metadata: Metadata = {
@@ -17,7 +17,9 @@ export const metadata: Metadata = {
     "Talk to the Canopy Arc team. Tell us what you want to build — we read every message.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contact = await getFooterContact();
+
   return (
     <div className={`${tw.pageShell} relative overflow-hidden`}>
       <PageAmbientGlow />
@@ -50,17 +52,23 @@ export default function ContactPage() {
           <GlowHoverCard className="p-6 sm:p-7">
             <h2 className={glowHoverCardTitle}>Contact Details</h2>
             <div className={`${glowHoverCardText} mt-5 space-y-3`}>
-              <p className="whitespace-pre-line">{footer.contact.address}</p>
-              <a className={glowHoverCardLink} href={`mailto:${footer.contact.email}`}>
-                {footer.contact.email}
-              </a>
-              <a
-                className={glowHoverCardLink}
-                href={`tel:${footer.contact.phone.replace(/[^+0-9]/g, "")}`}
-              >
-                {footer.contact.phone}
-              </a>
-              <p>{footer.contact.hours}</p>
+              {contact.address ? (
+                <p className="whitespace-pre-line">{contact.address}</p>
+              ) : null}
+              {contact.email ? (
+                <a className={glowHoverCardLink} href={`mailto:${contact.email}`}>
+                  {contact.email}
+                </a>
+              ) : null}
+              {contact.phone ? (
+                <a
+                  className={glowHoverCardLink}
+                  href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
+                >
+                  {contact.phone}
+                </a>
+              ) : null}
+              {contact.hours ? <p>{contact.hours}</p> : null}
             </div>
           </GlowHoverCard>
 
