@@ -2,7 +2,7 @@ import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
 import GlowHoverCard from "../../ui/GlowHoverCard";
 import { brand } from "../../../content/shared/brand";
-import { footer } from "../../../content/layout/footer";
+import type { FooterData } from "../../../lib/footer/types";
 import {
   footerSocialGlow,
   footerSocialIcon,
@@ -15,19 +15,25 @@ import {
   SocialIcon,
 } from "./FooterIcons";
 
-type SocialLink = (typeof footer.social)[number];
-
 const contactIconClass =
   "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[0.65rem] border border-line-strong bg-surface text-accent [&_svg]:block [&_svg]:h-4 [&_svg]:w-4";
 
 const contactTextClass = "min-w-0 text-sm text-muted";
 
-function FooterSocialLinks({ social }: { social: SocialLink[] }) {
+type Props = {
+  data: FooterData;
+};
+
+function FooterSocialLinks({
+  social,
+}: {
+  social: FooterData["social"];
+}) {
   return (
     <div className="flex flex-nowrap items-center justify-center gap-2 overflow-visible p-0.5 lg:justify-start lg:gap-2.5">
       {social.map((s) => (
         <GlowHoverCard
-          key={s.label}
+          key={s.id}
           as="a"
           href={s.href}
           aria-label={s.label}
@@ -42,9 +48,10 @@ function FooterSocialLinks({ social }: { social: SocialLink[] }) {
   );
 }
 
-export default function FooterBrand() {
-  const contact = footer.contact;
-  const social = footer.social;
+export default function FooterBrand({ data }: Props) {
+  const { contact, social } = data;
+  const hasContact =
+    contact.address || contact.email || contact.phone || contact.hours;
 
   return (
     <div className="flex min-w-0 flex-col items-center text-center sm:col-span-2 lg:col-span-1 lg:items-start lg:text-left">
@@ -74,59 +81,71 @@ export default function FooterBrand() {
       </Link>
 
       <p className="order-2 mx-auto mt-5 max-w-sm text-center text-sm leading-relaxed text-muted lg:mx-0 lg:text-left">
-        {footer.description}
+        {data.description}
       </p>
 
-      <div className="order-3 mt-5 flex w-full flex-col items-center lg:order-5 lg:mt-8 lg:block lg:w-auto">
-        <p className="m-0 mb-3 text-center text-sm font-medium text-foreground lg:text-left">
-          Follow Us
-        </p>
-        <FooterSocialLinks social={social} />
-      </div>
+      {data.followUsVisible && social.length > 0 ? (
+        <div className="order-3 mt-5 flex w-full flex-col items-center lg:order-5 lg:mt-8 lg:block lg:w-auto">
+          <p className="m-0 mb-3 text-center text-sm font-medium text-foreground lg:text-left">
+            {data.followUsLabel}
+          </p>
+          <FooterSocialLinks social={social} />
+        </div>
+      ) : null}
 
-      <div className="order-4 mt-7 w-full lg:max-w-none">
-        <div className="mx-auto flex w-full max-w-[20rem] flex-col gap-3.5 lg:mx-0">
-          <div className="flex items-start gap-3 text-left">
-            <span className={contactIconClass}>
-              <IconLocation />
-            </span>
-            <p className={`${contactTextClass} flex-1 leading-relaxed whitespace-pre-line`}>
-              {contact.address}
-            </p>
-          </div>
+      {hasContact ? (
+        <div className="order-4 mt-7 w-full lg:max-w-none">
+          <div className="mx-auto flex w-full max-w-[20rem] flex-col gap-3.5 lg:mx-0">
+            {contact.address ? (
+              <div className="flex items-start gap-3 text-left">
+                <span className={contactIconClass}>
+                  <IconLocation />
+                </span>
+                <p className={`${contactTextClass} flex-1 leading-relaxed whitespace-pre-line`}>
+                  {contact.address}
+                </p>
+              </div>
+            ) : null}
 
-          <div className="flex items-start gap-3 text-left">
-            <span className={contactIconClass}>
-              <IconMail />
-            </span>
-            <a
-              href={`mailto:${contact.email}`}
-              className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
-            >
-              {contact.email}
-            </a>
-          </div>
+            {contact.email ? (
+              <div className="flex items-start gap-3 text-left">
+                <span className={contactIconClass}>
+                  <IconMail />
+                </span>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
+                >
+                  {contact.email}
+                </a>
+              </div>
+            ) : null}
 
-          <div className="flex items-start gap-3 text-left">
-            <span className={contactIconClass}>
-              <IconPhone />
-            </span>
-            <a
-              href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
-              className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
-            >
-              {contact.phone}
-            </a>
-          </div>
+            {contact.phone ? (
+              <div className="flex items-start gap-3 text-left">
+                <span className={contactIconClass}>
+                  <IconPhone />
+                </span>
+                <a
+                  href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
+                  className={`${contactTextClass} flex-1 transition-colors hover:text-foreground`}
+                >
+                  {contact.phone}
+                </a>
+              </div>
+            ) : null}
 
-          <div className="flex items-start gap-3 text-left">
-            <span className={contactIconClass}>
-              <IconClock />
-            </span>
-            <span className={`${contactTextClass} flex-1`}>{contact.hours}</span>
+            {contact.hours ? (
+              <div className="flex items-start gap-3 text-left">
+                <span className={contactIconClass}>
+                  <IconClock />
+                </span>
+                <span className={`${contactTextClass} flex-1`}>{contact.hours}</span>
+              </div>
+            ) : null}
           </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 }

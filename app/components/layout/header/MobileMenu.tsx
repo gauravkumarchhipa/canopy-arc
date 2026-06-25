@@ -5,15 +5,15 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
 import HeaderCtaButtons from "./HeaderCtaButtons";
-import { footer } from "../../../content/layout/footer";
 import { tw } from "../../../lib/tw";
 
 type Props = {
   open: boolean;
   onClose: () => void;
+  contactEmail?: string;
 };
 
-export default function MobileMenu({ open, onClose }: Props) {
+export default function MobileMenu({ open, onClose, contactEmail }: Props) {
   const pathname = usePathname();
 
   useEffect(() => {
@@ -101,12 +101,14 @@ export default function MobileMenu({ open, onClose }: Props) {
             }}
           >
             <HeaderCtaButtons stacked className="[&_a]:w-full" />
-            <a
-              href={`mailto:${footer.contact.email}`}
-              className="text-center text-sm text-muted hover:text-foreground transition-colors"
-            >
-              {footer.contact.email}
-            </a>
+            {contactEmail ? (
+              <a
+                href={`mailto:${contactEmail}`}
+                className="text-center text-sm text-muted hover:text-foreground transition-colors"
+              >
+                {contactEmail}
+              </a>
+            ) : null}
           </div>
         </div>
       </div>

@@ -7,11 +7,13 @@ import type { Theme } from "../../lib/theme";
 
 type Props = {
   initialTheme: Theme;
+  contactEmail?: string;
 };
 
-export default function Header({ initialTheme }: Props) {
+export default function Header({ initialTheme, contactEmail }: Props) {
   return (
     <HeaderShell
+      contactEmail={contactEmail}
       logo={<Logo />}
       desktopNav={<DesktopNav />}
       desktopActions={

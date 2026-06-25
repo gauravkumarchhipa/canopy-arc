@@ -1,10 +1,14 @@
 import Link from "next/link";
 import ThemeAwareMark from "../../ThemeAwareMark";
-import { FOOTER_BOTTOM_LINKS } from "./footer-data";
-import { footer } from "../../../content/layout/footer";
+import type { FooterLink } from "./footer-data";
 import { IconShield } from "./FooterIcons";
 
-export default function FooterBottom() {
+type Props = {
+  copyright: string;
+  bottomLinks: FooterLink[];
+};
+
+export default function FooterBottom({ copyright, bottomLinks }: Props) {
   const year = new Date().getFullYear();
 
   return (
@@ -29,28 +33,30 @@ export default function FooterBottom() {
         <p className="inline-flex items-center gap-[0.45rem] text-xs leading-snug text-muted">
           <IconShield className="h-3.5 w-3.5 shrink-0 text-accent" />
           <span>
-            © {year} {footer.copyright}
+            © {year} {copyright}
           </span>
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          {FOOTER_BOTTOM_LINKS.map((link, i) => (
-            <span key={link.href} className="inline-flex items-center gap-3">
-              {i > 0 ? (
-                <span
-                  className="h-1 w-1 rounded-full bg-accent opacity-70"
-                  aria-hidden
-                />
-              ) : null}
-              <Link
-                href={link.href}
-                className="text-xs text-muted transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </span>
-          ))}
-        </div>
+        {bottomLinks.length > 0 ? (
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            {bottomLinks.map((link, i) => (
+              <span key={link.href} className="inline-flex items-center gap-3">
+                {i > 0 ? (
+                  <span
+                    className="h-1 w-1 rounded-full bg-accent opacity-70"
+                    aria-hidden
+                  />
+                ) : null}
+                <Link
+                  href={link.href}
+                  className="text-xs text-muted transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </span>
+            ))}
+          </div>
+        ) : null}
       </div>
     </div>
   );

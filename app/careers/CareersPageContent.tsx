@@ -12,10 +12,14 @@ import {
   glowHoverCardTitle,
 } from "../components/ui/glow-card-styles";
 import { vacancies } from "../content/pages/careers/vacancies";
-import { footer } from "../content/layout/footer";
+import type { FooterContact } from "../lib/footer/types";
 import { tw } from "../lib/tw";
 
-export default function CareersPageContent() {
+type Props = {
+  contact: FooterContact;
+};
+
+export default function CareersPageContent({ contact }: Props) {
   const [selectedRoleId, setSelectedRoleId] = useState<string | undefined>();
 
   function handleApply(roleId: string) {
@@ -90,10 +94,12 @@ export default function CareersPageContent() {
                 Don&apos;t see the right role? Send an open application — we&apos;re always
                 interested in exceptional people.
               </p>
-              <a className={glowHoverCardLink} href={`mailto:${footer.contact.email}`}>
-                {footer.contact.email}
-              </a>
-              <p>{footer.contact.hours}</p>
+              {contact.email ? (
+                <a className={glowHoverCardLink} href={`mailto:${contact.email}`}>
+                  {contact.email}
+                </a>
+              ) : null}
+              {contact.hours ? <p>{contact.hours}</p> : null}
             </div>
           </GlowHoverCard>
         </aside>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getFooterContact } from "../lib/footer/get-footer-data";
 import CareersPageContent from "./CareersPageContent";
 
 export const metadata: Metadata = {
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
     "Join Canopy Arc — open roles in engineering, design, DevOps, and project delivery. Remote-friendly, modern stack, real products.",
 };
 
-export default function CareersPage() {
-  return <CareersPageContent />;
+export default async function CareersPage() {
+  const contact = await getFooterContact();
+  return <CareersPageContent contact={contact} />;
 }
