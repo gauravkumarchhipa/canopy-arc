@@ -3,13 +3,8 @@ import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import "./components/home/home-loader.css";
-import SmoothScroll from "./components/layout/SmoothScroll";
-// import CustomCursor from "./components/layout/CustomCursor";
 import RegisterSW from "./components/webworkers/RegisterSW";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
-import PageGridBackground from "./components/layout/PageGridBackground";
-import HomeLoaderGate from "./components/home/HomeLoaderGate";
+import SiteChrome from "./components/layout/SiteChrome";
 import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
 import { getFooterData } from "./lib/footer/get-footer-data";
@@ -78,21 +73,9 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider initialTheme={theme}>
           <RegisterSW />
-          <HomeLoaderGate initialTheme={theme} />
-          <div data-app-content className="flex min-h-full flex-1 flex-col w-full">
-            <SmoothScroll>
-              {/* <CustomCursor /> */}
-              <Header
-                initialTheme={theme}
-                contactEmail={footerData.contact.email}
-              />
-              <main className="relative isolate flex-1">
-                <PageGridBackground />
-                {children}
-              </main>
-              <Footer data={footerData} />
-            </SmoothScroll>
-          </div>
+          <SiteChrome initialTheme={theme} footerData={footerData}>
+            {children}
+          </SiteChrome>
         </ThemeProvider>
       </body>
     </html>
