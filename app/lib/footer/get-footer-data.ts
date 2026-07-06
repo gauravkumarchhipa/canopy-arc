@@ -20,6 +20,41 @@ function buildContact(
   return contact;
 }
 
+type SupabaseFooterError = {
+  code?: string;
+  message?: string;
+  details?: string;
+};
+
+function isNetworkError(error: SupabaseFooterError): boolean {
+  const message = `${error.message ?? ""} ${error.details ?? ""}`.toLowerCase();
+  return (
+    message.includes("fetch failed") ||
+    message.includes("enotfound") ||
+    message.includes("econnrefused") ||
+    message.includes("network")
+  );
+}
+
+function logFooterFetchIssue(error: SupabaseFooterError) {
+  if (error.code === "PGRST205") {
+    console.warn(
+      "[footer] Supabase tables not found. Run supabase/migrations/001_footer_schema.sql in the SQL Editor.",
+    );
+    return;
+  }
+
+  if (isNetworkError(error)) {
+    console.warn(
+      "[footer] Cannot reach Supabase. Check NEXT_PUBLIC_SUPABASE_URL in .env.local (project may be paused or URL incorrect). Using static footer fallback.",
+    );
+    return;
+  }
+
+  const message = error.message ?? "Unknown Supabase error";
+  console.warn("[footer] Supabase fetch failed:", message);
+}
+
 async function fetchFooterFromSupabase(): Promise<FooterData | null> {
   const supabase = createSupabaseServerClient();
   if (!supabase) {
@@ -55,14 +90,7 @@ async function fetchFooterFromSupabase(): Promise<FooterData | null> {
   ]);
 
   if (settingsResult.error) {
-    const message = settingsResult.error.message ?? "Unknown Supabase error";
-    if (settingsResult.error.code === "PGRST205") {
-      console.warn(
-        "[footer] Supabase tables not found. Run supabase/migrations/001_footer_schema.sql in the SQL Editor.",
-      );
-    } else {
-      console.error("[footer] settings fetch failed:", message, settingsResult.error);
-    }
+    logFooterFetchIssue(settingsResult.error);
     return null;
   }
 
@@ -130,7 +158,14 @@ export const getFooterData = cache(async (): Promise<FooterData> => {
       return fromDb;
     }
   } catch (error) {
-    console.error("[footer] Supabase fetch error:", error);
+    const message = error instanceof Error ? error.message : String(error);
+    if (message.toLowerCase().includes("fetch failed")) {
+      console.warn(
+        "[footer] Supabase connection failed. Verify NEXT_PUBLIC_SUPABASE_URL. Using static footer fallback.",
+      );
+    } else {
+      console.warn("[footer] Supabase fetch error:", message);
+    }
   }
 
   return getFooterFallback();
