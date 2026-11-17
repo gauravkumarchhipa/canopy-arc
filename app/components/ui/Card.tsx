@@ -30,7 +30,7 @@ export default function Card({
 }: Props) {
   const Element = as;
   const base =
-    "bg-background border border-line rounded-2xl group transition-colors relative";
+    "editorial-card bg-surface group transition-colors relative";
   const hover = noHover
     ? ""
     : " hover:bg-surface hover:border-line-strong";

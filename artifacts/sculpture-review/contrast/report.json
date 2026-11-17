@@ -1,0 +1,218 @@
+{
+  "base": "http://localhost:3000",
+  "generatedAt": "2026-11-17T19:31:27.044Z",
+  "results": [
+    {
+      "route": "/team",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 140,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 140,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/cybersecurity",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 344,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 344,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 345,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 339,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/cybersecurity",
+      "keyboardFocusVisible": true,
+      "errors": []
+    }
+  ]
+}

@@ -19,9 +19,6 @@ import {
   workCardHighlight,
   workCardIconBox,
   workCardImage,
-  workCardImageGrid,
-  workCardImageIcon,
-  workCardImageWash,
   workCardLiveLink,
   workCardMeta,
   workCardShell,
@@ -29,11 +26,12 @@ import {
 } from "./work-card-styles";
 import { ExternalLinkIcon } from "./work-product-icons";
 import WorkProductIcon from "./WorkProductIcon";
+import ProjectArtwork from "../../ProjectArtwork";
 
 function chipClass(active: boolean) {
   return `inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm transition-colors ${
     active
-      ? "border-accent/35 bg-accent/10 text-accent shadow-[0_0_0_1px_rgba(37,99,235,0.12)]"
+      ? "border-transparent bg-foreground text-background"
       : "border-line bg-background text-muted hover:bg-surface hover:text-foreground"
   }`;
 }
@@ -55,6 +53,7 @@ export default function WorkGrid() {
             key={f}
             type="button"
             className={chipClass(active === f)}
+            aria-pressed={active === f}
             onClick={() => setActive(f)}
           >
             {f}
@@ -63,7 +62,7 @@ export default function WorkGrid() {
       </div>
 
       <div className="mt-10 grid gap-6 overflow-visible p-1 lg:grid-cols-2">
-        {items.map((project) => (
+        {items.map((project, index) => (
           <a
             key={project.id}
             href={project.url}
@@ -81,15 +80,7 @@ export default function WorkGrid() {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               ) : (
-                <>
-                  <div className={workCardImageWash} aria-hidden />
-                  <div className={workCardImageGrid} aria-hidden />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className={workCardImageIcon}>
-                      <WorkProductIcon name={project.icon} />
-                    </span>
-                  </div>
-                </>
+                <ProjectArtwork title={project.name} category={project.category} index={index} />
               )}
             </div>
 

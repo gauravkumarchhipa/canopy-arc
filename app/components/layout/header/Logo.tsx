@@ -6,7 +6,7 @@ export default function Logo() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-3.5 sm:gap-4 group"
+      className="premium-logo flex items-center gap-3.5 sm:gap-4 group"
       aria-label={`${brand.name} home`}
     >
       <span className="relative inline-flex h-16 w-16 sm:h-[4.5rem] sm:w-[4.5rem] shrink-0 items-center justify-center overflow-visible transition-transform group-hover:scale-105">

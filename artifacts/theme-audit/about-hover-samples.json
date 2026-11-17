@@ -1,0 +1,30 @@
+[
+  {
+    "theme": "light",
+    "label": "Design that converts",
+    "background": "rgb(231, 229, 222)",
+    "heading": "rgb(36, 36, 34)",
+    "body": "rgb(98, 97, 91)"
+  },
+  {
+    "theme": "light",
+    "label": "Own the outcome",
+    "background": "rgb(231, 229, 222)",
+    "heading": "rgb(36, 36, 34)",
+    "body": "rgb(98, 97, 91)"
+  },
+  {
+    "theme": "dark",
+    "label": "Design that converts",
+    "background": "rgb(43, 43, 38)",
+    "heading": "rgb(241, 239, 232)",
+    "body": "rgb(170, 167, 159)"
+  },
+  {
+    "theme": "dark",
+    "label": "Own the outcome",
+    "background": "rgb(43, 43, 38)",
+    "heading": "rgb(241, 239, 232)",
+    "body": "rgb(170, 167, 159)"
+  }
+]

@@ -60,7 +60,12 @@ export default function HeaderShell({
       lastY.current = y;
     };
 
-    if (!lenis) return;
+    if (!lenis) {
+      const onScroll = () => applyScroll(window.scrollY);
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      return () => window.removeEventListener("scroll", onScroll);
+    }
 
     lastY.current = lenis.scroll;
     applyScroll(lenis.scroll);
@@ -85,7 +90,7 @@ export default function HeaderShell({
         className={headerShellClass({ elevated: isElevated, hidden, open })}
       >
         <div className="mx-auto max-w-350 px-6 lg:px-10">
-          <div className="hidden md:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
+          <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
             <div className="justify-self-start">{logo}</div>
             <div className="justify-self-center">{desktopNav}</div>
             <div className="justify-self-end flex items-center gap-3">
@@ -93,7 +98,7 @@ export default function HeaderShell({
             </div>
           </div>
 
-          <div className="md:hidden flex items-center justify-between">
+          <div className="lg:hidden flex items-center justify-between">
             {logo}
 
             <div className="flex items-center gap-2">

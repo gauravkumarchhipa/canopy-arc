@@ -25,7 +25,7 @@ type Props = {
 
 export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy }: Props) {
   return (
-    <section className="mt-8 grid gap-5 overflow-visible p-1 lg:grid-cols-3">
+    <section className="service-info-grid mt-8 grid gap-8 overflow-visible lg:grid-cols-3">
       <GlowHoverCard className={detailPanelGlow}>
         <h2 className={detailSectionTitleHover}>What We Build</h2>
         <ul className="mt-5 space-y-3">

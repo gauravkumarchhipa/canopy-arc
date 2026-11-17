@@ -25,7 +25,7 @@ export default function DeliberateNoSection() {
           ].map((line, i) => (
             <Reveal key={line} delay={0.05 * i}>
               <div className="flex items-center gap-6 py-5 border-b border-line">
-                <span className="font-display text-2xl text-muted/40">×</span>
+                <span className="font-display text-2xl text-muted">×</span>
                 <p className="text-lg md:text-xl text-foreground/85">
                   {line}
                 </p>

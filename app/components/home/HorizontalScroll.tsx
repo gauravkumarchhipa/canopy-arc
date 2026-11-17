@@ -112,7 +112,7 @@ export default function HorizontalScroll() {
       <div className="relative px-6 lg:px-10 pt-16 sm:pt-24 md:pt-32 pb-8 sm:pb-12 md:pb-20">
         <Eyebrow className="mb-3">How SAHAI thinks</Eyebrow>
         <h2 className="font-display text-4xl md:text-6xl leading-[0.95] max-w-2xl">
-          Five quiet ideas <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">behind</span>{" "}
+          Five quiet ideas <span className="text-muted">behind</span>{" "}
           one calm companion.
         </h2>
       </div>

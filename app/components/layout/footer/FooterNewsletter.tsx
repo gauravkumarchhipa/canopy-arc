@@ -1,14 +1,5 @@
 import Link from "next/link";
-import GlowHoverCard from "../../ui/GlowHoverCard";
 import type { FooterNewsletter, FooterSupport } from "./footer-data";
-import { IconHeadset } from "./FooterIcons";
-import {
-  footerSupportGlow,
-  footerSupportIcon,
-  footerSupportLink,
-  footerSupportText,
-  footerSupportTitle,
-} from "./footer-card-styles";
 import NewsletterFormLazy from "./NewsletterFormLazy";
 
 type Props = {
@@ -18,35 +9,25 @@ type Props = {
 
 export default function FooterNewsletter({ newsletter, support }: Props) {
   return (
-    <div className="min-w-0 sm:col-span-2 lg:col-span-1">
+    <div className="footer-connect-row">
       {newsletter ? (
-        <>
-          <div
-            className="mb-[0.85rem] h-[3px] w-8 rounded-full bg-[linear-gradient(90deg,#3b82f6,#22d3ee)]"
-            aria-hidden
-          />
-          <h4 className="text-[0.95rem] font-semibold tracking-tight text-foreground">
-            {newsletter.title}
-          </h4>
-          <p className="mt-4 text-sm leading-relaxed text-muted">{newsletter.text}</p>
-          <NewsletterFormLazy />
-        </>
-      ) : null}
-
-      {support ? (
-        <GlowHoverCard className={`${footerSupportGlow} ${newsletter ? "mt-6" : ""}`}>
-          <span className={footerSupportIcon}>
-            <IconHeadset />
-          </span>
-          <div className="min-w-0">
-            <p className={footerSupportTitle}>{support.title}</p>
-            <p className={footerSupportText}>{support.text}</p>
-            <Link href={support.linkHref} className={footerSupportLink}>
-              {support.linkLabel}
-              <span aria-hidden>→</span>
-            </Link>
+        <div className="footer-newsletter">
+          <div>
+            <h4>{newsletter.title}</h4>
+            <p>{newsletter.text}</p>
           </div>
-        </GlowHoverCard>
+          <NewsletterFormLazy />
+        </div>
+      ) : null}
+      {support ? (
+        <div className="footer-support">
+          <h4>{support.title}</h4>
+          <p>{support.text}</p>
+          <Link className="editorial-link" href={support.linkHref}>
+            {support.linkLabel}
+            <span aria-hidden>↗</span>
+          </Link>
+        </div>
       ) : null}
     </div>
   );

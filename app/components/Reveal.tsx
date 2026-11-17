@@ -26,6 +26,7 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const targets: Element[] = staggerChildren
       ? Array.from(el.children)
@@ -72,7 +73,7 @@ export default function Reveal({
   }, [delay, y, stagger, staggerChildren]);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} data-reveal-owned>
       {children}
     </div>
   );

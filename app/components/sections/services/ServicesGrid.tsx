@@ -120,7 +120,7 @@ export default function ServicesGrid() {
         ))}
       </div>
 
-      <div className="mt-10 grid gap-5 overflow-visible px-1 pb-2 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 grid gap-5 overflow-visible pb-2 md:grid-cols-2 xl:grid-cols-3">
         {cards.map((card) => (
           <Link
             key={card.id}

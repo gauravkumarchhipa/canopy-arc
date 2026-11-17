@@ -1,3 +1,7 @@
+import { homeImpact } from "../home/impact";
+
+const companyFigure = (label: string) => homeImpact.stats.find(stat => stat.label === label)?.value ?? "—";
+
 export const SERVICE_PROCESS_STEPS = [
   {
     step: "01",
@@ -41,18 +45,13 @@ export const SERVICE_WHY_CHOOSE = [
 ] as const;
 
 export const SERVICE_HERO_STATS = [
-  { icon: "rocket", value: "150+", label: "Projects Delivered" },
-  { icon: "users", value: "40+", label: "Expert Developers" },
-  { icon: "shield", value: "98%", label: "Client Satisfaction" },
-  { icon: "clock", value: "12+", label: "Years Experience" },
+  { icon: "rocket", value: homeImpact.featured.value, label: "Projects Delivered" },
+  { icon: "users", value: companyFigure("Expert Developers"), label: "Expert Developers" },
+  { icon: "shield", value: companyFigure("Client Satisfaction"), label: "Client Satisfaction" },
+  { icon: "clock", value: companyFigure("Years of Excellence"), label: "Years Experience" },
 ] as const;
 
-export const SERVICE_BOTTOM_STATS = [
-  { icon: "rocket", value: "150+", label: "Projects Delivered" },
-  { icon: "users", value: "40+", label: "Expert Developers" },
-  { icon: "shield", value: "98%", label: "Client Satisfaction" },
-  { icon: "clock", value: "12+", label: "Years Experience" },
-] as const;
+export const SERVICE_BOTTOM_STATS = SERVICE_HERO_STATS;
 
 export const DEFAULT_INDUSTRIES = [
   "SaaS & Software",

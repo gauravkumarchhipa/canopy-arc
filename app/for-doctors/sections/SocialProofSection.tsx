@@ -11,7 +11,7 @@ export default function SocialProofSection() {
             week. I&apos;m not chasing memory anymore — I&apos;m treating.&rdquo;
           </blockquote>
           <div className="mt-8 flex items-center gap-4">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#f2994a] via-[#2bb3a3] to-[#2a2f6b] text-[#14161a] font-display text-xl">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-surface-strong text-foreground font-display text-xl">
               R
             </span>
             <div>

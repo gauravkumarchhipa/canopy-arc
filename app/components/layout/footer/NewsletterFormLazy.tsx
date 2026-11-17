@@ -7,7 +7,7 @@ const NewsletterForm = dynamic(() => import("../NewsletterForm"), {
   loading: () => (
     <div
       aria-hidden
-      className="mt-5 flex h-11 items-stretch overflow-hidden rounded-xl border border-line-strong bg-surface"
+      className="footer-subscribe-form h-14"
     />
   ),
 });

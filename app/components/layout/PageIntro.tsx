@@ -23,7 +23,7 @@ export default function PageIntro({
   children,
 }: Props) {
   return (
-    <section className="relative">
+    <section className="relative premium-page-intro">
       <div className={tw.pageIntro}>
         {eyebrowPill ? (
           <EyebrowPill>{eyebrow}</EyebrowPill>
@@ -31,7 +31,7 @@ export default function PageIntro({
           <Eyebrow className="block leading-relaxed">{eyebrow}</Eyebrow>
         )}
         <h1
-          className={`font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight ${
+          className={`font-display text-[clamp(2.4rem,5.4vw,5rem)] leading-[1.08] tracking-tight ${
             titleAccent ? "" : "whitespace-pre-line"
           } ${eyebrowPill ? "mt-7" : "mt-5"}`}
         >

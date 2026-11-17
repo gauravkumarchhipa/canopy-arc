@@ -8,31 +8,31 @@ export const aboutSectionSubtitle =
   "mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base";
 
 export const aboutPillarTitle =
-  "relative z-1 text-sm font-semibold text-foreground transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
+  "relative z-1 text-sm font-semibold text-foreground transition-colors duration-[400ms] group-hover:text-foreground group-focus-within:text-foreground";
 
 export const aboutPillarBody =
-  "relative z-1 mt-3 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82 group-focus-within:text-white/82";
+  "relative z-1 mt-3 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-muted group-focus-within:text-muted";
 
 export const aboutPillarIcon =
-  "relative z-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent transition-[border-color,background-color,color] duration-[400ms] group-hover:border-white/28 group-hover:bg-white/12 group-hover:text-white [&_svg]:h-5 [&_svg]:w-5";
+  "relative z-1 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line-strong bg-[var(--service-card-arrow-bg)] text-accent transition-[border-color,background-color,color] duration-[400ms] group-hover:border-line-strong group-hover:bg-surface-strong group-hover:text-foreground [&_svg]:h-5 [&_svg]:w-5";
 
 export const aboutValueIndex =
-  "relative z-1 font-mono text-xs text-muted transition-colors duration-[400ms] group-hover:text-white/70";
+  "relative z-1 font-mono text-xs text-muted transition-colors duration-[400ms] group-hover:text-muted";
 
 export const aboutValueTitle =
-  "relative z-1 mt-4 font-display text-xl font-semibold tracking-tight text-foreground transition-colors duration-[400ms] sm:text-2xl group-hover:text-white";
+  "relative z-1 mt-4 font-display text-xl font-semibold tracking-tight text-foreground transition-colors duration-[400ms] sm:text-2xl group-hover:text-foreground";
 
 export const aboutValueBody =
-  "relative z-1 mt-3 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82";
+  "relative z-1 mt-3 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-muted";
 
 export const aboutCapabilityTitle =
-  "relative z-1 font-display text-lg font-semibold tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
+  "relative z-1 font-display text-lg font-semibold tracking-tight text-foreground transition-colors duration-[400ms] group-hover:text-foreground group-focus-within:text-foreground";
 
 export const aboutCapabilityBody =
-  "relative z-1 mt-2 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-white/82 group-focus-within:text-white/82";
+  "relative z-1 mt-2 text-sm leading-relaxed text-muted transition-colors duration-[400ms] group-hover:text-muted group-focus-within:text-muted";
 
 export const aboutCapabilityLink =
-  "relative z-1 mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors duration-[400ms] group-hover:text-white group-focus-within:text-white";
+  "relative z-1 mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-colors duration-[400ms] group-hover:text-foreground group-focus-within:text-foreground";
 
 export const aboutTimelineDate =
   "font-mono text-xs uppercase tracking-[0.2em] text-accent pt-2";

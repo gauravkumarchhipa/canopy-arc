@@ -30,10 +30,10 @@ export default function ImpactFeaturedCard({
       />
       <h3 className="relative z-1 mt-2.5 text-lg leading-tight font-semibold">{label}</h3>
       <span
-        className="relative z-1 mt-4 mb-3 block h-0.5 w-10 rounded-full bg-white/55 transition-[width] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-14"
+        className="relative z-1 mt-4 mb-3 block h-0.5 w-10 rounded-full bg-background/55 transition-[width] duration-[400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:w-14"
         aria-hidden
       />
-      <p className="relative z-1 m-0 max-w-64 text-[0.8125rem] leading-snug text-white/82 transition-colors duration-[400ms] group-hover:text-white/92">
+      <p className="relative z-1 m-0 max-w-64 text-[0.8125rem] leading-snug text-background/85 transition-colors duration-[400ms] group-hover:text-background">
         {description}
       </p>
     </article>

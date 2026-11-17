@@ -17,7 +17,7 @@ export default function FeatureGridSection() {
                   <span className="text-xs tracking-[0.25em] uppercase text-muted">
                     {f.tag}
                   </span>
-                  <span className="font-mono text-xs text-muted/60">
+                  <span className="font-mono text-xs text-muted">
                     {String(i + 1).padStart(2, "0")} / 08
                   </span>
                 </div>
@@ -35,7 +35,7 @@ export default function FeatureGridSection() {
                       key={b}
                       className="flex items-start gap-3 text-sm text-foreground/80"
                     >
-                      <span className="mt-2 h-1 w-3 shrink-0 bg-gradient-to-r from-[#f2994a] to-[#2a2f6b]" />
+                      <span className="mt-2 h-1 w-3 shrink-0 bg-muted" />
                       <span>{b}</span>
                     </li>
                   ))}

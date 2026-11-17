@@ -20,7 +20,7 @@ export default function FeaturesPage() {
           <>
             Everything inside,
             <br />
-            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">designed to disappear</span>
+            <span className="text-muted">designed to disappear</span>
             <br />
             into care.
           </>

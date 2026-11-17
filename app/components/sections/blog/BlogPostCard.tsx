@@ -43,9 +43,9 @@ export default function BlogPostCard({ post }: Props) {
         <div className={blogCardBodyPattern} aria-hidden />
         <div className={blogCardMeta}>
           <span>{post.category}</span>
-          <span className="text-muted/50 group-hover/card:text-white/40">·</span>
+          <span className="text-muted">·</span>
           <span>{formatBlogDate(post.date)}</span>
-          <span className="text-muted/50 group-hover/card:text-white/40">·</span>
+          <span className="text-muted">·</span>
           <span>{post.readTime}</span>
         </div>
         <h2 className={blogCardTitle}>{post.title}</h2>

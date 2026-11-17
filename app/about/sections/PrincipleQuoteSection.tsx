@@ -4,7 +4,7 @@ export default function PrincipleQuoteSection() {
       <div className="mx-auto max-w-350 px-6 text-center lg:px-10">
         <p className="font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-tight text-foreground">
           Quality, clarity, and ownership matter more than{" "}
-          <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">
+          <span className="text-muted">
             speed for its own sake.
           </span>
         </p>

@@ -9,7 +9,7 @@ export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
   return (
     <div className="min-w-0">
       <div
-        className="mb-[0.85rem] h-[3px] w-8 rounded-full bg-[linear-gradient(90deg,#3b82f6,#22d3ee)]"
+        className="hidden"
         aria-hidden
       />
       <h4 className="text-[0.95rem] font-semibold tracking-tight text-foreground">
@@ -25,7 +25,7 @@ export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
               >
                 {link.label}
                 {link.badge ? (
-                  <span className="inline-flex items-center rounded-full bg-[linear-gradient(135deg,#3b82f6,#2563eb)] px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-white">
+                  <span className="inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
                     {link.badge}
                   </span>
                 ) : null}
@@ -37,7 +37,7 @@ export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
               >
                 {link.label}
                 {link.badge ? (
-                  <span className="inline-flex items-center rounded-full bg-[linear-gradient(135deg,#3b82f6,#2563eb)] px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-white">
+                  <span className="inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
                     {link.badge}
                   </span>
                 ) : null}

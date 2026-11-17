@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
-import "./components/home/home-loader.css";
+import "./premium.css";
+import "./sculptures.css";
 import RegisterSW from "./components/webworkers/RegisterSW";
 import SiteChrome from "./components/layout/SiteChrome";
 import ThemeProvider from "./components/layout/ThemeProvider";
@@ -70,6 +71,9 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `try{if(!document.cookie.split('; ').some(function(v){return v.indexOf('canopy-theme=')===0}))document.documentElement.dataset.theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}` }} />
+      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider initialTheme={theme}>
           <RegisterSW />

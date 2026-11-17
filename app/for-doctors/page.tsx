@@ -22,7 +22,7 @@ export default function ForDoctorsPage() {
           <>
             Care, with
             <br />
-            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">continuity</span>
+            <span className="text-muted">continuity</span>
             <br />
             built in.
           </>

@@ -1,7 +1,7 @@
 import Reveal from "../../components/Reveal";
 import RevealText from "../../components/RevealText";
 import Eyebrow from "../../components/ui/Eyebrow";
-import { HUES, LEADERSHIP } from "./team-data";
+import { LEADERSHIP } from "./team-data";
 
 export default function LeadershipSection() {
   return (
@@ -26,7 +26,7 @@ export default function LeadershipSection() {
                 data-cursor="hover"
               >
                 <span
-                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${HUES[m.hue]} text-[#14161a] font-display text-2xl mb-5`}
+                  className={`inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-surface-strong text-foreground font-display text-2xl mb-5`}
                 >
                   {m.initial}
                 </span>

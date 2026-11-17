@@ -34,15 +34,15 @@ export default function AuthLeftPanel() {
   }, []);
 
   return (
-    <div className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-[#070b14] p-8 sm:p-10 lg:p-12 [html[data-theme=light]_&]:bg-[#eef4ff]">
+    <div className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-bg-soft p-8 sm:p-10 lg:p-12">
       <AuthOrbScene className="absolute inset-0 h-full w-full" />
 
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(59,130,246,0.22),transparent_55%)] [html[data-theme=light]_&]:bg-[radial-gradient(ellipse_at_30%_20%,rgba(59,130,246,0.12),transparent_55%)]"
+        className="pointer-events-none absolute inset-0 hidden"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#070b14] via-transparent to-transparent [html[data-theme=light]_&]:from-[#eef4ff]"
+        className="pointer-events-none absolute inset-0 bg-linear-to-t from-bg-soft via-transparent to-transparent"
         aria-hidden
       />
 
@@ -54,7 +54,7 @@ export default function AuthLeftPanel() {
         <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden">
           <ThemeAwareMark alt={brand.name} width={48} height={48} className="h-[155%] w-[155%] max-w-none object-contain" />
         </span>
-        <span className="font-display text-xl tracking-tight text-white [html[data-theme=light]_&]:text-[#0b1220]">
+        <span className="font-display text-xl tracking-tight text-foreground">
           Canopy{" "}
           <span className={tw.gradientText}>Arc</span>
         </span>
@@ -63,20 +63,20 @@ export default function AuthLeftPanel() {
       <div ref={copyRef} className="relative z-10 mt-auto max-w-md">
         <p
           data-auth-reveal
-          className="text-xs font-medium tracking-[0.28em] uppercase text-[#94a3b8] [html[data-theme=light]_&]:text-[#64748b]"
+          className="text-xs font-medium tracking-[0.28em] uppercase text-muted"
         >
           {brand.tagline}
         </p>
         <h1
           data-auth-reveal
-          className="mt-4 font-display text-[clamp(1.85rem,4vw,2.75rem)] leading-[1.08] tracking-tight text-white [html[data-theme=light]_&]:text-[#0b1220]"
+          className="mt-4 font-display text-[clamp(1.85rem,4vw,2.75rem)] leading-[1.08] tracking-tight text-foreground"
         >
           Build digital experiences that{" "}
           <span className={tw.gradientText}>connect &amp; protect</span>
         </h1>
         <p
           data-auth-reveal
-          className="mt-4 text-sm leading-relaxed text-[#cbd5e1] [html[data-theme=light]_&]:text-[#475569]"
+          className="mt-4 text-sm leading-relaxed text-muted"
         >
           Secure access to your Canopy Arc workspace. Sign in to manage projects,
           collaborate with your team, and ship with confidence.
@@ -90,9 +90,9 @@ export default function AuthLeftPanel() {
           ].map((item) => (
             <li
               key={item}
-              className="flex items-center gap-2.5 text-sm text-[#e2e8f0] [html[data-theme=light]_&]:text-[#334155]"
+              className="flex items-center gap-2.5 text-sm text-foreground"
             >
-              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#3b82f6,#22d3ee)] text-[10px] text-white">
+              <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground text-[10px] text-background">
                 ✓
               </span>
               {item}

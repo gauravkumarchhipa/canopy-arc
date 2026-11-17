@@ -1,0 +1,74 @@
+[
+  {
+    "route": "/services/cybersecurity",
+    "status": 200,
+    "webgl": true,
+    "dragChangesPixels": true,
+    "rotateChangesPixels": true,
+    "reset": true,
+    "pause": true,
+    "reducedMotion": true,
+    "widths": [
+      {
+        "width": 320,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "overflow": false
+      },
+      {
+        "width": 1024,
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "route": "/services/cybersecurity",
+    "webglUnavailableFallback": true,
+    "staticControlsDisabled": true
+  },
+  {
+    "route": "/team",
+    "status": 200,
+    "webgl": true,
+    "dragChangesPixels": true,
+    "rotateChangesPixels": true,
+    "reset": true,
+    "pause": true,
+    "reducedMotion": true,
+    "widths": [
+      {
+        "width": 320,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "overflow": false
+      },
+      {
+        "width": 1024,
+        "overflow": false
+      }
+    ],
+    "directory": {
+      "filtered": 1,
+      "namesSorted": true
+    },
+    "errors": []
+  },
+  {
+    "route": "/team",
+    "webglUnavailableFallback": true,
+    "staticControlsDisabled": true
+  }
+]

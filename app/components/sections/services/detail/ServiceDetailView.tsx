@@ -22,7 +22,7 @@ export default function ServiceDetailView({ service, related }: Props) {
   const iconName = card?.icon ?? "code";
 
   return (
-    <div className={tw.pageShell}>
+    <div className={`${tw.pageShell} service-detail-page`}>
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <ServiceBreadcrumb serviceName={service.name} />
         <ServiceDetailHero service={service} iconName={iconName} />

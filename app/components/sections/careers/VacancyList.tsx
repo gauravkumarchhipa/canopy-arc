@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { z } from "zod";
 import type { Vacancy } from "../../../content/pages/careers/vacancies";
 import GlowHoverCard from "../../ui/GlowHoverCard";
-import { tw } from "../../../lib/tw";
 import {
   vacancyApplyLink,
   vacancyDescription,
@@ -48,7 +46,7 @@ export default function VacancyList({ vacancies, onApply }: Props) {
                 <h2 className={vacancyTitle}>{role.title}</h2>
               </div>
               <span
-                className="relative z-1 text-lg leading-none text-muted transition-colors duration-[400ms] group-hover:text-white"
+                className="relative z-1 text-lg leading-none text-muted transition-colors duration-[400ms] group-hover:text-foreground"
                 aria-hidden
               >
                 {isOpen ? "−" : "+"}

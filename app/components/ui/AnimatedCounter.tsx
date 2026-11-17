@@ -1,102 +1,110 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export type AnimatedCounterProps = {
-  /** Display value, e.g. `150+`, `98%`, `24+`, `6` */
   value: string;
   className?: string;
-  /** Animation length in ms */
   duration?: number;
-  /** Start counting when the element enters the viewport */
   startOnView?: boolean;
 };
 
 export function parseCounterValue(value: string) {
-  const match = value.trim().match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
-  if (!match) {
-    return { prefix: "", end: 0, suffix: value, decimals: 0 };
-  }
-
-  const numeric = match[2];
-  const decimals = numeric.includes(".") ? numeric.split(".")[1].length : 0;
-
+  const match = value.trim().match(/^([^\d]*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
+  if (!match) return { prefix: "", end: 0, suffix: value, decimals: 0 };
   return {
     prefix: match[1],
-    end: Number(numeric),
+    end: Number(match[2].replaceAll(",", "")),
     suffix: match[3],
-    decimals,
+    decimals: match[2].split(".")[1]?.length ?? 0,
   };
 }
 
-function easeOutExpo(t: number) {
-  return t === 1 ? 1 : 1 - 2 ** (-10 * t);
-}
-
+/** Server-render the real figure; enhance once in view without layout shifts. */
 export default function AnimatedCounter({
   value,
   className = "",
-  duration = 2000,
+  duration = 1800,
   startOnView = true,
 }: AnimatedCounterProps) {
-  const { prefix, end, suffix, decimals } = parseCounterValue(value);
-  const ref = useRef<HTMLSpanElement>(null);
-  const [started, setStarted] = useState(!startOnView);
-  const [display, setDisplay] = useState(0);
+  const root = useRef<HTMLSpanElement>(null);
+  const visual = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!startOnView) {
-      setDisplay(end);
-      return;
-    }
-
-    const el = ref.current;
-    if (!el) return;
-
+    const element = root.current;
+    const text = visual.current;
+    if (!element || !text) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const { prefix, end, suffix, decimals } = parseCounterValue(value);
+    let frame = 0;
+    let started = false;
+    text.textContent = value;
+    element.dataset.counterState = "ready";
+    const finish = () => {
+      cancelAnimationFrame(frame);
+      text.textContent = value;
+      element.dataset.counterState = "complete";
+    };
+    const start = () => {
+      if (started) return;
+      started = true;
+      if (media.matches || duration <= 0 || end === 0) {
+        finish();
+        return;
+      }
+      const began = performance.now();
+      element.dataset.counterState = "counting";
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - began) / duration);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        let number = decimals
+          ? (eased * end).toFixed(decimals)
+          : String(Math.round(eased * end));
+        if (value.includes(","))
+          number = number.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        text.textContent = `${prefix}${number}${suffix}`;
+        if (progress < 1) frame = requestAnimationFrame(tick);
+        else finish();
+      };
+      text.textContent = `${prefix}0${suffix}`;
+      frame = requestAnimationFrame(tick);
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setStarted(true);
+          start();
           observer.disconnect();
         }
       },
-      { threshold: 0.3, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.35 },
     );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [end, startOnView]);
-
-  useEffect(() => {
-    if (!started) return;
-
-    let raf = 0;
-    const start = performance.now();
-
-    const tick = (now: number) => {
-      const progress = Math.min(1, (now - start) / duration);
-      const current = easeOutExpo(progress) * end;
-      setDisplay(current);
-
-      if (progress < 1) {
-        raf = requestAnimationFrame(tick);
-      } else {
-        setDisplay(end);
-      }
+    if (startOnView) observer.observe(element);
+    else start();
+    const onMotionChange = () => {
+      if (media.matches) finish();
     };
-
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [started, end, duration]);
-
-  const formatted =
-    decimals > 0 ? display.toFixed(decimals) : String(Math.round(display));
+    media.addEventListener("change", onMotionChange);
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      media.removeEventListener("change", onMotionChange);
+    };
+  }, [value, duration, startOnView]);
 
   return (
-    <span ref={ref} className={className} aria-label={value}>
-      {prefix}
-      {formatted}
-      {suffix}
+    <span
+      ref={root}
+      className={`animated-counter ${className}`}
+      data-counter
+      aria-label={value}
+    >
+      <span className="counter-reserve" aria-hidden="true">
+        {value}
+      </span>
+      <span ref={visual} className="counter-value" aria-hidden="true">
+        {value}
+      </span>
+      <span className="sr-only">{value}</span>
     </span>
   );
 }

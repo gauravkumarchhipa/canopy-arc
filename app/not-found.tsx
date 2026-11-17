@@ -9,7 +9,7 @@ export default function NotFound() {
           404 · page not found
         </p>
         <h1 className="font-display text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">
-          A quiet, <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">empty</span> page.
+          A quiet, <span className="text-muted">empty</span> page.
         </h1>
         <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto">
           The page you&apos;re looking for either moved, was renamed, or never

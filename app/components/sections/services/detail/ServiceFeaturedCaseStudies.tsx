@@ -1,15 +1,15 @@
 import Link from "next/link";
-import type { CaseStudy, Service } from "../../../../content/pages/services/services";
+import ProjectArtwork from "../../../ProjectArtwork";
+import type {
+  CaseStudy,
+  Service,
+} from "../../../../content/pages/services/services";
 import {
   detailCaseBodyGlow,
   detailCaseBodyGradient,
   detailCaseBodyPattern,
   detailCaseCardShell,
-  detailCaseCategoryBadge,
   detailCaseDescHover,
-  detailCaseImage,
-  detailCaseImageWash,
-  detailCaseInitials,
   detailCaseLinkHover,
   detailCaseTechTagHover,
   detailCaseTitleHover,
@@ -22,15 +22,18 @@ type Props = {
   featuredStudies: CaseStudy[];
 };
 
-export default function ServiceFeaturedCaseStudies({ service, featuredStudies }: Props) {
+export default function ServiceFeaturedCaseStudies({
+  service,
+  featuredStudies,
+}: Props) {
   return (
-    <section id="case-studies" className="mt-12 scroll-mt-32">
+    <section id="case-studies" className="case-studies-section scroll-mt-32">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 className={detailSectionTitle}>Featured Case Studies</h2>
           <p className={detailSectionSubtitle}>
-            {service.caseStudies.length} detailed project case studies with full explanations,
-            tech stacks, and deliverables.
+            {service.caseStudies.length} detailed project case studies with full
+            explanations, tech stacks, and deliverables.
           </p>
         </div>
         <Link
@@ -41,18 +44,26 @@ export default function ServiceFeaturedCaseStudies({ service, featuredStudies }:
         </Link>
       </div>
 
-      <div className="mt-6 grid gap-5 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3">
-        {featuredStudies.map((study) => (
-          <article key={study.id} className={detailCaseCardShell}>
-            <div className={detailCaseImage}>
-              <div className={detailCaseImageWash} aria-hidden />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className={detailCaseInitials}>
-                  {(study.client ?? study.title).slice(0, 2).toUpperCase()}
-                </span>
-              </div>
-              <span className={detailCaseCategoryBadge}>{service.category}</span>
-            </div>
+      <div className="case-study-grid">
+        {featuredStudies.map((study, index) => (
+          <article
+            key={study.id}
+            className={`${detailCaseCardShell} case-study-card`}
+            data-motion="card"
+          >
+            <Link
+              href={`#study-${study.id}`}
+              tabIndex={-1}
+              aria-hidden="true"
+              className="case-artwork-link"
+            >
+              <ProjectArtwork
+                title={study.title}
+                category={service.category}
+                index={index}
+                technologies={study.technologies}
+              />
+            </Link>
             <div className={detailCaseBodyGlow}>
               <div className={detailCaseBodyGradient} aria-hidden />
               <div className={detailCaseBodyPattern} aria-hidden />
@@ -66,7 +77,7 @@ export default function ServiceFeaturedCaseStudies({ service, featuredStudies }:
                 ))}
               </div>
               <Link href={`#study-${study.id}`} className={detailCaseLinkHover}>
-                View Case Study →
+                View Case Study <span aria-hidden>↗</span>
               </Link>
             </div>
           </article>

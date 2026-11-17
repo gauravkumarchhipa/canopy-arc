@@ -4,6 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -44,6 +45,19 @@ type Props = {
 
 export default function ThemeProvider({ initialTheme, children }: Props) {
   const [theme, setThemeState] = useState<Theme>(initialTheme);
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const hasPreference = () => document.cookie.split("; ").some(value => value.startsWith(`${THEME_COOKIE}=`));
+    const sync = () => {
+      if (hasPreference()) return;
+      const next = media.matches ? "dark" : "light";
+      document.documentElement.dataset.theme = next;
+      setThemeState(next);
+    };
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, []);
 
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next);

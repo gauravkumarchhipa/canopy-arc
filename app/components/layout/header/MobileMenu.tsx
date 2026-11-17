@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { NAV } from "./nav-data";
 import HeaderCtaButtons from "./HeaderCtaButtons";
@@ -15,20 +15,32 @@ type Props = {
 
 export default function MobileMenu({ open, onClose, contactEmail }: Props) {
   const pathname = usePathname();
+  const menu = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
 
     const prevOverflow = document.body.style.overflow;
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     document.body.style.overflow = "hidden";
+    const focusFrame = requestAnimationFrame(() => menu.current?.querySelector<HTMLElement>("a")?.focus());
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
+      if (e.key === "Tab") {
+        const elements = Array.from(document.querySelectorAll<HTMLElement>('header a[href], header button, #mobile-menu a[href], #mobile-menu button')).filter(element => element.getClientRects().length > 0);
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
+      }
     };
     window.addEventListener("keydown", onKey);
 
     return () => {
       document.body.style.overflow = prevOverflow;
+      cancelAnimationFrame(focusFrame);
+      previousFocus?.focus();
       window.removeEventListener("keydown", onKey);
     };
   }, [open, onClose]);
@@ -36,7 +48,9 @@ export default function MobileMenu({ open, onClose, contactEmail }: Props) {
   return (
     <div
       id="mobile-menu"
-      className={`md:hidden fixed inset-0 z-40 transition-[opacity,visibility] duration-500 ${
+      ref={menu}
+      inert={!open}
+      className={`lg:hidden fixed inset-0 z-40 transition-[opacity,visibility] duration-500 ${
         open ? "opacity-100 visible" : "opacity-0 invisible"
       }`}
       aria-hidden={!open}

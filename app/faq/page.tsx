@@ -21,7 +21,7 @@ export default function FaqPage() {
           <>
             Plain answers.
             <br />
-            <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">Anything we missed —</span>
+            <span className="text-muted">Anything we missed —</span>
             <br />
             ask us.
           </>

@@ -7,9 +7,9 @@ import { tw } from "../../lib/tw";
 export default async function TeamMemberPage({
   params
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const id = params.id;
+  const { id } = await params;
   const member = teamGrid.members.find((m) => m.id === id);
 
   if (!member) notFound();
@@ -71,7 +71,7 @@ export default async function TeamMemberPage({
                     </div>
                     <div className="mt-2 h-2 rounded-full bg-background border border-line overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-linear-to-r from-[#22d3ee] via-[#3b82f6] to-[#8b5cf6]"
+                        className="h-full rounded-full bg-foreground"
                         style={{ width: `${e.value}%` }}
                       />
                     </div>
@@ -152,7 +152,7 @@ export default async function TeamMemberPage({
                 <ul className="mt-4 space-y-3 text-sm text-muted">
                   {details.highlights.map((h) => (
                     <li key={h} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-muted" />
                       <span>{h}</span>
                     </li>
                   ))}

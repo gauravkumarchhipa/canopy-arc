@@ -40,7 +40,7 @@ export default function AuthOrbScene({ className = "" }: Props) {
 
     const knotGeom = new THREE.TorusKnotGeometry(1.35, 0.38, 180, 24);
     const knotMat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#3b82f6"),
+      color: new THREE.Color("#8e8b80"),
       wireframe: true,
       transparent: true,
       opacity: theme === "light" ? 0.55 : 0.75,
@@ -50,7 +50,7 @@ export default function AuthOrbScene({ className = "" }: Props) {
 
     const innerGeom = new THREE.TorusGeometry(2.1, 0.02, 8, 128);
     const innerMat = new THREE.MeshBasicMaterial({
-      color: new THREE.Color("#67e8f9"),
+      color: new THREE.Color("#d5d1c6"),
       transparent: true,
       opacity: 0.35,
     });
@@ -62,9 +62,9 @@ export default function AuthOrbScene({ className = "" }: Props) {
     const positions = new Float32Array(COUNT * 3);
     const seeds = new Float32Array(COUNT);
     const colors = new Float32Array(COUNT * 3);
-    const c1 = new THREE.Color("#67e8f9");
-    const c2 = new THREE.Color("#3b82f6");
-    const c3 = new THREE.Color("#818cf8");
+    const c1 = new THREE.Color("#d5d1c6");
+    const c2 = new THREE.Color("#8e8b80");
+    const c3 = new THREE.Color("#aaa69b");
 
     for (let i = 0; i < COUNT; i++) {
       const theta = Math.random() * Math.PI * 2;

@@ -232,7 +232,7 @@ export function FamilyVisual() {
         </div>
 
         <div className="rounded-lg border border-line p-2.5 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-amber-400 shrink-0" />
+          <span className="h-2 w-2 rounded-full bg-muted shrink-0" />
           <span className="text-[10px] font-mono text-foreground/80 truncate">
             mentioned headache · 14:30
           </span>

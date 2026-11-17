@@ -1,6 +1,6 @@
 import Reveal from "../../components/Reveal";
 import Eyebrow from "../../components/ui/Eyebrow";
-import { FOUNDERS, HUES, type Member } from "./team-data";
+import { FOUNDERS, type Member } from "./team-data";
 
 export default function FoundersSection() {
   return (
@@ -26,12 +26,12 @@ function FounderCard({ member }: { member: Member }) {
       data-cursor="hover"
     >
       <div
-        className={`absolute -top-32 -right-32 h-72 w-72 rounded-full blur-3xl opacity-50 bg-gradient-to-br ${HUES[member.hue]} pointer-events-none`}
+        className={`absolute -top-32 -right-32 h-72 w-72 rounded-full blur-3xl opacity-50 bg-transparent pointer-events-none`}
         aria-hidden
       />
 
       <span
-        className={`relative inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br ${HUES[member.hue]} text-[#14161a] font-display text-4xl mb-8`}
+        className={`relative inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-surface-strong text-foreground font-display text-4xl mb-8`}
       >
         {member.initial}
       </span>

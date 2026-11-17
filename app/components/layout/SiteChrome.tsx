@@ -2,13 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import HomeLoaderGate from "../home/HomeLoaderGate";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import PageGridBackground from "../layout/PageGridBackground";
 import SmoothScroll from "../layout/SmoothScroll";
 import type { FooterData } from "../../lib/footer/types";
 import type { Theme } from "../../lib/theme";
+import EditorialMotion from "./EditorialMotion";
 
 const AUTH_PREFIXES = ["/signin", "/signup"];
 
@@ -39,15 +38,15 @@ export default function SiteChrome({
 
   return (
     <>
-      <HomeLoaderGate initialTheme={initialTheme} />
-      <div data-app-content className="flex min-h-full flex-1 flex-col w-full">
+      <a href="#main-content" className="skip-link">Skip to content</a>
+      <div className="flex min-h-full flex-1 flex-col w-full">
         <SmoothScroll>
+          <EditorialMotion />
           <Header
             initialTheme={initialTheme}
             contactEmail={footerData.contact.email}
           />
-          <main className="relative isolate flex-1">
-            <PageGridBackground />
+          <main id="main-content" tabIndex={-1} className="relative isolate flex-1">
             {children}
           </main>
           <Footer data={footerData} />

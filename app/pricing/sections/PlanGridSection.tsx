@@ -44,7 +44,7 @@ export default function PlanGridSection() {
                 >
                   {plan.highlight && (
                     <span
-                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-linear-to-r from-[#f2994a] via-[#2bb3a3] to-[#2a2f6b] px-3 py-1 text-[10px] font-mono uppercase tracking-[0.25em] text-[#14161a] whitespace-nowrap shadow-[0_8px_20px_-8px_rgba(43,179,163,0.6)]"
+                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-[10px] font-mono uppercase tracking-[0.25em] text-background whitespace-nowrap"
                       aria-hidden
                     >
                       {plan.tag}
@@ -84,7 +84,7 @@ export default function PlanGridSection() {
                         key={f}
                         className="flex items-start gap-3 text-sm text-foreground/85"
                       >
-                        <span className="mt-1.5 h-1 w-3 shrink-0 bg-linear-to-r from-[#f2994a] to-[#2a2f6b]" />
+                        <span className="mt-1.5 h-1 w-3 shrink-0 bg-muted" />
                         <span>{f}</span>
                       </li>
                     ))}

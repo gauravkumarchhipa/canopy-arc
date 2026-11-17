@@ -8,9 +8,9 @@ import { ExternalLinkIcon } from "../../components/sections/work/work-product-ic
 export default async function WorkDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
-  const id = params?.id;
+  const { id } = await params;
   const project = workGrid.projects.find((p) => p.id === id);
   if (!project) notFound();
 

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import ServiceIcon from "../ServiceIcon";
+import SculptureVisual from "../../../three/SculptureVisual";
 
 type VisualProps = {
   iconName: string;
@@ -13,18 +14,18 @@ function VisualShell({
   return (
     <div className="relative mx-auto w-full max-w-md lg:max-w-none">
       <div
-        className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.18),transparent_68%)]"
+        className="pointer-events-none absolute inset-0 rounded-full bg-transparent"
         aria-hidden
       />
-      <div className="relative rounded-[1.5rem] border border-line bg-[linear-gradient(145deg,rgba(37,99,235,0.12),rgba(6,182,212,0.08))] p-5 sm:p-6">
-        <div className="rounded-[1rem] border border-line bg-background/80 p-3 shadow-[0_24px_60px_-32px_rgba(37,99,235,0.45)]">
+      <div className="relative rounded-[1.5rem] border border-line bg-surface p-5 sm:p-6">
+        <div className="rounded-[1rem] border border-line bg-background/80 p-3 shadow-none">
           {children}
         </div>
-        <div className="absolute -right-2 top-8 flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-background text-accent shadow-lg sm:-right-4 sm:h-14 sm:w-14">
+        <div className="absolute -right-2 top-8 flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-background text-accent shadow-none sm:-right-4 sm:h-14 sm:w-14">
           <ServiceIcon name={iconName} className="[&_svg]:h-6 [&_svg]:w-6" />
         </div>
         {accentIcon ? (
-          <div className="absolute -left-2 bottom-10 flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-background text-accent shadow-lg sm:-left-4">
+          <div className="absolute -left-2 bottom-10 flex h-11 w-11 items-center justify-center rounded-xl border border-line bg-background text-accent shadow-none sm:-left-4">
             {accentIcon}
           </div>
         ) : null}
@@ -36,9 +37,9 @@ function VisualShell({
 function BrowserChrome() {
   return (
     <div className="mb-3 flex items-center gap-1.5">
-      <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-      <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80" />
-      <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+      <span className="h-2.5 w-2.5 rounded-full bg-muted/40" />
+      <span className="h-2.5 w-2.5 rounded-full bg-muted/40" />
+      <span className="h-2.5 w-2.5 rounded-full bg-muted/40" />
       <div className="ml-2 h-4 flex-1 rounded-full border border-line bg-surface/80" />
     </div>
   );
@@ -125,7 +126,7 @@ function AiVisual({ iconName }: VisualProps) {
       }
     >
       <div className="relative flex h-36 items-center justify-center">
-        <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.35),transparent_70%)]" />
+        <div className="absolute inset-0 opacity-40 bg-surface-strong" />
         <div className="relative grid grid-cols-3 gap-3">
           {[0, 1, 2, 3, 4, 5].map((i) => (
             <div
@@ -152,7 +153,7 @@ function AiVisual({ iconName }: VisualProps) {
         </div>
         <div className="flex-1 rounded-lg border border-line bg-surface p-2">
           <div className="text-[0.5rem] uppercase tracking-wider text-muted">Output</div>
-          <div className="mt-1 h-2 w-3/4 rounded bg-emerald-400/30" />
+          <div className="mt-1 h-2 w-3/4 rounded bg-muted/30" />
         </div>
       </div>
     </VisualShell>
@@ -170,7 +171,7 @@ function SecurityVisual({ iconName }: VisualProps) {
               <path d="m9 12 2 2 4-4" />
             </svg>
           </div>
-          <div className="absolute -right-3 -top-2 h-6 w-6 rounded-full border border-emerald-400/40 bg-emerald-400/15" />
+          <div className="absolute -right-3 -top-2 h-6 w-6 rounded-full border border-line-strong bg-muted/15" />
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
@@ -251,7 +252,7 @@ function CloudVisual({ iconName }: VisualProps) {
           <div key={i} className="rounded-lg border border-line bg-surface p-2">
             <div className="h-6 rounded bg-accent/12" />
             <div className="mt-1 flex gap-0.5">
-              <div className="h-1 w-1 rounded-full bg-emerald-400/60" />
+              <div className="h-1 w-1 rounded-full bg-muted/60" />
               <div className="h-1 flex-1 rounded bg-accent/10" />
             </div>
           </div>
@@ -277,7 +278,7 @@ function DesignVisual({ iconName }: VisualProps) {
           <div className="h-3 w-16 rounded bg-accent/15" />
           <div className="mt-3 h-14 rounded-md border border-line bg-background" />
           <div className="mt-2 flex gap-1">
-            {["#3b82f6", "#8b5cf6", "#06b6d4"].map((c) => (
+            {["var(--fg)", "var(--muted)", "var(--line-strong)"].map((c) => (
               <div key={c} className="h-3 w-3 rounded-full" style={{ backgroundColor: c }} />
             ))}
           </div>
@@ -330,7 +331,7 @@ function EcommerceVisual({ iconName }: VisualProps) {
       <div className="mt-2 flex items-center justify-between rounded-lg border border-line bg-surface px-3 py-2">
         <div className="h-3 w-3 rounded-full bg-accent/30" />
         <div className="h-2 w-16 rounded bg-accent/15" />
-        <div className="rounded-full bg-[image:var(--grad)] px-2 py-0.5 text-[0.5rem] text-white">
+        <div className="rounded-full bg-foreground px-2 py-0.5 text-[0.5rem] text-background">
           Buy
         </div>
       </div>
@@ -365,8 +366,8 @@ function BackendVisual({ iconName }: VisualProps) {
         {[0, 1, 2].map((i) => (
           <div key={i} className="flex items-center gap-2 rounded-lg border border-line bg-surface p-2">
             <div className="flex gap-0.5">
-              <div className="h-1.5 w-1.5 rounded-full bg-emerald-400/70" />
-              <div className="h-1.5 w-1.5 rounded-full bg-amber-400/70" />
+              <div className="h-1.5 w-1.5 rounded-full bg-muted/70" />
+              <div className="h-1.5 w-1.5 rounded-full bg-muted/70" />
             </div>
             <div className="flex-1 font-mono text-[0.5rem] text-muted">
               GET /api/v1/{i === 0 ? "users" : i === 1 ? "orders" : "health"}
@@ -387,7 +388,7 @@ function QaVisual({ iconName }: VisualProps) {
           <div key={label} className="flex items-center gap-2 rounded-lg border border-line bg-surface p-2">
             <div
               className={`flex h-5 w-5 items-center justify-center rounded-full ${
-                i < 2 ? "bg-emerald-400/20 text-emerald-500" : "bg-accent/15 text-accent"
+                i < 2 ? "bg-muted/20 text-foreground" : "bg-accent/15 text-accent"
               }`}
             >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3">
@@ -411,8 +412,8 @@ function VideoVisual({ iconName }: VisualProps) {
       <div className="relative aspect-video overflow-hidden rounded-lg border border-line bg-surface">
         <div className="absolute inset-0 bg-[image:var(--grad-soft)]" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-sm">
-            <div className="ml-0.5 h-0 w-0 border-y-[6px] border-l-10 border-y-transparent border-l-white" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-foreground">
+            <div className="ml-0.5 h-0 w-0 border-y-[6px] border-l-10 border-y-transparent border-l-background" />
           </div>
         </div>
       </div>
@@ -474,6 +475,7 @@ type ServiceHeroVisualProps = {
 };
 
 export default function ServiceHeroVisual({ serviceId, iconName }: ServiceHeroVisualProps) {
+  if (serviceId === "cybersecurity") return <SculptureVisual variant="security" />;
   const Visual = VISUAL_BY_SERVICE[serviceId] ?? WebVisual;
   return <Visual iconName={iconName} />;
 }

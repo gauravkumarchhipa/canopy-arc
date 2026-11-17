@@ -1,6 +1,6 @@
 /** Shared Tailwind class strings (no globals.css component classes). */
 export const tw = {
-  gradientText: "bg-[image:var(--grad)] bg-clip-text text-transparent",
+  gradientText: "text-muted",
   gridBg:
     "bg-[linear-gradient(to_right,var(--grid-line)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-line)_1px,transparent_1px)] bg-size-[64px_64px]",
   maskFadeBottom:
@@ -9,16 +9,16 @@ export const tw = {
   headerBtnBase:
     "inline-flex items-center justify-center gap-1.5 rounded-full px-[1.35rem] py-2.5 text-sm font-medium tracking-tight no-underline whitespace-nowrap transition-[transform,box-shadow,border-color,background,color] duration-300",
   headerBtnPrimary:
-    "border border-transparent bg-[image:var(--grad)] text-white shadow-[var(--btn-header-primary-shadow)] hover:-translate-y-px hover:shadow-[var(--btn-header-primary-shadow-hover)]",
+    "border-0 bg-foreground text-background hover:bg-accent rounded-sm",
   /** Gradient CTA with dark text on light theme (hero/about body CTAs). */
   pageBtnPrimary:
-    "border border-transparent bg-[image:var(--grad)] text-[#0b1220] shadow-[var(--btn-header-primary-shadow)] hover:-translate-y-px hover:shadow-[var(--btn-header-primary-shadow-hover)] [html[data-theme=dark]_&]:text-white",
+    "border-0 bg-foreground text-background hover:bg-accent rounded-sm",
   headerBtnGhost:
-    "border border-[var(--btn-header-ghost-border)] bg-[var(--btn-header-ghost-bg)] text-[var(--btn-header-ghost-fg)] hover:border-[var(--btn-header-ghost-border-hover)] hover:bg-[var(--btn-header-ghost-bg-hover)] hover:text-[var(--btn-header-ghost-fg-hover)] [html[data-theme=light]_&]:border-[rgba(11,18,32,0.28)] [html[data-theme=light]_&]:bg-white [html[data-theme=light]_&]:text-[#0b1220] [html[data-theme=light]_&]:shadow-[0_1px_2px_rgba(11,18,32,0.06)] [html[data-theme=light]_&]:hover:border-[rgba(11,18,32,0.42)] [html[data-theme=light]_&]:hover:bg-[#f8fbff]",
+    "border-0 bg-transparent text-foreground hover:bg-surface rounded-sm",
   headerIconBtn:
-    "inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--header-icon-border)] bg-[var(--header-icon-bg)] text-[var(--header-icon-fg)] transition-[border-color,background,color] duration-250 hover:border-[var(--header-icon-border-hover)] hover:bg-[var(--header-icon-bg-hover)] [html[data-theme=light]_&]:border-[rgba(11,18,32,0.16)] [html[data-theme=light]_&]:bg-[rgba(255,255,255,0.82)] [html[data-theme=light]_&]:text-[#0b1220] [html[data-theme=light]_&]:hover:border-[rgba(11,18,32,0.26)] [html[data-theme=light]_&]:hover:bg-white [html[data-theme=dark]_&]:border-[rgba(248,250,252,0.34)] [html[data-theme=dark]_&]:bg-[rgba(248,250,252,0.04)] [html[data-theme=dark]_&]:text-[#f8fafc] [html[data-theme=dark]_&]:hover:border-[rgba(248,250,252,0.5)] [html[data-theme=dark]_&]:hover:bg-[rgba(248,250,252,0.1)] group-[.is-scrolled]/header:bg-[var(--header-icon-bg-hover)] [html[data-theme=light]_&]:group-[.is-scrolled]/header:border-[rgba(11,18,32,0.2)] [html[data-theme=light]_&]:group-[.is-scrolled]/header:bg-white",
+    "inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-surface",
   brandOrb:
-    "pointer-events-none absolute rounded-full blur-[80px] opacity-55",
+    "hidden",
   brandOrbWarm:
     "bg-[radial-gradient(closest-side,rgba(242,153,74,0.55),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(255,176,104,0.5),transparent_70%)]",
   brandOrbTrust:
@@ -40,7 +40,7 @@ export function headerShellClass({
   open: boolean;
 }) {
   return [
-    "group/header fixed inset-x-0 top-0 z-50 will-change-transform border-b border-transparent",
+    "premium-site-header group/header fixed inset-x-0 top-0 z-50 will-change-transform border-b border-transparent",
     hidden
       ? "-translate-y-full opacity-0 pointer-events-none"
       : "translate-y-0 opacity-100 pointer-events-auto",

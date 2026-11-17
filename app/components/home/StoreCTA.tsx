@@ -39,7 +39,7 @@ export default function StoreCTA() {
               <br />
               On Google Play.
               <br />
-              <span className="bg-[image:var(--grad)] bg-clip-text text-transparent">Or just scan.</span>
+              <span className="text-muted">Or just scan.</span>
             </h2>
 
             <p className="mt-8 max-w-lg text-base md:text-lg text-muted leading-relaxed">

@@ -1,0 +1,6056 @@
+{
+  "base": "http://localhost:3000",
+  "generatedAt": "2026-11-17T19:10:17.617Z",
+  "results": [
+    {
+      "route": "/services",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 253,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 253,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 254,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 245,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 245,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 246,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 253,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 253,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 254,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 245,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 245,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 246,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 160,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 160,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 161,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 153,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 160,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 160,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 161,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 153,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/about",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 189,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 189,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 190,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 167,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 189,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 189,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 190,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 167,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 127,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 127,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 128,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 114,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 127,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 127,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 128,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 114,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 151,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 143,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 151,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 143,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/contact",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 86,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 77,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 77,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 78,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 86,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 77,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 77,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 78,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/contact",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/careers",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 137,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 137,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 138,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 129,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 129,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 130,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 137,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 137,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 138,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 129,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 129,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 130,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/careers",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 140,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 148,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 139,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 140,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/pricing",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 153,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 144,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 144,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 145,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 152,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 153,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 144,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 144,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 145,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/pricing",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/features",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 141,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 141,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 149,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 150,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 141,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 141,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 142,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/features",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/for-doctors",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 115,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 115,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 116,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 107,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 107,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 108,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 115,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 115,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 116,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 107,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 107,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 108,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/for-doctors",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/how-it-works",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 146,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 146,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 131,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 131,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 132,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 146,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 146,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 147,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 131,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 131,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 132,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/how-it-works",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/faq",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 122,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 114,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 122,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 114,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/faq",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/terms",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 72,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 64,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 72,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 64,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/terms",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/privacy",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/privacy",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/privacy-policy",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 120,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 120,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 112,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 112,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 120,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 120,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 121,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 112,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 112,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 113,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/privacy-policy",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/cookies",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 69,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 61,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/cookies",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/delete-account",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 93,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 93,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 94,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 86,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 93,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 93,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 94,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 85,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 86,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/delete-account",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/signin",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 23,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 11,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/signin",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/signup",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 27,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 15,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/signup",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/forgot-password/theme-audit-preview",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/forgot-password/theme-audit-preview",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/__theme-audit-not-found",
+      "expectedStatus": 404,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 70,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 71,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 62,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 63,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 404,
+      "finalPath": "/__theme-audit-not-found",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/web-development",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/web-development",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/app-development",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 359,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 359,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 360,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 352,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 359,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 359,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 360,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 352,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/app-development",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/ai-ml",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 350,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 351,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/ai-ml",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/cybersecurity",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/cybersecurity",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/iot",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 339,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 331,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 339,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 331,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/iot",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/data-engineering",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 355,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 355,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 356,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 355,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 355,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 356,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 347,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/data-engineering",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/cloud-devops",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/cloud-devops",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/ui-ux-design",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/ui-ux-design",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/digital-marketing",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 345,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 345,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 346,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 345,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 345,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 346,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/digital-marketing",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/ecommerce-saas",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 339,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 331,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 338,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 339,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 330,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 331,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/ecommerce-saas",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/ar-vr",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 332,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 332,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 333,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 324,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 324,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 325,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 332,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 332,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 333,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 324,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 324,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 325,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/ar-vr",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/backend-api",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 349,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 340,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 340,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 341,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 348,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 349,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 340,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 340,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 341,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/backend-api",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/qa-automation",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 342,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 343,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 334,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 335,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/qa-automation",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/video-content",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 336,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 337,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 328,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 329,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/video-content",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/services/enterprise-solutions",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 369,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 369,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 370,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 361,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 361,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 362,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 369,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 369,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 370,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 361,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 361,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 362,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/services/enterprise-solutions",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/sahai-ai",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/sahai-ai",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/pannobaa",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/pannobaa",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/zyapaar",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/zyapaar",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/guestpostlinks",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/guestpostlinks",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/tender247",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/tender247",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/work/orme-industries",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 82,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 74,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/work/orme-industries",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/sandeep-patel",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/sandeep-patel",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/priya-nair",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/priya-nair",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/arjun-patel",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 174,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 174,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 175,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 167,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 174,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 174,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 175,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 166,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 167,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/arjun-patel",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/neha-kapoor",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/neha-kapoor",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/rohit-sharma",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/rohit-sharma",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/anjali-singh",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/anjali-singh",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/vikram-joshi",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/vikram-joshi",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/team/meera-iyer",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 67,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 68,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 59,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 60,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/team/meera-iyer",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/building-performant-nextjs-websites",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/building-performant-nextjs-websites",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/design-systems-that-scale",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/design-systems-that-scale",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ai-products-from-prototype-to-production",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/ai-products-from-prototype-to-production",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/shipping-mvps-without-tech-debt",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/shipping-mvps-without-tech-debt",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/cloud-cost-optimization-playbook",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/cloud-cost-optimization-playbook",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/blog/ux-patterns-for-b2b-saas",
+      "expectedStatus": 200,
+      "states": [
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "default",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "hover",
+          "tested": 83,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "state": "focus",
+          "tested": 84,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "default",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "hover",
+          "tested": 75,
+          "failures": [],
+          "overflow": false
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "state": "focus",
+          "tested": 76,
+          "failures": [],
+          "overflow": false
+        }
+      ],
+      "status": 200,
+      "finalPath": "/blog/ux-patterns-for-b2b-saas",
+      "keyboardFocusVisible": true,
+      "errors": []
+    },
+    {
+      "route": "/dashboard",
+      "expectedStatus": 200,
+      "states": [],
+      "status": 200,
+      "finalPath": "/signin",
+      "protectedRedirect": true
+    }
+  ]
+}
