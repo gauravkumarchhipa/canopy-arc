@@ -10,7 +10,7 @@ import {
 
 export default function ValuesSection() {
   return (
-    <section className="relative border-t border-line py-16 sm:py-24 md:py-28">
+    <section id="our-values" className="relative border-t border-line py-16 sm:py-24 md:py-28">
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <div className="mb-12 max-w-2xl">
           <p className={aboutSectionEyebrow}>What we believe</p>

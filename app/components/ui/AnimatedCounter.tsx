@@ -7,6 +7,7 @@ export type AnimatedCounterProps = {
   className?: string;
   duration?: number;
   startOnView?: boolean;
+  viewportInset?: number;
 };
 
 export function parseCounterValue(value: string) {
@@ -26,6 +27,7 @@ export default function AnimatedCounter({
   className = "",
   duration = 1800,
   startOnView = true,
+  viewportInset = 0,
 }: AnimatedCounterProps) {
   const root = useRef<HTMLSpanElement>(null);
   const visual = useRef<HTMLSpanElement>(null);
@@ -55,7 +57,7 @@ export default function AnimatedCounter({
       const began = performance.now();
       element.dataset.counterState = "counting";
       const tick = (now: number) => {
-        const progress = Math.min(1, (now - began) / duration);
+        const progress = Math.max(0, Math.min(1, (now - began) / duration));
         const eased = 1 - Math.pow(1 - progress, 4);
         let number = decimals
           ? (eased * end).toFixed(decimals)
@@ -69,14 +71,15 @@ export default function AnimatedCounter({
       text.textContent = `${prefix}0${suffix}`;
       frame = requestAnimationFrame(tick);
     };
+    const threshold = 0.35;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && entry.intersectionRatio >= threshold) {
           start();
           observer.disconnect();
         }
       },
-      { threshold: 0.35 },
+      { threshold, rootMargin: `0px 0px ${-viewportInset}px 0px` },
     );
     if (startOnView) observer.observe(element);
     else start();
@@ -89,7 +92,7 @@ export default function AnimatedCounter({
       observer.disconnect();
       media.removeEventListener("change", onMotionChange);
     };
-  }, [value, duration, startOnView]);
+  }, [value, duration, startOnView, viewportInset]);
 
   return (
     <span

@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { teamGrid } from "../../../content/pages/team/grid";
-import { tw } from "../../../lib/tw";
 
 type Sort = "expertise" | "name" | "reverse";
 
@@ -28,16 +27,17 @@ export default function TeamGrid() {
   return (
     <section
       id="team-directory"
-      className="premium-container team-directory"
+      className="team-shell team-directory"
       aria-labelledby="team-directory-title"
     >
       <div className="team-directory-heading">
         <div>
-          <p className="editorial-label">02 / THE PEOPLE</p>
+          <p className="team-label">The People</p>
           <h2 id="team-directory-title">Talent, with a shared purpose.</h2>
+          <p className="team-directory-summary">A diverse team of strategists, engineers, designers and problem-solvers who bring ideas to life.</p>
         </div>
-        <p className="editorial-label">
-          {String(members.length).padStart(2, "0")} profiles / {active}
+        <p className="team-label team-directory-count" aria-live="polite">
+          {String(members.length).padStart(2, "0")} {members.length === 1 ? "profile" : "profiles"} / {active}
         </p>
       </div>
       <div className="team-directory-tools">
@@ -91,7 +91,7 @@ export default function TeamGrid() {
                   ).padStart(2, "0")}
                 </span>
               </div>
-              <svg viewBox="0 0 300 230" fill="none">
+              <svg viewBox="0 0 300 230" preserveAspectRatio="xMidYMid slice" fill="none">
                 {Array.from({ length: 9 }, (_, index) => (
                   <path
                     key={index}
@@ -101,7 +101,6 @@ export default function TeamGrid() {
                 ))}
               </svg>
               <span className="profile-monogram">{member.avatar}</span>
-              <span className="profile-art-arrow">↗</span>
             </div>
             <div className="profile-body">
               <h3>{member.name}</h3>
@@ -130,7 +129,7 @@ export default function TeamGrid() {
         </div>
         <Link
           href="/careers"
-          className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
+          className="team-primary"
         >
           Join Our Team <span aria-hidden>↗</span>
         </Link>

@@ -26,7 +26,6 @@ export default function MobileMenu({ open, onClose, contactEmail }: Props) {
     const focusFrame = requestAnimationFrame(() => menu.current?.querySelector<HTMLElement>("a")?.focus());
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
       if (e.key === "Tab") {
         const elements = Array.from(document.querySelectorAll<HTMLElement>('header a[href], header button, #mobile-menu a[href], #mobile-menu button')).filter(element => element.getClientRects().length > 0);
         const first = elements[0];
@@ -43,7 +42,7 @@ export default function MobileMenu({ open, onClose, contactEmail }: Props) {
       previousFocus?.focus();
       window.removeEventListener("keydown", onKey);
     };
-  }, [open, onClose]);
+  }, [open]);
 
   return (
     <div
@@ -114,7 +113,7 @@ export default function MobileMenu({ open, onClose, contactEmail }: Props) {
                 : "0ms",
             }}
           >
-            <HeaderCtaButtons stacked className="[&_a]:w-full" />
+            <HeaderCtaButtons stacked className="[&_a]:w-full" onNavigate={onClose} />
             {contactEmail ? (
               <a
                 href={`mailto:${contactEmail}`}

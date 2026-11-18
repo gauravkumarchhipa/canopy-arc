@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import ContactForm from "../components/sections/contact/ContactForm";
-import PageAmbientGlow from "../components/layout/PageAmbientGlow";
-import GlowHoverCard from "../components/ui/GlowHoverCard";
-import {
-  glowHoverCardBullet,
-  glowHoverCardLink,
-  glowHoverCardText,
-  glowHoverCardTitle,
-} from "../components/ui/glow-card-styles";
+import ContactWave from "../components/sections/contact/ContactWave";
+import { IconClock, IconLocation, IconMail, IconPhone } from "../components/layout/footer/FooterIcons";
 import { getFooterContact } from "../lib/footer/get-footer-data";
-import { tw } from "../lib/tw";
+import { getFooterFallback } from "../lib/footer/fallback";
+import "./contact-overview.css";
 
 export const metadata: Metadata = {
   title: "Contact Us — Canopy Arc",
@@ -19,76 +14,59 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const contact = await getFooterContact();
+  const email = contact.email || getFooterFallback().contact.email;
+  const callHref = `mailto:${email}?subject=Canopy%20Arc%20call%20request&body=Time%20zone%3A%0D%0APreferred%20times%3A%0D%0AProject%20overview%3A%0D%0A`;
+  const details = [
+    { label: "Address", icon: IconLocation, text: contact.address },
+    { label: "Email", icon: IconMail, text: email, href: email ? `mailto:${email}` : undefined },
+    { label: "Phone", icon: IconPhone, text: contact.phone, href: contact.phone ? `tel:${contact.phone.replace(/[^+0-9]/g, "")}` : undefined },
+    { label: "Hours", icon: IconClock, text: contact.hours },
+  ];
 
   return (
-    <div className={`${tw.pageShell} relative overflow-hidden`}>
-      <PageAmbientGlow />
+    <div className="contact-page">
+      <ContactWave />
 
-      <section className="relative">
-        <div className="mx-auto max-w-350 px-6 lg:px-10">
-          <p className="text-xs tracking-[0.3em] uppercase text-muted">
-            Contact Us
-          </p>
-          <h1 className="mt-5 font-display text-[clamp(2.4rem,4.6vw,3.6rem)] leading-[1.05] tracking-tight">
+      <div className="contact-shell">
+        <section className="contact-intro" aria-labelledby="contact-title">
+          <p className="contact-eyebrow">Contact Us</p>
+          <h1 id="contact-title">
             Let&apos;s build something{" "}
-            <span className={tw.gradientText}>amazing</span> together.
+            <span>amazing</span> together.
           </h1>
-          <p className="mt-5 max-w-3xl leading-relaxed text-muted">
+          <p className="contact-summary">
             Share a quick overview of your project. We&apos;ll respond with next
             steps, timeline, and the right engagement model.
           </p>
+        </section>
+
+        <div className="contact-layout">
+          {email && <ContactForm email={email} />}
+          <aside className="contact-sidebar" aria-label="Contact information">
+            <section className="contact-panel" aria-labelledby="contact-details-title">
+              <h2 id="contact-details-title">Contact Details</h2>
+              <dl className="contact-details">
+                {details.map(({ label, icon: Icon, text, href }) => text && (
+                  <div key={label}>
+                    <dt><span aria-hidden="true"><Icon /></span><span className="sr-only">{label}</span></dt>
+                    <dd>{href ? <a href={href}>{text}</a> : text}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+
+            <section className="contact-panel" id="book" aria-labelledby="contact-next-title">
+              <h2 id="contact-next-title">What happens next?</h2>
+              <ul className="contact-next-steps">
+                <li>We review your message and scope the requirements.</li>
+                <li>We schedule a quick call to align on goals and constraints.</li>
+                <li>You get a proposal with timeline, milestones, and pricing.</li>
+              </ul>
+              {email && <a className="contact-book-link" href={callHref}>Request a call by email <span aria-hidden="true">↗</span></a>}
+            </section>
+          </aside>
         </div>
-      </section>
-
-      <section className="relative mx-auto mt-12 grid max-w-350 gap-6 px-6 sm:mt-14 lg:grid-cols-12 lg:gap-8 lg:px-10">
-        <div className="lg:col-span-7">
-          <ContactForm />
-          <div id="book" className="sr-only">
-            Book a Call
-          </div>
-        </div>
-
-        <aside className="space-y-5 lg:col-span-5">
-          <GlowHoverCard className="p-6 sm:p-7">
-            <h2 className={glowHoverCardTitle}>Contact Details</h2>
-            <div className={`${glowHoverCardText} mt-5 space-y-3`}>
-              {contact.address ? (
-                <p className="whitespace-pre-line">{contact.address}</p>
-              ) : null}
-              {contact.email ? (
-                <a className={glowHoverCardLink} href={`mailto:${contact.email}`}>
-                  {contact.email}
-                </a>
-              ) : null}
-              {contact.phone ? (
-                <a
-                  className={glowHoverCardLink}
-                  href={`tel:${contact.phone.replace(/[^+0-9]/g, "")}`}
-                >
-                  {contact.phone}
-                </a>
-              ) : null}
-              {contact.hours ? <p>{contact.hours}</p> : null}
-            </div>
-          </GlowHoverCard>
-
-          <GlowHoverCard className="p-6 sm:p-7">
-            <h2 className={glowHoverCardTitle}>What happens next?</h2>
-            <ul className={`${glowHoverCardText} mt-4 space-y-3`}>
-              {[
-                "We review your message and scope the requirements.",
-                "We schedule a quick call to align on goals and constraints.",
-                "You get a proposal with timeline, milestones, and pricing.",
-              ].map((t) => (
-                <li key={t} className="flex items-start gap-2">
-                  <span className={glowHoverCardBullet} />
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
-          </GlowHoverCard>
-        </aside>
-      </section>
+      </div>
     </div>
   );
 }

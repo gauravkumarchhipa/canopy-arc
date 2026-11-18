@@ -15,8 +15,10 @@ const getReducedMotion = () =>
 
 export default function SculptureVisual({
   variant,
+  compact = false,
 }: {
   variant: SculptureVariant;
+  compact?: boolean;
 }) {
   const reduced = useSyncExternalStore(subscribe, getReducedMotion, () => true);
   const [paused, setPaused] = useState(false);
@@ -47,15 +49,29 @@ export default function SculptureVisual({
       data-sculpture={variant}
       data-view-angle={angle}
     >
-      <div className="sculpture-overline editorial-label">
+      {!compact && <div className="sculpture-overline editorial-label">
         <span>
           {security ? "PROTECTION BY DESIGN" : "A COLLECTIVE BY DESIGN"}
         </span>
         <span>{security ? "01 / SECURITY" : "01 / PEOPLE"}</span>
-      </div>
+      </div>}
       <div
         className="sculpture-stage"
-        role="img"
+        role={compact && available ? "group" : "img"}
+        tabIndex={compact && available ? 0 : undefined}
+        aria-describedby={compact && available ? "team-model-instructions" : undefined}
+        onKeyDown={compact && available ? (event) => {
+          if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+            const direction = event.key === "ArrowLeft" ? -1 : 1;
+            setAngle((value) => value + direction * Math.PI / 6);
+          } else if (event.key === "Home") {
+            setAngle(0);
+            setReset((value) => value + 1);
+          } else {
+            return;
+          }
+          event.preventDefault();
+        } : undefined}
         aria-label={
           security
             ? "Three-dimensional layered shield with a silver lock, representing security at every layer"
@@ -121,13 +137,16 @@ export default function SculptureVisual({
         {load ? (
           <Scene
             variant={variant}
-            paused={paused || reduced}
+            paused={compact || paused || reduced}
             angle={angle}
             reset={reset}
             onAvailabilityChange={setAvailable}
           />
         ) : null}
       </div>
+      {compact ? (
+        <figcaption className="sr-only" id="team-model-instructions">Drag the model or use the left and right arrow keys to rotate it. Press Home to reset the view.</figcaption>
+      ) : <>
       <figcaption className="sculpture-caption">
         <div>
           <span>
@@ -205,6 +224,7 @@ export default function SculptureVisual({
           <span aria-hidden>{paused || reduced ? "▷" : "Ⅱ"}</span>
         </button>
       </div>
+      </>}
     </figure>
   );
 }

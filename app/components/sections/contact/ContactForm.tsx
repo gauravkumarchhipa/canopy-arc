@@ -2,14 +2,6 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import GlowHoverCard from "../../ui/GlowHoverCard";
-import {
-  glowHoverCardFooter,
-  glowHoverCardInput,
-  glowHoverCardLabel,
-  glowHoverCardTextarea,
-} from "../../ui/glow-card-styles";
-import { tw } from "../../../lib/tw";
 
 const Schema = z.object({
   name: z.string().min(2),
@@ -17,13 +9,16 @@ const Schema = z.object({
   message: z.string().min(10),
 });
 
-export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+export default function ContactForm({ email }: { email: string }) {
+  const [draftPrepared, setDraftPrepared] = useState(false);
 
   return (
-    <GlowHoverCard
-      as="form"
-      className="p-6 sm:p-7"
+    <form
+      action={`mailto:${email}`}
+      method="post"
+      encType="text/plain"
+      className="contact-panel contact-form"
+      aria-label="Project inquiry"
       onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
@@ -32,54 +27,57 @@ export default function ContactForm() {
           email: String(fd.get("email") ?? ""),
           message: String(fd.get("message") ?? ""),
         };
-        const ok = Schema.safeParse(payload).success;
-        if (!ok) return;
-        setStatus("sent");
-        setTimeout(() => setStatus("idle"), 3500);
-        (e.currentTarget as HTMLFormElement).reset();
+        const parsed = Schema.safeParse(payload);
+        if (!parsed.success) return;
+        const { name, email: replyTo, message } = parsed.data;
+        const subject = encodeURIComponent("Canopy Arc project inquiry");
+        const body = encodeURIComponent(`Name: ${name}\r\nEmail: ${replyTo}\r\n\r\n${message}`);
+        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        setDraftPrepared(true);
       }}
     >
-      <div className="relative z-1 grid gap-6 sm:grid-cols-2">
-        <label className="block">
-          <span className={glowHoverCardLabel}>Name</span>
+      <div className="contact-form-fields">
+        <label>
+          <span>Name</span>
           <input
             name="name"
             required
             minLength={2}
-            className={glowHoverCardInput}
+            autoComplete="name"
             placeholder="Your name"
           />
         </label>
-        <label className="block">
-          <span className={glowHoverCardLabel}>Email</span>
+        <label>
+          <span>Email</span>
           <input
             name="email"
             required
             type="email"
-            className={glowHoverCardInput}
+            autoComplete="email"
             placeholder="you@company.com"
           />
         </label>
       </div>
 
-      <label className="relative z-1 mt-6 block">
-        <span className={glowHoverCardLabel}>Message</span>
+      <label className="contact-message">
+        <span>Message</span>
         <textarea
           name="message"
           required
           minLength={10}
           rows={5}
-          className={glowHoverCardTextarea}
           placeholder="Tell us what you want to build…"
         />
       </label>
 
-      <div className="relative z-1 mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <button type="submit" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} text-sm`}>
-          {status === "sent" ? "Sent ✓" : "Send Message →"}
+      <div className="contact-form-footer">
+        <button type="submit" className="contact-submit">
+          Open email draft <span aria-hidden="true">→</span>
         </button>
-        <p className={glowHoverCardFooter}>We reply within 2 working days.</p>
+        <p role="status">
+          {draftPrepared ? "Review and send the draft in your email app." : "Send the inquiry from your email app."}
+        </p>
       </div>
-    </GlowHoverCard>
+    </form>
   );
 }

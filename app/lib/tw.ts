@@ -29,34 +29,3 @@ export const tw = {
   pageIntro: "mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14",
   pageShellBottom: "pb-20 sm:pb-24",
 } as const;
-
-export function headerShellClass({
-  elevated,
-  hidden,
-  open,
-}: {
-  elevated: boolean;
-  hidden: boolean;
-  open: boolean;
-}) {
-  return [
-    "premium-site-header group/header fixed inset-x-0 top-0 z-50 will-change-transform border-b border-transparent",
-    hidden
-      ? "-translate-y-full opacity-0 pointer-events-none"
-      : "translate-y-0 opacity-100 pointer-events-auto",
-    "transition-[transform,opacity,padding,background-color,border-color,box-shadow] duration-300 ease-out",
-    elevated
-      ? "is-scrolled py-3 border-[var(--header-border)] bg-[var(--header-bg)] shadow-[var(--header-shadow)] backdrop-blur-xl backdrop-saturate-140"
-      : "py-5",
-    "[html[data-theme=light]_&]:bg-[rgba(248,251,255,0.9)] [html[data-theme=light]_&]:backdrop-blur-md",
-    elevated &&
-      "[html[data-theme=light]_&]:bg-[rgba(248,251,255,0.96)] [html[data-theme=light]_&]:shadow-[0_8px_28px_-18px_rgba(11,18,32,0.12)]",
-    elevated && "[html[data-theme=dark]_&]:shadow-[0_10px_36px_-20px_rgba(0,0,0,0.45)]",
-    open && "max-md:border-transparent max-md:shadow-none",
-    open && "[html[data-theme=light]_&]:max-md:bg-[rgba(248,251,255,0.97)]",
-    "[html[data-theme=light]_&]:max-md:bg-[rgba(248,251,255,0.94)]",
-    open ? "is-open" : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
-}

@@ -71,7 +71,8 @@
   color: var(--bg);
 }
 html {
-  scroll-padding-top: 100px;
+  --page-scroll-padding: 100px;
+  scroll-padding-top: var(--page-scroll-padding);
 }
 body {
   scrollbar-width: thin;
@@ -587,14 +588,41 @@ body {
     transform: translateY(0);
   }
 }
-/* Shared route surfaces are intentionally quiet; functional boundaries remain. */
 .premium-site-header {
-  background: var(--header-bg) !important;
-  border: 0;
-  box-shadow: none !important;
+  background: transparent;
+  color: var(--fg);
+}
+.premium-site-header,
+.premium-site-header :is(nav, a, button) {
+  transition-property: none;
+}
+.premium-site-header[data-story-graphite] {
+  --bg: #19211f;
+  --fg: #f7f4ee;
+  --muted: #d7d3cb;
+  --accent: #e3dbce;
+  --surface: #303935;
+}
+.premium-site-header[data-scrolled]::before,
+.premium-site-header[data-story-graphite]::before {
+  position: absolute;
+  inset: 0 0 -14px;
+  z-index: -1;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  mask-image: linear-gradient(#000 59%, transparent);
+  content: "";
+}
+.premium-site-header :is(a, button):focus-visible {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
 }
 .premium-logo img {
   filter: grayscale(1);
+}
+.premium-site-header[data-story-graphite] .premium-logo img,
+[data-theme="dark"] .premium-site-header .premium-logo img {
+  filter: brightness(0) invert(1);
 }
 .premium-site-header .premium-logo {
   gap: 9px;
@@ -1542,3 +1570,39 @@ footer > div:first-child:not(:last-child) {
 
 /* Placeholder text keeps readable contrast in both themes and focus states. */
 input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+
+#main-content:has(> :is(.team-page, .contact-page)) + .site-footer {
+  --compact-footer-gutter: clamp(22px, 5.3vw, 76px);
+  margin-top: 0;
+  padding-top: clamp(24px, 3vw, 44px);
+}
+
+#main-content:has(> :is(.team-page, .contact-page)) + .site-footer > .premium-container {
+  width: min(calc(100% - 2 * var(--compact-footer-gutter)), 1440px);
+  padding-inline: 0;
+}
+
+@media (min-width: 1001px) {
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-main-grid {
+    grid-template-columns: minmax(168px, 1.12fr) minmax(0, 2.35fr) minmax(145px, 0.72fr);
+    grid-template-areas: "brand links contact" "description links contact" "description links social";
+    grid-template-rows: auto auto 1fr;
+    align-items: start;
+    gap: 10px clamp(15px, 2.5vw, 36px);
+  }
+
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-brand { display: contents; }
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-brand-lockup { grid-area: brand; }
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-description { grid-area: description; margin-top: 0; }
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-contact-list { grid-area: contact; gap: 6px; margin-top: 0; }
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-socials { grid-area: social; gap: 4px; margin-top: 0; flex-wrap: wrap; }
+
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-navigation {
+    grid-area: links;
+    gap: clamp(10px, 1.55vw, 22px);
+    padding-top: 0;
+  }
+
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-navigation ul { margin-top: 9px; }
+  #main-content:has(> :is(.team-page, .contact-page)) + .site-footer .footer-navigation li { margin-top: 4px; }
+}

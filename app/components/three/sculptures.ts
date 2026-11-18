@@ -21,7 +21,13 @@ export function buildSculpture(variant: SculptureVariant) {
     metalness: 0.8,
     roughness: 0.32,
   });
-  const materials = { silver, ceramic, graphite, line };
+  const halo = new THREE.MeshStandardMaterial({
+    color: "#fff0d5",
+    emissive: "#ffd4a1",
+    emissiveIntensity: 0.72,
+    roughness: 0.25,
+  });
+  const materials = { silver, ceramic, graphite, line, halo };
   const geometries = new Set<THREE.BufferGeometry>();
   const add = (
     geometry: THREE.BufferGeometry,
@@ -160,6 +166,14 @@ export function buildSculpture(variant: SculptureVariant) {
       [0, 0, 0.6],
     );
     center.rotation.z = Math.PI / 4;
+    for (const [radius, slope, depth] of [[2.12, -0.22, 0.7], [2.26, 0.32, -0.72]]) {
+      const orbit = Array.from({ length: 72 }, (_, index) => {
+        const angle = index / 72 * Math.PI * 2;
+        const x = Math.cos(angle) * radius;
+        return new THREE.Vector3(x, Math.sin(angle) * 0.73 + x * slope, Math.sin(angle) * depth);
+      });
+      tube(orbit, 0.008, halo, true);
+    }
     group.rotation.set(0.16, -0.35, -0.12);
   }
 

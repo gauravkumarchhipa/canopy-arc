@@ -1,10 +1,10 @@
 import TeamGrid from "../components/sections/team/TeamGrid";
 import TeamHero from "../components/sections/team/TeamHero";
-import { tw } from "../lib/tw";
+import "./team-overview.css";
 
 export default function TeamPage() {
   return (
-    <div className={`${tw.pageShell} team-page`}>
+    <div className="team-page">
       <TeamHero />
       <TeamGrid />
     </div>

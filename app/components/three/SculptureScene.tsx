@@ -133,6 +133,9 @@ export default function SculptureScene({
       const { width, height } = element.getBoundingClientRect();
       if (!width || !height) return;
       renderer.setSize(width, height);
+      if (variant === "team") {
+        model.group.scale.setScalar(THREE.MathUtils.clamp(width / height * 0.73, 0.94, 1.28));
+      }
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       invalidate();

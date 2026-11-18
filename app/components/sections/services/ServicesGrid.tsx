@@ -1,177 +1,137 @@
 "use client";
 
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
+import ServiceIcon from "./ServiceIcon";
 import {
   filterLabelToSlug,
   resolveServiceFilter,
+  serviceDetailHref,
   serviceOrbitHref,
   SERVICE_FILTER_PARAM,
   SERVICE_ID_PARAM,
 } from "../../../lib/service-filters";
-import {
-  serviceCard,
-  serviceCardArrow,
-  serviceCardArrowIcon,
-  serviceCardGradient,
-  serviceCardHeaderAction,
-  serviceCardIconBox,
-  serviceCardIndex,
-  serviceCardMeta,
-  serviceCardMetaLink,
-  serviceCardPattern,
-  serviceCardSubtitle,
-  serviceCardTag,
-  serviceCardTechTag,
-  serviceCardTechTags,
-  serviceCardTitle,
-} from "./service-card-styles";
-import ServiceIcon from "./ServiceIcon";
 
-function formatCardIndex(index: number, total: number) {
-  return `${String(index).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
-}
+const journeys = [
+  { title: "Plan & Define", description: "Turn business goals into a clear digital roadmap.", filter: "All Services" },
+  { title: "Design & Experience", description: "Create intuitive and accessible experiences.", filter: "Design" },
+  { title: "Build & Integrate", description: "Develop scalable, high-performance solutions.", filter: "Development" },
+  { title: "Intelligence & Data", description: "Use AI, analytics, and automation to support better decisions.", filter: "Engineering" },
+  { title: "Secure & Operate", description: "Keep systems reliable, secure, and ready to scale.", filter: "Operations" },
+];
 
-function formatTechTags(subDomains: string[]) {
-  const visible = subDomains.slice(0, 4);
-  const remaining = subDomains.length - visible.length;
-  return remaining > 0 ? [...visible, `+${remaining} more`] : visible;
-}
-
-function ServiceArrowIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.75"
-      className={serviceCardArrowIcon}
-      aria-hidden
-    >
-      <path d="M7 17L17 7" strokeLinecap="round" />
-      <path d="M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+const cardNumbers = new Map(servicesGrid.cards.map((card, index) => [card.id, String(index + 1).padStart(2, "0")]));
+const totalCards = String(servicesGrid.cards.length).padStart(2, "0");
+const visibleTagCount = 4;
 
 export default function ServicesGrid() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const filters = servicesGrid.filters;
-
-  const filterParam = searchParams.get(SERVICE_FILTER_PARAM);
-  const serviceIdParam = searchParams.get(SERVICE_ID_PARAM);
-  const totalCards = servicesGrid.cards.length;
-  const cardIndexById = useMemo(() => {
-    const map = new Map<string, number>();
-    servicesGrid.cards.forEach((card, index) => map.set(card.id, index + 1));
-    return map;
-  }, []);
-
-  const { active, cards, focusServiceId } = useMemo(
-    () => resolveServiceFilter(filterParam, serviceIdParam),
-    [filterParam, serviceIdParam]
+  const { active, cards, focusServiceId } = resolveServiceFilter(
+    searchParams.get(SERVICE_FILTER_PARAM),
+    searchParams.get(SERVICE_ID_PARAM),
   );
 
   useEffect(() => {
     const hash = window.location.hash.slice(1);
-    if (!hash || hash === "services-grid") return;
-
-    const legacyService = servicesGrid.cards.find((card) => card.id === hash);
-    if (legacyService) {
-      router.replace(serviceOrbitHref(legacyService.id), { scroll: false });
-    }
+    if (cardNumbers.has(hash)) router.replace(serviceOrbitHref(hash), { scroll: false });
   }, [router]);
 
-  const setFilter = useCallback(
-    (label: string) => {
-      const slug = filterLabelToSlug(label);
-      const params = new URLSearchParams(searchParams.toString());
-      params.delete(SERVICE_ID_PARAM);
+  const setFilter = (label: string) => {
+    const slug = filterLabelToSlug(label);
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete(SERVICE_ID_PARAM);
+    if (slug === "all") params.delete(SERVICE_FILTER_PARAM);
+    else params.set(SERVICE_FILTER_PARAM, slug);
 
-      if (slug === "all") {
-        params.delete(SERVICE_FILTER_PARAM);
-      } else {
-        params.set(SERVICE_FILTER_PARAM, slug);
-      }
-
-      const qs = params.toString();
-      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-    },
-    [pathname, router, searchParams]
-  );
+    const query = params.toString();
+    window.history.replaceState(null, "", query ? `${pathname}?${query}` : pathname);
+  };
 
   return (
-    <section id="services-grid" className="mx-auto max-w-350 px-6 lg:px-10 scroll-mt-32">
-      <div className="flex flex-wrap items-center gap-3">
-        {filters.map((f) => (
-          <button
-            key={f}
-            type="button"
-            className="service-filter-chip"
-            onClick={() => setFilter(f)}
-            aria-pressed={active === f}
-          >
-            {f}
-          </button>
-        ))}
-      </div>
-
-      <div className="mt-10 grid gap-5 overflow-visible pb-2 md:grid-cols-2 xl:grid-cols-3">
-        {cards.map((card) => (
-          <Link
-            key={card.id}
-            href={`/services/${card.id}`}
-            className={`${serviceCard}${focusServiceId === card.id ? " ring-2 ring-accent/50 ring-offset-2 ring-offset-background" : ""}`}
-          >
-            <div className={serviceCardGradient} aria-hidden />
-            <div className={serviceCardPattern} aria-hidden />
-            <div className="relative z-1 flex items-start justify-between gap-3">
-              <span className={serviceCardTag}>{card.tag}</span>
-              <div className={serviceCardHeaderAction}>
-                <span className={serviceCardIndex}>
-                  {formatCardIndex(cardIndexById.get(card.id) ?? 1, totalCards)}
-                </span>
-                <span className={serviceCardArrow} aria-hidden>
-                  <ServiceArrowIcon />
-                </span>
-              </div>
-            </div>
-
-            <span className={serviceCardIconBox} aria-hidden>
-              <ServiceIcon name={card.icon} />
-            </span>
-            <h3 className={serviceCardTitle}>{card.title}</h3>
-            <p className={serviceCardSubtitle}>{card.subtitle}</p>
-
-            {card.subDomains.length > 0 ? (
-              <div className={serviceCardTechTags}>
-                {formatTechTags(card.subDomains).map((tag) => (
-                  <span key={tag} className={serviceCardTechTag}>
-                    {tag}
+    <div className="services-overview-shell services-overview-directory">
+      <aside className="services-overview-journey" id="service-journey" aria-labelledby="service-journey-title">
+        <h2 id="service-journey-title" className="services-overview-label">The service journey</h2>
+        <ol>
+          {journeys.map(({ title, description, filter }) => (
+            <li key={title}>
+              <button type="button" aria-pressed={active === filter && !focusServiceId} onClick={() => setFilter(filter)}>
+                <span className="services-overview-step-title">{title}</span>
+                <span>{description}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+      </aside>
+      <section className="services-overview-catalog" id="services-grid" aria-labelledby="service-catalog-title">
+        <div className="services-overview-catalog-bar">
+          <div>
+            <p className="services-overview-label">Our services</p>
+            <h2 id="service-catalog-title">Explore Our Service Offerings.</h2>
+          </div>
+          <div className="services-overview-filters" role="group" aria-label="Filter services">
+            {servicesGrid.filters.map((filter) => (
+              <button key={filter} type="button" aria-pressed={active === filter} onClick={() => setFilter(filter)}>
+                {filter}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="sr-only" role="status">{cards.length} {cards.length === 1 ? "service" : "services"} shown</p>
+        <div className="services-overview-cards">
+          {cards.map((card) => {
+            const remainingTags = card.subDomains.length - visibleTagCount;
+            return (
+              <Link
+                key={card.id}
+                href={serviceDetailHref(card.id)}
+                className="services-overview-card"
+                data-focused={focusServiceId === card.id || undefined}
+                prefetch={false}
+              >
+                <div className="services-overview-card-header">
+                  <span className="services-overview-card-category">
+                    <ServiceIcon name={card.icon} className="services-overview-card-icon" />
+                    {card.tag}
                   </span>
-                ))}
-              </div>
-            ) : null}
-
-            <div className={serviceCardMeta}>
-              <span>{card.projects} Projects</span>
-              <span className={serviceCardMetaLink}>
-                View service
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {cards.length === 0 ? (
-        <p className="mt-10 text-center text-sm text-muted">
-          No services found for this filter.
-        </p>
-      ) : null}
-    </section>
+                  <span className="services-overview-card-index" aria-hidden="true">
+                    {cardNumbers.get(card.id)} / {totalCards}
+                    <span className="services-overview-card-arrow">↗</span>
+                  </span>
+                </div>
+                <div className="services-overview-card-body">
+                  <Image
+                    className="services-overview-card-art"
+                    src={`/services-art/${card.id}.webp`}
+                    alt=""
+                    width={350}
+                    height={350}
+                    sizes="(max-width: 525px) 43vw, (max-width: 1130px) 23vw, 190px"
+                  />
+                  <div className="services-overview-card-copy">
+                    <h3>{card.title}</h3>
+                    <p>{card.subtitle}</p>
+                  </div>
+                </div>
+                {card.subDomains.length > 0 && (
+                  <ul className="services-overview-card-tags" aria-label="Technologies and capabilities">
+                    {card.subDomains.slice(0, visibleTagCount).map((tag) => <li key={tag}>{tag}</li>)}
+                    {remainingTags > 0 && <li>+{remainingTags} more</li>}
+                  </ul>
+                )}
+                <div className="services-overview-card-meta">
+                  <span>{card.projects} {card.projects === 1 ? "project" : "projects"}</span>
+                  <span className="services-overview-card-link">View service</span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+    </div>
   );
 }
