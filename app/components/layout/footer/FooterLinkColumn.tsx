@@ -21,11 +21,11 @@ export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
             {isExternal(link.href) ? (
               <a
                 href={link.href}
-                className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                className="inline-flex flex-wrap items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
                 {link.badge ? (
-                  <span className="inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
+                  <span className="footer-link-badge inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
                     {link.badge}
                   </span>
                 ) : null}
@@ -37,7 +37,7 @@ export default function FooterLinkColumn({ column }: { column: FooterColumn }) {
               >
                 {link.label}
                 {link.badge ? (
-                  <span className="inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] text-[0.625rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
+                  <span className="footer-link-badge inline-flex items-center rounded-sm bg-surface-strong px-2 py-[0.15rem] font-semibold tracking-wide whitespace-nowrap text-foreground">
                     {link.badge}
                   </span>
                 ) : null}

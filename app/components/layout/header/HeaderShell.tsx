@@ -101,7 +101,7 @@ export default function HeaderShell({
         ref={header}
         className="premium-site-header fixed inset-x-0 top-0 z-50 py-3"
       >
-        <div className="mx-auto max-w-350 px-6 lg:px-10">
+        <div className="premium-header-inner mx-auto max-w-350 px-6 lg:px-10">
           <div className="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center gap-6">
             <div className="justify-self-start">{logo}</div>
             <div className="justify-self-center">{desktopNav}</div>

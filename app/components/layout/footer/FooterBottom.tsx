@@ -11,9 +11,9 @@ export default function FooterBottom({ copyright, bottomLinks }: Props) {
   const year = new Date().getFullYear();
 
   return (
-    <div className="relative mt-12 border-t border-line pt-8 sm:mt-16">
+    <div className="footer-bottom relative mt-12 border-t border-line pt-8 sm:mt-16">
       <div className="flex flex-col items-center gap-[0.85rem] pt-4 text-center md:flex-row md:items-center md:justify-between md:gap-6 md:text-left">
-        <p className="inline-flex items-center gap-[0.45rem] text-xs leading-snug text-muted">
+        <p className="inline-flex items-center gap-[0.45rem] leading-snug text-muted">
           <IconShield className="h-3.5 w-3.5 shrink-0 text-accent" />
           <span>
             © {year} {copyright}
@@ -32,7 +32,7 @@ export default function FooterBottom({ copyright, bottomLinks }: Props) {
                 ) : null}
                 <Link
                   href={link.href}
-                  className="text-xs text-muted transition-colors hover:text-foreground"
+                  className="text-muted transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </Link>

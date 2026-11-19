@@ -1,4 +1,8 @@
 /* Canopy Arc: architectural forms, editorial space, one quiet brand accent. */
+:root {
+  --site-nav-text-size: 0.875rem;
+}
+
 :root,
 [data-theme="light"] {
   color-scheme: light;
@@ -596,6 +600,9 @@ body {
 .premium-site-header :is(nav, a, button) {
   transition-property: none;
 }
+.premium-site-header nav a {
+  font-size: var(--site-nav-text-size);
+}
 .premium-site-header[data-story-graphite] {
   --bg: #19211f;
   --fg: #f7f4ee;
@@ -763,7 +770,11 @@ footer > div:first-child:not(:last-child) {
   }
   .premium-site-header nav a {
     padding-inline: 10px;
-    font-size: 12px;
+  }
+}
+@media (min-width: 64rem) and (max-width: 1100px) {
+  :root {
+    --site-nav-text-size: 0.75rem;
   }
 }
 @media (max-width: 767px) {
@@ -1242,6 +1253,7 @@ footer > div:first-child:not(:last-child) {
   border-radius: 50%;
 }
 .site-footer {
+  --footer-text-size: var(--site-nav-text-size);
   border-top: 1px solid var(--line);
   padding-top: 72px;
   margin-top: 72px;
@@ -1267,7 +1279,7 @@ footer > div:first-child:not(:last-child) {
   letter-spacing: -0.06em;
 }
 .footer-brand-lockup .editorial-label {
-  font-size: 8px;
+  font-size: clamp(0.625rem, 0.8vw, 0.75rem);
 }
 .footer-brand-mark {
   width: 55px;
@@ -1275,10 +1287,10 @@ footer > div:first-child:not(:last-child) {
   object-fit: contain;
 }
 .footer-description {
-  max-width: 300px;
+  max-width: 38ch;
   margin-top: 24px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: var(--footer-text-size);
   line-height: 1.9;
 }
 .footer-contact-list {
@@ -1292,8 +1304,11 @@ footer > div:first-child:not(:last-child) {
   align-items: start;
   gap: 12px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: var(--footer-text-size);
   line-height: 1.8;
+}
+.footer-contact-list span {
+  overflow-wrap: anywhere;
 }
 .footer-contact-list svg {
   width: 14px;
@@ -1331,11 +1346,11 @@ footer > div:first-child:not(:last-child) {
 .footer-navigation {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 28px;
+  gap: clamp(12px, 1.5vw, 28px);
   padding-top: 8px;
 }
 .footer-navigation h4 {
-  font-size: 10px !important;
+  font-size: var(--footer-text-size) !important;
   text-transform: uppercase;
   letter-spacing: 0.12em !important;
 }
@@ -1346,12 +1361,15 @@ footer > div:first-child:not(:last-child) {
   margin-top: 13px;
 }
 .footer-navigation li a {
-  font-size: 11px;
+  font-size: var(--footer-text-size);
   line-height: 1.7;
   text-underline-offset: 4px;
 }
 .footer-navigation li a:hover {
   text-decoration: underline;
+}
+.footer-link-badge {
+  font-size: clamp(0.6875rem, 0.65rem + 0.1vw, 0.75rem);
 }
 .footer-connect-row {
   display: grid;
@@ -1367,9 +1385,12 @@ footer > div:first-child:not(:last-child) {
   grid-template-columns: 1fr 1.2fr;
   gap: 35px;
 }
+.site-footer :is(.footer-newsletter, .footer-support) h4 {
+  font-size: var(--footer-text-size) !important;
+}
 .footer-newsletter p,
 .footer-support p {
-  font-size: 11px;
+  font-size: var(--footer-text-size);
   line-height: 1.8;
   color: var(--muted);
   margin-top: 9px;
@@ -1386,7 +1407,7 @@ footer > div:first-child:not(:last-child) {
   border-color: var(--fg);
 }
 .footer-subscribe-form input {
-  font-size: 12px;
+  font-size: 1rem;
 }
 .footer-subscribe-form button svg {
   width: 17px;
@@ -1394,7 +1415,10 @@ footer > div:first-child:not(:last-child) {
 }
 .footer-support .editorial-link {
   margin-top: 12px;
-  font-size: 11px;
+  font-size: var(--footer-text-size);
+}
+.footer-bottom :is(p, a) {
+  font-size: 0.75rem;
 }
 .site-footer > .premium-container > div:last-child {
   margin-top: 35px;
