@@ -156,32 +156,10 @@ body:has(.services-overview) {
   margin: 0;
 }
 
-.services-journey-poster,
 .services-journey-canvas {
   position: absolute;
   inset: 0;
-}
-
-.services-journey-poster {
-  inset: 50% 0 auto;
-  max-height: 100%;
-  aspect-ratio: 2 / 1;
-  transform: translateY(-50%);
-  background: url("/services-art/journey.webp") center / contain no-repeat;
-  mask-image: linear-gradient(90deg, transparent, #000 19%), linear-gradient(transparent, #000 13%, #000 86%, transparent);
-  mask-composite: intersect;
-}
-
-.services-journey-canvas {
   mask-image: linear-gradient(90deg, transparent, #000 8%);
-}
-
-[data-theme="dark"] .services-journey-poster {
-  filter: brightness(0.72) saturate(0.78);
-}
-
-.services-journey-visual[data-live] .services-journey-poster {
-  visibility: hidden;
 }
 
 .services-journey-visual[data-live] {
@@ -240,6 +218,7 @@ body:has(.services-overview) {
 
 .services-overview-directory {
   display: grid;
+  grid-template-areas: "journey catalog";
   grid-template-columns: clamp(155px, 15vw, 226px) minmax(0, 1fr);
   gap: clamp(20px, 2.7vw, 50px);
   padding-block: clamp(28px, 3.25vw, 53px) clamp(44px, 5vw, 82px);
@@ -251,9 +230,15 @@ body:has(.services-overview) {
 }
 
 .services-overview-journey {
+  grid-area: journey;
   position: sticky;
   top: 100px;
   align-self: start;
+}
+
+.services-overview-catalog {
+  grid-area: catalog;
+  min-width: 0;
 }
 
 .services-overview-journey ol {
@@ -437,27 +422,31 @@ body:has(.services-overview) {
 
 .services-overview-card-art {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0 calc(-1 * var(--card-padding)) 0 auto;
   width: 51%;
   height: 100%;
-  object-fit: cover;
-  mask-image: linear-gradient(90deg, transparent, #000 37%), linear-gradient(transparent, #000 15%, #000 85%, transparent);
-  mask-composite: intersect;
-  mix-blend-mode: multiply;
-  transition: transform 310ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
+  visibility: hidden;
+  background: radial-gradient(ellipse 42% 9% at 50% 93%, rgb(48 37 26 / 22%), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 13%);
 }
 
-[data-theme="dark"] .services-overview-card-art {
-  mix-blend-mode: normal;
-  filter: brightness(0.58) contrast(1.17) saturate(0.8);
+.services-overview-card-art[data-model-ready] {
+  visibility: visible;
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
 }
 
-.services-overview-card:is(:hover, :focus-visible) .services-overview-card-art {
-  transform: scale(1.08) translateX(2px);
+.services-overview-card-art[data-dragging] {
+  cursor: grabbing;
 }
 
 .services-overview-card-copy {
+  position: relative;
+  z-index: 1;
   display: grid;
   width: 65%;
   min-width: 0;
@@ -534,9 +523,6 @@ body:has(.services-overview) {
     mask-image: linear-gradient(transparent, #000 43%);
   }
   .services-journey-visual { inset: auto 0 0; height: var(--services-hero-art-height); }
-  .services-journey-poster {
-    mask-image: linear-gradient(transparent, #000 20%, #000 88%, transparent);
-  }
   .services-journey-canvas { mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
   .services-overview-impact-inner {
     grid-template-columns: 1fr;
@@ -546,7 +532,10 @@ body:has(.services-overview) {
   .services-overview-impact h2 { word-spacing: 0.1em; }
   .services-overview-impact dl div:first-child { border-left: 0; }
   .services-overview-impact dt { font-size: 0.66rem; }
-  .services-overview-directory { grid-template-columns: 1fr; }
+  .services-overview-directory {
+    grid-template-areas: "journey" "catalog";
+    grid-template-columns: minmax(0, 1fr);
+  }
   .services-overview-journey { position: static; }
   .services-overview-journey ol {
     display: grid;
@@ -560,7 +549,7 @@ body:has(.services-overview) {
 
 @media (max-width: 525px) {
   .services-overview-cards { grid-template-columns: 1fr; }
-  .services-overview-card-art { width: 43%; object-position: center; }
+  .services-overview-card-art { width: 43%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

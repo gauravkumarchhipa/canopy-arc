@@ -1,14 +1,16 @@
 "use client";
 
-import Image from "next/image";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { workGrid } from "../../../content/pages/work/grid";
 
 const projectNumbers = new Map(workGrid.projects.map(({ id }, index) => [id, index + 1]));
 const total = String(workGrid.projects.length).padStart(2, "0");
+const WorkCardModels = dynamic(() => import("./WorkCardModels"), { ssr: false });
 
 export default function WorkGrid() {
+  const gridRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(workGrid.filters[0]);
   const items = active === workGrid.filters[0]
     ? workGrid.projects
@@ -24,12 +26,10 @@ export default function WorkGrid() {
         ))}
       </div>
       <p className="sr-only" role="status">{items.length} {items.length === 1 ? "project" : "projects"} shown</p>
-      <div className="work-overview-grid">
+      <p className="sr-only" id="work-card-model-instructions">Drag the model or use the arrow keys to rotate it.</p>
+      <div className="work-overview-grid" ref={gridRef}>
         {items.map((project) => (
-          <article key={project.id} className="work-overview-card">
-            <div className="work-overview-card-art" aria-hidden="true">
-              <Image src={project.image ?? `/work-art/${project.id}.webp`} alt="" fill sizes="(max-width: 680px) 52vw, 27vw" />
-            </div>
+          <article key={project.id} className="work-overview-card" data-model-card>
             <div className="work-overview-card-copy">
               <p className="work-overview-card-meta">
                 <span aria-hidden="true">{String(projectNumbers.get(project.id)).padStart(2, "0")} / {total} · </span>
@@ -43,6 +43,7 @@ export default function WorkGrid() {
               </div>
               <Link href={`/work/${project.id}`} className="work-overview-case-link" aria-label={`View case study for ${project.name}`} prefetch={false}>
                 View Case Study <span aria-hidden="true">↗</span>
+                <canvas className="work-overview-card-art" data-card-model={project.id} aria-hidden="true" />
               </Link>
             </div>
             <a className="work-overview-live-link" href={project.url} target="_blank" rel="noopener noreferrer"
@@ -52,6 +53,7 @@ export default function WorkGrid() {
           </article>
         ))}
       </div>
+      <WorkCardModels gridRef={gridRef} />
     </section>
   );
 }

@@ -6,7 +6,6 @@ import { nav } from "../../../content/shared/nav";
 import ServiceIcon from "../services/ServiceIcon";
 import AnimatedCounter from "../../ui/AnimatedCounter";
 import ImpactIcon from "./impact/ImpactIcon";
-import StorySculptureSkeleton from "./StorySculptureSkeleton";
 import { chapters } from "./story-chapters";
 
 const services = new Map(servicesGrid.cards.map((service) => [service.id, service]));
@@ -22,7 +21,6 @@ export function HomeChapters() {
         style={{ "--chapter-row": index + 1 } as React.CSSProperties}
         aria-labelledby={`${chapter.id}-title`}
       >
-        <StorySculptureSkeleton chapter={index} />
         <div className="story-shell story-chapter-grid">
           <div className="story-copy">
             <p className="story-label">{String(index + 1).padStart(2, "0")} / {chapter.name}</p>

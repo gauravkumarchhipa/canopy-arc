@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import ServiceIcon from "./ServiceIcon";
@@ -26,8 +26,10 @@ const journeys = [
 const cardNumbers = new Map(servicesGrid.cards.map((card, index) => [card.id, String(index + 1).padStart(2, "0")]));
 const totalCards = String(servicesGrid.cards.length).padStart(2, "0");
 const visibleTagCount = 4;
+const ServiceCardModels = dynamic(() => import("./ServiceCardModels"), { ssr: false });
 
 export default function ServicesGrid() {
+  const gridRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -82,7 +84,8 @@ export default function ServicesGrid() {
           </div>
         </div>
         <p className="sr-only" role="status">{cards.length} {cards.length === 1 ? "service" : "services"} shown</p>
-        <div className="services-overview-cards">
+        <p className="sr-only" id="services-model-instructions">Drag the model or use the arrow keys to rotate it.</p>
+        <div className="services-overview-cards" ref={gridRef}>
           {cards.map((card) => {
             const remainingTags = card.subDomains.length - visibleTagCount;
             return (
@@ -90,6 +93,7 @@ export default function ServicesGrid() {
                 key={card.id}
                 href={serviceDetailHref(card.id)}
                 className="services-overview-card"
+                data-model-card
                 data-focused={focusServiceId === card.id || undefined}
                 prefetch={false}
               >
@@ -104,14 +108,7 @@ export default function ServicesGrid() {
                   </span>
                 </div>
                 <div className="services-overview-card-body">
-                  <Image
-                    className="services-overview-card-art"
-                    src={`/services-art/${card.id}.webp`}
-                    alt=""
-                    width={350}
-                    height={350}
-                    sizes="(max-width: 525px) 43vw, (max-width: 1130px) 23vw, 190px"
-                  />
+                  <canvas className="services-overview-card-art" data-card-model={card.id} aria-hidden="true" />
                   <div className="services-overview-card-copy">
                     <h3>{card.title}</h3>
                     <p>{card.subtitle}</p>
@@ -131,6 +128,7 @@ export default function ServicesGrid() {
             );
           })}
         </div>
+        <ServiceCardModels gridRef={gridRef} />
       </section>
     </div>
   );

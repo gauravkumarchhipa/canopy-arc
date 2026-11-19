@@ -180,10 +180,14 @@ function Journey({ dark, pose, dragging, onReady, onFailure }: Props) {
               <lineLoop geometry={rim} position-z={0.057} renderOrder={3}>
                 <lineBasicMaterial color={dark ? "#d9c4a7" : "#fff6e7"} transparent depthWrite={false} opacity={0.78} />
               </lineLoop>
-              <mesh position-z={0.063} renderOrder={3}>
-                <planeGeometry args={[panelWidth - 0.025, panelHeight - 0.025]} />
-                <meshBasicMaterial map={label} transparent toneMapped={false} depthWrite={false} />
-              </mesh>
+              {[0, Math.PI].map((rotation) => (
+                <group key={rotation} rotation-y={rotation}>
+                  <mesh position-z={0.063} renderOrder={3}>
+                    <planeGeometry args={[panelWidth - 0.025, panelHeight - 0.025]} />
+                    <meshBasicMaterial map={label} transparent toneMapped={false} depthWrite={false} />
+                  </mesh>
+                </group>
+              ))}
               <sprite position={[0.42, -0.72, 0.06]} scale={[0.75, 0.29, 1]} renderOrder={4}>
                 <spriteMaterial map={glow} transparent depthWrite={false} toneMapped={false} opacity={0.89} />
               </sprite>

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { Component, useCallback, useState, type CSSProperties, type ReactNode } from "react";
+import { Component, useCallback, useState, type ReactNode } from "react";
 import { useTheme } from "../../layout/ThemeProvider";
 import { useModelOrbit } from "../../three/useModelOrbit";
 
@@ -25,16 +25,15 @@ export default function WorkHeroVisual() {
 
   return (
     <div className="work-hero-model" data-live={live || undefined}>
-      <div className="work-hero-viewer" role="group" tabIndex={0} aria-label="Interactive 3D model of layered glass project windows"
-        aria-describedby="work-hero-model-instructions" data-dragging={dragging || undefined}
-        {...controls}>
-        <div className="work-hero-model-fallback" aria-hidden="true" style={{
-          "--model-yaw": `${pose.yaw}rad`, "--model-pitch": `${pose.pitch}rad`,
-        } as CSSProperties}>
-          <div className="work-hero-model-stack">
-            <span /><span /><span />
-          </div>
-        </div>
+      <div
+        className="work-hero-viewer"
+        role={live ? "group" : undefined}
+        tabIndex={live ? 0 : undefined}
+        aria-label={live ? "Interactive 3D model of layered glass project windows" : undefined}
+        aria-describedby={live ? "work-hero-model-instructions" : undefined}
+        data-dragging={live && dragging || undefined}
+        {...(live ? controls : {})}
+      >
         <div className="work-hero-model-canvas" aria-hidden="true">
           {!failed && (
             <SceneBoundary onFailure={onFailure}>

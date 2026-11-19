@@ -44,7 +44,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
   const theme = useTheme();
   const [enhanced, setEnhanced] = useState(false);
   const [active, setActive] = useState(0);
-  const [loadScene, setLoadScene] = useState(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [onScreen, setOnScreen] = useState(false);
@@ -66,8 +65,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
 
     const observer = new IntersectionObserver(([entry]) => {
       setOnScreen(entry.isIntersecting);
-      if (!entry.isIntersecting) return;
-      setLoadScene(true);
     });
     observer.observe(element);
     return () => observer.disconnect();
@@ -226,7 +223,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
       className="story-track"
       data-enhanced={enhanced ? "true" : undefined}
       data-art-ready={enhanced && ready && !failed ? "true" : undefined}
-      data-art-failed={failed ? "true" : undefined}
       data-active={active}
       data-graphite={graphite ? "true" : undefined}
       onClick={goToChapter}
@@ -250,7 +246,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
           onPointerCancel={release}
           onLostPointerCapture={release}
         >
-          {enhanced && loadScene && !failed && (
+          {enhanced && !failed && (
             <SceneBoundary onFailure={() => setFailed(true)}>
               <StoryScene
                 motion={motion}
