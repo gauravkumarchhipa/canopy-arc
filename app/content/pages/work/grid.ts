@@ -9,6 +9,7 @@ export type ProductLink = {
   icon: string;
   year: number;
   highlight?: string;
+  overview?: string;
   image?: string;
 };
 

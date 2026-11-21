@@ -3,12 +3,16 @@ import { cookies } from "next/headers";
 import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import "./premium.css";
+import "./story-studio.css";
+import "./site-loading.css";
 import "./sculptures.css";
 import RegisterSW from "./components/webworkers/RegisterSW";
 import SiteChrome from "./components/layout/SiteChrome";
 import ThemeProvider from "./components/layout/ThemeProvider";
 import { resolveTheme, THEME_COOKIE } from "./lib/theme";
 import { getFooterData } from "./lib/footer/get-footer-data";
+import SiteLoadingScreen from "./components/layout/SiteLoadingScreen";
+import { siteLoadingBootstrap } from "./components/layout/site-loading";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -72,9 +76,12 @@ export default async function RootLayout({
       className={`${fraunces.variable} ${manrope.variable} h-full antialiased`}
     >
       <head>
+        <link rel="preload" as="image" href="/canopy-mark-mask.png" />
         <script dangerouslySetInnerHTML={{ __html: `try{if(!document.cookie.split('; ').some(function(v){return v.indexOf('canopy-theme=')===0}))document.documentElement.dataset.theme=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}` }} />
+        <script dangerouslySetInnerHTML={{ __html: siteLoadingBootstrap }} />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
+        <SiteLoadingScreen />
         <ThemeProvider initialTheme={theme}>
           <RegisterSW />
           <SiteChrome initialTheme={theme} footerData={footerData}>

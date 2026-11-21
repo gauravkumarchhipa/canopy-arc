@@ -2,9 +2,9 @@ export const chapters = [
   {
     id: "the-spark",
     art: "spark",
-    name: "The Spark",
-    title: ["Every extraordinary", "idea begins somewhere."],
-    description: "We work with businesses to turn early ideas into meaningful, scalable digital solutions.",
+    name: "The Idea",
+    title: ["Every extraordinary", "idea begins with a spark."],
+    description: "We design and build web platforms, mobile apps, and connected systems for businesses.",
     services: [],
   },
   {
@@ -12,7 +12,7 @@ export const chapters = [
     art: "structure",
     name: "The Structure",
     title: ["We give ideas", "structure."],
-    description: "We turn a clear strategy into thoughtful design and interfaces that are ready to grow.",
+    description: "We map how people use a product, then prototype the flows and interfaces they’ll rely on.",
     services: ["ui-ux-design", "ar-vr", "video-content"],
   },
   {
@@ -20,7 +20,7 @@ export const chapters = [
     art: "engineering",
     name: "The Engineering",
     title: ["From imagination", "to engineering."],
-    description: "We build high-performance digital products across web, mobile, and cloud.",
+    description: "We build web and mobile apps, connect them through APIs, and run them on cloud infrastructure.",
     services: ["web-development", "app-development", "backend-api", "cloud-devops"],
   },
   {
@@ -28,7 +28,7 @@ export const chapters = [
     art: "intelligence",
     name: "The Intelligence",
     title: ["Technology that", "thinks ahead."],
-    description: "We put AI, data, and automation to work so businesses can make better decisions and act faster.",
+    description: "We build data pipelines, AI assistants, and automations that fit the way your team works.",
     services: ["ai-ml", "data-engineering", "iot"],
   },
   {
@@ -36,7 +36,7 @@ export const chapters = [
     art: "protection",
     name: "The Protection",
     title: ["Built to connect.", "Engineered to protect."],
-    description: "We engineer for security, reliability, and performance as your business scales.",
+    description: "We assess security risks and automate tests that catch regressions before release.",
     services: ["cybersecurity", "qa-automation", "enterprise-solutions"],
   },
   {
@@ -44,7 +44,7 @@ export const chapters = [
     art: "outcome",
     name: "The Outcome",
     title: ["Many disciplines.", "One extraordinary outcome."],
-    description: "One connected team builds the digital ecosystem your business needs to innovate, operate, and grow.",
+    description: "Design, software, and security come together in the products we ship. See them in use.",
     services: ["ecommerce-saas", "digital-marketing"],
   },
 ] as const;

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "Canopy Arc — Extraordinary Starts Here",
     description: "From the first spark to a secure, connected digital ecosystem.",
     type: "website",
-    images: ["/story/spark.webp"],
+    images: [{ url: "/story/ribbon-preview.webp", width: 1200, height: 630, alt: "Canopy Arc’s architectural ribbon" }],
   },
 };
 

@@ -4,6 +4,7 @@ import ArrowIcon from "../../components/ui/ArrowIcon";
 import { workGrid } from "../../content/pages/work/grid";
 import WorkProductIcon from "../../components/sections/work/WorkProductIcon";
 import { ExternalLinkIcon } from "../../components/sections/work/work-product-icons";
+import Image from "next/image";
 
 type Project = (typeof workGrid.projects)[number];
 
@@ -52,7 +53,11 @@ export function ProjectOverview({ project }: ProjectProps) {
   return (
     <section className="rounded-3xl border border-line bg-surface p-6 sm:p-7 lg:col-span-8">
       <Heading className="text-sm font-semibold text-foreground/90">Project Overview</Heading>
-      <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
+      <p className="mt-4 text-sm leading-relaxed text-muted">{project.overview ?? project.description}</p>
+      {project.image && (
+        <Image src={project.image} alt={`${project.name} website preview`} width={1120} height={700}
+          sizes="(max-width: 1023px) 90vw, 60vw" className="mt-6 h-auto w-full rounded-xl border border-line" />
+      )}
     </section>
   );
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import ServiceIcon from "../services/ServiceIcon";
 import { chapters } from "./story-chapters";
+import StoryStill from "./StoryStill";
 
 const services = new Map(servicesGrid.cards.map((service) => [service.id, service]));
 
@@ -19,9 +20,11 @@ export function HomeChapters() {
         style={{ "--chapter-row": index + 1 } as React.CSSProperties}
         aria-labelledby={`${chapter.id}-title`}
       >
+        {index === 0 && <div className="story-studio" aria-hidden="true" />}
+        <StoryStill pose={index} />
         <div className="story-shell story-chapter-grid">
           <div className="story-copy">
-            <p className="story-label">{String(index + 1).padStart(2, "0")} / {chapter.name}</p>
+            <p className="story-label">{chapter.name}</p>
             <Heading level={index === 0 ? 1 : 2} id={`${chapter.id}-title`} tabIndex={-1}>
               {chapter.title.map((line) => <span key={line}>{line} </span>)}
             </Heading>
