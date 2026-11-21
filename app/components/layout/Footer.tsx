@@ -11,7 +11,7 @@ type Props = {
 export default function Footer({ data }: Props) {
   return (
     <footer className="site-footer">
-      <div className="premium-container">
+      <div className="premium-shell">
         <div className="footer-main-grid" data-motion="footer">
           <FooterBrand data={data} />
           <nav className="footer-navigation" aria-label="Footer navigation">

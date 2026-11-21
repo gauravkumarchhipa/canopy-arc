@@ -1,6 +1,15 @@
 /* Canopy Arc: architectural forms, editorial space, one quiet brand accent. */
 :root {
   --site-nav-text-size: 0.875rem;
+  --site-gutter: clamp(24px, 9.1vw, 156px);
+}
+
+@media (max-width: 900px) {
+  :root { --site-gutter: clamp(26px, 7.6vw, 68px); }
+}
+
+@media (max-width: 680px) {
+  :root { --site-gutter: 23px; }
 }
 
 :root,
@@ -120,6 +129,11 @@ body {
   width: min(1400px, 100%);
   margin-inline: auto;
   padding-inline: clamp(24px, 4.5vw, 72px);
+}
+.premium-shell,
+.story-shell {
+  width: min(calc(100% - 2 * var(--site-gutter)), 1440px);
+  margin-inline: auto;
 }
 .max-w-350 {
   padding-inline: clamp(24px, 4.5vw, 72px);
@@ -777,6 +791,12 @@ footer > div:first-child:not(:last-child) {
     --site-nav-text-size: 0.75rem;
   }
 }
+@media (min-width: 64rem) and (max-width: 72rem) {
+  .premium-header-inner nav a {
+    padding-inline: 8px;
+    white-space: nowrap;
+  }
+}
 @media (max-width: 767px) {
   .premium-hero {
     padding-top: 110px;
@@ -1420,7 +1440,7 @@ footer > div:first-child:not(:last-child) {
 .footer-bottom :is(p, a) {
   font-size: 0.75rem;
 }
-.site-footer > .premium-container > div:last-child {
+.site-footer > .premium-shell > div:last-child {
   margin-top: 35px;
   padding-top: 15px;
   padding-bottom: 28px;
@@ -1596,14 +1616,8 @@ footer > div:first-child:not(:last-child) {
 input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
 
 #main-content:has(> :is(.team-page, .contact-page)) + .site-footer {
-  --compact-footer-gutter: clamp(22px, 5.3vw, 76px);
   margin-top: 0;
   padding-top: clamp(24px, 3vw, 44px);
-}
-
-#main-content:has(> :is(.team-page, .contact-page)) + .site-footer > .premium-container {
-  width: min(calc(100% - 2 * var(--compact-footer-gutter)), 1440px);
-  padding-inline: 0;
 }
 
 @media (min-width: 1001px) {
