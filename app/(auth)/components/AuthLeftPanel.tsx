@@ -1,5 +1,7 @@
 "use client";
 
+import Heading from "../../components/ui/Heading";
+import { Check } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
@@ -67,13 +69,13 @@ export default function AuthLeftPanel() {
         >
           {brand.tagline}
         </p>
-        <h1
+        <Heading level={1}
           data-auth-reveal
           className="mt-4 font-display text-[clamp(1.85rem,4vw,2.75rem)] leading-[1.08] tracking-tight text-foreground"
         >
           Build digital experiences that{" "}
           <span className={tw.gradientText}>connect &amp; protect</span>
-        </h1>
+        </Heading>
         <p
           data-auth-reveal
           className="mt-4 text-sm leading-relaxed text-muted"
@@ -93,7 +95,7 @@ export default function AuthLeftPanel() {
               className="flex items-center gap-2.5 text-sm text-foreground"
             >
               <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-foreground text-[10px] text-background">
-                ✓
+                <Check size={12} aria-hidden="true" focusable="false" />
               </span>
               {item}
             </li>

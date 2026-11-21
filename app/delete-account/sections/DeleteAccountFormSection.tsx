@@ -1,3 +1,4 @@
+import ArrowIcon from "../../components/ui/ArrowIcon";
 import Reveal from "../../components/Reveal";
 import DeleteAccountForm from "../../components/DeleteAccountForm";
 import { INFO_ITEMS } from "./delete-account-data";
@@ -49,7 +50,7 @@ export default function DeleteAccountFormSection() {
                   className="inline-flex mt-6 text-sm text-accent hover:underline"
                   data-cursor="hover"
                 >
-                  Go to contact →
+                  Go to contact <ArrowIcon direction="right" />
                 </a>
               </div>
             </Reveal>

@@ -1,3 +1,5 @@
+import Heading from "../../ui/Heading";
+import ArrowIcon from "../../ui/ArrowIcon";
 import Link from "next/link";
 import type { BlogPost } from "../../../content/pages/blog/posts";
 import { formatBlogDate } from "../../../content/pages/blog/posts";
@@ -48,7 +50,7 @@ export default function BlogPostCard({ post }: Props) {
           <span className="text-muted">·</span>
           <span>{post.readTime}</span>
         </div>
-        <h2 className={blogCardTitle}>{post.title}</h2>
+        <Heading className={blogCardTitle}>{post.title}</Heading>
         <p className={blogCardExcerpt}>{post.excerpt}</p>
         <div className="relative z-1 mt-3 flex flex-wrap gap-1.5">
           {post.tags.slice(0, 3).map((tag) => (
@@ -57,7 +59,7 @@ export default function BlogPostCard({ post }: Props) {
             </span>
           ))}
         </div>
-        <span className={blogCardLink}>Read article →</span>
+        <span className={blogCardLink}>Read article <ArrowIcon direction="right" /></span>
       </div>
     </Link>
   );

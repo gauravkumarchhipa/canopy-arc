@@ -1,7 +1,8 @@
-import Link from "next/link";
+import Heading from "../../../ui/Heading";
+import Button from "../../../ui/Button";
+import ArrowIcon from "../../../ui/ArrowIcon";
 import type { Service } from "../../../../content/pages/services/services";
 import { SERVICE_HERO_STATS } from "../../../../content/pages/services/detail-shared";
-import { tw } from "../../../../lib/tw";
 import AnimatedCounter from "../../../ui/AnimatedCounter";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
 import ImpactIcon from "../../home/impact/ImpactIcon";
@@ -31,9 +32,9 @@ export default function ServiceDetailHero({ service, iconName }: Props) {
             </span>
             <div>
               <span className={detailBadge}>Core Service</span>
-              <h1 className="mt-3 font-display text-4xl tracking-tight sm:text-5xl lg:text-[3.25rem]">
+              <Heading level={1} className="mt-3 font-display text-4xl tracking-tight sm:text-5xl lg:text-[3.25rem]">
                 {service.name}
-              </h1>
+              </Heading>
             </div>
           </div>
 
@@ -67,12 +68,12 @@ export default function ServiceDetailHero({ service, iconName }: Props) {
           </div>
 
           <div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Link href="#case-studies" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
-              View Case Studies →
-            </Link>
-            <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
+            <Button variant="header-primary" href="#case-studies">
+              View Case Studies <ArrowIcon direction="right" />
+            </Button>
+            <Button variant="header-ghost" href="/contact">
               Book Consultation
-            </Link>
+            </Button>
           </div>
         </div>
 

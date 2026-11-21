@@ -1,5 +1,8 @@
 "use client";
 
+import Button from "../../ui/Button";
+import Heading from "../../ui/Heading";
+import ArrowIcon from "../../ui/ArrowIcon";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -20,9 +23,9 @@ export default function WorkGrid() {
     <section className="work-overview-shell work-overview-projects" id="work-projects" aria-label="Project showcase">
       <div className="work-overview-filters" role="group" aria-label="Filter projects">
         {workGrid.filters.map((filter) => (
-          <button key={filter} type="button" aria-pressed={active === filter} onClick={() => setActive(filter)}>
+          <Button variant="unstyled" key={filter} type="button" aria-pressed={active === filter} onClick={() => setActive(filter)}>
             {filter}
-          </button>
+          </Button>
         ))}
       </div>
       <p className="sr-only" role="status">{items.length} {items.length === 1 ? "project" : "projects"} shown</p>
@@ -35,20 +38,20 @@ export default function WorkGrid() {
                 <span aria-hidden="true">{String(projectNumbers.get(project.id)).padStart(2, "0")} / {total} · </span>
                 {project.category}
               </p>
-              <h2>{project.name}</h2>
+              <Heading>{project.name}</Heading>
               <p className="work-overview-description">{project.description}</p>
               <div className="work-overview-tags">
                 {project.highlight && <span>{project.highlight}</span>}
                 <span>{project.year}</span>
               </div>
               <Link href={`/work/${project.id}`} className="work-overview-case-link" aria-label={`View case study for ${project.name}`} prefetch={false}>
-                View Case Study <span aria-hidden="true">↗</span>
+                View Case Study <span aria-hidden="true"><ArrowIcon /></span>
                 <canvas className="work-overview-card-art" data-card-model={project.id} aria-hidden="true" />
               </Link>
             </div>
             <a className="work-overview-live-link" href={project.url} target="_blank" rel="noopener noreferrer"
               aria-label={`Open live project for ${project.name} in a new tab`}>
-              <span aria-hidden="true">↗</span>
+              <span aria-hidden="true"><ArrowIcon /></span>
             </a>
           </article>
         ))}

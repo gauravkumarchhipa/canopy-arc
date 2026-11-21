@@ -1,0 +1,128 @@
+import Button from "../../ui/Button";
+import Heading from "../../ui/Heading";
+import ArrowIcon from "../../ui/ArrowIcon";
+import Link from "next/link";
+import { servicesGrid } from "../../../content/pages/services/grid";
+import impact from "../../../content/pages/home/impact.json";
+import { productLinks } from "../../../content/pages/work/grid";
+import { nav } from "../../../content/shared/nav";
+import ServiceIcon from "../services/ServiceIcon";
+import AnimatedCounter from "../../ui/AnimatedCounter";
+import ImpactIcon from "./impact/ImpactIcon";
+
+export function StoryImpactAndCommitments() {
+  const figures = [impact.featured, ...impact.stats];
+  return (
+    <div className="story-impact-and-commitment" id="story-impact">
+      <section className="story-band" aria-labelledby="story-impact-title">
+        <div className="story-shell story-impact-grid">
+          <Heading className="story-label" id="story-impact-title">{impact.eyebrow}</Heading>
+          <dl className="story-figures">
+            {figures.map((stat) => (
+              <div className="story-figure" key={stat.label}>
+                <dt>{stat.label}</dt>
+                <dd><AnimatedCounter value={stat.value} viewportInset={80} /></dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="story-band" aria-labelledby="story-commitment-title">
+        <div className="story-shell story-editorial-grid">
+          <div>
+            <p className="story-label">{impact.commitment.title}</p>
+            <Heading id="story-commitment-title">The values that shape our work.</Heading>
+            <p>{impact.commitment.description}</p>
+          </div>
+          <ul className="story-commitments">
+            {impact.commitment.pillars.map((pillar) => (
+              <li key={pillar.title}>
+                <ImpactIcon name={pillar.icon} />
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export function StoryCapabilities() {
+  return (
+    <section className="story-band story-capabilities-band" id="capabilities" aria-labelledby="story-services-title">
+      <div className="story-shell story-editorial-grid">
+        <div>
+          <p className="story-label">Our capabilities</p>
+          <Heading id="story-services-title">Powerful IT services. <span>Connected solutions.</span></Heading>
+          <p>From the first idea to enterprise scale, explore the disciplines that bring your digital vision to life.</p>
+        </div>
+        <div className="story-capabilities">
+          {servicesGrid.filters.slice(1).map((category) => (
+            <div key={category} className="story-service-group">
+              <h3>{category}</h3>
+              <ul>
+                {servicesGrid.cards.filter((service) => service.tag === category).map((service) => (
+                  <li key={service.id}>
+                    <Link href={`/services/${service.id}`}>
+                      <ServiceIcon name={service.icon} />
+                      <span>{service.title}</span>
+                      <span aria-hidden="true"><ArrowIcon /></span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function StoryProjects() {
+  const projects = productLinks.filter(({ id }) => id === "sahai-ai" || id === "pannobaa");
+  return (
+    <section className="story-band story-work" id="selected-work" aria-labelledby="story-work-title">
+      <div className="story-shell story-editorial-grid">
+        <div>
+          <p className="story-label">Selected work</p>
+          <Heading id="story-work-title">Ideas, made real.</Heading>
+          <p>See how we turn business challenges into products people can use.</p>
+          <Button variant="story-text" href="/work">Explore all work <span aria-hidden="true"><ArrowIcon /></span></Button>
+        </div>
+        <div className="story-projects">
+          {projects.map((project) => (
+            <Link key={project.id} href={`/work/${project.id}`} className={`story-project story-project--${project.id}`}>
+              <div className="story-project-art" aria-hidden="true" />
+              <div className="story-project-copy">
+                <p className="story-label">{project.category}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+              </div>
+              <span className="story-project-arrow" aria-hidden="true"><ArrowIcon /></span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function StoryContact() {
+  return (
+    <section className="story-contact" aria-labelledby="story-contact-title">
+      <div className="story-shell">
+        <p className="story-label">Your next chapter</p>
+        <Heading id="story-contact-title">Extraordinary starts with a conversation.</Heading>
+        <p>Tell us what you want to build. We’ll work out the next step together.</p>
+        <div className="story-actions">
+          <Button variant="story-primary" href={nav.ctaSecondary.href}>{nav.ctaSecondary.label} <span aria-hidden="true"><ArrowIcon direction="right" /></span></Button>
+          <Button variant="story-text" href={nav.ctaPrimary.href}>{nav.ctaPrimary.label} <span aria-hidden="true"><ArrowIcon /></span></Button>
+        </div>
+      </div>
+    </section>
+  );
+}

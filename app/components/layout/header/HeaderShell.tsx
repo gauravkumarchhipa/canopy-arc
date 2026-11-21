@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "../../ui/Button";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
@@ -115,7 +116,7 @@ export default function HeaderShell({
 
             <div className="flex items-center gap-2">
               {mobileActions}
-              <button
+              <Button variant="unstyled"
                 type="button"
                 aria-label={open ? "Close menu" : "Open menu"}
                 aria-expanded={open}
@@ -135,7 +136,7 @@ export default function HeaderShell({
                     }`}
                   />
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,5 +1,3 @@
-"use client";
-
 import type { ReactNode } from "react";
 import ThemeToggle from "../../components/layout/ThemeToggle";
 import type { Theme } from "../../lib/theme";

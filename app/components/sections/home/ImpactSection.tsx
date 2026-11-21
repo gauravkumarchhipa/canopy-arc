@@ -1,3 +1,4 @@
+import Heading from "../../ui/Heading";
 import { homeImpact } from "../../../content/pages/home/impact";
 import AnimatedCounter from "../../ui/AnimatedCounter";
 export default function ImpactSection() {
@@ -11,11 +12,11 @@ export default function ImpactSection() {
       <div className="section-heading">
         <p className="editorial-label">01 / {impact.eyebrow}</p>
         <div>
-          <h2 id="impact-title">
+          <Heading id="impact-title">
             {impact.title}
             <br />
             <span>{impact.titleAccent}.</span>
-          </h2>
+          </Heading>
           <p className="section-description">{impact.subtitle}</p>
         </div>
       </div>

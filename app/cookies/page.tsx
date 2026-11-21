@@ -1,3 +1,4 @@
+import Heading from "../components/ui/Heading";
 import type { Metadata } from "next";
 import { tw } from "../lib/tw";
 
@@ -13,10 +14,10 @@ export default function CookiesPage() {
         <p className="text-xs tracking-[0.3em] uppercase text-muted">
           Cookie Policy
         </p>
-        <h1 className="mt-5 font-display text-4xl sm:text-5xl tracking-tight">
+        <Heading level={1} className="mt-5 font-display text-4xl sm:text-5xl tracking-tight">
           Cookies,{" "}
           <span className="text-muted">kept minimal</span>.
-        </h1>
+        </Heading>
         <div className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-7 text-sm text-muted leading-relaxed space-y-4">
           <p>
             This is a placeholder Cookie Policy page so footer links work.

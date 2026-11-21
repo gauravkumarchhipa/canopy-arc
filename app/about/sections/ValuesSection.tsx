@@ -1,3 +1,4 @@
+import Heading from "../../components/ui/Heading";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import { VALUES } from "./about-data";
 import {
@@ -14,9 +15,9 @@ export default function ValuesSection() {
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <div className="mb-12 max-w-2xl">
           <p className={aboutSectionEyebrow}>What we believe</p>
-          <h2 className={aboutSectionTitle}>
+          <Heading className={aboutSectionTitle}>
             Four principles behind every project we take on.
-          </h2>
+          </Heading>
         </div>
 
         <div className="grid gap-5 overflow-visible p-1 md:grid-cols-2">

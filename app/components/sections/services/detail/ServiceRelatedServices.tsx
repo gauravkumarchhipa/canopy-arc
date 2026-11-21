@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Heading from "../../../ui/Heading";
+import ArrowIcon from "../../../ui/ArrowIcon";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
 import { detailRelatedLink, detailSectionTitle } from "./service-detail-styles";
 
@@ -16,7 +17,7 @@ export default function ServiceRelatedServices({ related }: Props) {
 
   return (
     <section className="mt-12">
-      <h2 className={detailSectionTitle}>Related Services</h2>
+      <Heading className={detailSectionTitle}>Related Services</Heading>
       <div className="mt-4 grid gap-3 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-3">
         {related.slice(0, 3).map((item) => (
           <GlowHoverCard
@@ -25,10 +26,11 @@ export default function ServiceRelatedServices({ related }: Props) {
             href={`/services/${item.id}`}
             className="block rounded-2xl px-4 py-3"
           >
-            <span className={detailRelatedLink}>{item.title} →</span>
+            <span className={detailRelatedLink}>{item.title} <ArrowIcon direction="right" /></span>
           </GlowHoverCard>
         ))}
       </div>
     </section>
   );
 }
+import Link from "next/link";

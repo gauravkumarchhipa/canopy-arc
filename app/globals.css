@@ -610,6 +610,32 @@ html.lenis body {
     forwards;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  [data-arrow-direction] {
+    transition: transform 220ms ease-out;
+  }
+
+  [data-arrow-direction="left"] {
+    --arrow-hover-transform: translateX(-4px);
+  }
+
+  [data-arrow-direction="down"] {
+    --arrow-hover-transform: translateY(4px);
+  }
+
+  [data-arrow-direction="up-right"] {
+    --arrow-hover-transform: translate(4px, -4px);
+  }
+
+  [data-arrow-direction="clockwise"] {
+    --arrow-hover-transform: rotate(35deg);
+  }
+
+  :is(a[href], button:enabled, [data-arrow-hover]):is(:hover, :focus-visible) [data-arrow-direction] {
+    transform: var(--arrow-hover-transform, translateX(4px));
+  }
+}
+
 .service-card-arrow-icon {
   display: block;
   flex-shrink: 0;

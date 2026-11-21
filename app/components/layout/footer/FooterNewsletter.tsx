@@ -1,3 +1,4 @@
+import ArrowIcon from "../../ui/ArrowIcon";
 import Link from "next/link";
 import type { FooterNewsletter, FooterSupport } from "./footer-data";
 import NewsletterFormLazy from "./NewsletterFormLazy";
@@ -25,7 +26,7 @@ export default function FooterNewsletter({ newsletter, support }: Props) {
           <p>{support.text}</p>
           <Link className="editorial-link" href={support.linkHref}>
             {support.linkLabel}
-            <span aria-hidden>↗</span>
+            <span aria-hidden><ArrowIcon /></span>
           </Link>
         </div>
       ) : null}

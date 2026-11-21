@@ -1,3 +1,4 @@
+import Heading from "../../../ui/Heading";
 import type { CaseStudy, Service } from "../../../../content/pages/services/services";
 import { SERVICE_PROCESS_STEPS, SERVICE_WHY_CHOOSE } from "../../../../content/pages/services/detail-shared";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
@@ -27,7 +28,7 @@ export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy
   return (
     <section className="service-info-grid mt-8 grid gap-8 overflow-visible lg:grid-cols-3">
       <GlowHoverCard className={detailPanelGlow}>
-        <h2 className={detailSectionTitleHover}>What We Build</h2>
+        <Heading className={detailSectionTitleHover}>What We Build</Heading>
         <ul className="mt-5 space-y-3">
           {whatWeBuild.map((item) => (
             <li key={item} className={detailCheckItemHover}>
@@ -41,7 +42,7 @@ export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy
       </GlowHoverCard>
 
       <GlowHoverCard className={detailPanelGlow}>
-        <h2 className={detailSectionTitleHover}>Our Development Process</h2>
+        <Heading className={detailSectionTitleHover}>Our Development Process</Heading>
         <ol className="mt-5 space-y-4">
           {SERVICE_PROCESS_STEPS.map((step) => (
             <li key={step.step} className="flex gap-3">
@@ -56,7 +57,7 @@ export default function ServiceInfoGrid({ service, whatWeBuild, testimonialStudy
       </GlowHoverCard>
 
       <GlowHoverCard className={detailPanelGlow}>
-        <h2 className={detailSectionTitleHover}>Why Choose Canopy Arc?</h2>
+        <Heading className={detailSectionTitleHover}>Why Choose Canopy Arc?</Heading>
         <ul className="mt-5 space-y-3">
           {SERVICE_WHY_CHOOSE.map((item) => (
             <li key={item} className={detailCheckItemHover}>

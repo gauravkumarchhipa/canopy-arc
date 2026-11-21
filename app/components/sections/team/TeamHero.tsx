@@ -1,4 +1,6 @@
-import Link from "next/link";
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import { teamHero } from "../../../content/pages/team/hero";
 import AnimatedCounter from "../../ui/AnimatedCounter";
 import SculptureVisual from "../../three/SculptureVisual";
@@ -10,17 +12,17 @@ export default function TeamHero() {
         <div className="team-shell team-hero-inner">
           <div className="team-hero-copy">
             <p className="team-label team-hero-label">{teamHero.eyebrow}</p>
-            <h1 id="team-title" data-motion="heading">
+            <Heading level={1} id="team-title" data-motion="heading">
               {teamHero.title} <span>{teamHero.titleAccent}.</span>
-            </h1>
+            </Heading>
             <p className="team-hero-summary">{teamHero.subtitle}</p>
             <div className="team-hero-actions">
-              <a href="#team-directory" className="team-primary">
-                Meet the Team <span aria-hidden>→</span>
-              </a>
-              <Link href="/about#our-values" className="team-culture-link">
-                <span aria-hidden>↗</span> Explore Our Culture
-              </Link>
+              <Button as="a" variant="unstyled" href="#team-directory" className="team-primary">
+                Meet the Team <span aria-hidden><ArrowIcon direction="right" /></span>
+              </Button>
+              <Button variant="unstyled" href="/about#our-values" className="team-culture-link">
+                <span aria-hidden><ArrowIcon /></span> Explore Our Culture
+              </Button>
             </div>
           </div>
           <SculptureVisual variant="team" compact />
@@ -28,7 +30,7 @@ export default function TeamHero() {
       </section>
       <section className="team-stat-strip" aria-labelledby="team-stats-title">
         <div className="team-shell team-stat-inner">
-          <h2 className="team-label" id="team-stats-title">Our people<br />{" "}at a glance</h2>
+          <Heading className="team-label" id="team-stats-title">Our people<br />{" "}at a glance</Heading>
           <dl>
             {teamHero.stats.map((stat) => (
               <div key={stat.label}>

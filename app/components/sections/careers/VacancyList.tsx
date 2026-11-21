@@ -1,5 +1,8 @@
 "use client";
 
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import { useState } from "react";
 import type { Vacancy } from "../../../content/pages/careers/vacancies";
 import GlowHoverCard from "../../ui/GlowHoverCard";
@@ -43,7 +46,7 @@ export default function VacancyList({ vacancies, onApply }: Props) {
                 <p className={vacancyMeta}>
                   {role.department} · {role.type} · {role.location}
                 </p>
-                <h2 className={vacancyTitle}>{role.title}</h2>
+                <Heading className={vacancyTitle}>{role.title}</Heading>
               </div>
               <span
                 className="relative z-1 text-lg leading-none text-muted transition-colors duration-[400ms] group-hover:text-foreground"
@@ -63,7 +66,7 @@ export default function VacancyList({ vacancies, onApply }: Props) {
                     </span>
                   ))}
                 </div>
-                <button
+                <Button variant="unstyled"
                   type="button"
                   className={vacancyApplyLink}
                   onClick={(e) => {
@@ -71,8 +74,8 @@ export default function VacancyList({ vacancies, onApply }: Props) {
                     onApply(role.id);
                   }}
                 >
-                  Apply for this role →
-                </button>
+                  Apply for this role <ArrowIcon direction="right" />
+                </Button>
               </>
             ) : null}
           </GlowHoverCard>

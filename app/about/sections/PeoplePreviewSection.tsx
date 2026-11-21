@@ -1,3 +1,5 @@
+import Heading from "../../components/ui/Heading";
+import ArrowIcon from "../../components/ui/ArrowIcon";
 import Link from "next/link";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import { teamGrid } from "../../content/pages/team/grid";
@@ -22,9 +24,9 @@ export default function PeoplePreviewSection() {
         <div className="mb-12 grid items-end gap-8 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
             <p className={aboutSectionEyebrow}>The people</p>
-            <h2 className={aboutSectionTitle}>
+            <Heading className={aboutSectionTitle}>
               A multidisciplinary team built for modern product delivery.
-            </h2>
+            </Heading>
           </div>
           <div className="lg:col-span-5">
             <p className={aboutSectionSubtitle}>
@@ -35,7 +37,7 @@ export default function PeoplePreviewSection() {
               href="/team"
               className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-foreground"
             >
-              Meet the full team →
+              Meet the full team <ArrowIcon direction="right" />
             </Link>
           </div>
         </div>

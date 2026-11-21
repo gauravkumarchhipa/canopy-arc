@@ -1,81 +1,54 @@
-import Link from "next/link";
-import type { ReactNode } from "react";
+﻿import Link from "next/link";
+import type { ComponentProps } from "react";
+import { tw } from "../../lib/tw";
 
-type Variant = "primary" | "ghost" | "secondary";
-
-const VARIANT_CLASS: Record<Variant, string> = {
+const variants = {
   primary: "btn-primary",
   ghost: "btn-ghost",
   secondary: "btn-secondary",
-};
+  "header-primary": `${tw.headerBtnBase} ${tw.headerBtnPrimary}`,
+  "header-ghost": `${tw.headerBtnBase} ${tw.headerBtnGhost}`,
+  "story-primary": "story-button",
+  "story-ghost": "story-ghost-button",
+  "story-text": "story-text-link",
+  unstyled: "",
+} as const;
 
-type CommonProps = {
-  variant?: Variant;
-  className?: string;
-  children: ReactNode;
-};
+const routerOptions = [
+  "onNavigate", "prefetch", "replace", "scroll", "shallow", "passHref", "legacyBehavior", "locale",
+] as const;
 
-type ButtonAsButton = CommonProps & {
-  href?: undefined;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
-  onClick?: () => void;
-};
+type VariantProps = { variant?: keyof typeof variants };
+type NativeButtonProps = VariantProps & ComponentProps<"button"> & { href?: never; as?: never };
+type NativeLinkProps = VariantProps & ComponentProps<"a"> & { href: string; as: "a" };
+type RouterLinkProps = VariantProps & Omit<ComponentProps<typeof Link>, "as" | "href"> & { href: string; as?: never };
 
-type ButtonAsLink = CommonProps & {
-  href: string;
-  target?: string;
-  rel?: string;
-};
-
-type Props = ButtonAsButton | ButtonAsLink;
-
-function isExternalHref(href: string) {
-  return (
-    href.startsWith("http://") ||
-    href.startsWith("https://") ||
-    href.startsWith("mailto:") ||
-    href.startsWith("tel:")
-  );
+function isExternal(href: string) {
+  return /^(?:https?:\/\/|mailto:|tel:)/.test(href);
 }
 
-export default function Button(props: Props) {
-  const variant = props.variant ?? "primary";
-  const cls = `${VARIANT_CLASS[variant]}${props.className ? " " + props.className : ""}`;
+export default function Button({
+  variant = "primary",
+  className,
+  ...props
+}: NativeButtonProps | NativeLinkProps | RouterLinkProps) {
+  const classes = [variants[variant], className].filter(Boolean).join(" ") || undefined;
 
-  if ("href" in props && props.href) {
-    const linkProps = props as ButtonAsLink;
-    if (isExternalHref(linkProps.href)) {
-      return (
-        <a
-          href={linkProps.href}
-          target={linkProps.target}
-          rel={
-            linkProps.rel ??
-            (linkProps.href.startsWith("http") ? "noopener noreferrer" : undefined)
-          }
-          className={cls}
-        >
-          {linkProps.children}
-        </a>
-      );
+  if (typeof props.href === "string") {
+    if (props.as === "a") {
+      const { as: Tag, ...anchor } = props;
+      return <Tag {...anchor} className={classes} />;
     }
-    return (
-      <Link href={linkProps.href} className={cls}>
-        {linkProps.children}
-      </Link>
-    );
+
+    if (isExternal(props.href)) {
+      const anchor = { ...props };
+      for (const option of routerOptions) delete anchor[option];
+      const rel = anchor.rel ?? (/^https?:\/\//.test(anchor.href) ? "noopener noreferrer" : undefined);
+      return <a {...anchor} rel={rel} className={classes} />;
+    }
+
+    return <Link {...props} className={classes} />;
   }
 
-  const buttonProps = props as ButtonAsButton;
-  return (
-    <button
-      type={buttonProps.type ?? "button"}
-      disabled={buttonProps.disabled}
-      onClick={buttonProps.onClick}
-      className={cls}
-    >
-      {buttonProps.children}
-    </button>
-  );
+  return <button {...props} type={props.type ?? "button"} className={classes} />;
 }

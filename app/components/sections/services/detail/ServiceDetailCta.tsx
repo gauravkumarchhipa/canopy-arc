@@ -1,5 +1,6 @@
-import Link from "next/link";
-import { tw } from "../../../../lib/tw";
+import Heading from "../../../ui/Heading";
+import Button from "../../../ui/Button";
+import ArrowIcon from "../../../ui/ArrowIcon";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
 import ImpactIcon from "../../home/impact/ImpactIcon";
 import { detailCtaGlow, detailCtaIcon, detailCtaText, detailCtaTitle } from "./service-detail-styles";
@@ -16,9 +17,9 @@ export default function ServiceDetailCta({ serviceName }: Props) {
           <ImpactIcon name="rocket" />
         </span>
         <div>
-          <h2 className={detailCtaTitle}>
+          <Heading className={detailCtaTitle}>
             Ready to build your next {serviceName.toLowerCase()} project?
-          </h2>
+          </Heading>
           <p className={detailCtaText}>
             Let&apos;s discuss your requirements and create a tailored solution for your
             business.
@@ -26,12 +27,12 @@ export default function ServiceDetailCta({ serviceName }: Props) {
         </div>
       </div>
       <div className="relative z-1 flex flex-col items-start gap-3 sm:flex-row sm:items-center lg:shrink-0">
-        <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
-          Schedule a Call →
-        </Link>
-        <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
+        <Button variant="header-primary" href="/contact">
+          Schedule a Call <ArrowIcon direction="right" />
+        </Button>
+        <Button variant="header-ghost" href="/contact">
           Get a Proposal
-        </Link>
+        </Button>
       </div>
     </GlowHoverCard>
   );

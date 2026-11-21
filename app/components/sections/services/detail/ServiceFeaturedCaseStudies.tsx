@@ -1,3 +1,5 @@
+import Heading from "../../../ui/Heading";
+import ArrowIcon from "../../../ui/ArrowIcon";
 import Link from "next/link";
 import ProjectArtwork from "../../../ProjectArtwork";
 import type {
@@ -30,7 +32,7 @@ export default function ServiceFeaturedCaseStudies({
     <section id="case-studies" className="case-studies-section scroll-mt-32">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h2 className={detailSectionTitle}>Featured Case Studies</h2>
+          <Heading className={detailSectionTitle}>Featured Case Studies</Heading>
           <p className={detailSectionSubtitle}>
             {service.caseStudies.length} detailed project case studies with full
             explanations, tech stacks, and deliverables.
@@ -40,7 +42,7 @@ export default function ServiceFeaturedCaseStudies({
           href="/work"
           className="text-sm font-medium text-accent transition-colors hover:text-foreground"
         >
-          View All Projects →
+          View All Projects <ArrowIcon direction="right" />
         </Link>
       </div>
 
@@ -77,7 +79,7 @@ export default function ServiceFeaturedCaseStudies({
                 ))}
               </div>
               <Link href={`#study-${study.id}`} className={detailCaseLinkHover}>
-                View Case Study <span aria-hidden>↗</span>
+                View Case Study <span aria-hidden><ArrowIcon /></span>
               </Link>
             </div>
           </article>

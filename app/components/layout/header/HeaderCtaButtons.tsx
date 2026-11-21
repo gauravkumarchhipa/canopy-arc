@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import { nav } from "../../../content/shared/nav";
-import { tw } from "../../../lib/tw";
 
 type Props = {
   className?: string;
@@ -13,20 +13,18 @@ export default function HeaderCtaButtons({ className = "", stacked = false, onNa
     <div
       className={`${stacked ? "flex flex-col gap-3 w-full" : "flex items-center gap-3"} ${className}`.trim()}
     >
-      <Link
+      <Button variant="header-ghost"
         href={nav.ctaSecondary.href}
         onNavigate={onNavigate}
-        className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}
       >
         {nav.ctaSecondary.label}
-      </Link>
-      <Link
+      </Button>
+      <Button variant="header-primary"
         href={nav.ctaPrimary.href}
         onNavigate={onNavigate}
-        className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}
       >
-        {nav.ctaPrimary.label} →
-      </Link>
+        {nav.ctaPrimary.label} <ArrowIcon direction="right" />
+      </Button>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import Heading from "../../components/ui/Heading";
 import { TIMELINE } from "./about-data";
 import {
   aboutSectionEyebrow,
@@ -13,9 +14,9 @@ export default function TimelineSection() {
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <div className="mb-12 max-w-2xl">
           <p className={aboutSectionEyebrow}>Our journey</p>
-          <h2 className={aboutSectionTitle}>
+          <Heading className={aboutSectionTitle}>
             From a small studio to a trusted global partner.
-          </h2>
+          </Heading>
         </div>
 
         <div className="relative">

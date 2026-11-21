@@ -1,3 +1,4 @@
+import ArrowIcon from "../../../ui/ArrowIcon";
 import Link from "next/link";
 
 type Props = {
@@ -10,11 +11,11 @@ export default function ServiceBreadcrumb({ serviceName }: Props) {
       <Link href="/" className="transition-colors hover:text-foreground">
         Home
       </Link>
-      <span aria-hidden>›</span>
+      <span aria-hidden><ArrowIcon direction="chevron-right" /></span>
       <Link href="/services" className="transition-colors hover:text-foreground">
         Services
       </Link>
-      <span aria-hidden>›</span>
+      <span aria-hidden><ArrowIcon direction="chevron-right" /></span>
       <span className="text-foreground">{serviceName}</span>
     </nav>
   );

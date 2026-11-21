@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "./Button";
 import {
   useEffect,
   useRef,
@@ -224,7 +225,7 @@ export default function Input({
       />
 
       {(isPassword || type === "password") && (
-        <button
+        <Button variant="unstyled"
           type="button"
           onClick={() => setShowPassword((s) => !s)}
           aria-label={showPassword ? "Hide password" : "Show password"}
@@ -232,11 +233,11 @@ export default function Input({
           className="absolute right-0 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors"
         >
           {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-        </button>
+        </Button>
       )}
 
       {showClear && (
-        <button
+        <Button variant="unstyled"
           type="button"
           onClick={handleClear}
           aria-label="Clear input"
@@ -244,7 +245,7 @@ export default function Input({
           className="absolute right-0 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors"
         >
           <XIcon />
-        </button>
+        </Button>
       )}
 
       {showRightIcon && (

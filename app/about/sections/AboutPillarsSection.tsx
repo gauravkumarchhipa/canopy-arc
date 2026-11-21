@@ -1,3 +1,4 @@
+import Heading from "../../components/ui/Heading";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import ServiceIcon from "../../components/sections/services/ServiceIcon";
 import { PILLARS } from "./about-data";
@@ -12,7 +13,7 @@ export default function AboutPillarsSection() {
             <span className={aboutPillarIcon}>
               <ServiceIcon name={pillar.icon} />
             </span>
-            <h2 className={`${aboutPillarTitle} mt-5`}>{pillar.title}</h2>
+            <Heading className={`${aboutPillarTitle} mt-5`}>{pillar.title}</Heading>
             <p className={aboutPillarBody}>{pillar.body}</p>
           </GlowHoverCard>
         ))}

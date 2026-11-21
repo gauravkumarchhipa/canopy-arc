@@ -1,3 +1,5 @@
+import ArrowIcon from "./ui/ArrowIcon";
+
 type Props = {
   title: string;
   category: string;
@@ -86,7 +88,7 @@ export default function ProjectArtwork({
                   <i />
                   <i />
                 </div>
-                <span>↗</span>
+                <span><ArrowIcon /></span>
               </div>
             ) : portal ? (
               <div className="project-portal-form">
@@ -121,7 +123,7 @@ export default function ProjectArtwork({
       </div>
       <div className="project-cover-caption">
         <span>{technologies.slice(0, 2).join(" / ") || category}</span>
-        <span>↗</span>
+        <span><ArrowIcon /></span>
       </div>
     </div>
   );

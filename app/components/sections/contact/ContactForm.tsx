@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -71,9 +73,9 @@ export default function ContactForm({ email }: { email: string }) {
       </label>
 
       <div className="contact-form-footer">
-        <button type="submit" className="contact-submit">
-          Open email draft <span aria-hidden="true">→</span>
-        </button>
+        <Button variant="unstyled" type="submit" className="contact-submit">
+          Open email draft <span aria-hidden="true"><ArrowIcon direction="right" /></span>
+        </Button>
         <p role="status">
           {draftPrepared ? "Review and send the draft in your email app." : "Send the inquiry from your email app."}
         </p>

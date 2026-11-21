@@ -1,3 +1,4 @@
+import { X } from "lucide-react";
 import Reveal from "../../components/Reveal";
 import RevealText from "../../components/RevealText";
 import Eyebrow from "../../components/ui/Eyebrow";
@@ -25,7 +26,7 @@ export default function DeliberateNoSection() {
           ].map((line, i) => (
             <Reveal key={line} delay={0.05 * i}>
               <div className="flex items-center gap-6 py-5 border-b border-line">
-                <span className="font-display text-2xl text-muted">×</span>
+                <X size={24} className="shrink-0 text-muted" aria-hidden="true" focusable="false" />
                 <p className="text-lg md:text-xl text-foreground/85">
                   {line}
                 </p>

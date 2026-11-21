@@ -1,3 +1,4 @@
+import Heading from "../ui/Heading";
 import type { ReactNode } from "react";
 import Eyebrow from "../ui/Eyebrow";
 import EyebrowPill from "../ui/EyebrowPill";
@@ -30,7 +31,7 @@ export default function PageIntro({
         ) : (
           <Eyebrow className="block leading-relaxed">{eyebrow}</Eyebrow>
         )}
-        <h1
+        <Heading level={1}
           className={`font-display text-[clamp(2.4rem,5.4vw,5rem)] leading-[1.08] tracking-tight ${
             titleAccent ? "" : "whitespace-pre-line"
           } ${eyebrowPill ? "mt-7" : "mt-5"}`}
@@ -44,7 +45,7 @@ export default function PageIntro({
           ) : (
             title
           )}
-        </h1>
+        </Heading>
         {subtitle ? (
           <p className="mt-5 max-w-3xl leading-relaxed text-muted">{subtitle}</p>
         ) : null}

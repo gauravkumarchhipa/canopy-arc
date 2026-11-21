@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "./ui/Button";
 import { useState } from "react";
 import Eyebrow from "./ui/Eyebrow";
 
@@ -32,7 +33,7 @@ function FaqItem({ item }: { item: Item }) {
 
   return (
     <div>
-      <button
+      <Button variant="unstyled"
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
@@ -50,7 +51,7 @@ function FaqItem({ item }: { item: Item }) {
           <span className="absolute h-px w-3 bg-foreground" />
           <span className="absolute h-3 w-px bg-foreground" />
         </span>
-      </button>
+      </Button>
       <div
         className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           open ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"

@@ -1,21 +1,31 @@
+import { ArrowDown, ArrowLeft, ArrowRight, ArrowUpRight, ChevronRight, RotateCw } from "lucide-react";
+
+const icons = {
+  down: ArrowDown,
+  left: ArrowLeft,
+  right: ArrowRight,
+  "up-right": ArrowUpRight,
+  "chevron-right": ChevronRight,
+  clockwise: RotateCw,
+} as const;
+
 type Props = {
-  size?: number;
+  direction?: keyof typeof icons;
+  size?: number | string;
   className?: string;
 };
 
-export default function ArrowIcon({ size = 14, className }: Props) {
+export default function ArrowIcon({ direction = "up-right", size = "1.15em", className }: Props) {
+  const Icon = icons[direction];
+
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={className}
-      aria-hidden
-    >
-      <path d="M7 17L17 7M9 7h8v8" />
-    </svg>
+    <Icon
+      size={size}
+      strokeWidth={1.85}
+      className={["inline-block shrink-0 align-middle", className].filter(Boolean).join(" ")}
+      data-arrow-direction={direction}
+      aria-hidden="true"
+      focusable="false"
+    />
   );
 }

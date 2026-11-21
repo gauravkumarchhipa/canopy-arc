@@ -1,5 +1,6 @@
 "use client";
 
+import Heading from "../../components/ui/Heading";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -73,9 +74,9 @@ export default function SignUpForm() {
   return (
     <div className={`${tw.glass} rounded-3xl p-6 sm:p-8`}>
       <p className="text-xs tracking-[0.28em] uppercase text-muted">Get started</p>
-      <h2 className="mt-3 font-display text-2xl tracking-tight sm:text-[1.75rem]">
+      <Heading className="mt-3 font-display text-2xl tracking-tight sm:text-[1.75rem]">
         Create your account
-      </h2>
+      </Heading>
       <p className="mt-2 text-sm text-muted">
         Join Canopy Arc to collaborate and ship faster.
       </p>

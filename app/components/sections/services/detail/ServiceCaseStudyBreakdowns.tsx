@@ -1,3 +1,4 @@
+import Heading from "../../../ui/Heading";
 import type { Service } from "../../../../content/pages/services/services";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
 import CheckIcon from "./CheckIcon";
@@ -26,7 +27,7 @@ type Props = {
 export default function ServiceCaseStudyBreakdowns({ service }: Props) {
   return (
     <section className="mt-12">
-      <h2 className={detailSectionTitle}>Detailed Project Breakdowns</h2>
+      <Heading className={detailSectionTitle}>Detailed Project Breakdowns</Heading>
       <p className={detailSectionSubtitle}>
         Full challenge, solution, outcome, and deliverables for every case study.
       </p>

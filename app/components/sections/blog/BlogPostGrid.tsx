@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "../../ui/Button";
 import { useMemo, useState } from "react";
 import type { BlogPost } from "../../../content/pages/blog/posts";
 import { blogCategories } from "../../../content/pages/blog/posts";
@@ -29,14 +30,14 @@ export default function BlogPostGrid({ posts }: Props) {
     <>
       <div className="flex flex-wrap items-center gap-3">
         {blogCategories.map((category) => (
-          <button
+          <Button variant="unstyled"
             key={category}
             type="button"
             className={chipClass(active === category)}
             onClick={() => setActive(category)}
           >
             {category}
-          </button>
+          </Button>
         ))}
       </div>
 

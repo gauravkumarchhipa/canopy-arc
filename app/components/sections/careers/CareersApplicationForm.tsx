@@ -1,8 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
+import { Check } from "lucide-react";
+import { useState } from "react";
 import { z } from "zod";
 import type { Vacancy } from "../../../content/pages/careers/vacancies";
+import ArrowIcon from "../../ui/ArrowIcon";
 import GlowHoverCard from "../../ui/GlowHoverCard";
 import {
   glowHoverCardEyebrow,
@@ -12,7 +16,6 @@ import {
   glowHoverCardLabel,
   glowHoverCardTextarea,
 } from "../../ui/glow-card-styles";
-import { tw } from "../../../lib/tw";
 
 const Schema = z.object({
   name: z.string().min(2),
@@ -25,15 +28,12 @@ const Schema = z.object({
 type Props = {
   vacancies: Vacancy[];
   selectedRoleId?: string;
+  role: string;
+  onRoleChange: (role: string) => void;
 };
 
-export default function CareersApplicationForm({ vacancies, selectedRoleId }: Props) {
+export default function CareersApplicationForm({ vacancies, selectedRoleId, role, onRoleChange }: Props) {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
-  const [role, setRole] = useState(selectedRoleId ?? "");
-
-  useEffect(() => {
-    if (selectedRoleId) setRole(selectedRoleId);
-  }, [selectedRoleId]);
 
   return (
     <GlowHoverCard
@@ -54,11 +54,11 @@ export default function CareersApplicationForm({ vacancies, selectedRoleId }: Pr
         setStatus("sent");
         setTimeout(() => setStatus("idle"), 3500);
         e.currentTarget.reset();
-        if (selectedRoleId) setRole(selectedRoleId);
+        if (selectedRoleId) onRoleChange(selectedRoleId);
       }}
     >
       <p className={glowHoverCardEyebrow}>Apply now</p>
-      <h2 className={`${glowHoverCardHeading} mt-2`}>Send your application</h2>
+      <Heading className={`${glowHoverCardHeading} mt-2`}>Send your application</Heading>
 
       <div className="relative z-1 mt-6 grid gap-6 sm:grid-cols-2">
         <label className="block">
@@ -89,7 +89,7 @@ export default function CareersApplicationForm({ vacancies, selectedRoleId }: Pr
           name="role"
           required
           value={role}
-          onChange={(e) => setRole(e.target.value)}
+          onChange={(e) => onRoleChange(e.target.value)}
           className={`${glowHoverCardInput} cursor-pointer appearance-none`}
         >
           <option value="" disabled>
@@ -126,9 +126,13 @@ export default function CareersApplicationForm({ vacancies, selectedRoleId }: Pr
       </label>
 
       <div className="relative z-1 mt-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <button type="submit" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary} text-sm`}>
-          {status === "sent" ? "Application sent ✓" : "Submit Application →"}
-        </button>
+        <Button variant="header-primary" type="submit" className={`text-sm`}>
+          {status === "sent" ? (
+            <>Application sent <Check size="1.15em" aria-hidden="true" focusable="false" /></>
+          ) : (
+            <>Submit Application <ArrowIcon direction="right" /></>
+          )}
+        </Button>
         <p className={glowHoverCardFooter}>We review every application within 5 working days.</p>
       </div>
     </GlowHoverCard>

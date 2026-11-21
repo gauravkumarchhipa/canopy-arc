@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Heading from "../../components/ui/Heading";
+import ArrowIcon from "../../components/ui/ArrowIcon";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import { CAPABILITIES } from "./about-data";
 import {
@@ -16,7 +17,7 @@ export default function CapabilitiesSection() {
       <div className="mx-auto max-w-350 px-6 lg:px-10">
         <div className="mb-12 max-w-2xl">
           <p className={aboutSectionEyebrow}>What we do</p>
-          <h2 className={aboutSectionTitle}>Capabilities across the full product stack.</h2>
+          <Heading className={aboutSectionTitle}>Capabilities across the full product stack.</Heading>
           <p className={aboutSectionSubtitle}>
             From first wireframe to production deployment — we cover the disciplines modern
             digital products need to win.
@@ -28,7 +29,7 @@ export default function CapabilitiesSection() {
             <GlowHoverCard key={cap.title} as={Link} href={cap.href} className="block rounded-3xl p-6 sm:p-7">
               <h3 className={aboutCapabilityTitle}>{cap.title}</h3>
               <p className={aboutCapabilityBody}>{cap.body}</p>
-              <span className={aboutCapabilityLink}>Explore service →</span>
+              <span className={aboutCapabilityLink}>Explore service <ArrowIcon direction="right" /></span>
             </GlowHoverCard>
           ))}
         </div>
@@ -36,3 +37,4 @@ export default function CapabilitiesSection() {
     </section>
   );
 }
+import Link from "next/link";

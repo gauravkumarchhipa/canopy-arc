@@ -1,5 +1,7 @@
 "use client";
 
+import Heading from "../ui/Heading";
+import ArrowIcon from "../ui/ArrowIcon";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -111,10 +113,10 @@ export default function HorizontalScroll() {
       {/* Heading — scrolls away normally before the pin starts */}
       <div className="relative px-6 lg:px-10 pt-16 sm:pt-24 md:pt-32 pb-8 sm:pb-12 md:pb-20">
         <Eyebrow className="mb-3">How SAHAI thinks</Eyebrow>
-        <h2 className="font-display text-4xl md:text-6xl leading-[0.95] max-w-2xl">
+        <Heading className="font-display text-4xl md:text-6xl leading-[0.95] max-w-2xl">
           Five quiet ideas <span className="text-muted">behind</span>{" "}
           one calm companion.
-        </h2>
+        </Heading>
       </div>
 
       {/* Pinned horizontal-scroll viewport. The GSAP effect translates the
@@ -128,7 +130,7 @@ export default function HorizontalScroll() {
         <div className="noise pointer-events-none" />
 
         <p className="absolute top-6 right-6 md:top-8 md:right-8 z-10 text-xs uppercase tracking-[0.25em] text-muted pointer-events-none">
-          ← scroll →
+          <ArrowIcon direction="left" /> scroll <ArrowIcon direction="right" />
         </p>
 
         <div

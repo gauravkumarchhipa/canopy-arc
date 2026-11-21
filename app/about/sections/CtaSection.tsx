@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Button from "../../components/ui/Button";
+import ArrowIcon from "../../components/ui/ArrowIcon";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
-import { tw } from "../../lib/tw";
 import {
   teamBannerText,
   teamBannerTitle,
@@ -19,12 +19,12 @@ export default function CtaSection() {
             </p>
           </div>
           <div className="relative z-1 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
-              Start a Project →
-            </Link>
-            <Link href="/work" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
+            <Button variant="header-primary" href="/contact">
+              Start a Project <ArrowIcon direction="right" />
+            </Button>
+            <Button variant="header-ghost" href="/work">
               View Our Work
-            </Link>
+            </Button>
           </div>
         </GlowHoverCard>
       </div>

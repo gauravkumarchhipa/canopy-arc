@@ -370,14 +370,10 @@ body {
 }
 .capability-arrow {
   font-size: 22px;
-  transition: transform 0.3s;
 }
 .capability-row:hover {
   padding-left: 12px;
   color: var(--accent);
-}
-.capability-row:hover .capability-arrow {
-  transform: translate(3px, -3px);
 }
 .premium-impact {
   padding-block: 110px;

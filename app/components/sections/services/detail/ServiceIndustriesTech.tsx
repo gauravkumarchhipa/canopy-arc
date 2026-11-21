@@ -1,3 +1,4 @@
+import Heading from "../../../ui/Heading";
 import GlowHoverCard from "../../../ui/GlowHoverCard";
 import ImpactIcon from "../../home/impact/ImpactIcon";
 import {
@@ -19,7 +20,7 @@ export default function ServiceIndustriesTech({ industries, techGroups }: Props)
   return (
     <section className="mt-8 grid gap-5 overflow-visible p-1 lg:grid-cols-2">
       <GlowHoverCard className={detailPanelGlow}>
-        <h2 className={detailSectionTitleHover}>Industries We Serve</h2>
+        <Heading className={detailSectionTitleHover}>Industries We Serve</Heading>
         <div className="mt-6 grid gap-3 sm:grid-cols-2">
           {industries.map((industry) => (
             <div key={industry} className={detailIndustryItem}>
@@ -33,7 +34,7 @@ export default function ServiceIndustriesTech({ industries, techGroups }: Props)
       </GlowHoverCard>
 
       <GlowHoverCard className={detailPanelGlow}>
-        <h2 className={detailSectionTitleHover}>Technology We Work With</h2>
+        <Heading className={detailSectionTitleHover}>Technology We Work With</Heading>
         <div className="mt-6 space-y-5">
           {techGroups.map((group) => (
             <div key={group.label}>

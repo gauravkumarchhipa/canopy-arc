@@ -169,12 +169,12 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
   border: 1px solid transparent;
   border-radius: 4px;
   padding: 0 16px;
-  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
 .story-button {
   color: var(--scene-bg, var(--paper));
   background: var(--scene-ink, var(--ink));
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
 }
 
 .story-button:hover {
@@ -447,11 +447,7 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
 .story-next span {
   font-size: 1.1rem;
   line-height: 1;
-  transition: transform 200ms ease;
 }
-
-.story-orbit:hover span { transform: rotate(35deg); }
-.story-next:hover span { transform: translateY(4px); }
 
 .story-band {
   border-bottom: 1px solid var(--rule);
@@ -725,11 +721,6 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
   position: absolute;
   right: 14px;
   bottom: 10px;
-  transition: transform 190ms ease;
-}
-
-.story-project:hover .story-project-arrow {
-  transform: translate(3px, -3px);
 }
 
 .story-contact {

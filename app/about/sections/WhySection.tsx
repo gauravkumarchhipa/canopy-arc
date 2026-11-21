@@ -1,3 +1,4 @@
+import Heading from "../../components/ui/Heading";
 import {
   aboutSectionEyebrow,
   aboutSectionSubtitle,
@@ -11,9 +12,9 @@ export default function WhySection() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <p className={aboutSectionEyebrow}>Our mission</p>
-            <h2 className={aboutSectionTitle}>
+            <Heading className={aboutSectionTitle}>
               Software should move business forward — not hold it back.
-            </h2>
+            </Heading>
           </div>
           <div className="lg:col-span-8">
             <p className="font-display text-2xl leading-[1.15] tracking-tight text-foreground sm:text-3xl">

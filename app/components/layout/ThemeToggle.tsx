@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "../ui/Button";
 import { useThemeControl } from "./ThemeProvider";
 import type { Theme } from "../../lib/theme";
 import { tw } from "../../lib/tw";
@@ -18,7 +19,7 @@ export default function ThemeToggle({ initialTheme }: Props) {
   };
 
   return (
-    <button
+    <Button variant="unstyled"
       type="button"
       onClick={toggle}
       aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
@@ -48,6 +49,6 @@ export default function ThemeToggle({ initialTheme }: Props) {
           </>
         )}
       </svg>
-    </button>
+    </Button>
   );
 }

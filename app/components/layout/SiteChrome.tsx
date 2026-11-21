@@ -1,15 +1,11 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
-import SmoothScroll from "../layout/SmoothScroll";
+import Footer from "./Footer";
+import Header from "./Header";
+import SmoothScroll from "./SmoothScroll";
 import type { FooterData } from "../../lib/footer/types";
 import type { Theme } from "../../lib/theme";
 import EditorialMotion from "./EditorialMotion";
-
-const AUTH_PREFIXES = ["/signin", "/signup"];
+import SiteChromeGate from "./SiteChromeGate";
 
 type Props = {
   children: ReactNode;
@@ -17,26 +13,12 @@ type Props = {
   footerData: FooterData;
 };
 
-function isAuthRoute(pathname: string | null) {
-  if (!pathname) return false;
-  return AUTH_PREFIXES.some(
-    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
-  );
-}
-
 export default function SiteChrome({
   children,
   initialTheme,
   footerData,
 }: Props) {
-  const pathname = usePathname();
-  const authRoute = isAuthRoute(pathname);
-
-  if (authRoute) {
-    return <>{children}</>;
-  }
-
-  return (
+  const site = (
     <>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <div className="flex min-h-full flex-1 flex-col w-full">
@@ -54,4 +36,6 @@ export default function SiteChrome({
       </div>
     </>
   );
+
+  return <SiteChromeGate site={site}>{children}</SiteChromeGate>;
 }

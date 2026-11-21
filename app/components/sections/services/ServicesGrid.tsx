@@ -1,5 +1,8 @@
 "use client";
 
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -57,14 +60,14 @@ export default function ServicesGrid() {
   return (
     <div className="services-overview-shell services-overview-directory">
       <aside className="services-overview-journey" id="service-journey" aria-labelledby="service-journey-title">
-        <h2 id="service-journey-title" className="services-overview-label">The service journey</h2>
+        <Heading id="service-journey-title" className="services-overview-label">The service journey</Heading>
         <ol>
           {journeys.map(({ title, description, filter }) => (
             <li key={title}>
-              <button type="button" aria-pressed={active === filter && !focusServiceId} onClick={() => setFilter(filter)}>
+              <Button variant="unstyled" type="button" aria-pressed={active === filter && !focusServiceId} onClick={() => setFilter(filter)}>
                 <span className="services-overview-step-title">{title}</span>
                 <span>{description}</span>
-              </button>
+              </Button>
             </li>
           ))}
         </ol>
@@ -73,13 +76,13 @@ export default function ServicesGrid() {
         <div className="services-overview-catalog-bar">
           <div>
             <p className="services-overview-label">Our services</p>
-            <h2 id="service-catalog-title">Explore Our Service Offerings.</h2>
+            <Heading id="service-catalog-title">Explore Our Service Offerings.</Heading>
           </div>
           <div className="services-overview-filters" role="group" aria-label="Filter services">
             {servicesGrid.filters.map((filter) => (
-              <button key={filter} type="button" aria-pressed={active === filter} onClick={() => setFilter(filter)}>
+              <Button variant="unstyled" key={filter} type="button" aria-pressed={active === filter} onClick={() => setFilter(filter)}>
                 {filter}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -104,7 +107,7 @@ export default function ServicesGrid() {
                   </span>
                   <span className="services-overview-card-index" aria-hidden="true">
                     {cardNumbers.get(card.id)} / {totalCards}
-                    <span className="services-overview-card-arrow">↗</span>
+                    <span className="services-overview-card-arrow"><ArrowIcon /></span>
                   </span>
                 </div>
                 <div className="services-overview-card-body">

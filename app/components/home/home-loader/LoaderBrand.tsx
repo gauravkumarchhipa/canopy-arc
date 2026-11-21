@@ -1,3 +1,4 @@
+import Heading from "../../ui/Heading";
 import ThemeAwareMark from "../../ThemeAwareMark";
 
 type LoaderBrandProps = {
@@ -42,12 +43,12 @@ export default function LoaderBrand({
           Building digital solutions
         </p>
 
-        <h1
+        <Heading level={1}
           className="mt-2 font-display text-[clamp(2.85rem,9vw,4.75rem)] leading-none tracking-tight"
           style={{ fontWeight: 500 }}
         >
           <span className={titleGrad}>CANOPY</span>
-        </h1>
+        </Heading>
 
         <p
           className={`mt-3 text-[0.625rem] tracking-[0.32em] uppercase sm:text-[0.6875rem] ${taglineMuted}`}

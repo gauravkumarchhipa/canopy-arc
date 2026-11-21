@@ -1,5 +1,6 @@
 "use client";
 
+import { Check } from "lucide-react";
 import { useEffect, useRef } from "react";
 
 /* ────────── 01 — VOICE: live audio-waveform bars ────────── */
@@ -181,8 +182,8 @@ export function ReliabilityVisual() {
             family acknowledged · 14:32
           </span>
         </div>
-        <span className="text-[10px] font-mono text-[color:var(--teal)]">
-          ✓ ok
+        <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[color:var(--teal)]">
+          <Check size={12} aria-hidden="true" focusable="false" /> ok
         </span>
       </div>
     </div>

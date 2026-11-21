@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Button from "../../components/ui/Button";
 import { useState } from "react";
 import Reveal from "../../components/Reveal";
 import { PLANS } from "./pricing-data";
@@ -90,7 +90,7 @@ export default function PlanGridSection() {
                     ))}
                   </ul>
 
-                  <Link
+                  <Button variant="unstyled"
                     href={plan.cta.href}
                     className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full py-3 text-sm font-medium transition-all ${
                       isSelected
@@ -109,7 +109,7 @@ export default function PlanGridSection() {
                     >
                       <path d="M5 12h14M13 5l7 7-7 7" />
                     </svg>
-                  </Link>
+                  </Button>
                 </article>
               );
             })}

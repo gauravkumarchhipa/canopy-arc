@@ -1,5 +1,8 @@
 "use client";
 
+import Button from "../ui/Button";
+import { Pause, Play } from "lucide-react";
+import ArrowIcon from "../ui/ArrowIcon";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { SculptureVariant } from "./sculptures";
@@ -170,23 +173,23 @@ export default function SculptureVisual({
         aria-label={`${security ? "Security" : "Team"} model controls`}
       >
         <div>
-          <button
+          <Button variant="unstyled"
             type="button"
             aria-label="Rotate model left"
             disabled={!available}
             onClick={() => setAngle((value) => value - Math.PI / 6)}
           >
-            ←
-          </button>
-          <button
+            <ArrowIcon direction="left" />
+          </Button>
+          <Button variant="unstyled"
             type="button"
             aria-label="Rotate model right"
             disabled={!available}
             onClick={() => setAngle((value) => value + Math.PI / 6)}
           >
-            →
-          </button>
-          <button
+            <ArrowIcon direction="right" />
+          </Button>
+          <Button variant="unstyled"
             type="button"
             className="sculpture-reset"
             disabled={!available}
@@ -196,9 +199,9 @@ export default function SculptureVisual({
             }}
           >
             Reset view
-          </button>
+          </Button>
         </div>
-        <button
+        <Button variant="unstyled"
           type="button"
           className="sculpture-motion"
           disabled={reduced || !available}
@@ -221,8 +224,10 @@ export default function SculptureVisual({
               : paused
                 ? "Play motion"
                 : "Pause motion"}
-          <span aria-hidden>{paused || reduced ? "▷" : "Ⅱ"}</span>
-        </button>
+          <span aria-hidden>
+            {paused || reduced ? <Play size="1em" focusable="false" /> : <Pause size="1em" focusable="false" />}
+          </span>
+        </Button>
       </div>
       </>}
     </figure>

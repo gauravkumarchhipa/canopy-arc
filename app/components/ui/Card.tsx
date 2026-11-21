@@ -39,10 +39,10 @@ export default function Card({
   }`;
 
   return (
-    <Element className={cls} data-cursor="hover">
+    <Element className={cls} data-cursor="hover" data-arrow-hover={arrow && !noHover ? "" : undefined}>
       {children}
       {arrow && (
-        <span className="absolute right-4 top-4 md:right-5 md:top-5 inline-flex h-8 w-8 items-center justify-center rounded-full border border-line-strong group-hover:border-accent group-hover:rotate-45 transition-all">
+        <span className="absolute right-4 top-4 md:right-5 md:top-5 inline-flex h-8 w-8 items-center justify-center rounded-full border border-line-strong group-hover:border-accent transition-colors">
           <ArrowIcon size={12} />
         </span>
       )}

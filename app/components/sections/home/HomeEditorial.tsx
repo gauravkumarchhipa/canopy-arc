@@ -1,3 +1,6 @@
+import Heading from "../../ui/Heading";
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import Link from "next/link";
 import { servicesGrid } from "../../../content/pages/services/grid";
 import products from "../../../content/pages/work/products.json";
@@ -13,11 +16,11 @@ export function HomeCapabilities() {
         <div className="section-heading">
           <p className="editorial-label">02 / OUR CAPABILITIES</p>
           <div>
-            <h2 id="capabilities-title">
+            <Heading id="capabilities-title">
               Powerful IT services.
               <br />
               <span>Connected solutions.</span>
-            </h2>
+            </Heading>
             <p className="section-description">
               From the first idea to enterprise scale. Explore the disciplines
               that bring your digital vision to life.
@@ -37,7 +40,7 @@ export function HomeCapabilities() {
               <h3>{service.title}</h3>
               <span className="capability-category">{service.tag}</span>
               <span className="capability-arrow" aria-hidden>
-                ↗
+                <ArrowIcon />
               </span>
             </Link>
           ))}
@@ -55,10 +58,10 @@ export function HomeWork() {
       <div className="work-heading">
         <div>
           <p className="editorial-label">03 / SELECTED WORK</p>
-          <h2 id="work-title">Ideas, made real.</h2>
+          <Heading id="work-title">Ideas, made real.</Heading>
         </div>
         <Link className="editorial-link" href="/work">
-          Explore all work <span aria-hidden>↗</span>
+          Explore all work <span aria-hidden><ArrowIcon /></span>
         </Link>
       </div>
       <div className="editorial-projects">
@@ -93,7 +96,7 @@ export function HomeWork() {
                 </div>
               )}
               <span className="project-art-label">{product.highlight}</span>
-              <span className="project-art-arrow">↗</span>
+              <span className="project-art-arrow"><ArrowIcon /></span>
             </div>
             <div className="project-caption">
               <h3>{product.name}</h3>
@@ -110,14 +113,14 @@ export function HomeContact() {
   return (
     <section className="home-contact premium-container">
       <p className="editorial-label">YOUR NEXT CHAPTER</p>
-      <h2>
+      <Heading>
         Extraordinary starts
         <br />
         with a conversation.
-      </h2>
-      <Link className="premium-button" href="/contact">
-        Let’s build something <span aria-hidden>↗</span>
-      </Link>
+      </Heading>
+      <Button variant="unstyled" className="premium-button" href="/contact">
+        Let’s build something <span aria-hidden><ArrowIcon /></span>
+      </Button>
       <p>Web. Mobile. Cloud. AI. One connected team.</p>
     </section>
   );

@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "../../ui/Button";
+import ArrowIcon from "../../ui/ArrowIcon";
 import dynamic from "next/dynamic";
 import {
   Component,
@@ -312,23 +314,23 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
           </p>
           <div className="story-navigation">
             {ready && !failed && (
-              <button
+              <Button variant="unstyled"
                 className="story-orbit"
                 type="button"
                 aria-label="Rotate the sculpture by 45 degrees"
                 onClick={() => { motion.current.orbit += Math.PI / 4; }}
               >
-                <span aria-hidden="true">↻</span> 360° view
-              </button>
+                <span aria-hidden="true"><ArrowIcon direction="clockwise" /></span> 360° view
+              </Button>
             )}
-            <a
+            <Button as="a" variant="unstyled"
               className="story-next"
               href={active < lastChapter ? `#${chapters[active + 1].id}` : "#story-impact"}
               data-story-jump={active < lastChapter ? active + 1 : undefined}
             >
               {active === 0 ? "Scroll to explore" : active < lastChapter ? "Next chapter" : "Our impact"}
-              <span aria-hidden="true">↓</span>
-            </a>
+              <span aria-hidden="true"><ArrowIcon direction="down" /></span>
+            </Button>
           </div>
         </div>
       </div>

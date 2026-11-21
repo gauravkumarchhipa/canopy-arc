@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "../ui/Button";
 import { useState } from "react";
 import { IconSend } from "./footer/FooterIcons";
 
@@ -22,7 +23,7 @@ export default function NewsletterForm() {
         aria-label="Your email"
         className="min-w-0 flex-1 border-0 bg-transparent px-0 py-4 text-sm text-foreground outline-none placeholder:text-muted"
       />
-      <button
+      <Button variant="unstyled"
         type="submit"
         className="inline-flex shrink-0 items-center justify-center border-0 bg-transparent px-4 text-foreground transition-transform duration-200 hover:translate-x-1"
         aria-label="Subscribe"
@@ -32,7 +33,7 @@ export default function NewsletterForm() {
         ) : (
           <IconSend />
         )}
-      </button>
+      </Button>
     </form>
   );
 }

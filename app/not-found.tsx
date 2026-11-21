@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { tw } from "./lib/tw";
+import Heading from "./components/ui/Heading";
+import Button from "./components/ui/Button";
 
 export default function NotFound() {
   return (
@@ -8,20 +8,20 @@ export default function NotFound() {
         <p className="text-xs tracking-[0.3em] uppercase text-muted mb-6">
           404 · page not found
         </p>
-        <h1 className="font-display text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">
+        <Heading level={1} className="font-display text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">
           A quiet, <span className="text-muted">empty</span> page.
-        </h1>
+        </Heading>
         <p className="mt-8 text-base md:text-lg text-muted leading-relaxed max-w-md mx-auto">
           The page you&apos;re looking for either moved, was renamed, or never
           existed. The rest of Canopy Arc is right where you left it.
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:items-center">
-          <Link href="/" className={`${tw.headerBtnBase} ${tw.headerBtnPrimary}`}>
+          <Button variant="header-primary" href="/">
             Back to home
-          </Link>
-          <Link href="/contact" className={`${tw.headerBtnBase} ${tw.headerBtnGhost}`}>
+          </Button>
+          <Button variant="header-ghost" href="/contact">
             Tell us what&apos;s missing
-          </Link>
+          </Button>
         </div>
       </div>
     </section>

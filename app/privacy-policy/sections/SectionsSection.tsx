@@ -1,3 +1,4 @@
+import Heading from "../../components/ui/Heading";
 import Reveal from "../../components/Reveal";
 import { SECTIONS } from "./privacy-data";
 
@@ -17,9 +18,9 @@ export default function SectionsSection() {
                   <p className="font-display text-3xl text-muted">{s.n}</p>
                 </div>
                 <div className="md:col-span-9">
-                  <h2 className="font-display text-3xl md:text-4xl leading-tight tracking-tight">
+                  <Heading className="font-display text-3xl md:text-4xl leading-tight tracking-tight">
                     {s.title}
-                  </h2>
+                  </Heading>
                   <ul className="mt-6 space-y-4">
                     {s.body.map((line) => (
                       <li

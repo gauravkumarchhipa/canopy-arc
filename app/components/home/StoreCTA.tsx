@@ -1,3 +1,4 @@
+import Heading from "../ui/Heading";
 import AppStoreBadge from "./store-cta/AppStoreBadge";
 import PlayStoreBadge from "./store-cta/PlayStoreBadge";
 import QrPanel from "./store-cta/QrPanel";
@@ -34,13 +35,13 @@ export default function StoreCTA() {
 
           <div className="relative lg:col-span-7">
             <Eyebrow className="mb-5">Bring SAHAI home</Eyebrow>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl leading-[0.95] tracking-tight wrap-break-word">
+            <Heading className="font-display text-4xl sm:text-5xl md:text-6xl leading-[0.95] tracking-tight wrap-break-word">
               On the App Store.
               <br />
               On Google Play.
               <br />
               <span className="text-muted">Or just scan.</span>
-            </h2>
+            </Heading>
 
             <p className="mt-8 max-w-lg text-base md:text-lg text-muted leading-relaxed">
               SAHAI is built for both iOS and Android. Open the camera on your
