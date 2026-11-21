@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import {
   Component,
+  useCallback,
   useEffect,
   useRef,
   useState,
@@ -15,12 +16,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTheme } from "../../layout/ThemeProvider";
 import { useLenis } from "../../layout/SmoothScroll";
 import { chapters, lastChapter } from "./story-chapters";
+import { sampleStory } from "./story-timeline";
 
 const StoryScene = dynamic(() => import("./StoryScene"), { ssr: false });
 const motionQuery = "(prefers-reduced-motion: no-preference) and (min-height: 540px)";
 const controlId = "story-stage";
 
-export type SceneMotion = { chapter: number; orbit: number; night: number };
+export type SceneMotion = {
+  progress: number;
+  orbit: number;
+  pointerX: number;
+  pointerY: number;
+  darkTheme: boolean;
+};
 
 class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => void }, { failed: boolean }> {
   state = { failed: false };
@@ -37,7 +45,8 @@ class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => vo
 
 export default function StoryExperience({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
-  const motion = useRef<SceneMotion>({ chapter: 0, orbit: 0, night: 0 });
+  const motion = useRef<SceneMotion>({ progress: 0, orbit: 0, pointerX: 0, pointerY: 0, darkTheme: false });
+  const syncTheme = useRef<(() => void) | null>(null);
   const drag = useRef<{ pointer: number; x: number } | null>(null);
   const pendingFocus = useRef<number | null>(null);
   const lenis = useLenis();
@@ -47,11 +56,17 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [onScreen, setOnScreen] = useState(false);
+  const handleReady = useCallback(() => setReady(true), []);
+  const handleFailure = useCallback(() => setFailed(true), []);
 
   useEffect(() => {
     const media = window.matchMedia(motionQuery);
     const sync = () => {
-      if (!media.matches) setReady(false);
+      if (!media.matches) {
+        setReady(false);
+        setOnScreen(false);
+        pendingFocus.current = null;
+      }
       setEnhanced(media.matches);
     };
     sync();
@@ -66,7 +81,8 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
     const observer = new IntersectionObserver(([entry]) => {
       setOnScreen(entry.isIntersecting);
     });
-    observer.observe(element);
+    const stage = element.querySelector(".story-stage");
+    if (stage) observer.observe(stage);
     return () => observer.disconnect();
   }, [enhanced]);
 
@@ -75,43 +91,52 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
     if (!element || !enhanced) return;
     gsap.registerPlugin(ScrollTrigger);
     const sections = Array.from(element.querySelectorAll<HTMLElement>("[data-story-chapter]"));
-    const playhead = { chapter: 0 };
+    const stage = element.querySelector<HTMLElement>(".story-stage");
+    const playhead = { progress: 0 };
     let current = -1;
+    let shown = -1;
 
     const draw = () => {
-      const { chapter } = playhead;
-      motion.current.chapter = chapter;
-      const settled = Math.round(chapter);
-      if (settled !== current) {
-        current = settled;
-        setActive(settled);
+      motion.current.progress = playhead.progress;
+      const { active, copy, offset, night } = sampleStory(playhead.progress);
+      stage?.style.setProperty("--story-night", String(motion.current.darkTheme ? 1 : night));
+      if (active !== current) {
+        current = active;
+        setActive(active);
       }
-      sections.forEach((section, index) => {
-        const distance = index - chapter;
-        const horizontal = index > 0 && index < lastChapter;
-        const turn = Math.abs(distance);
-        const offset = Math.sign(distance) * Math.max(0, turn - 0.14);
-        section.inert = index !== settled;
-        section.style.setProperty("--chapter-x", horizontal ? `${offset * 68}%` : "0%");
-        section.style.setProperty("--chapter-y", horizontal ? "0%" : `${offset * 30}%`);
-        const fade = gsap.utils.clamp(0, 1, (turn - 0.22) / 0.42);
-        section.style.setProperty("--chapter-opacity", String(1 - fade * fade * (3 - 2 * fade)));
-        section.style.setProperty("--chapter-visibility", turn < 0.7 ? "visible" : "hidden");
-      });
+      const visible = copy > 0 ? active : -1;
+      if (visible !== shown || element.dataset.storyInitialized !== "true") {
+        shown = visible;
+        element.dataset.storyInitialized = "true";
+        sections.forEach((section, index) => {
+          section.inert = index !== visible;
+          section.toggleAttribute("data-story-visible", index === visible);
+        });
+      }
+      const section = sections[active];
+      const horizontal = active > 0 && active < lastChapter;
+      section.style.setProperty("--chapter-x", horizontal ? `${offset * 5}%` : "0%");
+      section.style.setProperty("--chapter-y", horizontal ? "0%" : `${offset * 4}%`);
+      section.style.setProperty("--chapter-opacity", String(copy));
+      if (copy >= 0.95 && pendingFocus.current === active) {
+        pendingFocus.current = null;
+        document.getElementById(`${chapters[active].id}-title`)?.focus({ preventScroll: true });
+      }
     };
 
     const animation = gsap.to(playhead, {
-      chapter: lastChapter,
+      progress: 1,
       ease: "none",
       onUpdate: draw,
       scrollTrigger: {
         trigger: element,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.35,
+        scrub: 0.18,
         invalidateOnRefresh: true,
       },
     });
+    syncTheme.current = draw;
     draw();
 
     const jumpToHash = () => {
@@ -123,6 +148,9 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
         behavior: "instant",
       });
       ScrollTrigger.update();
+      const trigger = animation.scrollTrigger;
+      trigger?.getTween()?.progress(1);
+      if (trigger) animation.progress(trigger.progress);
     };
     jumpToHash();
     window.addEventListener("hashchange", jumpToHash);
@@ -130,9 +158,13 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
       window.removeEventListener("hashchange", jumpToHash);
       animation.scrollTrigger?.kill();
       animation.kill();
+      syncTheme.current = null;
+      delete element.dataset.storyInitialized;
+      stage?.style.removeProperty("--story-night");
       sections.forEach((section) => {
         section.inert = false;
-        for (const property of ["x", "y", "opacity", "visibility"]) {
+        section.removeAttribute("data-story-visible");
+        for (const property of ["x", "y", "opacity"]) {
           section.style.removeProperty(`--chapter-${property}`);
         }
       });
@@ -141,8 +173,9 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
 
   const graphite = theme === "dark" || active % 2 === 1;
   useEffect(() => {
-    motion.current.night = graphite ? 1 : 0;
-  }, [graphite]);
+    motion.current.darkTheme = theme === "dark";
+    syncTheme.current?.();
+  }, [theme]);
 
   useEffect(() => {
     const element = root.current;
@@ -167,12 +200,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
     return () => element.removeEventListener("wheel", pan);
   }, [enhanced, lenis]);
 
-  useEffect(() => {
-    if (pendingFocus.current !== active) return;
-    pendingFocus.current = null;
-    document.getElementById(`${chapters[active].id}-title`)?.focus({ preventScroll: true });
-  }, [active]);
-
   const goToChapter = (event: MouseEvent<HTMLDivElement>) => {
     if (!enhanced || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
     const link = (event.target as Element).closest<HTMLAnchorElement>("[data-story-jump]");
@@ -184,7 +211,8 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
 
     event.preventDefault();
     if (location.hash !== link.hash) history.pushState(null, "", link.hash);
-    if (index === active) {
+    if (index === active && sampleStory(motion.current.progress).copy >= 0.95) {
+      pendingFocus.current = null;
       document.getElementById(`${chapter.id}-title`)?.focus({ preventScroll: true });
     } else {
       pendingFocus.current = index;
@@ -206,6 +234,11 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
   };
 
   const rotate = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      motion.current.pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
+      motion.current.pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
+    }
     if (drag.current?.pointer !== event.pointerId) return;
     motion.current.orbit += (event.clientX - drag.current.x) * 0.012;
     drag.current.x = event.clientX;
@@ -242,17 +275,18 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
           aria-hidden="true"
           onPointerDown={grab}
           onPointerMove={rotate}
+          onPointerLeave={() => { motion.current.pointerX = motion.current.pointerY = 0; }}
           onPointerUp={release}
           onPointerCancel={release}
           onLostPointerCapture={release}
         >
           {enhanced && !failed && (
-            <SceneBoundary onFailure={() => setFailed(true)}>
+            <SceneBoundary onFailure={handleFailure}>
               <StoryScene
                 motion={motion}
                 visible={onScreen}
-                onReady={() => setReady(true)}
-                onFailure={() => setFailed(true)}
+                onReady={handleReady}
+                onFailure={handleFailure}
               />
             </SceneBoundary>
           )}

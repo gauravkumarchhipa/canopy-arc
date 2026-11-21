@@ -3,6 +3,7 @@ import { servicesGrid } from "../../../content/pages/services/grid";
 import impact from "../../../content/pages/home/impact.json";
 import { productLinks } from "../../../content/pages/work/grid";
 import { nav } from "../../../content/shared/nav";
+import { tw } from "../../../lib/tw";
 import ServiceIcon from "../services/ServiceIcon";
 import AnimatedCounter from "../../ui/AnimatedCounter";
 import ImpactIcon from "./impact/ImpactIcon";
@@ -31,7 +32,9 @@ export function HomeChapters() {
             {index === 0 && (
               <div className="story-actions">
                 <a className="story-button" href="#the-structure" data-story-jump="1">Start the Journey <span aria-hidden="true">→</span></a>
-                <Link className="story-text-link" href="/about">Our story <span aria-hidden="true">↗</span></Link>
+                <Link className={`story-ghost-button focus-visible:bg-surface ${tw.headerBtnGhost}`} href="/about">
+                  Our story <span aria-hidden="true">↗</span>
+                </Link>
               </div>
             )}
             {index === chapters.length - 1 && (
