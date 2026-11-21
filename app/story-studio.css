@@ -43,3 +43,12 @@
     background-position: 72% var(--story-room-position, 72%);
   }
 }
+
+html[data-theme="light"] body:has(.story-home) .story-studio {
+  inset: 0;
+}
+
+html[data-theme="light"] body:has(.story-home) .story-studio::before {
+  inset: 0 0 0 20%;
+  background-position: center var(--story-room-position, 72%);
+}
