@@ -1,4 +1,5 @@
 import Heading from "../../ui/Heading";
+import StudioHero from "../../layout/StudioHero";
 import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
 import { teamHero } from "../../../content/pages/team/hero";
@@ -8,7 +9,7 @@ import SculptureVisual from "../../three/SculptureVisual";
 export default function TeamHero() {
   return (
     <>
-      <section className="team-hero" aria-labelledby="team-title">
+      <StudioHero className="team-hero" aria-labelledby="team-title">
         <div className="team-shell team-hero-inner">
           <div className="team-hero-copy">
             <p className="team-label team-hero-label">{teamHero.eyebrow}</p>
@@ -27,7 +28,7 @@ export default function TeamHero() {
           </div>
           <SculptureVisual variant="team" compact />
         </div>
-      </section>
+      </StudioHero>
       <section className="team-stat-strip" aria-labelledby="team-stats-title">
         <div className="team-shell team-stat-inner">
           <Heading className="team-label" id="team-stats-title">Our people<br />{" "}at a glance</Heading>

@@ -1,4 +1,5 @@
 import Heading from "../components/ui/Heading";
+import StudioHero from "../components/layout/StudioHero";
 import type { Metadata } from "next";
 import { tw } from "../lib/tw";
 
@@ -9,15 +10,19 @@ export const metadata: Metadata = {
 
 export default function CookiesPage() {
   return (
-    <div className={tw.pageShell}>
+    <div className={tw.pageShellBottom}>
+      <StudioHero className={tw.pageShellTop}>
+        <div className="mx-auto max-w-3xl px-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-muted">
+            Cookie Policy
+          </p>
+          <Heading level={1} className="mt-5 font-display text-4xl sm:text-5xl tracking-tight">
+            Cookies,{" "}
+            <span className="text-muted">kept minimal</span>.
+          </Heading>
+        </div>
+      </StudioHero>
       <div className="mx-auto max-w-3xl px-6">
-        <p className="text-xs tracking-[0.3em] uppercase text-muted">
-          Cookie Policy
-        </p>
-        <Heading level={1} className="mt-5 font-display text-4xl sm:text-5xl tracking-tight">
-          Cookies,{" "}
-          <span className="text-muted">kept minimal</span>.
-        </Heading>
         <div className="mt-6 rounded-3xl border border-line bg-surface p-6 sm:p-7 text-sm text-muted leading-relaxed space-y-4">
           <p>
             This is a placeholder Cookie Policy page so footer links work.

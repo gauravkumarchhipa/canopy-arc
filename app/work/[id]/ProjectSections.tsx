@@ -1,4 +1,5 @@
 import Heading from "../../components/ui/Heading";
+import StudioHero from "../../components/layout/StudioHero";
 import Button from "../../components/ui/Button";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import { workGrid } from "../../content/pages/work/grid";
@@ -12,7 +13,7 @@ type ProjectProps = { project: Project };
 
 export function ProjectHero({ project }: ProjectProps) {
   return (
-    <section className="mt-6 overflow-hidden rounded-3xl border border-line bg-surface">
+    <StudioHero className="mt-6 overflow-hidden rounded-3xl border border-line">
       <div className="relative px-6 py-10 sm:px-10 sm:py-12">
         <div className="relative">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
@@ -45,7 +46,7 @@ export function ProjectHero({ project }: ProjectProps) {
           ) : null}
         </div>
       </div>
-    </section>
+    </StudioHero>
   );
 }
 

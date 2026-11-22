@@ -41,10 +41,10 @@
 }
 
 .work-overview-hero {
-  position: relative;
-  isolation: isolate;
+  --work-paper: var(--story-studio-base);
+  --work-text: var(--story-studio-ink);
+  --work-muted: var(--story-studio-muted);
   overflow: clip;
-  background: radial-gradient(ellipse at 74% 57%, var(--work-card-end), transparent 62%);
 }
 
 .work-overview-hero-inner {

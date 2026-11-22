@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className={tw.pageShell}>
+    <div className={tw.pageShellBottom}>
       <AboutHero />
 
       <AboutPillarsSection />

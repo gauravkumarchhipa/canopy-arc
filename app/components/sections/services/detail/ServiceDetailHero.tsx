@@ -1,4 +1,5 @@
 import Heading from "../../../ui/Heading";
+import StudioHero from "../../../layout/StudioHero";
 import Button from "../../../ui/Button";
 import ArrowIcon from "../../../ui/ArrowIcon";
 import type { Service } from "../../../../content/pages/services/services";
@@ -23,7 +24,7 @@ type Props = {
 
 export default function ServiceDetailHero({ service, iconName }: Props) {
   return (
-    <section className="relative mt-8">
+    <StudioHero className="mt-8">
       <div className="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
         <div>
           <div className="flex items-start gap-4">
@@ -79,6 +80,6 @@ export default function ServiceDetailHero({ service, iconName }: Props) {
 
         <ServiceHeroVisual serviceId={service.id} iconName={iconName} />
       </div>
-    </section>
+    </StudioHero>
   );
 }

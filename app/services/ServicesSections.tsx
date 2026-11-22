@@ -1,4 +1,5 @@
 import Heading from "../components/ui/Heading";
+import StudioHero from "../components/layout/StudioHero";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import ServiceJourneyVisual from "../components/sections/services/ServiceJourneyVisual";
@@ -16,7 +17,7 @@ const figures = [
 export function ServicesHero() {
   const { eyebrow, title, titleAccent, subtitle } = servicesHero;
   return (
-    <section className="services-overview-hero" aria-labelledby="services-overview-title">
+    <StudioHero className="services-overview-hero" aria-labelledby="services-overview-title">
       <ServiceJourneyVisual />
       <div className="services-overview-shell services-overview-hero-inner">
         <div className="services-overview-copy">
@@ -33,7 +34,7 @@ export function ServicesHero() {
           </div>
         </div>
       </div>
-    </section>
+    </StudioHero>
   );
 }
 

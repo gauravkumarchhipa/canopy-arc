@@ -60,8 +60,8 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
 
 .story-chapter {
   --scene-bg: #eee9e0;
-  --scene-ink: #242424;
-  --scene-muted: #514a44;
+  --scene-ink: var(--story-studio-ink);
+  --scene-muted: var(--story-studio-muted);
   --scene-line: rgb(36 36 36 / 20%);
   grid-area: var(--chapter-row) / 1;
   position: relative;
@@ -78,8 +78,6 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
 
 [data-theme="dark"] .story-chapter {
   --scene-bg: #222221;
-  --scene-ink: #f7f4ee;
-  --scene-muted: #d7d3cb;
   --scene-line: rgb(247 244 238 / 26%);
   --still-light: #d3cfc6;
   --still-glass: #b1b3ad;
@@ -314,8 +312,8 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
 
 [data-enhanced="true"] .story-stage {
   --scene-bg: var(--story-studio-base);
-  --scene-ink: #242424;
-  --scene-muted: #514a44;
+  --scene-ink: var(--story-studio-ink);
+  --scene-muted: var(--story-studio-muted);
   --scene-line: rgb(36 36 36 / 22%);
   position: sticky;
   isolation: isolate;
@@ -328,8 +326,6 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
 }
 
 [data-theme="dark"] [data-enhanced="true"] .story-stage {
-  --scene-ink: #f7f4ee;
-  --scene-muted: #d7d3cb;
   --scene-line: rgb(247 244 238 / 26%);
   --still-dark: #77766c;
   --still-light: #e2dbcc;

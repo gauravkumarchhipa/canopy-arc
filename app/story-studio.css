@@ -1,11 +1,15 @@
 :root {
   --story-studio-base: #f3ede4;
+  --story-studio-ink: #242424;
+  --story-studio-muted: #514a44;
   --story-studio-image: url("/story/studio-ivory.webp");
   --story-studio-opacity: 0.76;
 }
 
 :root[data-theme="dark"] {
   --story-studio-base: #181918;
+  --story-studio-ink: #f7f4ee;
+  --story-studio-muted: #d7d3cb;
   --story-studio-image: url("/story/studio-graphite.webp");
   --story-studio-opacity: 0.91;
   --story-studio-floor: 14%;
@@ -32,6 +36,20 @@
   content: "";
 }
 
+.studio-hero {
+  --bg: var(--story-studio-base);
+  --fg: var(--story-studio-ink);
+  --muted: var(--story-studio-muted);
+  position: relative;
+  isolation: isolate;
+  color: var(--story-studio-ink);
+  background: var(--story-studio-base);
+}
+
+.studio-hero > .story-studio {
+  border-radius: inherit;
+}
+
 @media (max-width: 900px) {
   .story-studio {
     inset: 0 0 38%;
@@ -44,11 +62,11 @@
   }
 }
 
-html[data-theme="light"] body:has(.story-home) .story-studio {
+html[data-theme="light"] :is(body:has(.story-home), .studio-hero) .story-studio {
   inset: 0;
 }
 
-html[data-theme="light"] body:has(.story-home) .story-studio::before {
+html[data-theme="light"] :is(body:has(.story-home), .studio-hero) .story-studio::before {
   inset: 0 0 0 20%;
   background-position: center var(--story-room-position, 72%);
 }

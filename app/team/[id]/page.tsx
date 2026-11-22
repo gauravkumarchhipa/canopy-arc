@@ -1,5 +1,6 @@
 import { MemberSidebar, MemberHero, MemberOverview, MemberTimeline, MemberProjects } from "./TeamMemberSections";
 import Heading from "../../components/ui/Heading";
+import StudioHero from "../../components/layout/StudioHero";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -24,10 +25,12 @@ export default async function TeamMemberPage({
         <Link href="/team" className="text-sm text-muted hover:text-foreground">
           <ArrowIcon direction="left" /> Back to Team
         </Link>
-        <Heading level={1} className="mt-6 font-display text-4xl tracking-tight">
-          {member.name}
-        </Heading>
-        <p className="mt-2 text-muted">{member.role}</p>
+        <StudioHero className="mt-6">
+          <Heading level={1} className="font-display text-4xl tracking-tight">
+            {member.name}
+          </Heading>
+          <p className="mt-2 text-muted">{member.role}</p>
+        </StudioHero>
         <p className="mt-8 text-muted">
           Detailed profile coming soon.
         </p>

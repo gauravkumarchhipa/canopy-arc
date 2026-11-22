@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className={tw.pageShell}>
+    <div className={tw.pageShellBottom}>
       <BlogHero />
 
       <BlogArticles />

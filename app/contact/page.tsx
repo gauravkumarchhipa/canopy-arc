@@ -1,7 +1,6 @@
 import { ContactHero, ContactSidebar } from "./ContactSections";
 import type { Metadata } from "next";
 import ContactForm from "../components/sections/contact/ContactForm";
-import ContactWave from "../components/sections/contact/ContactWave";
 import { getFooterContact } from "../lib/footer/get-footer-data";
 import { getFooterFallback } from "../lib/footer/fallback";
 import "./contact-overview.css";
@@ -17,11 +16,9 @@ export default async function ContactPage() {
   const email = contact.email || getFooterFallback().contact.email;
   return (
     <div className="contact-page">
-      <ContactWave />
+      <ContactHero />
 
       <div className="contact-shell">
-        <ContactHero />
-
         <div className="contact-layout">
           {email && <ContactForm email={email} />}
           <ContactSidebar contact={contact} email={email} />

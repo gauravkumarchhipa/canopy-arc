@@ -1,6 +1,7 @@
 import PageHeroOrbs from "./PageHeroOrbs";
 import Heading from "./ui/Heading";
 import Eyebrow from "./ui/Eyebrow";
+import StudioHero from "./layout/StudioHero";
 import { tw } from "../lib/tw";
 
 type Props = {
@@ -13,8 +14,7 @@ type Props = {
 
 export default function PageHero({ eyebrow, title, blurb, warmGlow = true }: Props) {
   return (
-    <section className="relative pt-[10rem] sm:pt-36 md:pt-40 pb-14 sm:pb-20 md:pb-28 overflow-hidden">
-      <div className={`absolute inset-0 opacity-30 pointer-events-none ${tw.gridBg} ${tw.maskFadeBottom}`} />
+    <StudioHero className={`overflow-hidden pb-14 sm:pb-20 md:pb-28 ${tw.pageShellTop}`}>
       <PageHeroOrbs warmGlow={warmGlow} />
 
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
@@ -28,6 +28,6 @@ export default function PageHero({ eyebrow, title, blurb, warmGlow = true }: Pro
           </p>
         )}
       </div>
-    </section>
+    </StudioHero>
   );
 }
