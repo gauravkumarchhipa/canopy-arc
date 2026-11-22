@@ -505,6 +505,31 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
   line-height: 1;
 }
 
+@property --story-arrow-pulse {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .story-navigation:not(:hover, :focus-within) {
+    animation: story-arrow-cue 2.8s ease-in-out infinite;
+  }
+
+  .story-orbit > span {
+    transform: rotate(calc(25deg * var(--story-arrow-pulse, 0)));
+  }
+
+  .story-next > span {
+    transform: translateY(calc(4px * var(--story-arrow-pulse, 0)));
+  }
+}
+
+@keyframes story-arrow-cue {
+  0%, 32%, 100% { --story-arrow-pulse: 0; }
+  16% { --story-arrow-pulse: 1; }
+}
+
 .story-band {
   border-bottom: 1px solid var(--rule);
   padding-block: clamp(34px, 5vw, 79px);

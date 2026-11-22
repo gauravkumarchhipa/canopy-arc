@@ -13,13 +13,9 @@ export default function SiteLoadingScreen() {
       <div className="site-loading-scene" aria-hidden="true">
         <div className="story-studio" />
         <div className="site-loading-flare" />
-        <div className="site-loading-orbits">
-          <span />
-          <span />
-          <span />
-        </div>
+        <div className="site-loading-orbit" />
         <div className="site-loading-content">
-          <BrandLockup animateText mark={<span className="brand-lockup-mark site-loading-mark" />} />
+          <BrandLockup animateText mark={<span className="site-loading-mark" />} />
         </div>
       </div>
     </div>
