@@ -34,31 +34,10 @@ body:has(.services-overview) {
 }
 
 .services-overview-hero {
-  position: relative;
-  isolation: isolate;
+  --services-paper: var(--story-studio-base);
+  --services-ink: var(--story-studio-ink);
+  --services-muted: var(--story-studio-muted);
   overflow: clip;
-  background:
-    radial-gradient(ellipse at 75% 62%, rgb(156 145 131 / 27%), transparent 45%),
-    var(--services-paper);
-}
-
-.services-overview-hero::before {
-  position: absolute;
-  z-index: -2;
-  inset: 0 0 0 20%;
-  background: url("/story/studio-ivory.webp") center 72% / cover no-repeat;
-  mask-image: linear-gradient(90deg, transparent, #000 52%);
-  opacity: 0.49;
-  content: "";
-}
-
-[data-theme="dark"] .services-overview-hero {
-  background: radial-gradient(ellipse at 75% 63%, #38382f, transparent 58%), var(--services-paper);
-}
-
-[data-theme="dark"] .services-overview-hero::before {
-  background-image: url("/story/studio-graphite.webp");
-  opacity: 0.67;
 }
 
 .services-overview-hero-inner {
@@ -518,10 +497,6 @@ body:has(.services-overview) {
   }
   .services-overview-copy { width: min(100%, 470px); }
   .services-overview h1 { font-size: clamp(2rem, 7vw, 3.25rem); }
-  .services-overview-hero::before {
-    inset: 21% 0 0;
-    mask-image: linear-gradient(transparent, #000 43%);
-  }
   .services-journey-visual { inset: auto 0 0; height: var(--services-hero-art-height); }
   .services-journey-canvas { mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent); }
   .services-overview-impact-inner {

@@ -3,7 +3,6 @@
 import Button from "../../ui/Button";
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import { tw } from "../../../lib/tw";
 
 const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
@@ -23,7 +22,6 @@ export default function HeaderShell({
   mobileActions,
   contactEmail,
 }: Props) {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [hasOpened, setHasOpened] = useState(false);
   const header = useRef<HTMLElement>(null);
@@ -49,47 +47,23 @@ export default function HeaderShell({
   useEffect(() => {
     const bar = header.current;
     if (!bar) return;
-    const story = pathname === "/" ? document.querySelector<HTMLElement>(".story-track") : null;
-    const stage = story?.querySelector(".story-stage");
-    const chapters = Array.from(story?.querySelectorAll<HTMLElement>("[data-story-chapter]") ?? []);
     let frame = 0;
 
     const sync = () => {
       frame = 0;
       bar.toggleAttribute("data-scrolled", window.scrollY > 12);
-      const sampleY = bar.offsetHeight * 0.5;
-      const coversHeader = (surface: Element | null | undefined) => {
-        const bounds = surface?.getBoundingClientRect();
-        return bounds && bounds.top <= sampleY && bounds.bottom > sampleY;
-      };
-      let graphite = false;
-      if (!open && story) {
-        if (story.dataset.enhanced === "true") {
-          graphite = story.dataset.graphite === "true" && Boolean(coversHeader(stage));
-        } else {
-          graphite = chapters.some((chapter, index) => index % 2 === 1 && coversHeader(chapter));
-        }
-      }
-      bar.toggleAttribute("data-story-graphite", graphite);
     };
 
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(sync);
     };
-    const observer = story && new MutationObserver(sync);
-    if (observer && story) {
-      observer.observe(story, { attributes: true, attributeFilter: ["data-enhanced", "data-graphite"] });
-    }
     sync();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
     return () => {
-      observer?.disconnect();
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
       cancelAnimationFrame(frame);
     };
-  }, [pathname, open]);
+  }, []);
 
   const toggleMenu = () => {
     setHasOpened(true);

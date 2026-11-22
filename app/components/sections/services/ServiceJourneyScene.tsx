@@ -21,6 +21,33 @@ const stages = [
 const panelWidth = 1.29;
 const panelHeight = 1.46;
 
+const journeyPalettes = {
+  light: {
+    ink: "#171410",
+    caption: "#29241e",
+    glass: "#aba08f",
+    glassOpacity: 0.64,
+    rim: "#f1e7d9",
+    ribbon: "#92938d",
+    bronze: "#a97a4d",
+    ribbonLight: 0.035,
+    bronzeLight: 0.10,
+    glow: 0.48,
+  },
+  dark: {
+    ink: "#fffdf8",
+    caption: "#f9f3e8",
+    glass: "#302d28",
+    glassOpacity: 0.86,
+    rim: "#ded3bf",
+    ribbon: "#d0c7b8",
+    bronze: "#cf9c64",
+    ribbonLight: 0.19,
+    bronzeLight: 0.25,
+    glow: 0.62,
+  },
+} as const;
+
 function makePanelRim() {
   const x = panelWidth / 2 - 0.01;
   const y = panelHeight / 2 - 0.01;
@@ -38,28 +65,30 @@ function makePanelRim() {
   return new THREE.BufferGeometry().setFromPoints(shape.getPoints(8));
 }
 
-function makeLabel(stage: (typeof stages)[number], dark: boolean) {
+function makeLabel(stage: (typeof stages)[number], ink: string, caption: string, anisotropy: number) {
   const canvas = document.createElement("canvas");
-  canvas.width = 320;
-  canvas.height = 368;
+  canvas.width = 640;
+  canvas.height = 736;
   const context = canvas.getContext("2d")!;
-  context.strokeStyle = context.fillStyle = dark ? "#fff3e6" : "#292723";
+  context.scale(2, 2);
+  context.strokeStyle = context.fillStyle = ink;
   context.lineJoin = "round";
   context.lineCap = "round";
   context.save();
   context.translate(121, 51);
   context.scale(3.25, 3.25);
-  context.lineWidth = 1.1;
+  context.lineWidth = 1.36;
   context.stroke(new Path2D(stage.icon));
   context.restore();
   context.textAlign = "center";
-  context.font = "600 34px system-ui, sans-serif";
-  context.fillText(stage.title, 160, 208);
-  context.globalAlpha = 0.84;
-  context.font = "24px system-ui, sans-serif";
-  context.fillText(stage.caption, 160, 257);
+  context.font = "700 40px system-ui, sans-serif";
+  context.fillText(stage.title, 160, 203, 290);
+  context.fillStyle = caption;
+  context.font = "600 28px system-ui, sans-serif";
+  context.fillText(stage.caption, 160, 255, 290);
   const texture = new THREE.CanvasTexture(canvas);
   texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = anisotropy;
   return texture;
 }
 
@@ -94,7 +123,11 @@ function Journey({ dark, pose, dragging, onReady, onFailure }: Props) {
   const invalidate = useThree((state) => state.invalidate);
   const rig = useRef<THREE.Group>(null);
   const announced = useRef(false);
-  const labels = useMemo(() => stages.map((stage) => makeLabel(stage, dark)), [dark]);
+  const palette = dark ? journeyPalettes.dark : journeyPalettes.light;
+  const labels = useMemo(() => {
+    const anisotropy = Math.max(1, Math.min(4, renderer.capabilities.getMaxAnisotropy()));
+    return stages.map((stage) => makeLabel(stage, palette.ink, palette.caption, anisotropy));
+  }, [palette.ink, palette.caption, renderer]);
   const glow = useMemo(() => makeGlow(), []);
   const panel = useMemo(() => new RoundedBoxGeometry(panelWidth, panelHeight, 0.11, 4, 0.055), []);
   const rim = useMemo(() => makePanelRim(), []);
@@ -132,7 +165,7 @@ function Journey({ dark, pose, dragging, onReady, onFailure }: Props) {
     return () => canvas.removeEventListener("webglcontextlost", onFailure);
   }, [renderer, onFailure]);
 
-  useEffect(() => { invalidate(); }, [dragging, invalidate, pose]);
+  useEffect(() => { invalidate(); }, [dark, dragging, invalidate, pose]);
 
   useFrame(({ camera, size }, delta) => {
     if (!rig.current) return;
@@ -162,23 +195,28 @@ function Journey({ dark, pose, dragging, onReady, onFailure }: Props) {
       <directionalLight position={[3, 2, -5]} intensity={3} color="#f4f7ff" />
       <pointLight position={[3.1, 0.1, 2]} intensity={9} distance={8} decay={2} color="#ffd7a1" />
       <group ref={rig} rotation={[-0.06, -0.11, 0, "YXZ"]}>
-        {ribbons.map((geometry, index) => (
-          <mesh key={geometry.uuid} geometry={geometry}>
-            <meshPhysicalMaterial color={index % 5 === 0 ? "#d9b98c" : "#e3dfd5"} metalness={0.64}
-              roughness={0.28} clearcoat={0.6} emissive="#c39463" emissiveIntensity={index % 5 === 0 ? 0.22 : .045} />
-          </mesh>
-        ))}
+        {ribbons.map((geometry, index) => {
+          const accent = index % 5 === 0;
+          return (
+            <mesh key={geometry.uuid} geometry={geometry}>
+              <meshPhysicalMaterial color={accent ? palette.bronze : palette.ribbon} metalness={0.74}
+                roughness={0.36} clearcoat={0.35} envMapIntensity={0.68}
+                emissive={accent ? "#c39463" : "#d9cebb"} emissiveIntensity={accent ? palette.bronzeLight : palette.ribbonLight} />
+            </mesh>
+          );
+        })}
         {labels.map((label, index) => {
           const x = (index - 2.5) * 1.49;
           const y = -0.56 + index * 0.35;
           return (
             <group key={stages[index].title} position={[x, y, 0.28]} rotation={[-0.02, -0.34, 0.11]}>
               <mesh geometry={panel} renderOrder={2}>
-                <meshPhysicalMaterial color={dark ? "#424944" : "#c9b8a5"} metalness={0.28} roughness={0.2}
-                  clearcoat={0.85} clearcoatRoughness={0.12} opacity={dark ? 0.72 : 0.64} transparent depthWrite={false} />
+                <meshPhysicalMaterial color={palette.glass} metalness={0.24} roughness={0.29}
+                  clearcoat={0.70} clearcoatRoughness={0.18} envMapIntensity={0.55}
+                  opacity={palette.glassOpacity} transparent depthWrite={false} />
               </mesh>
               <lineLoop geometry={rim} position-z={0.057} renderOrder={3}>
-                <lineBasicMaterial color={dark ? "#d9c4a7" : "#fff6e7"} transparent depthWrite={false} opacity={0.78} />
+                <lineBasicMaterial color={palette.rim} transparent toneMapped={false} depthWrite={false} opacity={0.76} />
               </lineLoop>
               {[0, Math.PI].map((rotation) => (
                 <group key={rotation} rotation-y={rotation}>
@@ -189,10 +227,10 @@ function Journey({ dark, pose, dragging, onReady, onFailure }: Props) {
                 </group>
               ))}
               <sprite position={[0.42, -0.72, 0.06]} scale={[0.75, 0.29, 1]} renderOrder={4}>
-                <spriteMaterial map={glow} transparent depthWrite={false} toneMapped={false} opacity={0.89} />
+                <spriteMaterial map={glow} transparent depthWrite={false} toneMapped={false} opacity={palette.glow} />
               </sprite>
               <sprite position={[-0.54, 0.69, 0.06]} scale={[0.35, 0.18, 1]} renderOrder={4}>
-                <spriteMaterial map={glow} transparent depthWrite={false} toneMapped={false} opacity={0.47} />
+                <spriteMaterial map={glow} transparent depthWrite={false} toneMapped={false} opacity={palette.glow * 0.52} />
               </sprite>
             </group>
           );

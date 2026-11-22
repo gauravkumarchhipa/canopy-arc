@@ -1,4 +1,5 @@
 import Heading from "../../components/ui/Heading";
+import StudioHero from "../../components/layout/StudioHero";
 import Button from "../../components/ui/Button";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import GlowHoverCard from "../../components/ui/GlowHoverCard";
@@ -7,7 +8,7 @@ import { formatBlogDate, type BlogPost, type BlogPostBody } from "../../content/
 
 export function PostHero({ post }: { post: BlogPost }) {
   return (
-    <>
+    <StudioHero>
       <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-accent">
         {post.category} · {formatBlogDate(post.date)} · {post.readTime}
       </p>
@@ -26,7 +27,7 @@ export function PostHero({ post }: { post: BlogPost }) {
           </span>
         ))}
       </div>
-    </>
+    </StudioHero>
   );
 }
 

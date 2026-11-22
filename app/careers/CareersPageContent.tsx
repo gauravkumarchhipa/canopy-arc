@@ -10,7 +10,7 @@ type Props = {
 
 export default function CareersPageContent({ contact }: Props) {
   return (
-    <div className={`${tw.pageShell} relative overflow-hidden`}>
+    <div className={`${tw.pageShellBottom} relative overflow-hidden`}>
       <PageAmbientGlow />
 
       <CareersHero />

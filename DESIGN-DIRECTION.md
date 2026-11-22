@@ -47,3 +47,48 @@ Removed the remaining hard-coded white hover text from About, Careers, and share
 ## Cybersecurity and Team visual update ? November 18, 2026
 
 Added two lazy-loaded Three.js sculptures: a layered security shield and a connected team assembly. The Team page now has a composed hero, an editorial statistics strip, larger initials-based profile art, and functional native sorting. Both scenes preserve the neutral themes and provide drag/rotate/reset/pause controls, reduced-motion behavior, visibility-aware rendering, resource cleanup, and SVG fallbacks. [Review screenshots and verification](artifacts/sculpture-review/README.md).
+
+## Homepage ribbon story
+
+The homepage already blended a strand mesh, but its globe, panel stack, brain graph, and shield were independently staged. The text dropped out around chapter boundaries, the camera used a similar composition for most chapters, and the selected-work cards used concept artwork. The first pass used the running homepage and checked-in implementation as its baseline. The follow-up below also uses the recording.
+
+| Files | Finding and change |
+| --- | --- |
+| `app/components/sections/home/StoryScene.tsx`, `story-geometry.ts`, `story-ribbon.ts` | One procedural assembly of 24 ribbons keeps the same vertex order through six poses. A twisted strip opens into a vault, routes into stacked software channels, crosses at an inference junction, wraps into a protective shell, then opens into the finished canopy. Parallel-transport frames keep the bevels aligned. Brushed metal, glass inlays, studio reflection panels, and contact shadows share one lighting rig. The old effect shaders were removed. |
+| `app/components/sections/home/StoryExperience.tsx`, `story-timeline.ts` | A single ScrollTrigger timeline drives geometry, camera, lighting, and text. Each pose has a short hold. At each copy handoff exactly one chapter owns the heading, focus, and service links. The stage updates on demand and suspends drawing offscreen or in a hidden tab. |
+| `app/components/sections/home/StoryContent.tsx`, `StoryStill.tsx`, `story-chapters.ts`, `app/home-story.css` | Kept the brand type and chapter titles. Tightened the supporting copy, varied the vertical composition, and used projections of the same ribbon paths for loading, reduced motion, and WebGL fallback. |
+| `app/components/sections/home/StoryEpilogueSections.tsx`, `app/content/pages/work/products.json`, `app/work/[id]/ProjectSections.tsx` | The finished canopy returns as a quiet contact-section detail. The existing impact figures and service links lead into screenshots and factual product overviews for Sahai and Pannobaa. |
+
+The scene uses procedural meshes, local reflections, a compact geometry tier, and adaptive pixel ratio and materials. The project captures are WebP images from the live sites. [Sahai](https://sahaiai.vercel.app/) · [Pannobaa Services](https://www.pannobaa.com/services)
+
+### Verification
+
+- The production preview recorded a median 17 ms frame interval on Intel Iris Xe in Chromium at 1440 × 900 and an emulated 390 × 844 touch viewport. Slow and fast sweeps in both directions visited all six chapters with one visible heading at each sampled frame. The canvas submitted zero draw calls during a settled idle interval.
+- Verified direct chapter and lower-section anchors, keyboard focus after chapter navigation, rotation, light and dark themes, reduced motion, and the WebGL-unavailable illustration. Responsive checks covered 320 × 568, 768 × 1024, and 1024 × 650 alongside the two performance viewports.
+- Both project detail pages, the cybersecurity service, and the booking anchor returned HTTP 200 in the fresh production preview. The contact form exposed its expected validation and email-draft action. The environment used the existing static footer fallback because its Supabase connection was unavailable.
+- Mobile timing came from browser emulation on the desktop GPU. Physical mobile performance remains unmeasured.
+
+## Brand opening and header
+
+The November 21 recording shows the earlier homepage after it has loaded. Its static header mark appears over the globe, the wireframe AI scene, and the capabilities section. The current opening uses the ribbon already built for the six-chapter story. The linked conversation required sign-in, so the recording and checkout supplied the reference.
+
+- `app/components/layout/BrandLockup.tsx`, `app/components/layout/header/Logo.tsx`, and `app/premium.css` share a tightly cropped mask of the existing canopy mark and a Manrope wordmark. A single highlight sweeps the mark on hover or keyboard focus. `HeaderShell.tsx` follows the global beige and charcoal theme through the chapters.
+- `app/components/sections/home/BrandOpening.tsx`, `brand-opening.ts`, `app/page.tsx`, `app/layout.tsx`, and `app/home-story.css` stage the opening when the homepage is the tab's first Canopy Arc page. The first chapter's ribbon draws across the opening before the brand lockup docks to the live header and the panel reveals the story. Skip, reduced motion, and direct chapter links keep the page accessible.
+- `app/components/sections/home/StoryExperience.tsx` defers WebGL startup until the opening clears. The projected chapter ribbon is available during the handoff while the interactive scene initializes.
+
+Browser checks observed the lockup docking at the live header in 1440 × 900, 390 × 844, and 320 × 568 Chromium viewports. A blocked JavaScript bundle cleared the opening through its first-paint timeout. The production scroll sweep still recorded a 17 ms median frame interval in desktop and mobile emulation, and the linked project, service, and contact destinations passed.
+
+The final preview passed Skip intro with focus restored to the header home link, reload without replay, reduced motion, direct chapter navigation, and returning home from another page in the same tab.
+
+## Deployed and local homepage hybrid
+
+The deployed homepage and the earlier recording supplied the environmental plates, glass, and contrasting chapter silhouettes. The newer recording and local homepage supplied the spacing, Manrope hierarchy, restrained navigation, and framing. Both versions were inspected before the hybrid pass.
+
+| Files | Hybrid direction |
+| --- | --- |
+| `app/components/sections/home/story-ribbon.ts`, `story-geometry.ts` | The same indexed paths run through the glass sphere, swept vault, device rails, spatial network, enclosed network, and final canopy. The connections keep their node positions while the protection shell closes. |
+| `app/components/sections/home/StoryDetails.tsx`, `StoryScene.tsx` | A reusable split shell, three real project captures, instanced network connections, and a restrained reflected pass run in the main canvas. Optical and reflection effects scale down on slower or mobile configurations. |
+| `app/components/sections/home/story-timeline.ts`, `StoryExperience.tsx`, `StoryStill.tsx`, `app/home-story.css` | Scroll coordinates the camera, geometry, chapter copy, and the grade of the two existing studio plates. The semantic chapter view includes matching illustrations for reduced motion and WebGL fallback. |
+| `app/components/layout/header/HeaderShell.tsx`, `app/premium.css`, `StoryEpilogueSections.tsx` | The header responds to the stage palette. Commitment text uses the shared editorial reveal. Service summaries appear on hover or keyboard focus. Impact figures, project destinations, and contact actions retain their existing sources. |
+
+The three screen textures show the public Sahai and Pannobaa sites, including Sahai at a mobile viewport. [Sahai](https://sahaiai.vercel.app/) · [Pannobaa Services](https://www.pannobaa.com/services)

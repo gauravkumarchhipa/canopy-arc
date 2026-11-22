@@ -9,12 +9,19 @@ import { nav } from "../../../content/shared/nav";
 import ServiceIcon from "../services/ServiceIcon";
 import AnimatedCounter from "../../ui/AnimatedCounter";
 import ImpactIcon from "./impact/ImpactIcon";
+import StoryStill from "./StoryStill";
+import { lastChapter } from "./story-chapters";
+
+const featuredProjectDescriptions: Partial<Record<string, string>> = {
+  "sahai-ai": "AI-powered platform delivering intelligent assistance and automation for modern business workflows and decision support.",
+  pannobaa: "Professional advisory platform simplifying accounting and compliance for startups — streamlined financial guidance and regulatory support.",
+};
 
 export function StoryImpactAndCommitments() {
   const figures = [impact.featured, ...impact.stats];
   return (
     <div className="story-impact-and-commitment" id="story-impact">
-      <section className="story-band" aria-labelledby="story-impact-title">
+      <section id="impact" className="story-band" aria-labelledby="story-impact-title">
         <div className="story-shell story-impact-grid">
           <Heading className="story-label" id="story-impact-title">{impact.eyebrow}</Heading>
           <dl className="story-figures">
@@ -30,12 +37,12 @@ export function StoryImpactAndCommitments() {
 
       <section className="story-band" aria-labelledby="story-commitment-title">
         <div className="story-shell story-editorial-grid">
-          <div>
+          <div data-motion>
             <p className="story-label">{impact.commitment.title}</p>
             <Heading id="story-commitment-title">The values that shape our work.</Heading>
             <p>{impact.commitment.description}</p>
           </div>
-          <ul className="story-commitments">
+          <ul className="story-commitments" data-motion>
             {impact.commitment.pillars.map((pillar) => (
               <li key={pillar.title}>
                 <ImpactIcon name={pillar.icon} />
@@ -56,8 +63,8 @@ export function StoryCapabilities() {
       <div className="story-shell story-editorial-grid">
         <div>
           <p className="story-label">Our capabilities</p>
-          <Heading id="story-services-title">Powerful IT services. <span>Connected solutions.</span></Heading>
-          <p>From the first idea to enterprise scale, explore the disciplines that bring your digital vision to life.</p>
+          <Heading id="story-services-title">Design, build, <span>and protect.</span></Heading>
+          <p>Explore the services behind each stage, from interface design to cloud operations and security testing.</p>
         </div>
         <div className="story-capabilities">
           {servicesGrid.filters.slice(1).map((category) => (
@@ -70,6 +77,7 @@ export function StoryCapabilities() {
                       <ServiceIcon name={service.icon} />
                       <span>{service.title}</span>
                       <span aria-hidden="true"><ArrowIcon /></span>
+                      <span className="story-service-preview" aria-hidden="true">{service.subtitle}</span>
                     </Link>
                   </li>
                 ))}
@@ -83,24 +91,24 @@ export function StoryCapabilities() {
 }
 
 export function StoryProjects() {
-  const projects = productLinks.filter(({ id }) => id === "sahai-ai" || id === "pannobaa");
+  const projects = productLinks.filter(({ id }) => featuredProjectDescriptions[id]);
   return (
     <section className="story-band story-work" id="selected-work" aria-labelledby="story-work-title">
       <div className="story-shell story-editorial-grid">
         <div>
           <p className="story-label">Selected work</p>
           <Heading id="story-work-title">Ideas, made real.</Heading>
-          <p>See how we turn business challenges into products people can use.</p>
+          <p>Two different applications of the same approach, from family care to business compliance.</p>
           <Button variant="story-text" href="/work">Explore all work <span aria-hidden="true"><ArrowIcon /></span></Button>
         </div>
         <div className="story-projects">
           {projects.map((project) => (
             <Link key={project.id} href={`/work/${project.id}`} className={`story-project story-project--${project.id}`}>
-              <div className="story-project-art" aria-hidden="true" />
+              <span className="story-project-art" aria-hidden="true" />
               <div className="story-project-copy">
                 <p className="story-label">{project.category}</p>
                 <h3>{project.name}</h3>
-                <p>{project.description}</p>
+                <p>{featuredProjectDescriptions[project.id]}</p>
               </div>
               <span className="story-project-arrow" aria-hidden="true"><ArrowIcon /></span>
             </Link>
@@ -114,6 +122,7 @@ export function StoryProjects() {
 export function StoryContact() {
   return (
     <section className="story-contact" aria-labelledby="story-contact-title">
+      <StoryStill pose={lastChapter} instance="contact" />
       <div className="story-shell">
         <p className="story-label">Your next chapter</p>
         <Heading id="story-contact-title">Extraordinary starts with a conversation.</Heading>

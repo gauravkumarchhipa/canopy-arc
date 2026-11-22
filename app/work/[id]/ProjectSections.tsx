@@ -1,9 +1,11 @@
 import Heading from "../../components/ui/Heading";
+import StudioHero from "../../components/layout/StudioHero";
 import Button from "../../components/ui/Button";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import { workGrid } from "../../content/pages/work/grid";
 import WorkProductIcon from "../../components/sections/work/WorkProductIcon";
 import { ExternalLinkIcon } from "../../components/sections/work/work-product-icons";
+import Image from "next/image";
 
 type Project = (typeof workGrid.projects)[number];
 
@@ -11,7 +13,7 @@ type ProjectProps = { project: Project };
 
 export function ProjectHero({ project }: ProjectProps) {
   return (
-    <section className="mt-6 overflow-hidden rounded-3xl border border-line bg-surface">
+    <StudioHero className="mt-6 overflow-hidden rounded-3xl border border-line">
       <div className="relative px-6 py-10 sm:px-10 sm:py-12">
         <div className="relative">
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-accent">
@@ -44,7 +46,7 @@ export function ProjectHero({ project }: ProjectProps) {
           ) : null}
         </div>
       </div>
-    </section>
+    </StudioHero>
   );
 }
 
@@ -52,7 +54,11 @@ export function ProjectOverview({ project }: ProjectProps) {
   return (
     <section className="rounded-3xl border border-line bg-surface p-6 sm:p-7 lg:col-span-8">
       <Heading className="text-sm font-semibold text-foreground/90">Project Overview</Heading>
-      <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
+      <p className="mt-4 text-sm leading-relaxed text-muted">{project.overview ?? project.description}</p>
+      {project.image && (
+        <Image src={project.image} alt={`${project.name} website preview`} width={1120} height={700}
+          sizes="(max-width: 1023px) 90vw, 60vw" className="mt-6 h-auto w-full rounded-xl border border-line" />
+      )}
     </section>
   );
 }

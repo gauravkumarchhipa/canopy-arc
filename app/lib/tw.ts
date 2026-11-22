@@ -1,3 +1,5 @@
+const pageShellTop = "pt-[10rem] sm:pt-36 md:pt-40";
+
 /** Shared Tailwind class strings (no globals.css component classes). */
 export const tw = {
   gradientText: "text-muted",
@@ -24,8 +26,8 @@ export const tw = {
   brandOrbTrust:
     "bg-[radial-gradient(closest-side,rgba(43,179,163,0.45),transparent_70%)] [html[data-theme=dark]_&]:bg-[radial-gradient(closest-side,rgba(78,209,193,0.4),transparent_70%)]",
   /** Clears fixed header (tall mobile logo + tagline + py-5). */
-  pageShell:
-    "pt-[10rem] sm:pt-36 md:pt-40 pb-20 sm:pb-24 [scroll-margin-top:10rem] md:[scroll-margin-top:9rem]",
+  pageShell: `${pageShellTop} pb-20 sm:pb-24 [scroll-margin-top:10rem] md:[scroll-margin-top:9rem]`,
+  pageShellTop,
   pageIntro: "mx-auto max-w-350 px-6 lg:px-10 pb-10 sm:pb-14",
   pageShellBottom: "pb-20 sm:pb-24",
 } as const;

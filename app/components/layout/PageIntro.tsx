@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Eyebrow from "../ui/Eyebrow";
 import EyebrowPill from "../ui/EyebrowPill";
 import { tw } from "../../lib/tw";
+import StudioHero from "./StudioHero";
 
 type Props = {
   eyebrow: string;
@@ -24,7 +25,7 @@ export default function PageIntro({
   children,
 }: Props) {
   return (
-    <section className="relative premium-page-intro">
+    <StudioHero className={`premium-page-intro ${tw.pageShellTop}`}>
       <div className={tw.pageIntro}>
         {eyebrowPill ? (
           <EyebrowPill>{eyebrow}</EyebrowPill>
@@ -51,6 +52,6 @@ export default function PageIntro({
         ) : null}
         {children}
       </div>
-    </section>
+    </StudioHero>
   );
 }

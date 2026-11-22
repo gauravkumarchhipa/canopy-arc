@@ -1,4 +1,5 @@
 import Heading from "../../components/ui/Heading";
+import StudioHero from "../../components/layout/StudioHero";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import Link from "next/link";
 import { teamGrid } from "../../content/pages/team/grid";
@@ -68,7 +69,7 @@ export function MemberSidebar({ member, details }: MemberProps) {
 
 export function MemberHero({ member, details }: MemberProps) {
   return (
-    <section className="rounded-3xl border border-line bg-surface p-6 sm:p-7">
+    <StudioHero className="rounded-3xl border border-line p-6 sm:p-7">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <p className="text-xs tracking-[0.3em] uppercase text-muted">
@@ -99,7 +100,7 @@ export function MemberHero({ member, details }: MemberProps) {
           </div>
         ))}
       </div>
-    </section>
+    </StudioHero>
   );
 }
 

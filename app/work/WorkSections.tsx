@@ -1,4 +1,5 @@
 import Heading from "../components/ui/Heading";
+import StudioHero from "../components/layout/StudioHero";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import WorkHeroVisual from "../components/sections/work/WorkHeroVisual";
@@ -9,7 +10,7 @@ import { workGrid } from "../content/pages/work/grid";
 export function WorkHero() {
   const featured = workGrid.projects[0];
   return (
-    <section className="work-overview-hero" aria-labelledby="work-overview-title">
+    <StudioHero className="work-overview-hero" aria-labelledby="work-overview-title">
       <div className="work-overview-inset work-overview-hero-inner">
         <div className="work-overview-hero-copy">
           <p className="work-overview-label"><span aria-hidden="true">▪ / </span>{workHero.eyebrow}</p>
@@ -24,7 +25,7 @@ export function WorkHero() {
         </div>
         <WorkHeroVisual />
       </div>
-    </section>
+    </StudioHero>
   );
 }
 

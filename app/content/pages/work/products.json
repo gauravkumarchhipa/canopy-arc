@@ -2,7 +2,9 @@
   {
     "id": "sahai-ai",
     "name": "Sahai AI",
-    "description": "AI-powered platform delivering intelligent assistance and automation for modern business workflows and decision support.",
+    "description": "A voice-first health companion for older adults and their families.",
+    "overview": "Older adults can log symptoms, medication, and daily updates by speaking in Hindi or English. Families can review those updates in a dashboard and receive reminders or alerts.",
+    "image": "/story/sahai-site.webp",
     "url": "https://sahaiai.vercel.app/",
     "category": "AI & SaaS",
     "icon": "Sparkles",
@@ -12,7 +14,9 @@
   {
     "id": "pannobaa",
     "name": "Pannobaa Advisers",
-    "description": "Professional advisory platform simplifying accounting and compliance for startups — streamlined financial guidance and regulatory support.",
+    "description": "An advisory website for accounting, tax filing, and business compliance.",
+    "overview": "The site organizes income-tax filing, GST registration, TDS, and accounting services and gives visitors a direct path to request a consultation.",
+    "image": "/story/pannobaa-site.webp",
     "url": "https://www.pannobaa.com/",
     "category": "FinTech & Compliance",
     "icon": "Calculator",

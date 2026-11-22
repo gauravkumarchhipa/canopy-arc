@@ -1,4 +1,6 @@
 import Heading from "../components/ui/Heading";
+import StudioHero from "../components/layout/StudioHero";
+import ContactWave from "../components/sections/contact/ContactWave";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import { IconClock, IconLocation, IconMail, IconPhone } from "../components/layout/footer/FooterIcons";
@@ -6,17 +8,20 @@ import type { FooterContact } from "../lib/footer/types";
 
 export function ContactHero() {
   return (
-    <section className="contact-intro" aria-labelledby="contact-title">
-      <p className="contact-eyebrow">Contact Us</p>
-      <Heading level={1} id="contact-title">
-        Let&apos;s build something{" "}
-        <span>amazing</span> together.
-      </Heading>
-      <p className="contact-summary">
-        Share a quick overview of your project. We&apos;ll respond with next
-        steps, timeline, and the right engagement model.
-      </p>
-    </section>
+    <StudioHero className="contact-intro" aria-labelledby="contact-title">
+      <ContactWave />
+      <div className="contact-shell">
+        <p className="contact-eyebrow">Contact Us</p>
+        <Heading level={1} id="contact-title">
+          Let&apos;s build something{" "}
+          <span>amazing</span> together.
+        </Heading>
+        <p className="contact-summary">
+          Share a quick overview of your project. We&apos;ll respond with next
+          steps, timeline, and the right engagement model.
+        </p>
+      </div>
+    </StudioHero>
   );
 }
 

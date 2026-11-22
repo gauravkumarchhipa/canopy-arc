@@ -7,6 +7,7 @@ import {
   Component,
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type MouseEvent,
@@ -19,9 +20,11 @@ import { useTheme } from "../../layout/ThemeProvider";
 import { useLenis } from "../../layout/SmoothScroll";
 import { chapters, lastChapter } from "./story-chapters";
 import { sampleStory } from "./story-timeline";
+import { siteLoadingAttribute } from "../../layout/site-loading";
 
 const StoryScene = dynamic(() => import("./StoryScene"), { ssr: false });
 const motionQuery = "(prefers-reduced-motion: no-preference) and (min-height: 540px)";
+const compactQuery = "(max-width: 900px), (pointer: coarse)";
 const controlId = "story-stage";
 
 export type SceneMotion = {
@@ -48,21 +51,27 @@ class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => vo
 export default function StoryExperience({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
   const motion = useRef<SceneMotion>({ progress: 0, orbit: 0, pointerX: 0, pointerY: 0, darkTheme: false });
+  const renderRequest = useRef<(() => void) | null>(null);
   const syncTheme = useRef<(() => void) | null>(null);
   const drag = useRef<{ pointer: number; x: number } | null>(null);
   const pendingFocus = useRef<number | null>(null);
   const lenis = useLenis();
   const theme = useTheme();
   const [enhanced, setEnhanced] = useState(false);
+  const [compact, setCompact] = useState(false);
   const [active, setActive] = useState(0);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [onScreen, setOnScreen] = useState(false);
+  const setRenderRequest = useCallback((request: (() => void) | null) => {
+    renderRequest.current = request;
+  }, []);
   const handleReady = useCallback(() => setReady(true), []);
   const handleFailure = useCallback(() => setFailed(true), []);
 
   useEffect(() => {
     const media = window.matchMedia(motionQuery);
+    const compactMedia = window.matchMedia(compactQuery);
     const sync = () => {
       if (!media.matches) {
         setReady(false);
@@ -70,25 +79,41 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
         pendingFocus.current = null;
       }
       setEnhanced(media.matches);
+      setCompact(compactMedia.matches);
     };
     sync();
     media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
+    compactMedia.addEventListener("change", sync);
+    return () => {
+      media.removeEventListener("change", sync);
+      compactMedia.removeEventListener("change", sync);
+    };
   }, []);
 
   useEffect(() => {
     const element = root.current;
     if (!element || !enhanced) return;
 
-    const observer = new IntersectionObserver(([entry]) => {
-      setOnScreen(entry.isIntersecting);
-    });
     const stage = element.querySelector(".story-stage");
-    if (stage) observer.observe(stage);
-    return () => observer.disconnect();
+    if (!stage) return;
+
+    const documentRoot = document.documentElement;
+    let intersects = false;
+    const update = () => setOnScreen(intersects && !documentRoot.hasAttribute(siteLoadingAttribute));
+    const observer = new IntersectionObserver(([entry]) => {
+      intersects = entry.isIntersecting;
+      update();
+    });
+    const loading = new MutationObserver(update);
+    observer.observe(stage);
+    loading.observe(documentRoot, { attributes: true, attributeFilter: [siteLoadingAttribute] });
+    return () => {
+      observer.disconnect();
+      loading.disconnect();
+    };
   }, [enhanced]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const element = root.current;
     if (!element || !enhanced) return;
     gsap.registerPlugin(ScrollTrigger);
@@ -96,84 +121,92 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
     const stage = element.querySelector<HTMLElement>(".story-stage");
     const playhead = { progress: 0 };
     let current = -1;
-    let shown = -1;
 
     const draw = () => {
       motion.current.progress = playhead.progress;
-      const { active, copy, offset, night } = sampleStory(playhead.progress);
-      stage?.style.setProperty("--story-night", String(motion.current.darkTheme ? 1 : night));
+      const { active, copy, offset, roomPosition } = sampleStory(playhead.progress);
+      stage?.style.setProperty("--story-room-position", `${roomPosition}%`);
       if (active !== current) {
+        const previous = sections[current];
+        const focused = document.activeElement;
+        if (previous?.contains(focused)) {
+          element.querySelector<HTMLAnchorElement>(`.story-rail [data-story-jump="${active}"]`)?.focus({ preventScroll: true });
+        }
+        if (current >= 0) {
+          const turn = Math.PI * 2;
+          motion.current.orbit = Math.round(motion.current.orbit / turn) * turn;
+        }
         current = active;
         setActive(active);
-      }
-      const visible = copy > 0 ? active : -1;
-      if (visible !== shown || element.dataset.storyInitialized !== "true") {
-        shown = visible;
         element.dataset.storyInitialized = "true";
         sections.forEach((section, index) => {
-          section.inert = index !== visible;
-          section.toggleAttribute("data-story-visible", index === visible);
+          section.inert = index !== active;
+          section.toggleAttribute("data-story-visible", index === active);
         });
       }
       const section = sections[active];
-      const horizontal = active > 0 && active < lastChapter;
-      section.style.setProperty("--chapter-x", horizontal ? `${offset * 5}%` : "0%");
-      section.style.setProperty("--chapter-y", horizontal ? "0%" : `${offset * 4}%`);
+      section.style.setProperty("--chapter-y", `${offset * 28}px`);
       section.style.setProperty("--chapter-opacity", String(copy));
       if (copy >= 0.95 && pendingFocus.current === active) {
         pendingFocus.current = null;
         document.getElementById(`${chapters[active].id}-title`)?.focus({ preventScroll: true });
       }
+      renderRequest.current?.();
     };
 
-    const animation = gsap.to(playhead, {
+    const animation = gsap.timeline({ paused: true }).to(playhead, {
       progress: 1,
+      duration: 1,
       ease: "none",
       onUpdate: draw,
-      scrollTrigger: {
-        trigger: element,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.18,
-        invalidateOnRefresh: true,
-      },
+    });
+    const trigger = ScrollTrigger.create({
+      animation,
+      trigger: element,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true,
+      onRefresh: draw,
     });
     syncTheme.current = draw;
     draw();
 
-    const jumpToHash = () => {
+    const jumpToHash = (initial = false) => {
       const chapter = chapters.find(({ id }) => window.location.hash === `#${id}`);
       const anchor = chapter && document.getElementById(chapter.id);
-      if (!anchor) return;
+      if (!anchor) {
+        if (initial && window.location.hash) {
+          document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ behavior: "instant" });
+        }
+        return;
+      }
       window.scrollTo({
         top: window.scrollY + anchor.getBoundingClientRect().top,
         behavior: "instant",
       });
       ScrollTrigger.update();
-      const trigger = animation.scrollTrigger;
-      trigger?.getTween()?.progress(1);
-      if (trigger) animation.progress(trigger.progress);
+      animation.progress(trigger.progress);
     };
-    jumpToHash();
-    window.addEventListener("hashchange", jumpToHash);
+    jumpToHash(true);
+    const onHashChange = () => jumpToHash();
+    window.addEventListener("hashchange", onHashChange);
     return () => {
-      window.removeEventListener("hashchange", jumpToHash);
-      animation.scrollTrigger?.kill();
+      window.removeEventListener("hashchange", onHashChange);
+      trigger.kill();
       animation.kill();
       syncTheme.current = null;
       delete element.dataset.storyInitialized;
-      stage?.style.removeProperty("--story-night");
+      stage?.style.removeProperty("--story-room-position");
       sections.forEach((section) => {
         section.inert = false;
         section.removeAttribute("data-story-visible");
-        for (const property of ["x", "y", "opacity"]) {
+        for (const property of ["y", "opacity"]) {
           section.style.removeProperty(`--chapter-${property}`);
         }
       });
     };
   }, [enhanced]);
 
-  const graphite = theme === "dark" || active % 2 === 1;
   useEffect(() => {
     motion.current.darkTheme = theme === "dark";
     syncTheme.current?.();
@@ -240,10 +273,12 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
       const bounds = event.currentTarget.getBoundingClientRect();
       motion.current.pointerX = (event.clientX - bounds.left) / bounds.width - 0.5;
       motion.current.pointerY = (event.clientY - bounds.top) / bounds.height - 0.5;
+      renderRequest.current?.();
     }
     if (drag.current?.pointer !== event.pointerId) return;
     motion.current.orbit += (event.clientX - drag.current.x) * 0.012;
     drag.current.x = event.clientX;
+    renderRequest.current?.();
   };
 
   const release = (event: PointerEvent<HTMLDivElement>) => {
@@ -259,7 +294,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
       data-enhanced={enhanced ? "true" : undefined}
       data-art-ready={enhanced && ready && !failed ? "true" : undefined}
       data-active={active}
-      data-graphite={graphite ? "true" : undefined}
       onClick={goToChapter}
     >
       {chapters.map((chapter, index) => (
@@ -272,21 +306,27 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
         />
       ))}
       <div className="story-stage" id={controlId}>
+        <div className="story-studio" aria-hidden="true" />
         <div
           className="story-canvas"
           aria-hidden="true"
           onPointerDown={grab}
           onPointerMove={rotate}
-          onPointerLeave={() => { motion.current.pointerX = motion.current.pointerY = 0; }}
+          onPointerLeave={() => {
+            motion.current.pointerX = motion.current.pointerY = 0;
+            renderRequest.current?.();
+          }}
           onPointerUp={release}
           onPointerCancel={release}
           onLostPointerCapture={release}
         >
-          {enhanced && !failed && (
+          {enhanced && !failed && (onScreen || ready) && (
             <SceneBoundary onFailure={handleFailure}>
               <StoryScene
                 motion={motion}
+                setRenderRequest={setRenderRequest}
                 visible={onScreen}
+                compact={compact}
                 onReady={handleReady}
                 onFailure={handleFailure}
               />
@@ -318,7 +358,10 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
                 className="story-orbit"
                 type="button"
                 aria-label="Rotate the sculpture by 45 degrees"
-                onClick={() => { motion.current.orbit += Math.PI / 4; }}
+                onClick={() => {
+                  motion.current.orbit += Math.PI / 4;
+                  renderRequest.current?.();
+                }}
               >
                 <span aria-hidden="true"><ArrowIcon direction="clockwise" /></span> 360° view
               </Button>
