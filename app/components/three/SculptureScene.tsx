@@ -147,6 +147,8 @@ export default function SculptureScene({
       renderer.setSize(width, height);
       if (variant === "team") {
         model.group.scale.setScalar(THREE.MathUtils.clamp(width / height * 0.73, 0.94, 1.28));
+      } else if (variant === "cookies" || variant === "terms") {
+        model.group.scale.setScalar(Math.min(1.16, width / height * 1.13));
       }
       camera.aspect = width / height;
       camera.updateProjectionMatrix();

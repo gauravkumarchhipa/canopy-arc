@@ -1,33 +1,28 @@
 import Button from "../../components/ui/Button";
 import ArrowIcon from "../../components/ui/ArrowIcon";
-import GlowHoverCard from "../../components/ui/GlowHoverCard";
-import {
-  teamBannerText,
-  teamBannerTitle,
-} from "../../components/sections/team/team-card-styles";
+import StudioHero from "../../components/layout/StudioHero";
+import Heading from "../../components/ui/Heading";
 
 export default function CtaSection() {
   return (
-    <section className="relative pb-12 sm:pb-20">
-      <div className="mx-auto max-w-350 px-6 lg:px-10">
-        <GlowHoverCard className="flex flex-col items-start justify-between gap-8 rounded-3xl p-6 sm:p-10 md:flex-row md:items-center md:p-12">
-          <div>
-            <p className={teamBannerTitle}>Ready to build something great?</p>
-            <p className={`${teamBannerText} mt-2 max-w-xl text-base sm:text-lg`}>
-              Tell us about your product, timeline, and goals. We&apos;ll respond with a clear
-              plan — no pressure, no jargon.
-            </p>
-          </div>
-          <div className="relative z-1 flex flex-col items-start gap-3 sm:flex-row sm:items-center">
-            <Button variant="header-primary" href="/contact">
-              Start a Project <ArrowIcon direction="right" />
-            </Button>
-            <Button variant="header-ghost" href="/work">
-              View Our Work
-            </Button>
-          </div>
-        </GlowHoverCard>
-      </div>
-    </section>
+    <div className="about-shell">
+      <StudioHero className="about-closing flex flex-col items-start justify-between gap-6 md:flex-row md:items-center" aria-labelledby="about-closing-title">
+        <div>
+          <Heading id="about-closing-title" className="about-card-title">Ready to build something great?</Heading>
+          <p className="about-section-copy">
+            Tell us about your product, timeline, and goals. We&apos;ll respond with a clear
+            plan — no pressure, no jargon.
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          <Button variant="header-primary" href="/contact">
+            Start a Project <ArrowIcon direction="right" />
+          </Button>
+          <Button variant="header-ghost" href="/work">
+            View Our Work
+          </Button>
+        </div>
+      </StudioHero>
+    </div>
   );
 }

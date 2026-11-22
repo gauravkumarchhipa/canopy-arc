@@ -2,7 +2,19 @@ import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import { studioFinishes } from "./studio-finishes";
 
-export type SculptureVariant = "security" | "team";
+export type SculptureVariant = "security" | "team" | "about" | "cookies" | "terms";
+
+function makeShieldOutline() {
+  const shield = new THREE.Shape();
+  shield.moveTo(0, 1.48);
+  shield.bezierCurveTo(0.38, 1.23, 0.76, 1.17, 1.13, 1.1);
+  shield.lineTo(1.04, -0.12);
+  shield.bezierCurveTo(0.99, -0.78, 0.45, -1.2, 0, -1.5);
+  shield.bezierCurveTo(-0.45, -1.2, -0.99, -0.78, -1.04, -0.12);
+  shield.lineTo(-1.13, 1.1);
+  shield.bezierCurveTo(-0.76, 1.17, -0.38, 1.23, 0, 1.48);
+  return shield;
+}
 
 export function buildSculpture(variant: SculptureVariant) {
   const group = new THREE.Group();
@@ -28,7 +40,7 @@ export function buildSculpture(variant: SculptureVariant) {
     emissiveIntensity: 0.72,
     roughness: 0.25,
   });
-  const materials = { silver, ceramic, graphite, line, halo };
+  const materials = new Set([silver, ceramic, graphite, line, halo]);
   const geometries = new Set<THREE.BufferGeometry>();
   const add = (
     geometry: THREE.BufferGeometry,
@@ -59,14 +71,7 @@ export function buildSculpture(variant: SculptureVariant) {
     );
 
   if (variant === "security") {
-    const shield = new THREE.Shape();
-    shield.moveTo(0, 1.48);
-    shield.bezierCurveTo(0.38, 1.23, 0.76, 1.17, 1.13, 1.1);
-    shield.lineTo(1.04, -0.12);
-    shield.bezierCurveTo(0.99, -0.78, 0.45, -1.2, 0, -1.5);
-    shield.bezierCurveTo(-0.45, -1.2, -0.99, -0.78, -1.04, -0.12);
-    shield.lineTo(-1.13, 1.1);
-    shield.bezierCurveTo(-0.76, 1.17, -0.38, 1.23, 0, 1.48);
+    const shield = makeShieldOutline();
     const geometry = new THREE.ExtrudeGeometry(shield, {
       depth: 0.24,
       bevelEnabled: true,
@@ -130,7 +135,7 @@ export function buildSculpture(variant: SculptureVariant) {
       );
     }
     group.rotation.set(0.05, -0.32, -0.06);
-  } else {
+  } else if (variant === "team") {
     // Eight linked modules refer to the eight profiles shown on the team page.
     const nodes = Array.from({ length: 8 }, (_, index) => {
       const angle = (index / 8) * Math.PI * 2;
@@ -176,14 +181,102 @@ export function buildSculpture(variant: SculptureVariant) {
       tube(orbit, 0.008, halo, true);
     }
     group.rotation.set(0.16, -0.35, -0.12);
+  } else if (variant === "about") {
+    const arch = new THREE.Shape();
+    arch.moveTo(-1.28, -1);
+    arch.lineTo(-1.28, 0.12);
+    arch.bezierCurveTo(-1.28, 0.82, -0.71, 1.39, 0, 1.39);
+    arch.bezierCurveTo(0.71, 1.39, 1.28, 0.82, 1.28, 0.12);
+    arch.lineTo(1.28, -1);
+    arch.lineTo(0.93, -1);
+    arch.lineTo(0.93, 0.12);
+    arch.bezierCurveTo(0.93, 0.63, 0.51, 1.04, 0, 1.04);
+    arch.bezierCurveTo(-0.51, 1.04, -0.93, 0.63, -0.93, 0.12);
+    arch.lineTo(-0.93, -1);
+    arch.closePath();
+
+    const archGeometry = new THREE.ExtrudeGeometry(arch, {
+      depth: 0.22, bevelEnabled: true, bevelSize: 0.042, bevelThickness: 0.04, bevelSegments: 3, curveSegments: 28,
+    });
+    const archTiers = [
+      { x: 0.55, z: -0.78, scale: 0.86, material: silver },
+      { x: 0.04, z: -0.20, scale: 1.16, material: ceramic },
+      { x: -0.52, z: 0.41, scale: 1, material: silver },
+    ];
+    for (const { x, z, scale, material } of archTiers) {
+      add(archGeometry, [material, silver], [x, scale - 1, z]).scale.setScalar(scale);
+    }
+
+    const rim = new THREE.Path();
+    rim.moveTo(-1.11, -0.97);
+    rim.lineTo(-1.11, 0.12);
+    rim.bezierCurveTo(-1.11, 0.73, -0.61, 1.22, 0, 1.22);
+    rim.bezierCurveTo(0.61, 1.22, 1.11, 0.73, 1.11, 0.12);
+    rim.lineTo(1.11, -0.97);
+    const trace = new THREE.CurvePath<THREE.Vector3>();
+    const points = rim.getPoints(28).map(({ x, y }) => new THREE.Vector3(x - 0.52, y, 0.678));
+    for (let i = 1; i < points.length; i++) trace.add(new THREE.LineCurve3(points[i - 1], points[i]));
+    add(new THREE.TubeGeometry(trace, 128, 0.013, 6), halo);
+    add(new RoundedBoxGeometry(3.84, 0.14, 2.18, 4, 0.06), graphite, [0, -1.13, -0.06]);
+    add(new RoundedBoxGeometry(3.64, 0.07, 2.00, 3, 0.035), silver, [0, -1.04, -0.06]);
+    group.rotation.set(0.06, -0.48, -0.04);
+  } else if (variant === "cookies") {
+    const radius = 1.34;
+    const edge = 0.82;
+    const cookie = new THREE.Shape();
+    cookie.absarc(0, 0, radius, edge, Math.PI * 2 + 0.1, false);
+    cookie.bezierCurveTo(1.08, 0.08, 0.87, 0.30, 0.94, 0.53);
+    cookie.bezierCurveTo(0.69, 0.47, 0.63, 0.78, radius * Math.cos(edge), radius * Math.sin(edge));
+    cookie.closePath();
+
+    const geometry = new THREE.ExtrudeGeometry(cookie, {
+      depth: 0.19, bevelEnabled: true, bevelThickness: 0.06, bevelSize: 0.055, bevelSegments: 5, curveSegments: 52,
+    });
+    add(geometry, [silver, silver], [0.30, -0.19, -0.32]).rotation.z = 0.17;
+    add(geometry, [ceramic, silver], [-0.18, 0, 0.18]);
+    const chips = new THREE.SphereGeometry(0.08, 16, 12);
+    for (const [x, y] of [[-0.54, 0.60], [0.16, 0.72], [-0.93, 0.04], [-0.17, 0.07], [0.44, 0.17], [-0.56, -0.53], [0.1, -0.82]]) {
+      add(chips, graphite, [x, y, 0.44]).scale.z = 0.48;
+    }
+    const crumb = new THREE.DodecahedronGeometry(0.10);
+    for (const [x, y, size] of [[1.17, 0.88, 1], [1.49, 0.58, 0.64], [1.56, 1.24, 0.73]]) {
+      add(crumb, halo, [x, y, 0.2]).scale.setScalar(size);
+    }
+    const badgeFace = new THREE.MeshStandardMaterial({
+      color: studioFinishes.dark.glass, metalness: 0.36, roughness: 0.39,
+    });
+    materials.add(badgeFace);
+    const badge = new THREE.ExtrudeGeometry(makeShieldOutline(), {
+      depth: 0.11, bevelEnabled: true, bevelThickness: 0.035, bevelSize: 0.04, bevelSegments: 3, curveSegments: 20,
+    });
+    add(badge, [badgeFace, silver], [0.75, -0.69, 0.43]).scale.set(0.32, 0.32, 0.78);
+    tube([
+      new THREE.Vector3(0.60, -0.68, 0.55),
+      new THREE.Vector3(0.70, -0.78, 0.55),
+      new THREE.Vector3(0.91, -0.57, 0.55),
+    ], 0.023, halo);
+    group.rotation.set(0.16, -0.37, -0.13);
+  } else {
+    const sheet = new RoundedBoxGeometry(2.18, 2.82, 0.17, 4, 0.08);
+    add(sheet, silver, [0.48, 0.07, -0.37]).rotation.z = -0.17;
+    add(sheet, silver, [0.13, 0.05, -0.12]).rotation.z = -0.07;
+    add(sheet, ceramic, [-0.22, 0, 0.19]);
+    for (const [y, width] of [[0.84, 1.22], [0.52, 1.55], [0.22, 1.55], [-0.08, 1.12]]) {
+      add(new RoundedBoxGeometry(width, 0.036, 0.04, 3, 0.015), graphite, [-1.01 + width / 2, y, 0.288]);
+    }
+    const seal = add(new THREE.CylinderGeometry(0.31, 0.31, 0.069, 48), silver, [0.33, -0.79, 0.306]);
+    seal.rotation.x = Math.PI / 2;
+    add(new THREE.TorusGeometry(0.23, 0.017, 10, 48), halo, [0.33, -0.79, 0.347]);
+    tube([[0.23, -0.79], [0.30, -0.86], [0.43, -0.72]].map(([x, y]) => new THREE.Vector3(x, y, 0.349)), 0.016, graphite);
+    group.rotation.set(0.10, -0.38, 0.12);
   }
 
   const setTheme = (dark: boolean) => {
-    if (variant === "team") {
+    if (variant !== "security") {
       const finish = dark ? studioFinishes.dark : studioFinishes.light;
       silver.color.set(finish.metal);
       ceramic.color.set(finish.glass);
-      graphite.color.set(dark ? finish.rim : "#55483b");
+      graphite.color.set(dark && variant !== "about" ? finish.rim : "#55483b");
       line.color.set(finish.ribbon);
       halo.color.set(finish.bronze);
       halo.emissive.set(finish.bronze);
@@ -201,7 +294,7 @@ export function buildSculpture(variant: SculptureVariant) {
     setTheme,
     dispose: () => {
       geometries.forEach((geometry) => geometry.dispose());
-      Object.values(materials).forEach((material) => material.dispose());
+      materials.forEach((material) => material.dispose());
     },
   };
 }

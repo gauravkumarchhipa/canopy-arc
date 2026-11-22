@@ -1,13 +1,7 @@
 import Heading from "../../components/ui/Heading";
 import ArrowIcon from "../../components/ui/ArrowIcon";
 import Link from "next/link";
-import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import { teamGrid } from "../../content/pages/team/grid";
-import {
-  aboutSectionEyebrow,
-  aboutSectionSubtitle,
-  aboutSectionTitle,
-} from "./about-styles";
 import {
   teamCardAvatar,
   teamCardAvatarText,
@@ -19,17 +13,17 @@ export default function PeoplePreviewSection() {
   const preview = teamGrid.members.slice(0, 4);
 
   return (
-    <section className="relative border-t border-line py-16 sm:py-24 md:py-28">
-      <div className="mx-auto max-w-350 px-6 lg:px-10">
-        <div className="mb-12 grid items-end gap-8 lg:grid-cols-12 lg:gap-12">
+    <section className="about-section">
+      <div className="about-shell">
+        <div className="about-people-heading grid items-end gap-4 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-7">
-            <p className={aboutSectionEyebrow}>The people</p>
-            <Heading className={aboutSectionTitle}>
+            <p className="about-eyebrow">The people</p>
+            <Heading className="about-section-title">
               A multidisciplinary team built for modern product delivery.
             </Heading>
           </div>
           <div className="lg:col-span-5">
-            <p className={aboutSectionSubtitle}>
+            <p className="about-section-copy">
               Engineers, designers, and strategists working across time zones — united by a
               shared standard for craft, communication, and accountability.
             </p>
@@ -42,20 +36,19 @@ export default function PeoplePreviewSection() {
           </div>
         </div>
 
-        <div className="grid gap-4 overflow-visible p-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="about-card-grid sm:grid-cols-2 lg:grid-cols-4">
           {preview.map((member) => (
-            <GlowHoverCard
+            <Link
               key={member.id}
-              as={Link}
               href={`/team/${member.id}`}
-              className="block rounded-2xl p-5"
+              className="about-card about-person"
             >
               <span className={teamCardAvatar}>
                 <span className={teamCardAvatarText}>{member.avatar}</span>
               </span>
               <p className={`${teamCardName} mt-4`}>{member.name}</p>
               <p className={teamCardRole}>{member.role}</p>
-            </GlowHoverCard>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,40 +1,31 @@
+import Link from "next/link";
 import Heading from "../../components/ui/Heading";
 import ArrowIcon from "../../components/ui/ArrowIcon";
-import GlowHoverCard from "../../components/ui/GlowHoverCard";
 import { CAPABILITIES } from "./about-data";
-import {
-  aboutCapabilityBody,
-  aboutCapabilityLink,
-  aboutCapabilityTitle,
-  aboutSectionEyebrow,
-  aboutSectionSubtitle,
-  aboutSectionTitle,
-} from "./about-styles";
 
 export default function CapabilitiesSection() {
   return (
-    <section className="relative border-t border-line py-16 sm:py-24 md:py-28">
-      <div className="mx-auto max-w-350 px-6 lg:px-10">
-        <div className="mb-12 max-w-2xl">
-          <p className={aboutSectionEyebrow}>What we do</p>
-          <Heading className={aboutSectionTitle}>Capabilities across the full product stack.</Heading>
-          <p className={aboutSectionSubtitle}>
+    <section className="about-section">
+      <div className="about-shell">
+        <div className="about-section-heading">
+          <p className="about-eyebrow">What we do</p>
+          <Heading className="about-section-title">Capabilities across the full product stack.</Heading>
+          <p className="about-section-copy">
             From first wireframe to production deployment — we cover the disciplines modern
             digital products need to win.
           </p>
         </div>
 
-        <div className="grid gap-5 overflow-visible p-1 sm:grid-cols-2">
+        <div className="about-card-grid sm:grid-cols-2">
           {CAPABILITIES.map((cap) => (
-            <GlowHoverCard key={cap.title} as={Link} href={cap.href} className="block rounded-3xl p-6 sm:p-7">
-              <h3 className={aboutCapabilityTitle}>{cap.title}</h3>
-              <p className={aboutCapabilityBody}>{cap.body}</p>
-              <span className={aboutCapabilityLink}>Explore service <ArrowIcon direction="right" /></span>
-            </GlowHoverCard>
+            <Link key={cap.title} href={cap.href} className="about-card about-capability">
+              <h3 className="about-card-title">{cap.title}</h3>
+              <p className="about-card-copy">{cap.body}</p>
+              <span className="about-card-link">Explore service <ArrowIcon direction="right" /></span>
+            </Link>
           ))}
         </div>
       </div>
     </section>
   );
 }
-import Link from "next/link";

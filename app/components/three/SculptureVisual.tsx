@@ -1,10 +1,10 @@
 "use client";
 
 import Button from "../ui/Button";
-import { Pause, Play } from "lucide-react";
+import { Cookie, Pause, Play, ScrollText, ShieldCheck } from "lucide-react";
 import ArrowIcon from "../ui/ArrowIcon";
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import type { SculptureVariant } from "./sculptures";
 import { useModelHover } from "./useModelOrbit";
 
@@ -16,6 +16,14 @@ const subscribe = (callback: () => void) => {
 };
 const getReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const sculptureLabels = {
+  security: "Three-dimensional layered shield with a silver lock, representing security at every layer",
+  team: "Eight interconnected sculptural modules around a shared core, representing the team working together",
+  about: "Three layered architectural arches on a shared foundation",
+  cookies: "Layered metal cookie with a bite and a privacy shield badge",
+  terms: "Layered agreement pages with a bronze seal",
+};
 
 export default function SculptureVisual({
   variant,
@@ -32,6 +40,7 @@ export default function SculptureVisual({
   const [available, setAvailable] = useState<boolean>();
   const { hoverPose, moveHover, resetHover } = useModelHover();
   const root = useRef<HTMLElement>(null);
+  const instructionsId = useId();
   const security = variant === "security";
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,7 +73,7 @@ export default function SculptureVisual({
         className="sculpture-stage"
         role={compact && available ? "group" : "img"}
         tabIndex={compact && available ? 0 : undefined}
-        aria-describedby={compact && available ? "team-model-instructions" : undefined}
+        aria-describedby={compact && available ? instructionsId : undefined}
         onPointerMove={compact && available ? moveHover : undefined}
         onPointerLeave={compact && available ? resetHover : undefined}
         onKeyDown={compact && available ? (event) => {
@@ -79,11 +88,7 @@ export default function SculptureVisual({
           }
           event.preventDefault();
         } : undefined}
-        aria-label={
-          security
-            ? "Three-dimensional layered shield with a silver lock, representing security at every layer"
-            : "Eight interconnected sculptural modules around a shared core, representing the team working together"
-        }
+        aria-label={sculptureLabels[variant]}
       >
         <svg
           className="sculpture-fallback"
@@ -109,6 +114,20 @@ export default function SculptureVisual({
               />
               <path d="M220 185v-15a20 20 0 0 1 40 0v15" strokeWidth="3" />
               <circle cx="240" cy="207" r="4" fill="currentColor" />
+            </g>
+          ) : variant === "cookies" ? (
+            <>
+              <Cookie x="133" y="90" size={192} strokeWidth={1} />
+              <ShieldCheck x="245" y="202" size={86} strokeWidth={1.4} fill="var(--story-studio-base)" />
+            </>
+          ) : variant === "terms" ? (
+            <ScrollText x="144" y="104" size={192} strokeWidth={1} />
+          ) : variant === "about" ? (
+            <g stroke="currentColor" strokeWidth="2">
+              <path d="M103 282V175a86 86 0 0 1 172 0v107M132 282V175a57 57 0 0 1 114 0v107" />
+              <path opacity=".65" d="M154 282V153a94 94 0 0 1 188 0v129M182 282V153a66 66 0 0 1 132 0v129" />
+              <path opacity=".45" d="M223 282V168a79 79 0 0 1 158 0v114M250 282V168a52 52 0 0 1 104 0v114" />
+              <path d="M83 282h314l22 23H61z" />
             </g>
           ) : (
             <g stroke="currentColor">
@@ -154,7 +173,7 @@ export default function SculptureVisual({
         ) : null}
       </div>
       {compact ? (
-        <figcaption className="sr-only" id="team-model-instructions">Drag the model or use the left and right arrow keys to rotate it. Press Home to reset the view.</figcaption>
+        <figcaption className="sr-only" id={instructionsId}>Drag the model or use the left and right arrow keys to rotate it. Press Home to reset the view.</figcaption>
       ) : <>
       <figcaption className="sculpture-caption">
         <div>
