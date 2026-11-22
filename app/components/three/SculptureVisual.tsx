@@ -6,6 +6,7 @@ import ArrowIcon from "../ui/ArrowIcon";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { SculptureVariant } from "./sculptures";
+import { useModelHover } from "./useModelOrbit";
 
 const Scene = dynamic(() => import("./SculptureScene"), { ssr: false });
 const subscribe = (callback: () => void) => {
@@ -29,6 +30,7 @@ export default function SculptureVisual({
   const [reset, setReset] = useState(0);
   const [load, setLoad] = useState(false);
   const [available, setAvailable] = useState<boolean>();
+  const { hoverPose, moveHover, resetHover } = useModelHover();
   const root = useRef<HTMLElement>(null);
   const security = variant === "security";
   useEffect(() => {
@@ -63,6 +65,8 @@ export default function SculptureVisual({
         role={compact && available ? "group" : "img"}
         tabIndex={compact && available ? 0 : undefined}
         aria-describedby={compact && available ? "team-model-instructions" : undefined}
+        onPointerMove={compact && available ? moveHover : undefined}
+        onPointerLeave={compact && available ? resetHover : undefined}
         onKeyDown={compact && available ? (event) => {
           if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
             const direction = event.key === "ArrowLeft" ? -1 : 1;
@@ -144,6 +148,7 @@ export default function SculptureVisual({
             paused={compact || paused || reduced}
             angle={angle}
             reset={reset}
+            hoverPose={hoverPose}
             onAvailabilityChange={setAvailable}
           />
         ) : null}

@@ -6,12 +6,14 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { useTheme } from "../layout/ThemeProvider";
 import { buildSculpture, type SculptureVariant } from "./sculptures";
+import type { ModelPose } from "./useModelOrbit";
 
 type Props = {
   variant: SculptureVariant;
   paused: boolean;
   angle: number;
   reset: number;
+  hoverPose: ModelPose;
   onAvailabilityChange: (available: boolean) => void;
 };
 type Settings = {
@@ -19,6 +21,7 @@ type Settings = {
   paused: boolean;
   angle: number;
   reset: number;
+  hoverPose: ModelPose;
 };
 
 export default function SculptureScene({
@@ -26,12 +29,13 @@ export default function SculptureScene({
   paused,
   angle,
   reset,
+  hoverPose,
   onAvailabilityChange,
 }: Props) {
   const host = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const apply = useRef<((settings: Settings) => void) | null>(null);
-  const latest = useRef<Settings>({ theme, paused, angle, reset });
+  const latest = useRef<Settings>({ theme, paused, angle, reset, hoverPose });
 
   useEffect(() => {
     const element = host.current;
@@ -87,6 +91,7 @@ export default function SculptureScene({
     let lastTime = 0;
     let elapsed = 0;
     let reportedReady = false;
+    const hover = { yaw: 0, pitch: 0 };
     const positionCamera = () => {
       camera.position.set(
         Math.sin(rotation) * 7.2,
@@ -98,11 +103,16 @@ export default function SculptureScene({
     const render = (time: number) => {
       frame = 0;
       if (disposed || lost || !visible || document.hidden) return;
-      if (moving) elapsed += lastTime ? Math.min(time - lastTime, 50) : 0;
+      const delta = lastTime ? Math.min(time - lastTime, 50) / 1000 : 1 / 60;
+      if (moving && lastTime) elapsed += delta * 1000;
       lastTime = time;
+      const target = latest.current.hoverPose;
+      hover.yaw = THREE.MathUtils.damp(hover.yaw, target.yaw, 8, delta);
+      hover.pitch = THREE.MathUtils.damp(hover.pitch, target.pitch, 8, delta);
       model.group.position.y = Math.sin(elapsed * 0.00065) * 0.06;
+      model.group.rotation.x = baseRotation.x + hover.pitch;
       model.group.rotation.y =
-        baseRotation.y + Math.sin(elapsed * 0.0003) * 0.09;
+        baseRotation.y + Math.sin(elapsed * 0.0003) * 0.09 + hover.yaw;
       renderer.render(scene, camera);
       element.dataset.ready = "true";
       element.dataset.motion = moving ? "playing" : "paused";
@@ -110,7 +120,9 @@ export default function SculptureScene({
         reportedReady = true;
         onAvailabilityChange(true);
       }
-      if (moving) frame = requestAnimationFrame(render);
+      if (moving || Math.abs(hover.yaw - target.yaw) + Math.abs(hover.pitch - target.pitch) > 0.001) {
+        frame = requestAnimationFrame(render);
+      }
     };
     const invalidate = () => {
       if (!frame && visible && !document.hidden && !lost && !disposed)
@@ -201,9 +213,9 @@ export default function SculptureScene({
   }, [variant, onAvailabilityChange]);
 
   useEffect(() => {
-    latest.current = { theme, paused, angle, reset };
+    latest.current = { theme, paused, angle, reset, hoverPose };
     apply.current?.(latest.current);
-  }, [theme, paused, angle, reset]);
+  }, [theme, paused, angle, reset, hoverPose]);
 
   return <div ref={host} className="sculpture-canvas" aria-hidden="true" />;
 }
