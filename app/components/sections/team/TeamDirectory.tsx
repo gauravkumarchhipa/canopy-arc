@@ -9,7 +9,7 @@ import Link from "next/link";
 
 type Sort = "expertise" | "name" | "reverse";
 
-type Member = Pick<TeamGridContent["members"][number], "id" | "name" | "group" | "avatar" | "role" | "tags"> & { position: number };
+type Member = Pick<TeamGridContent["members"][number], "id" | "name" | "group" | "avatar" | "role" | "tags">;
 
 type Props = { filters: string[]; roster: Member[]; heading: ReactNode };
 
@@ -36,7 +36,7 @@ export default function TeamDirectory({ filters, roster, heading }: Props) {
       <div className="team-directory-heading">
         {heading}
         <p className="team-label team-directory-count" aria-live="polite">
-          {String(members.length).padStart(2, "0")} {members.length === 1 ? "profile" : "profiles"} / {active}
+          {members.length} {members.length === 1 ? "profile" : "profiles"}
         </p>
       </div>
       <div className="team-directory-tools">
@@ -47,7 +47,7 @@ export default function TeamDirectory({ filters, roster, heading }: Props) {
         >
           {filters.map((filter) => (
             <Button variant="unstyled"
-              className="service-filter-chip"
+              className="team-filter"
               type="button"
               key={filter}
               aria-pressed={active === filter}
@@ -79,23 +79,9 @@ export default function TeamDirectory({ filters, roster, heading }: Props) {
             data-motion="card"
             data-member-name={member.name}
           >
-            <div className="profile-art" aria-hidden="true">
-              <div className="profile-art-meta">
-                <span>{member.group}</span>
-                <span>
-                  {String(member.position).padStart(2, "0")}
-                </span>
-              </div>
-              <svg viewBox="0 0 300 230" preserveAspectRatio="xMidYMid slice" fill="none">
-                {Array.from({ length: 9 }, (_, index) => (
-                  <path
-                    key={index}
-                    d={`M${12 + index * 16} 245 Q${45 + index * 18} ${-120 + index * 9} ${300 + index * 12} 105`}
-                    stroke="currentColor"
-                  />
-                ))}
-              </svg>
-              <span className="profile-monogram">{member.avatar}</span>
+            <div className="profile-art">
+              <span className="profile-monogram" aria-hidden="true">{member.avatar}</span>
+              <span className="profile-discipline">{member.group}</span>
             </div>
             <div className="profile-body">
               <h3>{member.name}</h3>
@@ -106,7 +92,7 @@ export default function TeamDirectory({ filters, roster, heading }: Props) {
                 ))}
               </div>
               <span className="profile-link">
-                View profile <span aria-hidden><ArrowIcon /></span>
+                View profile <span aria-hidden="true"><ArrowIcon /></span>
               </span>
             </div>
           </Link>

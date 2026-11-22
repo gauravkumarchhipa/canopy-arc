@@ -4,14 +4,10 @@ import Heading from "../../ui/Heading";
 import { teamGrid } from "../../../content/pages/team/grid";
 import TeamDirectory from "./TeamDirectory";
 
-const roster = teamGrid.members.map(({ id, name, group, avatar, role, tags }, index) => ({
-  id, name, group, avatar, role, tags, position: index + 1,
-}));
-
 export default function TeamGrid() {
   return (
     <section id="team-directory" className="team-shell team-directory" aria-labelledby="team-directory-title">
-      <TeamDirectory filters={teamGrid.filters} roster={roster} heading={
+      <TeamDirectory filters={teamGrid.filters} roster={teamGrid.members} heading={
         <div>
           <p className="team-label">The People</p>
           <Heading id="team-directory-title">Talent, with a shared purpose.</Heading>
