@@ -37,6 +37,7 @@
 .sculpture-canvas[data-ready] canvas {
   opacity: 1;
 }
+.sculpture-fallback[data-loading],
 .sculpture-stage:has(.sculpture-canvas[data-ready]) .sculpture-fallback {
   visibility: hidden;
 }

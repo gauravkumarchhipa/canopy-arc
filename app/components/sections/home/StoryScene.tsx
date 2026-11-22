@@ -3,6 +3,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, type RefObject } from "react";
 import * as THREE from "three";
+import { studioFinishes } from "../../three/studio-finishes";
 import type { SceneMotion } from "./StoryExperience";
 import { makeStrands } from "./story-geometry";
 import { storyCamera } from "./story-ribbon";
@@ -30,7 +31,7 @@ const networkGlass = {
 const glassColor = new THREE.Color("#d6e1e1");
 const compactGlassColor = new THREE.Color("#a9b5b8");
 const protectionMetal = new THREE.Color("#cf9c64");
-const markMetal = new THREE.Color("#c1b6a4");
+const markMetal = new THREE.Color(studioFinishes.light.metal);
 
 function makeContactShadow() {
   const size = 64;

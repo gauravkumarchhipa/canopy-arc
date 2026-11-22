@@ -1,12 +1,16 @@
 import * as THREE from "three";
 import { buildCardModel, type ModelBuilder, type ModelParts, type Position } from "../../three/card-model-geometry";
+import { studioFinishes } from "../../three/studio-finishes";
+
+const lightGlass = new THREE.Color(studioFinishes.light.glass);
+const darkGlass = new THREE.Color(studioFinishes.dark.glass);
 
 function glassPanel(model: ModelParts, parent: THREE.Group, width: number, height: number, position: Position) {
   const panel = new THREE.Group();
   panel.position.set(...position);
   parent.add(panel);
   const face = model.glass.clone();
-  face.opacity = 0.55;
+  face.opacity = 0.64;
   face.depthWrite = false;
   model.box([width, height, 0.12], [0, 0, 0], face, 0.1, panel);
   return panel;
@@ -38,13 +42,13 @@ function sahai(model: ModelParts) {
     glassPanel(model, group, 2.23, 2.05, [x, y, z]);
   }
   const pearl = glass.clone();
-  pearl.color.set("#cbd6dc");
+  pearl.color.set("#a9b5b8");
   pearl.opacity = 0.54;
   pearl.depthWrite = false;
   add(new THREE.SphereGeometry(0.58, 40, 28), pearl, [0.27, 0.17, 0.63]);
   const glow = model.glow.clone();
-  glow.color.set("#d8efff");
-  glow.emissive.set("#9ac4dd");
+  glow.color.set("#d6e1e1");
+  glow.emissive.set("#9aafb4");
   for (let index = 1; index < 18; index++) {
     const latitude = index * Math.PI / 18;
     const radius = 0.6 * Math.sin(latitude);
@@ -171,17 +175,22 @@ export function buildWorkCardModel(id: string) {
   const builder = builders.get(id);
   if (!builder) return null;
   const model = buildCardModel((model) => {
-    model.metal.color.set("#d7c6b4");
-    model.glass.color.set("#edddcb");
+    model.metal.color.set(studioFinishes.light.metal);
+    model.metal.roughness = 0.32;
+    model.glass.color.copy(lightGlass);
+    model.darkMetal.color.set(studioFinishes.light.ribbon);
+    model.glow.color.set(studioFinishes.light.rim);
+    model.glow.emissive.set(studioFinishes.light.bronze);
+    model.glow.emissiveIntensity = 0.52;
     builder(model);
   });
-  const glass = new Map<THREE.MeshPhysicalMaterial, number>();
+  const glass = new Map<THREE.MeshPhysicalMaterial, { opacity: number; studioTint: boolean }>();
   model.rig.traverse((object) => {
     if (!(object instanceof THREE.Mesh)) return;
     const materials = Array.isArray(object.material) ? object.material : [object.material];
     for (const material of materials) {
       if (material instanceof THREE.MeshPhysicalMaterial && material.transparent) {
-        glass.set(material, material.opacity);
+        glass.set(material, { opacity: material.opacity, studioTint: material.color.equals(lightGlass) });
       }
     }
   });
@@ -192,10 +201,11 @@ export function buildWorkCardModel(id: string) {
     setDarkTheme(dark: boolean) {
       if (darkTheme === dark) return;
       darkTheme = dark;
-      for (const [material, opacity] of glass) {
+      for (const [material, { opacity, studioTint }] of glass) {
         material.opacity = dark ? Math.min(0.94, opacity + 0.15) : opacity;
-        material.emissive.set(dark ? "#95a9bc" : "#000000");
-        material.emissiveIntensity = dark ? 0.23 : 0;
+        if (studioTint) material.color.copy(dark ? darkGlass : lightGlass);
+        material.emissive.set(dark ? studioFinishes.dark.rim : "#000000");
+        material.emissiveIntensity = dark ? 0.18 : 0;
       }
     },
   };

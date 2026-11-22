@@ -4,24 +4,15 @@ body:has(.services-overview) {
 }
 
 .services-overview {
-  --services-paper: #f7f5f3;
-  --services-ink: #242423;
-  --services-muted: #595650;
-  --services-rule: rgb(36 36 35 / 13%);
-  --services-card: #ece8e3;
-  --services-card-hover: #e5dfd7;
+  --services-paper: var(--studio-page-paper);
+  --services-ink: var(--studio-page-ink);
+  --services-muted: var(--studio-page-muted);
+  --services-rule: var(--studio-page-rule);
+  --services-card: var(--studio-page-card);
+  --services-card-hover: var(--studio-page-card-hover);
   --services-gutter: clamp(22px, 6.5vw, 124px);
   color: var(--services-ink);
   background: var(--services-paper);
-}
-
-[data-theme="dark"] .services-overview {
-  --services-paper: #181a19;
-  --services-ink: #f5f0e8;
-  --services-muted: #c3bcb2;
-  --services-rule: rgb(245 240 232 / 17%);
-  --services-card: #252825;
-  --services-card-hover: #30332f;
 }
 
 #main-content:has(> .services-overview) + .site-footer {

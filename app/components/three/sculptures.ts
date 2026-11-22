@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
+import { studioFinishes } from "./studio-finishes";
 
 export type SculptureVariant = "security" | "team";
 
@@ -178,6 +179,18 @@ export function buildSculpture(variant: SculptureVariant) {
   }
 
   const setTheme = (dark: boolean) => {
+    if (variant === "team") {
+      const finish = dark ? studioFinishes.dark : studioFinishes.light;
+      silver.color.set(finish.metal);
+      ceramic.color.set(finish.glass);
+      graphite.color.set(dark ? finish.rim : "#55483b");
+      line.color.set(finish.ribbon);
+      halo.color.set(finish.bronze);
+      halo.emissive.set(finish.bronze);
+      halo.emissiveIntensity = dark ? 0.42 : 0.16;
+      return;
+    }
+
     silver.color.set(dark ? "#c6c2b8" : "#a9a69c");
     ceramic.color.set(dark ? "#383832" : "#e7e4dc");
     graphite.color.set(dark ? "#89867d" : "#35352f");

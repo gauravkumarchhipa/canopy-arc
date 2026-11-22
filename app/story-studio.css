@@ -4,6 +4,12 @@
   --story-studio-muted: #514a44;
   --story-studio-image: url("/story/studio-ivory.webp");
   --story-studio-opacity: 0.76;
+  --studio-page-paper: #f7f5f3;
+  --studio-page-ink: #242423;
+  --studio-page-muted: #595650;
+  --studio-page-rule: rgb(36 36 35 / 13%);
+  --studio-page-card: #ece8e3;
+  --studio-page-card-hover: #e5dfd7;
 }
 
 :root[data-theme="dark"] {
@@ -15,6 +21,12 @@
   --story-studio-floor: 14%;
   --story-studio-filter: saturate(0.35);
   --story-studio-fade: linear-gradient(#000 85%, transparent);
+  --studio-page-paper: #181a19;
+  --studio-page-ink: #f5f0e8;
+  --studio-page-muted: #c3bcb2;
+  --studio-page-rule: rgb(245 240 232 / 17%);
+  --studio-page-card: #252825;
+  --studio-page-card-hover: #30332f;
 }
 
 .story-studio {

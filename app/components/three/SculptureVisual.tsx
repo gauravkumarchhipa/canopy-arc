@@ -28,7 +28,7 @@ export default function SculptureVisual({
   const [angle, setAngle] = useState(0);
   const [reset, setReset] = useState(0);
   const [load, setLoad] = useState(false);
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState<boolean>();
   const root = useRef<HTMLElement>(null);
   const security = variant === "security";
   useEffect(() => {
@@ -83,6 +83,7 @@ export default function SculptureVisual({
       >
         <svg
           className="sculpture-fallback"
+          data-loading={compact && available === undefined ? "" : undefined}
           viewBox="0 0 480 400"
           aria-hidden="true"
           fill="none"

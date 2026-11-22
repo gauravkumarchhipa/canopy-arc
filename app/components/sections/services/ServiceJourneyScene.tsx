@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import type { ModelPose } from "../../three/useModelOrbit";
+import { studioFinishes } from "../../three/studio-finishes";
 
 type Props = { dark: boolean; pose: ModelPose; dragging: boolean; onReady: () => void; onFailure: () => void };
 
@@ -23,25 +24,19 @@ const panelHeight = 1.46;
 
 const journeyPalettes = {
   light: {
+    ...studioFinishes.light,
     ink: "#171410",
     caption: "#29241e",
-    glass: "#aba08f",
     glassOpacity: 0.64,
-    rim: "#f1e7d9",
-    ribbon: "#92938d",
-    bronze: "#a97a4d",
     ribbonLight: 0.035,
     bronzeLight: 0.10,
     glow: 0.48,
   },
   dark: {
+    ...studioFinishes.dark,
     ink: "#fffdf8",
     caption: "#f9f3e8",
-    glass: "#302d28",
     glassOpacity: 0.86,
-    rim: "#ded3bf",
-    ribbon: "#d0c7b8",
-    bronze: "#cf9c64",
     ribbonLight: 0.19,
     bronzeLight: 0.25,
     glow: 0.62,

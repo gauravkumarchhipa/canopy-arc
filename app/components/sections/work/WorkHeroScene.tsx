@@ -7,6 +7,7 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { ParametricGeometry } from "three/addons/geometries/ParametricGeometry.js";
 import type { ModelPose } from "../../three/useModelOrbit";
+import { studioFinishes } from "../../three/studio-finishes";
 
 type Props = {
   dark: boolean;
@@ -59,6 +60,7 @@ function makeChart() {
 
 function Model({ dark, pose, dragging, onReady, onFailure }: Props) {
   const { gl, get, invalidate } = useThree();
+  const finish = dark ? studioFinishes.dark : studioFinishes.light;
   const model = useRef<THREE.Group>(null);
   const drawn = useRef(false);
   const panel = useMemo(() => new RoundedBoxGeometry(panelWidth, panelHeight, 0.12, 4, 0.057), []);
@@ -66,7 +68,7 @@ function Model({ dark, pose, dragging, onReady, onFailure }: Props) {
   const chart = useMemo(() => makeChart(), []);
   const ribbons = useMemo(() => makeRibbons(), []);
 
-  useEffect(() => { invalidate(); }, [dragging, invalidate, pose]);
+  useEffect(() => { invalidate(); }, [dark, dragging, invalidate, pose]);
 
   useEffect(() => {
     const { scene } = get();
@@ -117,45 +119,45 @@ function Model({ dark, pose, dragging, onReady, onFailure }: Props) {
 
   return (
     <>
-      <ambientLight color="#fff1e5" intensity={0.73} />
-      <directionalLight position={[-3, 5, 4]} color="#fff9e9" intensity={2.5} />
+      <ambientLight color="#fff1e5" intensity={0.48} />
+      <directionalLight position={[-3, 5, 4]} color="#fff9e9" intensity={2.0} />
       <directionalLight position={[4, 2, -3]} color="#e3eaff" intensity={2.1} />
-      <pointLight position={[1.1, -1.8, 2.6]} color="#ffca8f" intensity={10} distance={7} />
+      <pointLight position={[1.1, -1.8, 2.6]} color="#ffca8f" intensity={6} distance={7} />
       <group ref={model} rotation-order="YXZ">
         {ribbons.map(({ surface, edge }, index) => (
           <group key={surface.uuid}>
             <mesh geometry={surface}>
-              <meshPhysicalMaterial side={THREE.DoubleSide} color={dark ? "#746a5d" : "#d1c9bc"}
-                metalness={0.64} roughness={0.26} clearcoat={0.75} />
+              <meshPhysicalMaterial side={THREE.DoubleSide} color={index === 0 ? finish.ribbon : finish.metal}
+                metalness={0.7} roughness={0.32} clearcoat={0.62} />
             </mesh>
             <mesh geometry={edge}>
-              <meshBasicMaterial color={index === 0 ? "#fff4e3" : "#ffc68b"} toneMapped={false} />
+              <meshBasicMaterial color={index === 0 ? finish.rim : finish.bronze} toneMapped={false} />
             </mesh>
           </group>
         ))}
         {panels.map(({ position, scale }, index) => (
           <group key={index} position={position} scale={scale} rotation={[-0.18, -0.26, 0.15]}>
             <mesh geometry={frame}>
-              <meshPhysicalMaterial color={dark ? "#a9a9a0" : "#f4e4cf"} metalness={0.65} roughness={0.19} transparent opacity={0.71} />
+              <meshPhysicalMaterial color={finish.metal} metalness={0.72} roughness={0.26} transparent opacity={0.56} />
             </mesh>
             <mesh geometry={panel} position-z={0.028}>
-              <meshPhysicalMaterial color={dark ? "#636968" : "#c3b8aa"} metalness={0.30}
-                roughness={0.18} clearcoat={1} transparent opacity={dark ? 0.62 : 0.46} />
+              <meshPhysicalMaterial color={finish.glass} metalness={0.38}
+                roughness={0.27} clearcoat={0.78} transparent opacity={dark ? 0.82 : 0.68} />
             </mesh>
             {[-0.16, 0, 0.16].map((x) => (
               <mesh key={x} position={[0.98 + x, 0.75, 0.095]}>
                 <sphereGeometry args={[0.039, 12, 8]} />
-                <meshStandardMaterial color={dark ? "#fbdec2" : "#f9f4e8"} roughness={0.34} />
+                <meshStandardMaterial color={finish.rim} roughness={0.34} />
               </mesh>
             ))}
             {index === 2 && (
               <>
                 <mesh position={[-0.22, 0.49, 0.103]} rotation-z={Math.PI / 2}>
                   <capsuleGeometry args={[0.033, 1.38, 5, 12]} />
-                  <meshStandardMaterial color="#fff2db" emissive="#aa8051" emissiveIntensity={0.27} />
+                  <meshStandardMaterial color={finish.rim} roughness={0.39} />
                 </mesh>
                 <mesh geometry={chart} position={[0, -0.08, 0.09]}>
-                  <meshPhysicalMaterial color="#fff4e6" roughness={0.23} metalness={0.29} />
+                  <meshPhysicalMaterial color={finish.rim} roughness={0.26} metalness={0.34} />
                 </mesh>
               </>
             )}
