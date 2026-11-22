@@ -267,15 +267,9 @@
   min-height: clamp(215px, 20vw, 300px);
   align-items: stretch;
   overflow: clip;
-  border: 1px solid var(--work-rule);
   border-radius: 13px;
   padding: clamp(15px, 2.45vw, 35px);
   background: linear-gradient(108deg, var(--work-paper) 20%, var(--work-card) 52%, var(--work-art-end));
-  transition: border-color 210ms ease;
-}
-
-.work-overview-card:is(:hover, :focus-within) {
-  border-color: color-mix(in srgb, var(--work-text) 32%, transparent);
 }
 
 .work-overview-card-art {

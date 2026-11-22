@@ -283,16 +283,14 @@
   min-width: 0;
   flex-direction: column;
   overflow: clip;
-  border: 1px solid var(--team-rule);
   border-radius: 13px;
   color: var(--team-ink);
   background: color-mix(in srgb, var(--team-paper) 75%, var(--team-tile));
   text-decoration: none;
-  transition: border-color 220ms ease, translate 220ms ease;
+  transition: translate 220ms ease;
 }
 
 .profile-card:is(:hover, :focus-visible) {
-  border-color: var(--team-medallion-edge);
   translate: 0 -3px;
 }
 

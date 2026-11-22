@@ -328,17 +328,15 @@ body:has(.services-overview) {
   flex-direction: column;
   gap: 10px;
   overflow: clip;
-  border: 1px solid var(--services-rule);
   border-radius: 9px;
   padding: var(--card-padding);
   color: var(--services-ink);
   background: var(--services-card);
   text-decoration: none;
-  transition: background-color 220ms ease, border-color 220ms ease;
+  transition: background-color 220ms ease;
 }
 
 .services-overview-card:is(:hover, :focus-visible, [data-focused]) {
-  border-color: color-mix(in srgb, var(--services-ink) 32%, transparent);
   background: var(--services-card-hover);
 }
 
