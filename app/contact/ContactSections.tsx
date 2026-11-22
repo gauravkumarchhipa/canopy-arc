@@ -1,6 +1,6 @@
 import Heading from "../components/ui/Heading";
 import StudioHero from "../components/layout/StudioHero";
-import ContactWave from "../components/sections/contact/ContactWave";
+import ContactHeroVisual from "../components/sections/contact/ContactHeroVisual";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import { IconClock, IconLocation, IconMail, IconPhone } from "../components/layout/footer/FooterIcons";
@@ -9,17 +9,21 @@ import type { FooterContact } from "../lib/footer/types";
 export function ContactHero() {
   return (
     <StudioHero className="contact-intro" aria-labelledby="contact-title">
-      <ContactWave />
-      <div className="contact-shell">
-        <p className="contact-eyebrow">Contact Us</p>
-        <Heading level={1} id="contact-title">
-          Let&apos;s build something{" "}
-          <span>amazing</span> together.
-        </Heading>
-        <p className="contact-summary">
-          Share a quick overview of your project. We&apos;ll respond with next
-          steps, timeline, and the right engagement model.
-        </p>
+      <div className="contact-shell contact-intro-inner">
+        <div className="contact-intro-copy">
+          <p className="contact-eyebrow">Contact Us</p>
+          <Heading level={1} id="contact-title">
+            Let&apos;s build something <span>amazing together.</span>
+          </Heading>
+          <p className="contact-summary">
+            Share a quick overview of your project. We&apos;ll respond with next
+            steps, timeline, and the right engagement model.
+          </p>
+          <Button as="a" variant="unstyled" className="contact-submit contact-start" href="#contact-inquiry">
+            Start an inquiry <span aria-hidden="true"><ArrowIcon direction="down" /></span>
+          </Button>
+        </div>
+        <ContactHeroVisual />
       </div>
     </StudioHero>
   );

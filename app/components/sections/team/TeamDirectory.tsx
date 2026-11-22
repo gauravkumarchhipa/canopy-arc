@@ -1,9 +1,9 @@
 "use client";
 
-import type { ReactNode } from "react";
 import type { TeamGridContent } from "../../../content/pages/team/grid";
 import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
+import Heading from "../../ui/Heading";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 
@@ -11,9 +11,9 @@ type Sort = "expertise" | "name" | "reverse";
 
 type Member = Pick<TeamGridContent["members"][number], "id" | "name" | "group" | "avatar" | "role" | "tags">;
 
-type Props = { filters: string[]; roster: Member[]; heading: ReactNode };
+type Props = { filters: string[]; roster: Member[] };
 
-export default function TeamDirectory({ filters, roster, heading }: Props) {
+export default function TeamDirectory({ filters, roster }: Props) {
   const [active, setActive] = useState(filters[0]);
   const [sort, setSort] = useState<Sort>("expertise");
   const members = useMemo(() => {
@@ -34,7 +34,11 @@ export default function TeamDirectory({ filters, roster, heading }: Props) {
   return (
     <>
       <div className="team-directory-heading">
-        {heading}
+        <div>
+          <p className="team-label">The People</p>
+          <Heading id="team-directory-title">Talent, with a shared purpose.</Heading>
+          <p className="team-directory-summary">A diverse team of strategists, engineers, designers and problem-solvers who bring ideas to life.</p>
+        </div>
         <p className="team-label team-directory-count" aria-live="polite">
           {members.length} {members.length === 1 ? "profile" : "profiles"}
         </p>

@@ -19,7 +19,7 @@ export default async function ContactPage() {
       <ContactHero />
 
       <div className="contact-shell">
-        <div className="contact-layout">
+        <div className="contact-layout" id="contact-inquiry">
           {email && <ContactForm email={email} />}
           <ContactSidebar contact={contact} email={email} />
         </div>

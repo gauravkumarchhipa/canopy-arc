@@ -2,6 +2,7 @@
 
 import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
+import Heading from "../../ui/Heading";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -20,7 +21,7 @@ export default function ContactForm({ email }: { email: string }) {
       method="post"
       encType="text/plain"
       className="contact-panel contact-form"
-      aria-label="Project inquiry"
+      aria-labelledby="contact-form-title"
       onSubmit={(e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
@@ -38,6 +39,7 @@ export default function ContactForm({ email }: { email: string }) {
         setDraftPrepared(true);
       }}
     >
+      <Heading id="contact-form-title">Project inquiry</Heading>
       <div className="contact-form-fields">
         <label>
           <span>Name</span>
