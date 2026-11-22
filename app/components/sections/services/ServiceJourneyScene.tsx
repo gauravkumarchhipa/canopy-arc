@@ -27,7 +27,7 @@ const journeyPalettes = {
     caption: "#29241e",
     glass: "#aba08f",
     glassOpacity: 0.64,
-    rim: "#746858",
+    rim: "#f1e7d9",
     ribbon: "#92938d",
     bronze: "#a97a4d",
     ribbonLight: 0.035,
