@@ -2,6 +2,7 @@
 
 import Heading from "../../ui/Heading";
 import Button from "../../ui/Button";
+import Dropdown from "../../ui/Dropdown";
 import { Check } from "lucide-react";
 import { useState } from "react";
 import { z } from "zod";
@@ -85,12 +86,12 @@ export default function CareersApplicationForm({ vacancies, selectedRoleId, role
 
       <label className="relative z-1 mt-6 block">
         <span className={glowHoverCardLabel}>Role</span>
-        <select
+        <Dropdown
           name="role"
           required
           value={role}
           onChange={(e) => onRoleChange(e.target.value)}
-          className={`${glowHoverCardInput} cursor-pointer appearance-none`}
+          className="mt-2 w-full"
         >
           <option value="" disabled>
             Select an open role
@@ -100,7 +101,7 @@ export default function CareersApplicationForm({ vacancies, selectedRoleId, role
               {v.title}
             </option>
           ))}
-        </select>
+        </Dropdown>
       </label>
 
       <label className="relative z-1 mt-6 block">

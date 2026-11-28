@@ -1,10 +1,11 @@
-﻿import { interfaceChart, interfaceChartSurface, interfaceDots, interfaceHighlight, interfaceLines, interfacePoint, interfaceSurface, isGlass, junctionPoint, protectionShield, shieldOutline, storyCamera, storyInterfaces, strandCount, strandPoint } from "./story-ribbon";
+﻿import { interfaceChart, interfaceChartSurface, interfaceDots, interfaceHighlight, interfaceLines, interfacePoint, interfaceSurface, isGlass, junctionPoint, storyCamera, storyInterfaces, strandCount, strandPoint } from "./story-ribbon";
+
+import { protectionDetails } from "./story-protection-details";
 
 export default function StoryStill({ pose, instance = "stage" }: { pose: number; instance?: string }) {
   const shot = storyCamera[pose];
   const metal = `story-metal-${instance}-${pose}`;
   const shadow = `story-shadow-${instance}-${pose}`;
-  const rim = `story-optics-${instance}-${pose}`;
   const c = Math.cos(shot.azimuth);
   const s = Math.sin(shot.azimuth);
   const elevation = Math.atan(shot.elevation);
@@ -26,19 +27,10 @@ export default function StoryStill({ pose, instance = "stage" }: { pose: number;
     }).join(" L");
     return { strand, depth, path: "M" + path };
   }).sort((a, b) => a.depth - b.depth);
-  const strokeWidth = pose === 0 ? 3.8 : fine ? 1.15 : 2;
-  const shieldPoints = () => {
-    const { center, scale, yaw } = protectionShield;
-    return shieldOutline.map(([x, y]) => {
-      const across = x * scale[0];
-      const up = y * scale[1];
-      return project([center[0] + across * Math.cos(yaw), center[1] + up, center[2] - across * Math.sin(yaw)])
-        .slice(0, 2).map((value) => value.toFixed(1)).join(",");
-    }).join(" ");
-  };
+  const strokeWidth = pose === 0 ? 3.8 : pose === 4 ? 1.7 : fine ? 1.15 : 2;
 
   return (
-    <svg className="story-still" viewBox="0 0 640 460" aria-hidden="true" focusable="false">
+    <svg className={pose === 4 ? "story-still story-still--protection" : "story-still"} viewBox="0 0 640 460" aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id={metal} x1="6%" x2="86%" y1="87%" y2="7%">
           <stop offset="0" stopColor="var(--still-link-base, var(--still-dark))" />
@@ -50,12 +42,6 @@ export default function StoryStill({ pose, instance = "stage" }: { pose: number;
           <stop offset="0" stopColor="var(--still-dark)" stopOpacity="0.32" />
           <stop offset="1" stopColor="var(--still-dark)" stopOpacity="0" />
         </radialGradient>
-        {pose === 4 && (
-          <linearGradient id={rim} x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0" stopColor="var(--still-shield-light)" />
-            <stop offset="1" stopColor="var(--still-shield-shade)" />
-          </linearGradient>
-        )}
         {paths.map(({ strand, path }) => (
           <path key={strand} id={`${metal}-strand-${strand}`} d={path} />
         ))}
@@ -90,21 +76,33 @@ export default function StoryStill({ pose, instance = "stage" }: { pose: number;
         );
       })}
       <g fill="none" strokeLinecap="round" strokeLinejoin="round">
-        {paths.map(({ strand }) => (
-          <g key={strand}>
-            <use href={`#${metal}-strand-${strand}`} stroke="var(--still-dark)" strokeWidth={strokeWidth + 1} opacity="0.5" />
-            <use href={`#${metal}-strand-${strand}`} stroke={isGlass(strand) ? "var(--still-link-glass, var(--still-glass))" : `url(#${metal})`}
-              strokeWidth={strokeWidth} opacity={strand % 5 === 0 ? 0.7 : 1} />
-          </g>
-        ))}
+        {paths.map(({ strand }) => {
+          const width = pose === 4 && strand < 4 ? strokeWidth * 1.4 : strokeWidth;
+          return (
+            <g key={strand}>
+              <use href={`#${metal}-strand-${strand}`} stroke="var(--still-dark)" strokeWidth={width + 1} opacity="0.5" />
+              <use href={`#${metal}-strand-${strand}`} stroke={isGlass(strand) ? "var(--still-link-glass, var(--still-glass))" : `url(#${metal})`}
+                strokeWidth={width} opacity={strand % 5 === 0 ? 0.7 : 1} />
+            </g>
+          );
+        })}
       </g>
+      {pose === 4 && (
+        <g strokeLinecap="round" data-protection-details="">
+          {protectionDetails.map(({ start, end, radius, finish }, index) => {
+            const [x1, y1, close] = project(start);
+            const [x2, y2, far] = project(end);
+            return (
+              <line key={index} x1={x1} y1={y1} x2={x2} y2={y2}
+                stroke={`var(--still-detail-${finish})`} strokeWidth={radius * (close + far)} />
+            );
+          })}
+        </g>
+      )}
       {(pose === 3 || pose === 4) && Array.from({ length: 20 }, (_, index) => {
-        const [x, y] = project(junctionPoint(index, pose === 4 ? 1 : 0));
+        const [x, y] = project(junctionPoint(index, pose === 4));
         return <circle key={index} cx={x} cy={y} r={index % 3 + 2.5} fill="var(--still-node, var(--still-light))" />;
       })}
-      {pose === 4 && (
-        <polygon points={shieldPoints()} fill={`url(#${rim})`} opacity="var(--still-shield-opacity)" />
-      )}
     </svg>
   );
 }

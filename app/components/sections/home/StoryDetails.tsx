@@ -3,7 +3,8 @@ import { useEffect, useMemo, useRef, type RefObject } from "react";
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import type { SceneMotion } from "./StoryExperience";
-import { interfaceChart, interfaceChartSurface, interfaceDots, interfaceHighlight, interfaceLines, interfaceSurface, interfaceTilt, junctionRoutes, protectionShield, shieldOutline, storyInterfaces, strandPoint } from "./story-ribbon";
+import ProtectionDetails from "./ProtectionDetails";
+import { interfaceChart, interfaceChartSurface, interfaceDots, interfaceHighlight, interfaceLines, interfaceSurface, interfaceTilt, junctionPoint, junctionRoutes, storyInterfaces, strandPoint } from "./story-ribbon";
 import { easeBetween, sampleStory } from "./story-timeline";
 
 const junctions = Array.from({ length: 20 }, (_, index) => {
@@ -19,29 +20,6 @@ const signalColor = new THREE.Color("#f4ecd9");
 const lightSignal = new THREE.Color("#80603b");
 const bronzeNodes = new THREE.Color("#b89460");
 const amberSignal = new THREE.Color("#edc17e");
-
-function ProtectionShield({ shield }: { shield: RefObject<THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial> | null> }) {
-  const glass = useMemo(() => {
-    const points = shieldOutline.map(([x, y]) => new THREE.Vector2(x, y));
-    const geometry = new THREE.ShapeGeometry(new THREE.Shape(points));
-    const positions = geometry.getAttribute("position");
-    const shade = new THREE.Color();
-    const colors = new Float32Array(positions.count * 3);
-    for (let index = 0; index < positions.count; index++) {
-      const light = THREE.MathUtils.smoothstep(positions.getY(index), -0.66, 0.61);
-      shade.setScalar(0.50 + light * 0.50).toArray(colors, index * 3);
-    }
-    geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
-    return geometry;
-  }, []);
-  useEffect(() => () => glass.dispose(), [glass]);
-
-  return (
-    <mesh ref={shield} geometry={glass} visible={false} renderOrder={4}>
-      <meshBasicMaterial vertexColors toneMapped={false} transparent depthWrite={false} side={THREE.DoubleSide} />
-    </mesh>
-  );
-}
 
 function InterfacePanels({ panels }: { panels: RefObject<THREE.Group | null> }) {
   const geometry = useMemo(() => new RoundedBoxGeometry(1, 1, 1, 2, 0.06), []);
@@ -101,31 +79,20 @@ type Props = {
 };
 
 export default function StoryDetails({ motion }: Props) {
-  const shield = useRef<THREE.Mesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>>(null);
   const interfaces = useRef<THREE.Group>(null);
   const nodes = useRef<THREE.InstancedMesh<THREE.BufferGeometry, THREE.MeshStandardMaterial>>(null);
   const signal = useRef<THREE.InstancedMesh<THREE.BufferGeometry, THREE.MeshBasicMaterial>>(null);
   const scratch = useMemo(() => new THREE.Object3D(), []);
 
   useFrame(() => {
-    if (!shield.current || !interfaces.current || !nodes.current || !signal.current) return;
+    if (!interfaces.current || !nodes.current || !signal.current) return;
     const { progress, darkTheme } = motion.current;
     const { from, to, blend } = sampleStory(progress);
     const at = (shot: number) => (from === shot ? 1 - blend : 0) + (to === shot ? blend : 0);
     const protection = at(4);
-    const badge = easeBetween(protection, 0.45, 0.98);
-    shield.current.visible = badge > 0.01;
-    if (shield.current.visible) {
-      const { center, scale, yaw } = protectionShield;
-      shield.current.position.set(center[0], center[1], center[2] * badge);
-      shield.current.rotation.y = yaw + (1 - badge) * 0.35;
-      shield.current.scale.set(scale[0] * badge, scale[1] * badge, badge);
-      shield.current.material.color.set(darkTheme ? "#ced0c8" : "#bdb3a3");
-      shield.current.material.opacity = badge * (darkTheme ? 0.28 : 0.40);
-    }
-    const setPath = (strand: number, t: number) => {
-      const a = strandPoint(from, strand, t);
-      const b = strandPoint(to, strand, t);
+    const setPath = (strand: number, t: number, junction?: number) => {
+      const a = from === 4 && junction !== undefined ? junctionPoint(junction, true) : strandPoint(from, strand, t);
+      const b = to === 4 && junction !== undefined ? junctionPoint(junction, true) : strandPoint(to, strand, t);
       scratch.position.set(a[0] + (b[0] - a[0]) * blend, a[1] + (b[1] - a[1]) * blend, a[2] + (b[2] - a[2]) * blend);
     };
 
@@ -149,10 +116,10 @@ export default function StoryDetails({ motion }: Props) {
     signal.current.visible = junctionAmount > 0.02;
     if (nodes.current.visible) {
       nodes.current.material.color.copy(nodeColor).lerp(networkNodes[darkTheme ? "dark" : "light"], network);
-      nodes.current.material.color.lerp(bronzeNodes, protection * 0.64);
+      nodes.current.material.color.lerp(bronzeNodes, protection * 0.72);
       nodes.current.material.emissiveIntensity = darkTheme ? network * 0.16 : 0;
       for (const [index, { strand, t }] of junctions.entries()) {
-        setPath(strand, t);
+        setPath(strand, t, index);
         scratch.scale.setScalar(junctionAmount * (0.036 + (index % 4) * 0.013));
         scratch.updateMatrix();
         nodes.current.setMatrixAt(index, scratch.matrix);
@@ -176,8 +143,8 @@ export default function StoryDetails({ motion }: Props) {
 
   return (
     <>
-      <ProtectionShield shield={shield} />
       <InterfacePanels panels={interfaces} />
+      <ProtectionDetails motion={motion} />
       <instancedMesh ref={nodes} args={[undefined, undefined, junctions.length]} visible={false} frustumCulled={false}>
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial emissive="#ded7c5" emissiveIntensity={0} metalness={0.68} roughness={0.27} />

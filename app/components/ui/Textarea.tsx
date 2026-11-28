@@ -1,56 +1,25 @@
-import type { TextareaHTMLAttributes } from "react";
+import { useId, type ComponentProps } from "react";
+import Field, { fieldDescription, type FieldProps } from "./Field";
+import styles from "./Field.module.css";
 
-type Props = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "className"> & {
-  label?: string;
-  error?: string;
-  className?: string;
-};
+type Props = ComponentProps<"textarea"> & FieldProps;
 
 export default function Textarea({
-  label,
-  error,
-  className,
-  rows = 5,
-  ...textareaProps
+  label, error, helperText, size, variant, containerClassName, className, id, rows = 5, ...props
 }: Props) {
-  const borderCls = error
-    ? "border-rose focus:border-rose"
-    : "border-line-strong focus:border-accent";
-
-  const cls = `w-full bg-transparent border-b ${borderCls} outline-none py-3 text-base resize-none transition-colors${
-    className ? " " + className : ""
-  }`;
-
-  const errorMsg = error ? (
-    <span className="block mt-2 text-xs text-rose">{error}</span>
-  ) : null;
-
-  if (!label) {
-    return (
-      <div className="block">
-        <textarea
-          rows={rows}
-          {...textareaProps}
-          className={cls}
-          aria-invalid={error ? "true" : undefined}
-        />
-        {errorMsg}
-      </div>
-    );
-  }
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
 
   return (
-    <label className="block group">
-      <span className="block text-xs tracking-[0.25em] uppercase text-muted mb-3">
-        {label}
-      </span>
+    <Field id={inputId} label={label} error={error} helperText={helperText} size={size} variant={variant} containerClassName={containerClassName}>
       <textarea
+        {...props}
+        id={inputId}
         rows={rows}
-        {...textareaProps}
-        className={cls}
-        aria-invalid={error ? "true" : undefined}
+        className={[styles.control, styles.textarea, className].filter(Boolean).join(" ")}
+        aria-invalid={error ? true : props["aria-invalid"]}
+        aria-describedby={fieldDescription(inputId, props["aria-describedby"], error || helperText)}
       />
-      {errorMsg}
-    </label>
+    </Field>
   );
 }

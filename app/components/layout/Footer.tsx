@@ -3,12 +3,15 @@ import FooterLinkColumn from "./footer/FooterLinkColumn";
 import FooterNewsletter from "./footer/FooterNewsletter";
 import FooterBottom from "./footer/FooterBottom";
 import type { FooterData } from "../../lib/footer/types";
+import { getFooterFallback } from "../../lib/footer/fallback";
 
 type Props = {
   data: FooterData;
 };
 
 export default function Footer({ data }: Props) {
+  const recipient = data.contact.email || getFooterFallback().contact.email;
+
   return (
     <footer className="site-footer">
       <div className="premium-shell">
@@ -20,10 +23,11 @@ export default function Footer({ data }: Props) {
             ))}
           </nav>
         </div>
-        {data.newsletter || data.support ? (
+        {data.support || (data.newsletter && recipient) ? (
           <FooterNewsletter
             newsletter={data.newsletter}
             support={data.support}
+            recipient={recipient}
           />
         ) : null}
         <FooterBottom

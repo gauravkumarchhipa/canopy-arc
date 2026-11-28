@@ -1,39 +1,52 @@
 "use client";
 
-import Button from "../ui/Button";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { emailSchema } from "../../lib/form-validation";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
 import { IconSend } from "./footer/FooterIcons";
 
-export default function NewsletterForm() {
-  const [done, setDone] = useState(false);
+const schema = z.object({ email: emailSchema });
+
+export default function NewsletterForm({ recipient }: { recipient: string }) {
+  const [draftPrepared, setDraftPrepared] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: "" },
+  });
+
+  const openDraft = handleSubmit(({ email }) => {
+    const subject = encodeURIComponent("Canopy Arc newsletter subscription");
+    const body = encodeURIComponent(`Please subscribe this address to the Canopy Arc newsletter: ${email}`);
+    window.location.assign(`mailto:${recipient}?subject=${subject}&body=${body}`);
+    setDraftPrepared(true);
+  });
 
   return (
-    <form
-      className="footer-subscribe-form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        setDone(true);
-        setTimeout(() => setDone(false), 4000);
-      }}
-    >
-      <input
+    <form className="footer-subscribe-form" noValidate onSubmit={openDraft} onChange={() => setDraftPrepared(false)}>
+      <Input
         type="email"
+        autoComplete="email"
         required
+        normalize={false}
+        size="lg"
+        variant="outline"
         placeholder="Enter your email"
-        aria-label="Your email"
-        className="min-w-0 flex-1 border-0 bg-transparent px-0 py-4 text-sm text-foreground outline-none placeholder:text-muted"
+        aria-label="Newsletter email"
+        {...register("email")}
+        error={errors.email?.message}
+        rightIcon={
+          <Button variant="unstyled" type="submit" className="footer-subscribe-button" aria-label="Open newsletter subscription email draft">
+            <IconSend />
+          </Button>
+        }
       />
-      <Button variant="unstyled"
-        type="submit"
-        className="inline-flex shrink-0 items-center justify-center border-0 bg-transparent px-4 text-foreground transition-transform duration-200 hover:translate-x-1"
-        aria-label="Subscribe"
-      >
-        {done ? (
-          <span className="text-[10px] font-semibold uppercase tracking-wider">OK</span>
-        ) : (
-          <IconSend />
-        )}
-      </Button>
+      <p role="status" className="footer-subscribe-status">
+        {draftPrepared && "Review and send your subscription request in your email app."}
+      </p>
     </form>
   );
 }

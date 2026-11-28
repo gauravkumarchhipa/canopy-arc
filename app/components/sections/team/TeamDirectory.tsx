@@ -2,6 +2,7 @@
 
 import type { TeamGridContent } from "../../../content/pages/team/grid";
 import Button from "../../ui/Button";
+import Dropdown from "../../ui/Dropdown";
 import ArrowIcon from "../../ui/ArrowIcon";
 import Heading from "../../ui/Heading";
 import { useMemo, useState } from "react";
@@ -63,7 +64,9 @@ export default function TeamDirectory({ filters, roster }: Props) {
         </div>
         <label className="team-sort">
           <span>Sort by</span>
-          <select
+          <Dropdown
+            size="sm"
+            className="team-sort-control"
             aria-label="Sort team members"
             value={sort}
             onChange={(event) => setSort(event.target.value as Sort)}
@@ -71,7 +74,7 @@ export default function TeamDirectory({ filters, roster }: Props) {
             <option value="expertise">Expertise</option>
             <option value="name">Name: A–Z</option>
             <option value="reverse">Name: Z–A</option>
-          </select>
+          </Dropdown>
         </label>
       </div>
       <div className="profile-grid">

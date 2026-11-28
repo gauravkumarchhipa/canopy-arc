@@ -4,7 +4,6 @@ import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
 import dynamic from "next/dynamic";
 import {
-  Component,
   useCallback,
   useEffect,
   useLayoutEffect,
@@ -21,6 +20,7 @@ import { useLenis } from "../../layout/SmoothScroll";
 import { chapters, lastChapter } from "./story-chapters";
 import { sampleStory } from "./story-timeline";
 import { siteLoadingAttribute } from "../../layout/site-loading";
+import StorySceneBoundary from "./StorySceneBoundary";
 
 const StoryScene = dynamic(() => import("./StoryScene"), { ssr: false });
 const motionQuery = "(prefers-reduced-motion: no-preference) and (min-height: 540px)";
@@ -36,19 +36,6 @@ export type SceneMotion = {
   pointerY: number;
   darkTheme: boolean;
 };
-
-class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => void }, { failed: boolean }> {
-  state = { failed: false };
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-  componentDidCatch() {
-    this.props.onFailure();
-  }
-  render() {
-    return this.state.failed ? null : this.props.children;
-  }
-}
 
 export default function StoryExperience({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
@@ -327,7 +314,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
           onLostPointerCapture={release}
         >
           {enhanced && !failed && (onScreen || ready) && (
-            <SceneBoundary onFailure={handleFailure}>
+            <StorySceneBoundary onFailure={handleFailure}>
               <StoryScene
                 motion={motion}
                 setRenderRequest={setRenderRequest}
@@ -336,7 +323,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
                 onReady={handleReady}
                 onFailure={handleFailure}
               />
-            </SceneBoundary>
+            </StorySceneBoundary>
           )}
         </div>
         <div className="story-chapters">{children}</div>

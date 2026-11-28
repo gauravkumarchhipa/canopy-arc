@@ -12,6 +12,6 @@ const NewsletterForm = dynamic(() => import("../NewsletterForm"), {
   ),
 });
 
-export default function NewsletterFormLazy() {
-  return <NewsletterForm />;
+export default function NewsletterFormLazy({ recipient }: { recipient: string }) {
+  return <NewsletterForm recipient={recipient} />;
 }

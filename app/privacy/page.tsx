@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import PolicyPage from "../components/layout/PolicyPage";
-import SculptureVisual from "../components/three/SculptureVisual";
+import { chapters } from "../components/sections/home/story-chapters";
+import StoryStill from "../components/sections/home/StoryStill";
+import ProtectionVisual from "./ProtectionVisual";
+
+const protectionPose = chapters.findIndex(({ id }) => id === "the-protection");
 
 export const metadata: Metadata = {
   title: "Privacy Policy — Canopy Arc",
@@ -57,7 +61,11 @@ export default function PrivacyPage() {
       title="Your data,"
       titleAccent="handled responsibly."
       summary="This notice explains what happens to your information when you browse the Canopy Arc website, contact us, or use a website account."
-      visual={<SculptureVisual variant="security" compact />}
+      visual={(
+        <ProtectionVisual poseIndex={protectionPose}>
+          <StoryStill pose={protectionPose} instance="privacy" />
+        </ProtectionVisual>
+      )}
       sections={sections.map(({ id, title, paragraphs }) => ({
         id,
         title,

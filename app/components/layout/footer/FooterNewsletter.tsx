@@ -6,18 +6,19 @@ import NewsletterFormLazy from "./NewsletterFormLazy";
 type Props = {
   newsletter: FooterNewsletter | null;
   support: FooterSupport | null;
+  recipient?: string;
 };
 
-export default function FooterNewsletter({ newsletter, support }: Props) {
+export default function FooterNewsletter({ newsletter, support, recipient }: Props) {
   return (
     <div className="footer-connect-row">
-      {newsletter ? (
+      {newsletter && recipient ? (
         <div className="footer-newsletter">
           <div>
             <h4>{newsletter.title}</h4>
             <p>{newsletter.text}</p>
           </div>
-          <NewsletterFormLazy />
+          <NewsletterFormLazy recipient={recipient} />
         </div>
       ) : null}
       {support ? (

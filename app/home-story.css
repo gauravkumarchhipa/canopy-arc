@@ -90,38 +90,18 @@ html[data-theme="light"] body:has(.story-home) .site-footer {
   --still-link-glass: #c0c9c5;
 }
 
-:is(.story-chapter--intelligence, .story-chapter--protection) .story-still {
+.story-chapter--intelligence .story-still {
   --still-link-base: #4e4c47;
   --still-link-highlight: #82847d;
   --still-link-glass: #597275;
   --still-node: #6b6d66;
 }
 
-[data-theme="dark"] :is(.story-chapter--intelligence, .story-chapter--protection) .story-still {
+[data-theme="dark"] .story-chapter--intelligence .story-still {
   --still-link-base: #aaa294;
   --still-link-highlight: #e8dfce;
   --still-link-glass: #b4cccc;
   --still-node: #d8d2c4;
-}
-
-.story-chapter--protection .story-still {
-  --still-shield-light: #bdb3a3;
-  --still-shield-shade: #8a8276;
-  --still-shield-opacity: 0.4;
-  --still-link-base: #866238;
-  --still-link-highlight: #ad8451;
-  --still-link-glass: #a88454;
-  --still-node: #987244;
-}
-
-[data-theme="dark"] .story-chapter--protection .story-still {
-  --still-shield-light: #ced0c8;
-  --still-shield-shade: #979992;
-  --still-shield-opacity: 0.28;
-  --still-link-base: #a98758;
-  --still-link-highlight: #e8c890;
-  --still-link-glass: #c6aa77;
-  --still-node: #e5c08a;
 }
 
 .story-track:not([data-enhanced]) .story-chapter--spark {

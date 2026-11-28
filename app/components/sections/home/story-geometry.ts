@@ -5,7 +5,7 @@ const profile = [
   [-0.84, -1], [0.84, -1], [1, -0.64], [1, 0.64],
   [0.84, 1], [-0.84, 1], [-1, 0.64], [-1, -0.64],
 ] as const;
-const gauges = [0.030, 0.042, 0.0048, 0.013, 0.010, 0.049];
+const gauges = [0.030, 0.042, 0.0048, 0.013, 0.017, 0.049];
 
 export function makeStrands(compact: boolean, glass: boolean, {
   poseCount = storyCamera.length,
@@ -73,7 +73,7 @@ export function makeStrands(compact: boolean, glass: boolean, {
         height.crossVectors(tangent, across);
         previous.copy(tangent);
         const taper = 0.62 + 0.38 * Math.sin(t * Math.PI) ** 0.55;
-        const width = gauges[pose] * taper * (glass ? 1.17 : 1);
+        const width = gauges[pose] * taper * (glass ? 1.17 : 1) * (pose === 4 && strand < 4 ? 1.4 : 1);
         const thickness = glass ? 0.012 : 0.007 + width * 0.09;
         for (const [side, top] of profile) {
           points[offset++] = center.x + (across.x * side * width + height.x * top * thickness) * gaugeScale;

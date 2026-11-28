@@ -3,76 +3,55 @@
 import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
 import Heading from "../../ui/Heading";
+import Input from "../../ui/Input";
+import Textarea from "../../ui/Textarea";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { emailSchema } from "../../../lib/form-validation";
 
-const Schema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
-  message: z.string().min(10),
+const schema = z.object({
+  name: z.string().trim().min(2, "Enter your name using at least 2 characters."),
+  email: emailSchema,
+  message: z.string().trim().min(10, "Tell us about your project in at least 10 characters."),
 });
 
 export default function ContactForm({ email }: { email: string }) {
   const [draftPrepared, setDraftPrepared] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<z.infer<typeof schema>>({
+    resolver: zodResolver(schema),
+    defaultValues: { name: "", email: "", message: "" },
+  });
+
+  const openDraft = handleSubmit(({ name, email: replyTo, message }) => {
+    const subject = encodeURIComponent("Canopy Arc project inquiry");
+    const body = encodeURIComponent(`Name: ${name}\r\nEmail: ${replyTo}\r\n\r\n${message}`);
+    window.location.assign(`mailto:${email}?subject=${subject}&body=${body}`);
+    setDraftPrepared(true);
+  });
 
   return (
     <form
       action={`mailto:${email}`}
       method="post"
       encType="text/plain"
+      noValidate
       className="contact-panel contact-form"
       aria-labelledby="contact-form-title"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const fd = new FormData(e.currentTarget);
-        const payload = {
-          name: String(fd.get("name") ?? ""),
-          email: String(fd.get("email") ?? ""),
-          message: String(fd.get("message") ?? ""),
-        };
-        const parsed = Schema.safeParse(payload);
-        if (!parsed.success) return;
-        const { name, email: replyTo, message } = parsed.data;
-        const subject = encodeURIComponent("Canopy Arc project inquiry");
-        const body = encodeURIComponent(`Name: ${name}\r\nEmail: ${replyTo}\r\n\r\n${message}`);
-        window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
-        setDraftPrepared(true);
-      }}
+      onSubmit={openDraft}
+      onChange={() => setDraftPrepared(false)}
     >
       <Heading id="contact-form-title">Project inquiry</Heading>
       <div className="contact-form-fields">
-        <label>
-          <span>Name</span>
-          <input
-            name="name"
-            required
-            minLength={2}
-            autoComplete="name"
-            placeholder="Your name"
-          />
-        </label>
-        <label>
-          <span>Email</span>
-          <input
-            name="email"
-            required
-            type="email"
-            autoComplete="email"
-            placeholder="you@company.com"
-          />
-        </label>
+        <Input label="Name" variant="outline" normalize={false} required autoComplete="name"
+          placeholder="Your name" {...register("name")} error={errors.name?.message} />
+        <Input label="Email" variant="outline" normalize={false} required type="email" autoComplete="email"
+          placeholder="you@company.com" {...register("email")} error={errors.email?.message} />
       </div>
 
-      <label className="contact-message">
-        <span>Message</span>
-        <textarea
-          name="message"
-          required
-          minLength={10}
-          rows={5}
-          placeholder="Tell us what you want to build…"
-        />
-      </label>
+      <Textarea label="Message" variant="outline" required placeholder="Tell us what you want to build…"
+        {...register("message")} error={errors.message?.message} />
 
       <div className="contact-form-footer">
         <Button variant="unstyled" type="submit" className="contact-submit">

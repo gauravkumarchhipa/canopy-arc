@@ -219,15 +219,10 @@
   font-size: 0.73rem;
 }
 
-.team-sort select {
-  min-height: 40px;
-  border: 1px solid var(--team-rule);
-  border-radius: 6px;
-  padding-inline: 12px;
-  color: var(--team-ink);
-  background: var(--team-paper);
-  font: inherit;
-  cursor: pointer;
+.team-sort-control { inline-size: 7.75rem; }
+
+@media (pointer: coarse) {
+  .team-sort-control { inline-size: 8.5rem; }
 }
 
 .profile-grid {
@@ -395,7 +390,7 @@
 
 .team-closing .team-primary { flex-shrink: 0; }
 
-.team-page :is(a, button, select, .sculpture-stage):focus-visible {
+.team-page :is(a, button, .sculpture-stage):focus-visible {
   outline: 2px solid var(--team-ink);
   outline-offset: 3px;
 }
@@ -403,6 +398,7 @@
 @media (max-width: 950px) {
   .profile-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .team-directory-tools { flex-wrap: wrap; }
+  .team-sort { margin-inline-start: auto; }
 }
 
 @media (max-width: 700px) {

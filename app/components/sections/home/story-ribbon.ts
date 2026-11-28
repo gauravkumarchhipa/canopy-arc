@@ -7,7 +7,7 @@ export const storyCamera = [
   { azimuth: -0.43, elevation: 0.13, distance: 9.5, lift: 0.11, slide: 0.17, floor: -1.31 },
   { azimuth: -0.20, elevation: 0.17, distance: 9.2, lift: -0.02, slide: 0.06, floor: -1.38 },
   { azimuth: 0.21, elevation: 0.14, distance: 8.2, lift: 0.03, slide: -0.13, floor: -1.37 },
-  { azimuth: 0.49, elevation: 0.13, distance: 8.9, lift: 0.05, slide: -0.11, floor: -1.44 },
+  { azimuth: 0.29, elevation: 0.10, distance: 8.9, lift: 0.20, slide: 0, floor: -1.44 },
   { azimuth: 0.35, elevation: 0.20, distance: 10.15, lift: 0.02, slide: 0.10, floor: -1.36 },
 ] as const;
 
@@ -44,31 +44,25 @@ function markPoint(strand: number, t: number): [number, number, number] {
   return [across * side, up, depth];
 }
 
-export const protectionShield = {
-  center: [0.44, 0.16, 0.82],
-  scale: [3.48, 2.60],
-  yaw: 0.49,
-} as const;
-
-// Quadratic segments around the shield, represented by their start, control and end points.
-const shieldCurves = [
-  [[0, 0.61], [0.22, 0.43], [0.50, 0.40]],
-  [[0.50, 0.40], [0.49, 0.14], [0.46, -0.05]],
-  [[0.46, -0.05], [0.38, -0.49], [0, -0.66]],
-  [[0, -0.66], [-0.38, -0.49], [-0.46, -0.05]],
-  [[-0.46, -0.05], [-0.49, 0.14], [-0.50, 0.40]],
-  [[-0.50, 0.40], [-0.22, 0.43], [0, 0.61]],
+// The front rim, raised face, and rear rim share the same connected shield.
+const protectionNodes = [
+  [0, 0.61, 0.08], [0.26, 0.47, 0.10], [0.50, 0.40, 0.02], [0.46, -0.05, 0.04],
+  [0.31, -0.43, 0.08], [0, -0.66, 0.07], [-0.31, -0.43, 0.08], [-0.46, -0.05, 0.04],
+  [-0.50, 0.40, 0.02], [-0.26, 0.47, 0.10],
+  [-0.23, 0.20, 0.40], [0.23, 0.20, 0.40], [0, -0.02, 0.58],
+  [-0.17, -0.25, 0.39], [0.17, -0.25, 0.39],
+  [0, 0.58, -0.47], [0.46, 0.36, -0.46], [0.27, -0.40, -0.46],
+  [-0.27, -0.40, -0.46], [-0.46, 0.36, -0.46],
 ] as const;
 
-export const shieldOutline = shieldCurves.flatMap(([start, control, end]) =>
-  Array.from({ length: 12 }, (_, index): [number, number] => {
-    const t = index / 12;
-    const s = 1 - t;
-    return [
-      s * s * start[0] + 2 * s * t * control[0] + t * t * end[0],
-      s * s * start[1] + 2 * s * t * control[1] + t * t * end[1],
-    ];
-  }));
+const protectionRoutes = [
+  [0, 1, 2, 3], [3, 4, 5, 6], [6, 7, 8, 9], [9, 0],
+  [0, 10, 8], [0, 11, 2], [1, 11, 12, 9], [2, 12, 8],
+  [3, 11, 10, 7], [3, 12, 7], [4, 11], [6, 10],
+  [10, 12, 4], [12, 6], [7, 13, 5, 14, 3], [4, 14, 12, 13, 6],
+  [15, 16, 17, 18, 19, 15], [0, 15, 2], [2, 16, 3], [4, 17, 5],
+  [5, 18, 6], [7, 19, 8], [8, 15, 9], [16, 12, 19],
+] as const;
 
 const networkRows = [
   [-1.78, -0.13, 0.06], [-1.31, 0.61, 0.25], [-0.80, 1.00, -0.17], [0.04, 1.05, -0.40],
@@ -87,9 +81,10 @@ const routes = [
 ] as const;
 export const junctionRoutes = routes;
 
-export function junctionPoint(index: number, protectedScale = 0): [number, number, number] {
-  const [x, y, z] = networkRows[index];
-  return [x * (1 - 0.31 * protectedScale), y * (1 - 0.27 * protectedScale), z * (1 - 0.22 * protectedScale)];
+export function junctionPoint(index: number, protection = false): readonly [number, number, number] {
+  if (!protection) return networkRows[index];
+  const [x, y, z] = protectionNodes[index];
+  return [x * 3.48, y * 2.60 + 0.42, z];
 }
 
 export const storyInterfaces = [
@@ -159,11 +154,13 @@ export function strandPoint(pose: number, strand: number, t: number): [number, n
     }
     case 3:
     case 4: {
-      const path = routes[strand];
-      const segment = Math.min(2, Math.floor(t * 3));
-      const blend = t * 3 - segment;
-      const a = junctionPoint(path[segment], pose === 4 ? 1 : 0);
-      const b = junctionPoint(path[segment + 1], pose === 4 ? 1 : 0);
+      const protection = pose === 4;
+      const path = protection ? protectionRoutes[strand] : routes[strand];
+      const steps = path.length - 1;
+      const segment = Math.min(steps - 1, Math.floor(t * steps));
+      const blend = t * steps - segment;
+      const a = junctionPoint(path[segment], protection);
+      const b = junctionPoint(path[segment + 1], protection);
       const offset = Math.sin(blend * Math.PI) * (strand % 5 - 2) * 0.011;
       return [
         a[0] + (b[0] - a[0]) * blend,

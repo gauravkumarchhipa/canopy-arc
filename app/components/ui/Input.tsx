@@ -1,8 +1,11 @@
 "use client";
 
 import Button from "./Button";
+import Field, { fieldDescription, type FieldProps } from "./Field";
+import styles from "./Field.module.css";
 import {
   useEffect,
+  useId,
   useRef,
   useState,
   type InputHTMLAttributes,
@@ -12,12 +15,7 @@ import {
 
 type TrimType = "trim" | "trimStart";
 
-type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "ref"> & {
-  label?: string;
-  error?: string;
-  helperText?: string;
-  className?: string;
-  containerClassName?: string;
+type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & FieldProps & {
   // Value transformations
   trimType?: TrimType;
   emailType?: boolean;
@@ -25,6 +23,7 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "className" | "ref"> & 
   noSpecialChars?: boolean;
   alphanumeric?: boolean;
   alphanumericCharacter?: boolean;
+  normalize?: boolean;
   // Features
   isPassword?: boolean;
   clearable?: boolean;
@@ -103,12 +102,16 @@ export default function Input({
   helperText,
   className,
   containerClassName,
+  size,
+  variant,
+  id,
   trimType,
   emailType,
   numberType,
   noSpecialChars,
   alphanumeric,
   alphanumericCharacter,
+  normalize = true,
   isPassword,
   clearable,
   leftIcon,
@@ -120,6 +123,8 @@ export default function Input({
   ref,
   ...rest
 }: Props) {
+  const generatedId = useId();
+  const inputId = id ?? generatedId;
   const internalRef = useRef<HTMLInputElement | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [hasValue, setHasValue] = useState(
@@ -149,7 +154,7 @@ export default function Input({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const original = e.target.value;
-    const cleaned = transformValue(original, {
+    const cleaned = normalize ? transformValue(original, {
       emailType,
       isPassword,
       type,
@@ -159,7 +164,7 @@ export default function Input({
       alphanumericCharacter,
       numberType,
       maxLength,
-    });
+    }) : original;
     if (cleaned !== original) {
       e.target.value = cleaned;
     }
@@ -195,94 +200,61 @@ export default function Input({
   const showRightIcon =
     rightIcon && !isPassword && type !== "password" && !showClear;
 
-  const reservesRight = isPassword || showClear || showRightIcon;
-  const reservesLeft = !!leftIcon;
-
-  const borderCls = error
-    ? "border-rose focus:border-rose"
-    : "border-line-strong focus:border-accent";
-
-  const inputCls = `w-full bg-transparent border-b ${borderCls} outline-none py-3 text-base transition-colors${
-    reservesLeft ? " pl-7" : ""
-  }${reservesRight ? " pr-9" : ""}${className ? " " + className : ""}`;
-
-  const fieldNode = (
-    <div className="relative">
-      {leftIcon && (
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 text-muted">
-          {leftIcon}
-        </span>
-      )}
-
-      <input
-        {...rest}
-        ref={setRef}
-        type={inputType}
-        maxLength={maxLength}
-        onChange={handleChange}
-        className={inputCls}
-        aria-invalid={error ? "true" : undefined}
-      />
-
-      {(isPassword || type === "password") && (
-        <Button variant="unstyled"
-          type="button"
-          onClick={() => setShowPassword((s) => !s)}
-          aria-label={showPassword ? "Hide password" : "Show password"}
-          tabIndex={-1}
-          className="absolute right-0 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors"
-        >
-          {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-        </Button>
-      )}
-
-      {showClear && (
-        <Button variant="unstyled"
-          type="button"
-          onClick={handleClear}
-          aria-label="Clear input"
-          tabIndex={-1}
-          className="absolute right-0 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors"
-        >
-          <XIcon />
-        </Button>
-      )}
-
-      {showRightIcon && (
-        <span className="absolute right-0 top-1/2 -translate-y-1/2 text-muted">
-          {rightIcon}
-        </span>
-      )}
-    </div>
-  );
-
-  const messageNode = error ? (
-    <span className="block mt-2 text-xs text-rose">{error}</span>
-  ) : helperText ? (
-    <span className="block mt-2 text-xs text-muted">{helperText}</span>
-  ) : null;
-
-  if (!label) {
-    return (
-      <div
-        className={`block${containerClassName ? " " + containerClassName : ""}`}
-      >
-        {fieldNode}
-        {messageNode}
-      </div>
-    );
-  }
+  const reservesRight = isPassword || type === "password" || showClear || showRightIcon;
+  const inputCls = [styles.control, leftIcon && styles.withStart, reservesRight && styles.withEnd, className].filter(Boolean).join(" ");
 
   return (
-    <label
-      className={`block group${containerClassName ? " " + containerClassName : ""}`}
-    >
-      <span className="block text-xs tracking-[0.25em] uppercase text-muted mb-3">
-        {label}
-      </span>
-      {fieldNode}
-      {messageNode}
-    </label>
+    <Field id={inputId} label={label} error={error} helperText={helperText} size={size} variant={variant} containerClassName={containerClassName}>
+      <div className="relative">
+        {leftIcon && (
+          <span className={styles.start}>
+            {leftIcon}
+          </span>
+        )}
+
+        <input
+          {...rest}
+          id={inputId}
+          ref={setRef}
+          type={inputType}
+          maxLength={maxLength}
+          onChange={handleChange}
+          className={inputCls}
+          aria-invalid={error ? true : rest["aria-invalid"]}
+          aria-describedby={fieldDescription(inputId, rest["aria-describedby"], error || helperText)}
+        />
+
+        {(isPassword || type === "password") && (
+          <Button variant="unstyled"
+            type="button"
+            onClick={() => setShowPassword((s) => !s)}
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            tabIndex={-1}
+            className={`${styles.end} hover:text-foreground transition-colors`}
+          >
+            {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+          </Button>
+        )}
+
+        {showClear && (
+          <Button variant="unstyled"
+            type="button"
+            onClick={handleClear}
+            aria-label="Clear input"
+            tabIndex={-1}
+            className={`${styles.end} hover:text-foreground transition-colors`}
+          >
+            <XIcon />
+          </Button>
+        )}
+
+        {showRightIcon && (
+          <span className={styles.end}>
+            {rightIcon}
+          </span>
+        )}
+      </div>
+    </Field>
   );
 }
 

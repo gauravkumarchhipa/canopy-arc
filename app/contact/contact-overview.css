@@ -36,8 +36,7 @@
   margin-inline: auto;
 }
 
-.contact-eyebrow,
-.contact-form label > span {
+.contact-eyebrow {
   font-size: 0.73rem;
   font-weight: 670;
   letter-spacing: 0.13em;
@@ -163,40 +162,6 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 30px);
-}
-
-.contact-form label {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.contact-message { flex: 1; }
-
-.contact-form :is(input, textarea) {
-  width: 100%;
-  border: 1px solid var(--contact-line);
-  border-radius: 6px;
-  padding: 11px 12px;
-  color: var(--contact-ink);
-  background: var(--contact-paper);
-  font: inherit;
-  font-size: clamp(0.85rem, 0.96vw, 1rem);
-  line-height: 1.45;
-}
-
-.contact-form :is(input, textarea)::placeholder { color: var(--contact-muted); }
-.contact-form :is(input, textarea):focus {
-  border-color: var(--contact-ink);
-  outline: 2px solid var(--contact-ink);
-  outline-offset: 2px;
-}
-
-.contact-form textarea {
-  min-height: 126px;
-  flex: 1;
-  resize: vertical;
 }
 
 .contact-form-footer {

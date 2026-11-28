@@ -364,7 +364,6 @@
   justify-content: space-between;
   gap: 15px 24px;
   overflow: clip;
-  border: 1px solid var(--work-rule);
   border-radius: 12px;
   margin-top: var(--work-contact-space);
   padding: clamp(20px, 3vw, 44px);

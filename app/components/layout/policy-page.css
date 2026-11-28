@@ -95,6 +95,17 @@
   content: "";
 }
 
+.policy-hero .privacy-protection .sculpture-stage::before { content: none; }
+
+.privacy-protection .sculpture-stage[data-ready] { touch-action: pan-y; }
+
+.privacy-protection .story-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .policy-layout {
   display: grid;
   grid-template-columns: minmax(195px, 0.36fr) minmax(0, 1fr);
