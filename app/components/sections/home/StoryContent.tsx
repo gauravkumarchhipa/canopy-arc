@@ -43,22 +43,22 @@ export function HomeChapters() {
                 <Button as="a" variant="story-text" href="#selected-work">See our work <span aria-hidden="true"><ArrowIcon direction="down" /></span></Button>
               </div>
             )}
+            {chapter.services.length > 0 && (
+              <ul className="story-scene-services" aria-label="Related services">
+                {chapter.services.map((id) => {
+                  const service = services.get(id)!;
+                  return (
+                    <li key={id}>
+                      <Link href={`/services/${id}`}>
+                        <ServiceIcon name={service.icon} />
+                        {service.title}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
           </div>
-          {chapter.services.length > 0 && (
-            <ul className="story-scene-services" aria-label="Related services">
-              {chapter.services.map((id) => {
-                const service = services.get(id)!;
-                return (
-                  <li key={id}>
-                    <Link href={`/services/${id}`}>
-                      <ServiceIcon name={service.icon} />
-                      {service.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
         </div>
       </section>
     );

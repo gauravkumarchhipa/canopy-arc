@@ -24,7 +24,9 @@ import { siteLoadingAttribute } from "../../layout/site-loading";
 
 const StoryScene = dynamic(() => import("./StoryScene"), { ssr: false });
 const motionQuery = "(prefers-reduced-motion: no-preference) and (min-height: 540px)";
-const compactQuery = "(max-width: 900px), (pointer: coarse)";
+const compactQuery = "(max-width: 1100px)";
+const compactMotionQuery = "(min-height: 38.75rem)";
+const coarsePointerQuery = "(pointer: coarse)";
 const controlId = "story-stage";
 
 export type SceneMotion = {
@@ -50,6 +52,7 @@ class SceneBoundary extends Component<{ children: ReactNode; onFailure: () => vo
 
 export default function StoryExperience({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
+  const nextControl = useRef<HTMLAnchorElement>(null);
   const motion = useRef<SceneMotion>({ progress: 0, orbit: 0, pointerX: 0, pointerY: 0, darkTheme: false });
   const renderRequest = useRef<(() => void) | null>(null);
   const syncTheme = useRef<(() => void) | null>(null);
@@ -70,23 +73,26 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
   const handleFailure = useCallback(() => setFailed(true), []);
 
   useEffect(() => {
-    const media = window.matchMedia(motionQuery);
-    const compactMedia = window.matchMedia(compactQuery);
+    const motionPreference = window.matchMedia(motionQuery);
+    const compactLayout = window.matchMedia(compactQuery);
+    const compactHeight = window.matchMedia(compactMotionQuery);
+    const coarsePointer = window.matchMedia(coarsePointerQuery);
+    const supportsCompactStage = CSS.supports("grid-template-rows", "subgrid");
+    const queries = [motionPreference, compactLayout, compactHeight, coarsePointer];
     const sync = () => {
-      if (!media.matches) {
+      const canPin = motionPreference.matches && (!compactLayout.matches || (compactHeight.matches && supportsCompactStage));
+      if (!canPin) {
         setReady(false);
         setOnScreen(false);
         pendingFocus.current = null;
       }
-      setEnhanced(media.matches);
-      setCompact(compactMedia.matches);
+      setEnhanced(canPin);
+      setCompact(compactLayout.matches || coarsePointer.matches);
     };
     sync();
-    media.addEventListener("change", sync);
-    compactMedia.addEventListener("change", sync);
+    queries.forEach((query) => query.addEventListener("change", sync));
     return () => {
-      media.removeEventListener("change", sync);
-      compactMedia.removeEventListener("change", sync);
+      queries.forEach((query) => query.removeEventListener("change", sync));
     };
   }, []);
 
@@ -130,7 +136,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
         const previous = sections[current];
         const focused = document.activeElement;
         if (previous?.contains(focused)) {
-          element.querySelector<HTMLAnchorElement>(`.story-rail [data-story-jump="${active}"]`)?.focus({ preventScroll: true });
+          nextControl.current?.focus({ preventScroll: true });
         }
         if (current >= 0) {
           const turn = Math.PI * 2;
@@ -251,7 +257,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
       document.getElementById(`${chapter.id}-title`)?.focus({ preventScroll: true });
     } else {
       pendingFocus.current = index;
-      root.current?.querySelector<HTMLAnchorElement>(`.story-rail [data-story-jump="${index}"]`)?.focus({ preventScroll: true });
+      nextControl.current?.focus({ preventScroll: true });
     }
     const top = window.scrollY + anchor.getBoundingClientRect().top;
     if (lenis) {
@@ -334,20 +340,6 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
           )}
         </div>
         <div className="story-chapters">{children}</div>
-        <nav className="story-rail" aria-label="Story chapters">
-          {chapters.map((chapter, index) => (
-            <a
-              key={chapter.id}
-              href={`#${chapter.id}`}
-              data-story-jump={index}
-              aria-current={index === active ? "step" : undefined}
-              aria-label={chapter.name}
-              title={chapter.name}
-            >
-              <span />
-            </a>
-          ))}
-        </nav>
         <div className="story-stage-controls story-shell">
           <p className="story-position story-label" aria-hidden="true">
             {String(active + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
@@ -367,6 +359,7 @@ export default function StoryExperience({ children }: { children: ReactNode }) {
               </Button>
             )}
             <Button as="a" variant="unstyled"
+              ref={nextControl}
               className="story-next"
               href={active < lastChapter ? `#${chapters[active + 1].id}` : "#story-impact"}
               data-story-jump={active < lastChapter ? active + 1 : undefined}
