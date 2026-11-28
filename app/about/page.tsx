@@ -1,5 +1,7 @@
 import { AboutHero } from "./AboutHero";
 import type { Metadata } from "next";
+import StudioMetrics from "../components/layout/StudioMetrics";
+import { aboutHero } from "../content/pages/about/hero";
 import AboutPillarsSection from "./sections/AboutPillarsSection";
 import CapabilitiesSection from "./sections/CapabilitiesSection";
 import CtaSection from "./sections/CtaSection";
@@ -20,6 +22,12 @@ export default function AboutPage() {
   return (
     <div className="about-page">
       <AboutHero />
+      <StudioMetrics
+        headingId="about-stats-title"
+        title="Canopy Arc in numbers"
+        shellClassName="about-shell"
+        figures={aboutHero.stats}
+      />
 
       <AboutPillarsSection />
       <WhySection />

@@ -3,7 +3,7 @@ import StudioHero from "../components/layout/StudioHero";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import WorkHeroVisual from "../components/sections/work/WorkHeroVisual";
-import AnimatedCounter from "../components/ui/AnimatedCounter";
+import StudioMetrics from "../components/layout/StudioMetrics";
 import { workHero } from "../content/pages/work/hero";
 import { workGrid } from "../content/pages/work/grid";
 
@@ -31,19 +31,12 @@ export function WorkHero() {
 
 export function WorkImpact() {
   return (
-    <section className="work-overview-impact" aria-labelledby="work-overview-impact-title">
-      <div className="work-overview-inset work-overview-impact-inner">
-        <Heading className="work-overview-label" id="work-overview-impact-title">Our impact<br />{" "}in numbers</Heading>
-        <dl>
-          {workHero.stats.map(({ label, value }) => (
-            <div key={label}>
-              <dt>{label}</dt>
-              <dd><AnimatedCounter value={value} /></dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <StudioMetrics
+      headingId="work-overview-impact-title"
+      title="Our impact in numbers"
+      shellClassName="work-overview-inset"
+      figures={workHero.stats}
+    />
   );
 }
 

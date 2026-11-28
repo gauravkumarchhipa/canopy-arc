@@ -21,12 +21,12 @@ export function StoryImpactAndCommitments() {
   const figures = [impact.featured, ...impact.stats];
   return (
     <div className="story-impact-and-commitment" id="story-impact">
-      <section id="impact" className="story-band" aria-labelledby="story-impact-title">
-        <div className="story-shell story-impact-grid">
+      <section id="impact" className="story-band story-impact-band" aria-labelledby="story-impact-title">
+        <div className="story-shell">
           <Heading className="story-label" id="story-impact-title">{impact.eyebrow}</Heading>
           <dl className="story-figures">
-            {figures.map((stat) => (
-              <div className="story-figure" key={stat.label}>
+            {figures.map((stat, index) => (
+              <div className={index === 0 ? "story-figure story-figure--featured" : "story-figure"} key={stat.label}>
                 <dt>{stat.label}</dt>
                 <dd><AnimatedCounter value={stat.value} viewportInset={80} /></dd>
               </div>
@@ -35,7 +35,7 @@ export function StoryImpactAndCommitments() {
         </div>
       </section>
 
-      <section className="story-band" aria-labelledby="story-commitment-title">
+      <section className="story-band story-commitment-band" aria-labelledby="story-commitment-title">
         <div className="story-shell story-editorial-grid">
           <div data-motion>
             <p className="story-label">{impact.commitment.title}</p>
@@ -45,7 +45,7 @@ export function StoryImpactAndCommitments() {
           <ul className="story-commitments" data-motion>
             {impact.commitment.pillars.map((pillar) => (
               <li key={pillar.title}>
-                <ImpactIcon name={pillar.icon} />
+                <ImpactIcon name={pillar.icon} className="story-commitment-icon" />
                 <h3>{pillar.title}</h3>
                 <p>{pillar.description}</p>
               </li>
@@ -60,11 +60,16 @@ export function StoryImpactAndCommitments() {
 export function StoryCapabilities() {
   return (
     <section className="story-band story-capabilities-band" id="capabilities" aria-labelledby="story-services-title">
-      <div className="story-shell story-editorial-grid">
-        <div>
-          <p className="story-label">Our capabilities</p>
-          <Heading id="story-services-title">Design, build, <span>and protect.</span></Heading>
-          <p>Explore the services behind each stage, from interface design to cloud operations and security testing.</p>
+      <div className="story-shell">
+        <div className="story-capabilities-intro">
+          <div className="story-capabilities-copy">
+            <p className="story-label">Our capabilities</p>
+            <Heading id="story-services-title">Design, build, <span>and protect.</span></Heading>
+            <p>Explore the services behind each stage, from interface design to cloud operations and security testing.</p>
+          </div>
+          <div className="story-capabilities-art" aria-hidden="true">
+            <StoryStill pose={2} instance="capabilities" />
+          </div>
         </div>
         <div className="story-capabilities">
           {servicesGrid.filters.slice(1).map((category) => (
@@ -74,9 +79,9 @@ export function StoryCapabilities() {
                 {servicesGrid.cards.filter((service) => service.tag === category).map((service) => (
                   <li key={service.id}>
                     <Link href={`/services/${service.id}`}>
-                      <ServiceIcon name={service.icon} />
+                      <ServiceIcon name={service.icon} className="story-service-icon" />
                       <span>{service.title}</span>
-                      <span aria-hidden="true"><ArrowIcon /></span>
+                      <ArrowIcon className="story-service-arrow" />
                       <span className="story-service-preview" aria-hidden="true">{service.subtitle}</span>
                     </Link>
                   </li>

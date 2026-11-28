@@ -1,7 +1,6 @@
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import StudioHero from "../components/layout/StudioHero";
-import AnimatedCounter from "../components/ui/AnimatedCounter";
 import Heading from "../components/ui/Heading";
 import SculptureVisual from "../components/three/SculptureVisual";
 import { aboutHero } from "../content/pages/about/hero";
@@ -25,14 +24,6 @@ export function AboutHero() {
           </div>
         </div>
         <SculptureVisual variant="about" compact />
-        <dl className="about-stats" aria-label="Canopy Arc in numbers">
-          {hero.stats.map((stat) => (
-            <div key={stat.label}>
-              <dt>{stat.label}</dt>
-              <dd><AnimatedCounter value={stat.value} /></dd>
-            </div>
-          ))}
-        </dl>
       </div>
     </StudioHero>
   );

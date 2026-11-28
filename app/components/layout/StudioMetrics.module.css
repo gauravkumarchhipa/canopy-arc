@@ -1,0 +1,56 @@
+.metrics {
+  padding-block: clamp(28px, 3.3vw, 48px);
+}
+
+section.metrics h2.label {
+  margin: 0;
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 730;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
+  overflow: clip;
+  margin: 16px 0 0;
+  border-radius: 16px;
+  background: color-mix(in srgb, var(--studio-page-paper), var(--studio-page-card) 34%);
+}
+
+.figures > div {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  padding: clamp(17px, 2.25vw, 32px) clamp(14px, 2.4vw, 36px);
+}
+
+.figures > div:first-child {
+  color: var(--studio-page-paper);
+  background: linear-gradient(115deg, var(--studio-page-ink), color-mix(in srgb, var(--studio-page-ink), var(--studio-page-card) 16%));
+}
+
+.figures dd {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.55vw, 3.3rem);
+  font-weight: 630;
+  line-height: 1;
+  letter-spacing: -0.065em;
+}
+
+.figures dt {
+  color: var(--studio-page-muted);
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  line-height: 1.4;
+}
+
+.figures > div:first-child dt { color: inherit; }
+
+@media (max-width: 620px) {
+  .figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

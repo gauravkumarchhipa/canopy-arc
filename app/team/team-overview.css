@@ -158,48 +158,6 @@
 
 .team-hero .sculpture-fallback { color: var(--team-muted); }
 
-.team-stat-strip {
-  border-block: 1px solid var(--team-rule);
-  padding-block: clamp(26px, 4vw, 64px);
-}
-
-.team-stat-inner {
-  display: grid;
-  grid-template-columns: minmax(95px, 0.62fr) 4fr;
-  align-items: center;
-  gap: 14px;
-}
-
-.team-stat-inner dl {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin: 0;
-}
-
-.team-stat-inner dl div {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: flex-end;
-  gap: 4px;
-  border-left: 1px solid var(--team-rule);
-  padding-inline: 5px;
-  text-align: center;
-}
-
-.team-stat-inner dd {
-  margin: 0;
-  font-size: clamp(1.45rem, 2.55vw, 2.65rem);
-  font-weight: 630;
-  line-height: 1.04;
-  letter-spacing: -0.055em;
-}
-
-.team-stat-inner dt {
-  color: var(--team-muted);
-  font-size: clamp(0.66rem, 1vw, 0.85rem);
-  line-height: 1.35;
-}
-
 .team-directory { padding-top: clamp(34px, 4.8vw, 70px); }
 
 .team-directory-heading {
@@ -456,19 +414,11 @@
     inset: auto;
     height: clamp(225px, 62vw, 340px);
   }
-  .team-stat-inner { grid-template-columns: 1fr; }
-  .team-stat-inner h2 br { display: none; }
-  .team-stat-inner dl div:first-child { border-left: 0; }
   .team-directory-heading { align-items: start; flex-direction: column; }
   .profile-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .profile-art { flex-wrap: wrap; align-content: center; gap: 6px 9px; }
   .profile-discipline { font-size: 0.56rem; }
   .team-closing { flex-wrap: wrap; }
-}
-
-@media (max-width: 360px) {
-  .team-stat-inner dl { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px 0; }
-  .team-stat-inner dl div:nth-child(odd) { border-left: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -3,7 +3,7 @@ import StudioHero from "../components/layout/StudioHero";
 import Button from "../components/ui/Button";
 import ArrowIcon from "../components/ui/ArrowIcon";
 import ServiceJourneyVisual from "../components/sections/services/ServiceJourneyVisual";
-import AnimatedCounter from "../components/ui/AnimatedCounter";
+import StudioMetrics from "../components/layout/StudioMetrics";
 import { servicesHero } from "../content/pages/services/hero";
 import impact from "../content/pages/home/impact.json";
 
@@ -40,18 +40,11 @@ export function ServicesHero() {
 
 export function ServicesImpact() {
   return (
-    <section className="services-overview-impact" aria-labelledby="services-overview-impact-title">
-      <div className="services-overview-shell services-overview-impact-inner">
-        <Heading className="services-overview-label" id="services-overview-impact-title">Our expertise<br />{" "}at a glance</Heading>
-        <dl>
-          {figures.map(({ label, value }) => (
-            <div key={label}>
-              <dt>{label}</dt>
-              <dd><AnimatedCounter value={value} /></dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <StudioMetrics
+      headingId="services-overview-impact-title"
+      title="Our expertise at a glance"
+      shellClassName="services-overview-shell"
+      figures={figures}
+    />
   );
 }

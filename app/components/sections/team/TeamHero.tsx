@@ -1,9 +1,9 @@
 import Heading from "../../ui/Heading";
 import StudioHero from "../../layout/StudioHero";
+import StudioMetrics from "../../layout/StudioMetrics";
 import Button from "../../ui/Button";
 import ArrowIcon from "../../ui/ArrowIcon";
 import { teamHero } from "../../../content/pages/team/hero";
-import AnimatedCounter from "../../ui/AnimatedCounter";
 import SculptureVisual from "../../three/SculptureVisual";
 
 export default function TeamHero() {
@@ -29,19 +29,12 @@ export default function TeamHero() {
           <SculptureVisual variant="team" compact />
         </div>
       </StudioHero>
-      <section className="team-stat-strip" aria-labelledby="team-stats-title">
-        <div className="team-shell team-stat-inner">
-          <Heading className="team-label" id="team-stats-title">Our people<br />{" "}at a glance</Heading>
-          <dl>
-            {teamHero.stats.map((stat) => (
-              <div key={stat.label}>
-                <dt>{stat.label}</dt>
-                <dd><AnimatedCounter value={stat.value} /></dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
+      <StudioMetrics
+        headingId="team-stats-title"
+        title="Our people at a glance"
+        shellClassName="team-shell"
+        figures={teamHero.stats}
+      />
     </>
   );
 }
